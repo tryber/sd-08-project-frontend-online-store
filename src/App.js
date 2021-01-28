@@ -1,17 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-// import * as api from './services/api';
+import Header from './pages/Header';
+
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        {/* {api.getCategories().then(categories => { console.log(categories) })} */}
-      </header>
-    </div>
+    <main>
+      <Header />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ Home } />
+        </Switch>
+      </BrowserRouter>
+    </main>
   );
 }
 
