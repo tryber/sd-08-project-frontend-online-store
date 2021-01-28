@@ -7,15 +7,20 @@ class Home extends React.Component {
     super();
 
     this.state = {
-      // value: '',
+      categories: [],
     };
   }
 
   componentDidMount() {
-    api.getCategories().then((categories) => console.log(categories));
+    api.getCategories().then((categories) => (
+      this.setState({
+        categories,
+      })
+    ));
   }
 
   render() {
+    const { categories } = this.state;
     return (
       <div>
         <h1>Sales</h1>
@@ -24,6 +29,15 @@ class Home extends React.Component {
           <input id="textInput" />
         </label>
         <Link to="/cart" data-testid="shopping-cart-button">Ver carrinho</Link>
+        <ul>
+          {categories.map((c) => (
+            <li
+              data-testid="category"
+              key={ c.name }
+            >
+              { c.name }
+            </li>))}
+        </ul>
       </div>
     );
   }
