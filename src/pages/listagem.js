@@ -19,7 +19,6 @@ class Listagem extends Component {
 
   async createAllCategories() {
     const itemList = await apiConsult.getCategories();
-    console.log(itemList);
     const spanList = itemList.map((data) => (
       <li
         key={ data.id }
