@@ -8,7 +8,7 @@ class Header extends Component {
     // const { cart } = this.props;
     return (
       <header className="header-container">
-        <div className="header-logo">LogoMarca</div>
+        <Link to="/" className="header-logo">LogoMarca</Link>
         <Link
           to="/cart"
           className="header-cart"
