@@ -1,4 +1,5 @@
 import React from 'react';
+import Home from './components/Home';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends React.Component {
         <header
           className="App-header"
         />
+        <Home />
         {this.renderInputSearch()}
         <span
           data-testid="home-initial-message"
