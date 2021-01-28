@@ -5,6 +5,7 @@ import './App.css';
 import './services/api';
 import TopNavBar from './components/TopNavBar';
 import * as api from './services/api';
+import ListagemDeProdutos from './components/ListagemDeProdutos';
 
 class App extends React.Component {
   constructor() {
@@ -13,13 +14,11 @@ class App extends React.Component {
       categories: [],
     };
   }
-
   componentDidMount() {
     api.getCategories().then((result) => {
       this.setState(() => ({ categories: result }));
     });
   }
-
   render() {
     const { categories } = this.state;
     return (
@@ -38,9 +37,9 @@ class App extends React.Component {
         <Switch>
           <Route path="/shoppingCart" component={ CartPage } />
         </Switch>
+        <ListagemDeProdutos />
       </BrowserRouter>
     );
   }
 }
-
 export default App;
