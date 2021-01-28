@@ -1,5 +1,5 @@
 export async function getCategories() {
-  // Implemente aqui
+  // Implemente aqui asdadasd
 }
 
 export async function getProductsFromCategoryAndQuery(/* categoryId, query */) {
