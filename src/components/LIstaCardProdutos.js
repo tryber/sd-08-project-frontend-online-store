@@ -5,9 +5,13 @@ import CardProdutos from './CardProdutos';
 class ListaCardProdutos extends React.Component {
   render() {
     const { listOfProducts } = this.props;
+    if (listOfProducts.length === 0) {
+      return (
+        <h2>Nenhum produto foi encontrado</h2>
+      );
+    }
     return (
       <div>
-        {console.log(listOfProducts)}
         {listOfProducts.map((products) => (
           <CardProdutos
             key={ products.id }
@@ -21,7 +25,6 @@ class ListaCardProdutos extends React.Component {
 }
 
 ListaCardProdutos.propTypes = {
-  // listOfProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
   listOfProducts: PropTypes.shape(
     PropTypes.shape({
       id: PropTypes.string,

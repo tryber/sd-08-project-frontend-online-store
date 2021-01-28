@@ -16,17 +16,22 @@ class Listagem extends Component {
   }
 
   async handleClick() {
-    const { category, query } = this.state;
-    const produtos = await api.getProductsFromCategoryAndQuery(category, query);
-    const produtosx = produtos.map((prod) => (
-      { id: prod.id,
-        title: prod.title,
-        thumbnail: prod.thumbnail,
-        price: prod.price,
-      }));
-    this.setState({
-      listOfProducts: produtosx,
-    });
+    try {
+      const { category, query } = this.state;
+      const produtos = await api.getProductsFromCategoryAndQuery(category, query)
+        .then((data) => data.results);
+      const produtosx = produtos.map((prod) => (
+        { id: prod.id,
+          title: prod.title,
+          thumbnail: prod.thumbnail,
+          price: prod.price,
+        }));
+      this.setState({
+        listOfProducts: produtosx,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleChange(e) {
