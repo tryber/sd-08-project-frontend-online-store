@@ -40,3 +40,26 @@
     transform: rotate(360deg);
   }
 }
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.input {
+  background-color: white;
+  border: solid;
+  border-width: thin;
+  width: 90%;
+  border-radius:10px;
+  padding: 5px; 
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-weight: 400;
+}
