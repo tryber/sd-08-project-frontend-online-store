@@ -7,7 +7,10 @@ class Home extends React.Component {
     return (
       <div>
         <input type="text" />
-        <p>Você ainda não realizou uma busca</p>
+        <p data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma
+          categoria.
+        </p>
         <Link to="/cartcheckout" data-testid="shopping-cart-button">
           <img src={ cartIcon } alt="cart icon" />
         </Link>
