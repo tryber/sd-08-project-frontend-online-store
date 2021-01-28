@@ -5,6 +5,7 @@ import './App.css';
 import './services/api';
 import TopNavBar from './components/TopNavBar';
 import * as api from './services/api';
+import ListagemDeProdutos from './components/ListagemDeProdutos';
 
 class App extends React.Component {
   constructor() {
@@ -38,6 +39,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/shoppingCart" component={ CartPage } />
         </Switch>
+        <ListagemDeProdutos />
       </BrowserRouter>
     );
   }
