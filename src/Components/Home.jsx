@@ -1,5 +1,4 @@
 import React from 'react';
-import * as api from '../services/api';
 
 class Home extends React.Component {
   render() {
