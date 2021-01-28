@@ -4,11 +4,11 @@ import Loading from './Loading';
 
 class MapCategories extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       categories: [],
       loading: true,
-    }
+    };
   }
 
   componentDidMount() {
@@ -24,26 +24,26 @@ class MapCategories extends React.Component {
           loading: false,
         });
       });
-  };
+  }
 
-  categoriesCard () {
+  categoriesCard() {
     const { categories } = this.state;
     return (
-    <div>
-        { categories.map((result) =>
-        <button key={ result.id } data-testid="category">
-          { result.name }
-        </button>)}
-    </div>
-    )
+      <div>
+        { categories.map((result) => (
+          <button type="button" key={ result.id } data-testid="category">
+            { result.name }
+          </button>))}
+      </div>
+    );
   }
 
   render() {
     const { loading } = this.state;
     return (
-    <div>
-      { loading ? <Loading /> : this.categoriesCard() }
-    </div>
+      <div>
+        { loading ? <Loading /> : this.categoriesCard() }
+      </div>
     );
   }
 }
