@@ -14,7 +14,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Group 22
+          GRoup 22
         </a>
       </header>
     </div>
