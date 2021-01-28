@@ -5,7 +5,7 @@ import './Header.css';
 
 class Header extends Component {
   render() {
-    const { cart } = this.props;
+    // const { cart } = this.props;
     return (
       <header className="header-container">
         <div className="header-logo">LogoMarca</div>
