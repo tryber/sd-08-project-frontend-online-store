@@ -1,13 +1,17 @@
 import React from 'react';
-
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 
-import Request from './Components/Request';
+import PaginaInicial from './Pages/PaginaInicial';
 
 function App() {
   return (
     <div className="App">
-      <Request />
+      <Router>
+        <Switch>
+          <Route path="/" component={ PaginaInicial } />
+        </Switch>
+      </Router>
     </div>
   );
 }
