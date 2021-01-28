@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import CartIcon from './components/CartIcon';
 import CartPage from './components/CartPage';
 import './App.css';
+import './services/api';
 
 function App() {
   return (
