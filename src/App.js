@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './components/Home';
 import './App.css';
 
 class App extends React.Component {
@@ -14,9 +16,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        { this.initialMessage() }
-      </div>
+      <Router>
+        <Route path="/" component={ Home } />
+      </Router>
     );
   }
 }
