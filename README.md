@@ -53,7 +53,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
     - [19. Coloque uma animação no carrinho para quando um produto for adicionado](#19-coloque-uma-animação-no-carrinho-para-quando-um-produto-for-adicionado)
     - [20. Crie um slider lateral para exibir o carrinho na tela principal](#20-crie-um-slider-lateral-para-exibir-o-carrinho-na-tela-principal)
     - [21. Destaque, na tela principal, os produtos já adicionados ao carrinho](#21-destaque-na-tela-principal-os-produtos-já-adicionados-ao-carrinho)
-    - [22. Crie um slider lateral para exibir o carrinho na tela principal](#22-crie-um-slider-lateral-para-exibir-o-carrinho-na-tela-principal)
+    - [22. Impeça que a quantidade do produto seja negativa](#22-impeça-que-a-quantidade-do-produto-seja-negativa)
 - [Avisos finais](#avisos-finais)
 
 # Habilidades
@@ -266,6 +266,8 @@ O retorno desse endpoint será algo no formato:
 ```
 
 O retorno desse endpoint será algo como o exemplo que temos [neste arquivo](exemplo-motorola.json).
+
+⚠ **ATENÇÃO! Se der erro de CORS aperte `ctrl + shift + r` no seu navegador** ⚠
 
 ### Linter
 
