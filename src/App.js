@@ -4,14 +4,21 @@ import './App.css';
 import ButtonCart from './components/ButtonCart';
 import Cart from './pages/Cart';
 
+import { getCategories, getProductsFromCategoryAndQuery } from './services/api';
+
 function App() {
   return (
-    <BrowserRouter>
+     <BrowserRouter>
+    <div className="App">
+      <header className="App-header">  
       <ButtonCart />
-      <Switch>
+        <h1>Frontend Online Store</h1> 
+      </header>
+     <Switch>
         <Route path="/cart" component={ Cart } />
       </Switch>
-    </BrowserRouter>
+    </div>
+     </BrowserRouter>
   );
 }
 
