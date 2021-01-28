@@ -6,20 +6,20 @@ class LandingPage extends React.Component {
     super();
 
     this.state = {
-      categories: [],
+      categoriesList: [],
     };
 
-    this.getListCategories = this.getListCategories.bind(this);
+    this.getCategoriesList = this.getCategoriesList.bind(this);
   }
 
   componentDidMount() {
-    this.getListCategories();
+    this.getCategoriesList();
   }
 
-  async getListCategories() {
+  async getCategoriesList() {
     const listCategories = await api.getCategories();
     this.setState({
-      categories: listCategories,
+      categoriesList: listCategories,
     });
   }
 
