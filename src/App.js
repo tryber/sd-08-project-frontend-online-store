@@ -1,12 +1,10 @@
 import React from 'react';
 import './App.css';
-import ProductList from './page/ProductList';
-import Header from './page/Header';
+import ProductList from './pages/ProductList';
 
 function App() {
   return (
     <div>
-      <Header />
       <ProductList />
     </div>
   );
