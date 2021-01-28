@@ -7,7 +7,7 @@ import './services/api';
 
 function App() {
   return (
-<BrowserRouter>
+    <BrowserRouter>
       <CartIcon />
       <Switch>
         <Route path="/shoppingCart" component={ CartPage } />
