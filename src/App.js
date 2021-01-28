@@ -1,22 +1,16 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './components/Home';
+import CarrinhoCompras from './components/CarrinhoCompras';
 
 class App extends React.Component {
-  initialMessage() {
-    return (
-      <h2
-        data-testid="home-initial-message"
-      >
-        Digite algum termo de pesquisa ou escolha uma categoria.
-      </h2>
-    );
-  }
-
   render() {
     return (
-      <div>
-        { this.initialMessage() }
-      </div>
+      <Router>
+        <Route path="/carrinho-compras" component={ CarrinhoCompras } />
+        <Route exact path="/" component={ Home } />
+      </Router>
     );
   }
 }
