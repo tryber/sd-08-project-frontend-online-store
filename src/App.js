@@ -3,11 +3,13 @@ import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Search from './components/Search';
+import ShoppingCart from './components/ShoppingCart';
 
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" component={ Search } />
+      <Route path="/shop-cart" component={ ShoppingCart } />
+      <Route path="/" exact component={ Search } />
     </BrowserRouter>
   );
 }
