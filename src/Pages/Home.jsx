@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 
 import CategoriesList from '../Components/Categories-list';
-import Loading from '../Components/Loading';
 
 class Home extends React.Component {
   constructor() {
@@ -11,7 +10,6 @@ class Home extends React.Component {
 
     this.state = {
       categories: [],
-      loading: true,
     };
 
     this.fetchCategory = this.fetchCategory.bind(this);
@@ -23,12 +21,11 @@ class Home extends React.Component {
 
   async fetchCategory() {
     const categories = await api.getCategories();
-    this.setState({ loading: false, categories });
+    this.setState({ categories });
   }
 
   render() {
-    const { categories, loading } = this.state;
-    if (loading) return <Loading />;
+    const { categories } = this.state;
     return (
       <div>
         <Link to="/shopping-cart" data-testid="shopping-cart-button">carrinho</Link>
