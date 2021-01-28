@@ -1,5 +1,6 @@
 import React from 'react';
 import FetchCategories from './FetchCategories';
+import Lista from './Lista';
 
 class Home extends React.Component {
   initialMessage() {
@@ -17,6 +18,7 @@ class Home extends React.Component {
       <div>
         { this.initialMessage() }
         <FetchCategories />
+        <Lista />
       </div>
     );
   }
