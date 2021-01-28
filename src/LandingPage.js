@@ -1,8 +1,31 @@
 import React from 'react';
+import * as api from './services/api';
 import { Link } from 'react-router-dom';
 
 class LandingPage extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      categoriesList: [],
+    };
+
+    this.getCategoriesList = this.getCategoriesList.bind(this);
+  }
+
+  componentDidMount() {
+    this.getCategoriesList();
+  }
+
+  async getCategoriesList() {
+    const listCategories = await api.getCategories();
+    this.setState({
+      categoriesList: listCategories,
+    });
+  }
+
   render() {
+    const { categories } = this.state;
     return (
       <div>
         <input type="text" />
@@ -14,6 +37,15 @@ class LandingPage extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
+        <div>
+          {
+            categories
+              .map((category) => (
+                <div key={ category.id } data-testid="category">
+                  { category.name }
+                </div>))
+          }
+        </div>
       </div>
     );
   }
