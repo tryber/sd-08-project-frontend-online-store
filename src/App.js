@@ -20,7 +20,13 @@ class App extends React.Component {
     const { searchText } = this.state;
     return (
       <div>
-        <input value={ searchText } type="search" name="searchText" id="id-search" onChange={ this.handleChange } />
+        <input
+          value={ searchText }
+          type="search"
+          name="searchText"
+          id="id-search"
+          onChange={ this.handleChange }
+        />
       </div>
     );
   }
@@ -28,9 +34,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header" />
+        <header
+          className="App-header"
+        />
         {this.renderInputSearch()}
-        <span data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</span>
+        <span
+          data-testid="home-initial-message"
+        >
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </span>
       </div>
     );
   }
