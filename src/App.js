@@ -12,9 +12,9 @@ class App extends Component {
         <Header />
         <BrowserRouter>
           <Switch>
-            <Route exact path='/shopping-cart' component={ ShoppingCart } />
+            <Route exact path="/shopping-cart" component={ ShoppingCart } />
           </Switch>
-        </BrowserRouter> 
+        </BrowserRouter>
       </div>
     );
   }
