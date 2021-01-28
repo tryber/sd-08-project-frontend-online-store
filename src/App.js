@@ -1,9 +1,17 @@
 import React from 'react';
-import SearchBar from './components/SearchBar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import Home from './pages/Home';
+import ShoppingCart from './pages/ShoppingCart';
 
 function App() {
   return (
-    <SearchBar />
+    <Router>
+      <Switch>
+        <Route path="/shoppingcart" component={ ShoppingCart } />
+        <Route exact path="/" component={ Home } />
+      </Switch>
+    </Router>
   );
 }
 
