@@ -1,5 +1,5 @@
-export async function getCategories(category) {
-  const url = `https://api.mercadolibre.com/sites/MLB/${category}`;
+export async function getCategories() {
+  const url = 'https://api.mercadolibre.com/sites/MLB/categories';
   const requestReturn = await fetch(url);
   const requestObject = await requestReturn.json();
   return requestObject;
