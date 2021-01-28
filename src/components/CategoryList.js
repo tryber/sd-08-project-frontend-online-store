@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import { getCategories } from '../services/api';
 
 class CategoryList extends Component {
-  render() {
-    const categories = getCategories();
+  async renderCategoryList() {
+    const categoryList = await getCategories();
+    this.setState(() => ({ categories: categoryList }));
+  }
 
+  render() {
+    this.renderCategoryList();
+    const { categories } = this.state;
     return (
       <div>
         <h2>Categorias:</h2>

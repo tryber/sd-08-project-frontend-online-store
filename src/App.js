@@ -5,7 +5,7 @@ import './App.css';
 import ButtonCart from './components/ButtonCart';
 import Cart from './pages/Cart';
 import SearchBar from './components/SearchBar';
-import CategorieList from './components/CategorieList';
+import CategoryList from './components/CategoryList';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <Route path="/cart" component={ Cart } />
         </Switch>
         <SearchBar />
-        <CategorieList />
+        <CategoryList />
       </div>
     </BrowserRouter>
   );
