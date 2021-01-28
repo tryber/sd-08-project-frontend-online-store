@@ -1,11 +1,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import * as apiConsult from '../services/api';
 import ListaCardProdutos from '../components/LIstaCardProdutos';
 import * as api from '../services/api';
 
 class Listagem extends Component {
   constructor() {
     super();
+    this.state = {
+      categories: [],
+    };
+
+    this.createAllCategories = this.createAllCategories.bind(this);
+  }
+
+  componentDidMount() {
+    this.createAllCategories();
+  }
+
+  async createAllCategories() {
+    const itemList = await apiConsult.getCategories();
+    const spanList = itemList.map((data) => (
+      <li
+        key={ data.id }
+        data-testid="category"
+      >
+        { data.name }
+      </li>));
+    this.setState({ categories: spanList });
+  }
+
+  render() {
+    const { categories } = this.state;
     this.state = {
       listOfProducts: [],
       query: undefined,
@@ -44,7 +70,12 @@ class Listagem extends Component {
   render() {
     const { listOfProducts } = this.state;
     return (
-      <div>
+      <div className="main">
+        <div className="categorias">
+          <ul>
+            {categories}
+          </ul>
+        </div>
         <label htmlFor="busca" data-testid="home-initial-message">
           <input
             type="text"
