@@ -3,7 +3,7 @@ import React from 'react';
 class CartPage extends React.Component {
   render() {
     return (
-      <div />
+      <p>Seu carrinho está vazio</p>
     );
   }
 }
