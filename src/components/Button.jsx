@@ -16,10 +16,12 @@ class Button extends Component {
     );
   }
 }
+
 Button.propTypes = {
   buttonText: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   dataTestId: PropTypes.string.isRequired,
 };
+
 export default Button;

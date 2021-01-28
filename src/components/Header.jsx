@@ -5,14 +5,13 @@ import SearchBar from './SearchBar';
 
 class Header extends Component {
   render() {
-    
     return (
       <div>
         <SearchBar />
         <BrowserRouter>
           <Link data-testid="shopping-cart-button" to={ '/shoppingCart' }>Carrinho</Link>
           <Route exact path='/shoppingCart' component={ ShoppingCart } />
-        </BrowserRouter>     
+        </BrowserRouter>
       </div>
     );
   }
