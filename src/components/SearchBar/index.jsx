@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <header>
-        {this.listItemCart(searchText, onSearchTextChange)}
+        {this.listItemCart()}
       </header>
     );
   }
