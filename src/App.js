@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import * as api from './services/api'
+import * as api from './services/api';
 
 api.getCategories();
 api.getProductsFromCategoryAndQuery('MLB1055', 'Motorola');
