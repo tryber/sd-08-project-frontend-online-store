@@ -1,0 +1,33 @@
+.topNavBar {
+  background-color: teal;
+  height: 80px;
+  width: 100%;
+}
+
+.topNavList {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.topNavIcon {
+  font-size: 30px;
+  height: 100%;
+  line-height: 80px;
+  margin: 0 10px;
+}
+
+.logo {
+  margin-right: 40%;
+}
+
+.cart a, .logo a {
+  color: white;
+  text-decoration: none;
+}
+

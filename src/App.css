@@ -1,3 +1,18 @@
 .App {
   font-family: Roboto , sans-serif;
 }
+
+.categoriesList {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+}
+
+.categoriesItem {
+  background-color: teal;
+  color: white;
+  display: grid;
+  margin: 10px;
+  padding: 10px;
+  place-items: center;
+}
