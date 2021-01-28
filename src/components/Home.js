@@ -1,5 +1,7 @@
 import React from 'react';
 import * as api from '../services/api';
+import FetchCategories from './FetchCategories';
+import Lista from './Lista';
 
 class Home extends React.Component {
   constructor() {
@@ -7,6 +9,8 @@ class Home extends React.Component {
 
     this.handleInputValue = this.handleInputValue.bind(this);
     this.listProducts = this.listProducts.bind(this);
+    this.inputTest = this.inputTest.bind(this);
+    this.buttonTest = this.buttonTest.bind(this);
 
     this.state = {
       input: '',
@@ -20,6 +24,20 @@ class Home extends React.Component {
     });
   }
 
+  inputTest() {
+    const { input } = this.state;
+
+    return (
+      <input
+        type="text"
+        value={ input }
+        data-testid="query-input"
+        placeholder="Categoria ou produto..."
+        onChange={ this.handleInputValue }
+      />
+    );
+  }
+
   async listProducts() {
     const { input } = this.state;
     const response = await api.getProductsFromCategoryAndQuery('', input);
@@ -29,25 +47,36 @@ class Home extends React.Component {
     });
   }
 
+  buttonTest() {
+    return (
+      <button
+        type="button"
+        data-testid="query-button"
+        onClick={ this.listProducts }
+      >
+        Buscar
+      </button>
+    );
+  }
+
+  initialMessage() {
+    return (
+      <h2
+        data-testid="home-initial-message"
+      >
+        Digite algum termo de pesquisa ou escolha uma categoria.
+      </h2>
+    );
+  }
+
   render() {
-    const { input, products } = this.state;
+    const { products } = this.state;
 
     return (
       <section className="Home">
-        <input
-          type="text"
-          value={ input }
-          data-testid="query-input"
-          placeholder="Categoria ou produto..."
-          onChange={ this.handleInputValue }
-        />
-        <button
-          type="submit"
-          data-testid="query-button"
-          onClick={ this.listProducts }
-        >
-          Buscar
-        </button>
+        { this.inputTest() }
+        { this.buttonTest() }
+
         {products.map((item) => (
           <div key={ item.id } data-testid="product">
             <p>{ item.title }</p>
@@ -55,6 +84,10 @@ class Home extends React.Component {
             <span>{ item.price }</span>
           </div>
         ))}
+
+        { this.initialMessage() }
+        <FetchCategories />
+        <Lista />
       </section>
     );
   }
