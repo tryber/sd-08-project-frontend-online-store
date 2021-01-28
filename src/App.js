@@ -4,15 +4,19 @@ import CartIcon from './components/CartIcon';
 import CartPage from './components/CartPage';
 import './App.css';
 import './services/api';
+import ListagemDeProdutos from './components/ListagemDeProdutos';
 
 function App() {
   return (
-    <BrowserRouter>
-      <CartIcon />
-      <Switch>
-        <Route path="/shoppingCart" component={ CartPage } />
-      </Switch>
-    </BrowserRouter>
+    <section>
+      <BrowserRouter>
+        <CartIcon />
+        <Switch>
+          <Route path="/shoppingCart" component={ CartPage } />
+        </Switch>
+      </BrowserRouter>
+      <ListagemDeProdutos />
+    </section>
   );
 }
 
