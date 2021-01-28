@@ -1,6 +1,6 @@
 const ENDPOINT = {
   categories: 'https://api.mercadolibre.com/sites/MLB/categories',
-  query: (categoryId) => `https://api.mercadolibre.com/sites/MLB/search?q=$${categoryId}`,
+  query: (categoryId) => `https://api.mercadolibre.com/sites/MLB/search?q=${categoryId}`,
 };
 
 export async function getCategories() {
