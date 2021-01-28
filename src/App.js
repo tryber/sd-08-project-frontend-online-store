@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ProductList from './components/ProductList';
+import Categories from './components/Categories';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <BrowserRouter>
         <Route path="/" component={ ProductList } />
       </BrowserRouter>
+      <Categories />
     </div>
   );
 }
