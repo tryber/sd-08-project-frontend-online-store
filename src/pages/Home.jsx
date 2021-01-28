@@ -1,6 +1,13 @@
 import React from 'react';
 
 class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      searchInput: undefined,
+    };
+  }
+
   render() {
     return (
       <div>
