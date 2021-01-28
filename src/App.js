@@ -2,7 +2,8 @@ import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import './App.css';
-import CategoryList from './pages/CategoryProductsList';
+
+// import MapCategories from './components/MapCategories'
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <Switch>
           <Route path="/" component={ Home } />
 
-          {/* <Route path="/:id" component={ ProductDetails } /> */}
+          {/* <MapCategories /> */}
+
         </Switch>
       </BrowserRouter>
     </div>
