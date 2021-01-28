@@ -1,5 +1,5 @@
 import React from 'react';
-import * api from '../services/api';
+// import * api from '../services/api';
 
 class ProductCard extends React.Component {
   constructor() {
@@ -17,7 +17,7 @@ class ProductCard extends React.Component {
     return (
       <div>
         <h3>{}</h3>
-        <img src={} alt="Imagem do produto"/>
+        {/* <img src={} alt="Imagem do produto"/> */}
         <span>{}</span>
       </div>
     );
