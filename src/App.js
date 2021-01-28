@@ -14,11 +14,13 @@ class App extends React.Component {
       categories: [],
     };
   }
+  
   componentDidMount() {
     api.getCategories().then((result) => {
       this.setState(() => ({ categories: result }));
     });
   }
+  
   render() {
     const { categories } = this.state;
     return (
