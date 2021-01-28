@@ -1,10 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './components/Header';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
+      <Header />
+=======
       <header className="App-header">
         <img src={ logo } className="App-logo" alt="logo" />
         <p>Edit src/App.js and save to reload.</p>
@@ -17,6 +21,7 @@ function App() {
           Main Group 21
         </a>
       </header>
+>>>>>>> origin/main-group-21
     </div>
   );
 }
