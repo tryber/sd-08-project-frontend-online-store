@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Go Trybe
+          Learn React
         </a>
       </header>
+      <SearchBar />
     </div>
   );
 }
