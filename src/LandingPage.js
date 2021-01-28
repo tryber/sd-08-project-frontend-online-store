@@ -1,5 +1,6 @@
 import React from 'react';
 import * as api from './services/api';
+import { Link } from 'react-router-dom';
 
 class LandingPage extends React.Component {
   constructor() {
@@ -28,6 +29,9 @@ class LandingPage extends React.Component {
     return (
       <div>
         <input type="text" />
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+          Carrinho de Compras
+        </Link>
         <h1
           data-testid="home-initial-message"
         >
