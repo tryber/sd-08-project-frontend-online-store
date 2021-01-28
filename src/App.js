@@ -2,7 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+// import * as api from './services/api';
+
 function App() {
+  // api.getProductsFromCategoryAndQuery("MLB271599", "Ração").then(cat => console.log(cat));
   return (
     <div className="App">
       <header className="App-header">
