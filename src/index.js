@@ -6,13 +6,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import ShoppingCart from './pages/ShoppingCart';
+
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route path="/" component={ App } />
-      </Switch>
-    </Router>
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );
