@@ -1,5 +1,5 @@
 import React from 'react';
-import InputSearch from '../components/InputSearch';
+import InputSearch from './components/InputSearch';
 
 function App() {
   return (
