@@ -17,7 +17,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <h1>Sales</h1>
+        <h1>Mkt Sales</h1>
         <label htmlFor="textInput" data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
           <input id="textInput" />
