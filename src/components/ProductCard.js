@@ -13,7 +13,7 @@ class ProductCard extends React.Component {
     return (
       <div>
         <h3>{}</h3>
-        <img src={} alt="Imagem do produto"/>
+        <img src={"asda"} alt="Imagem do produto"/>
         <span>{}</span>
       </div>
     );
