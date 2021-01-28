@@ -9,8 +9,8 @@ class Header extends Component {
       <div>
         <SearchBar />
         <BrowserRouter>
-          <Link data-testid="shopping-cart-button" to={ '/shoppingCart' }>Carrinho</Link>
-          <Route exact path='/shoppingCart' component={ ShoppingCart } />
+          <Link data-testid="shopping-cart-button" to="/shoppingCart">Carrinho</Link>
+          <Route exact path="/shoppingCart" component={ ShoppingCart } />
         </BrowserRouter>
       </div>
     );
