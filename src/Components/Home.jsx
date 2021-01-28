@@ -5,9 +5,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <div data-testid="shopping-cart-button">
-          <Link to="/shopping-cart">carrinho</Link>
-        </div>
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">carrinho</Link>
         <label data-testid="home-initial-message" htmlFor="input-search">
           <input type="text" id="input-search" />
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
