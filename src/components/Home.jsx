@@ -6,7 +6,9 @@ class Home extends Component {
       <section>
         <input type="text" />
         <ul>
-          <li data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</li>
+          <li data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </li>
         </ul>
       </section>
     );
