@@ -8,7 +8,7 @@ export default class CategoriesList extends Component {
     super();
 
     this.state = {
-      list: [{ id: 0, name: "" }]};
+      list: [{ id: 0, name: '' }] };
     this.callCategories = this.callCategories.bind(this);
   }
 

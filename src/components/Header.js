@@ -8,7 +8,7 @@ export default class Header extends React.Component {
         <input
           type="text"
           name="query"
-          data-testid="query-input" 
+          data-testid="query-input"
         />
         <button type="button">Pesquisar</button>
         <span data-testid="home-initial-message">
