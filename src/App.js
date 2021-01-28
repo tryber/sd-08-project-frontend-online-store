@@ -1,24 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchText: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState((state) => ({
+      ...state, [name]: value,
+    }));
+  }
+
+  renderInputSearch() {
+    const { searchText } = this.state;
+    return (
+      <div>
+        <input
+          value={ searchText }
+          type="search"
+          name="searchText"
+          id="id-search"
+          onChange={ this.handleChange }
+        />
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header
+          className="App-header"
+        />
+        {this.renderInputSearch()}
+        <span
+          data-testid="home-initial-message"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </span>
+      </div>
+    );
+  }
 }
 
 export default App;
