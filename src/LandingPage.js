@@ -1,6 +1,13 @@
 import React from 'react';
 
 class LandingPage extends React.Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      categories: [],
+    }
+  }
   render() {
     return (
       <div>
