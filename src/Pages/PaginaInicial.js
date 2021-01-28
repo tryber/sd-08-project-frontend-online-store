@@ -1,4 +1,5 @@
 import React from 'react';
+import Listadecategorias from '../Components/Listaecategorias';
 
 export default class PaginaInicial extends React.Component {
   constructor() {
@@ -24,6 +25,8 @@ export default class PaginaInicial extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </div>
         )}
+        <Listadecategorias />
+
       </div>
     );
   }
