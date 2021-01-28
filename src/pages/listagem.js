@@ -10,7 +10,7 @@ class Listagem extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </label>
         <Link to="/carrinho" data-testid="shopping-cart-button"><img alt="carrinho" src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png" width="50" height="50" /></Link>
-      </div>
+      </div>.key.anchor..Component
     );
   }
 }
