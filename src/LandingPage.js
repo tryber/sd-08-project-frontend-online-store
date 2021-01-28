@@ -1,6 +1,6 @@
 import React from 'react';
-import * as api from './services/api';
 import { Link } from 'react-router-dom';
+import * as api from './services/api';
 
 class LandingPage extends React.Component {
   constructor() {
@@ -25,7 +25,7 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { categories } = this.state;
+    const { categoriesList } = this.state;
     return (
       <div>
         <input type="text" />
@@ -39,7 +39,7 @@ class LandingPage extends React.Component {
         </h1>
         <div>
           {
-            categories
+            categoriesList
               .map((category) => (
                 <div key={ category.id } data-testid="category">
                   { category.name }
