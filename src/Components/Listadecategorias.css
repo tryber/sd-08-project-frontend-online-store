@@ -1,0 +1,12 @@
+.container-lists-categories {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-left: 20px;
+  border: 1px solid black;
+  width: fit-content;
+  padding: 10px;
+}
+.label-lists-categories {
+  align-self: auto;
+}
