@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 
 class Home extends React.Component {
@@ -22,6 +23,7 @@ class Home extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
           <input id="textInput" />
         </label>
+        <Link to="/cart" data-testid="shopping-cart-button">Ver carrinho</Link>
       </div>
     );
   }
