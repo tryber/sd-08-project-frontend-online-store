@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Listagem extends Component {
   render() {
@@ -8,7 +9,7 @@ class Listagem extends Component {
           <input type="text" id="busca" />
           Digite algum termo de pesquisa ou escolha uma categoria.
         </label>
-        <a href="carrinho.jsx"><img src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png" alt="carrinho" width="50" height="50" data-testid="shopping-cart-button" /></a>
+        <Link to="/carrinho" data-testid="shopping-cart-button"><img alt="carrinho" src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png" width="50" height="50" /></Link>
       </div>
     );
   }
