@@ -1,5 +1,5 @@
 import React from 'react';
-// import * api from '../services/api';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class ProductCard extends React.Component {
   constructor() {
@@ -9,15 +9,11 @@ class ProductCard extends React.Component {
     };
   }
 
-  componentDidMount() {
-    
-  }
-
   render() {
     return (
       <div>
         <h3>{}</h3>
-        {/* <img src={} alt="Imagem do produto"/> */}
+        <img src={} alt="Imagem do produto"/>
         <span>{}</span>
       </div>
     );
