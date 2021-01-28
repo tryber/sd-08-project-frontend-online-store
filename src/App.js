@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Home from './components/Home';
 
 class App extends React.Component {
   initialMessage() {
@@ -16,6 +17,7 @@ class App extends React.Component {
     return (
       <div>
         { this.initialMessage() }
+        <Home />
       </div>
     );
   }
