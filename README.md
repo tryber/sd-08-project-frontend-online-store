@@ -672,7 +672,7 @@ O que será verificado:
 
 - [Tela - Listagem com destaque.png](https://github.com/tryber/sd-08-project-frontend-online-store/tree/master/wireframes/bonus_marked_product.png)
 
-#### 22. Crie um slider lateral para exibir o carrinho na tela principal
+#### 22. Impeça que a quantidade do produto seja negativa
 
 **PRIORIDADE 5** - Da tela de detalhamento de produto, permitir alterar a quantidade daquele produto no carrinho, se ele estiver lá, com botões (-) e (+). A quantidade não pode ser negativa (veja detalhes no card).
 
@@ -684,6 +684,6 @@ O que será verificado:
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/3oQUErg)
 
 O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
