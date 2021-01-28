@@ -1,0 +1,6 @@
+{
+    "eslint.format.enable": true,
+    "prettier.bracketSpacing": false,
+    "php.validate.executablePath": "",
+    "editor.tabSize": 2
+}
