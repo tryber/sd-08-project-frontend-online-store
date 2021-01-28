@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import * as api from './services/api';
+import SearchBar from './components/SearchBar';
+// import * as api from './services/api';
 
 class App extends Component {
   render() {
-    const pneu = 'farol';
-    const id = 'MLB5672';
     return (
-      <>
-        <p>{ api.getCategories().then((categories) => { console.log(categories); })}</p>
-        <p>
-          {api.getProductsFromCategoryAndQuery(pneu, id)
-            .then((retorno) => console.log(retorno))}
-        </p>
-      </>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={ SearchBar } />
+        </Switch>
+      </Router>
     );
   }
 }
