@@ -9,36 +9,18 @@ class Listagem extends Component {
     super();
     this.state = {
       categories: [],
-    };
-
-    this.createAllCategories = this.createAllCategories.bind(this);
-  }
-
-  componentDidMount() {
-    this.createAllCategories();
-  }
-
-  async createAllCategories() {
-    const itemList = await apiConsult.getCategories();
-    const spanList = itemList.map((data) => (
-      <li
-        key={ data.id }
-        data-testid="category"
-      >
-        { data.name }
-      </li>));
-    this.setState({ categories: spanList });
-  }
-
-  render() {
-    const { categories } = this.state;
-    this.state = {
       listOfProducts: [],
       query: undefined,
       category: undefined,
     };
+
+    this.createAllCategories = this.createAllCategories.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.createAllCategories();
   }
 
   async handleClick() {
@@ -67,8 +49,20 @@ class Listagem extends Component {
     });
   }
 
+  async createAllCategories() {
+    const itemList = await apiConsult.getCategories();
+    const spanList = itemList.map((data) => (
+      <li
+        key={ data.id }
+        data-testid="category"
+      >
+        { data.name }
+      </li>));
+    this.setState({ categories: spanList });
+  }
+
   render() {
-    const { listOfProducts } = this.state;
+    const { listOfProducts, categories } = this.state;
     return (
       <div className="main">
         <div className="categorias">
