@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Cart from './components/Cart';
+import Categorias from './components/Categorias';
+import Header from './components/Header';
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cart: 0,
+    };
+  }
+
   render() {
+    const { cart } = this.state;
     return (
-      <div>
-        <h1 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h1>
-      </div>
+      <BrowserRouter>
+        <Header cart={ cart } />
+        <Categorias />
+        <Switch>
+          <Route path="/cart" component={ Cart } />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
