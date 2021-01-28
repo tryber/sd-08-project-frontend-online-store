@@ -5,8 +5,10 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        { api.getCategories() }
-        { api.getProductsFromCategoryAndQuery('MLB5672', 'carro') }
+        <label data-testid="home-initial-message" htmlFor="input-search">
+          <input type="text" id="input-search" />
+          <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
+        </label>
       </div>
     );
   }
