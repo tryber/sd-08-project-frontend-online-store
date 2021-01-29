@@ -8,14 +8,13 @@ export default class Home extends React.Component {
     super();
 
     this.state = {
-      categoriesList: [1],
+      categoriesList: [],
     };
-
-    this.fetchCategories();
   }
 
-  // componentDidMount() {
-  // }
+  componentDidMount() {
+    this.fetchCategories();
+  }
 
   async fetchCategories() {
     this.setState({
@@ -28,7 +27,7 @@ export default class Home extends React.Component {
     return (
       <main>
         <SearchBar />
-        {categoriesList.length > 1
+        {typeof (categoriesList) !== 'undefined'
           ? (
             <aside className="categories-list">
               {categoriesList
