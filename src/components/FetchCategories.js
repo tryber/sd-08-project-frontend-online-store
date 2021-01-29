@@ -26,11 +26,41 @@ class FetchCategories extends React.Component {
     });
   }
 
+  increaseItem(item) {
+    const { productsTeste } = this.state;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
+    const itemsIndex = items.findIndex((element) => element.id === item.id);
+    const flag = -1;
+    if (itemsIndex !== flag) {
+      items[itemsIndex].qtd += 1;
+    }
+    localStorage.setItem('itemsCart', JSON.stringify(items));
+    productsTeste.find((element) => element.id === item.id).qtd += 1;
+    this.setState({ productsTeste });
+  }
+
+  decreaseItem(item) {
+    const { productsTeste } = this.state;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
+    const itemsIndex = items.findIndex((element) => element.id === item.id);
+    const flag = -1;
+    const flagZero = 0;
+    if (items[itemsIndex].qtd > flagZero) {
+      if (itemsIndex !== flag) {
+        items[itemsIndex].qtd -= 1;
+      }
+      localStorage.setItem('itemsCart', JSON.stringify(items));
+      productsTeste.find((element) => element.id === item.id).qtd -= 1;
+      this.setState({ productsTeste });
+    }
+  }
+
   categoryCard() {
     const { categories } = this.state;
     const { callback } = this.props;
 
     return (
+
       <div>
         { categories
           .map((category) => (
