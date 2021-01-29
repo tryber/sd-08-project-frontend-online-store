@@ -42,7 +42,9 @@ export default class Home extends React.Component {
     return (
       <main>
         <SearchBar />
-        <button type"button"  data-testid="query-button" onClick={this.onSubmit}/>
+         <button type"button"  data-testid="query-button" onClick={this.onSubmit} >
+            Pesquisar
+          </button>
         {typeof (categoriesList) !== 'undefined'
           && (
             <aside>
