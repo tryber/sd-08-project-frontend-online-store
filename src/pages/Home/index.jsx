@@ -14,17 +14,20 @@ class Home extends React.Component {
       categories: [],
       products: [],
       searchInput: '',
+      searchCategory: 'MLB1953',
       loading: true,
     };
 
     this.onSearchChange = this.onSearchChange.bind(this);
-    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.findProducts = this.findProducts.bind(this);
+    this.filterByCategory = this.filterByCategory.bind(this);
   }
 
   componentDidMount() {
     api.getCategories().then((categories) => {
       this.setState({ categories, loading: false });
     });
+    this.findProducts();
   }
 
   onSearchChange(event) {
@@ -33,12 +36,13 @@ class Home extends React.Component {
     });
   }
 
-  onSearchSubmit() {
-    const { searchInput: searchQuery } = this.state;
+  findProducts() {
+    const { searchInput: searchQuery, searchCategory } = this.state;
     this.setState(
       { loading: true },
       async () => {
-        const apiResponse = await api.getProductsFromCategoryAndQuery('', searchQuery);
+        const apiResponse = await api
+          .getProductsFromCategoryAndQuery(searchCategory, searchQuery);
 
         this.setState({
           products: apiResponse ? apiResponse.results : [],
@@ -46,6 +50,10 @@ class Home extends React.Component {
         });
       },
     );
+  }
+
+  filterByCategory(categoryID) {
+    this.setState({ searchCategory: categoryID }, this.findProducts);
   }
 
   render() {
@@ -56,18 +64,20 @@ class Home extends React.Component {
         <SearchBar
           onChange={ this.onSearchChange }
           value={ searchInput }
-          handleSearch={ this.onSearchSubmit }
+          handleSearch={ this.findProducts }
         />
         <Button />
         <main>
-          <div>
+          <div className="categoryContainer">
             { categories.map((category) => (
-              <div
+              <button
                 data-testid="category"
                 key={ category.id }
+                type="button"
+                onClick={ () => { this.filterByCategory(category.id); } }
               >
                 {category.name}
-              </div>
+              </button>
             ))}
           </div>
           {loading && <Loading />}
