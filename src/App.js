@@ -13,8 +13,8 @@ export default class App extends Component {
     super();
     this.state = {
       cart: 0,
-      categorias: false,
-      produtos: false,
+      categorias: [],
+      produtos: [],
       catID: '',
       search: '',
     };
@@ -23,7 +23,6 @@ export default class App extends Component {
 
   componentDidMount() {
     this.buscarListaCategorias();
-    // this.getProdutos();
   }
 
   componentDidUpdate() {
