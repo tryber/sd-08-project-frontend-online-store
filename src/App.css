@@ -55,6 +55,8 @@ body {
 }
 
 .categories-list {
+  display: flex;
+  flex-direction: column;
   margin-right: 5px;
 }
 

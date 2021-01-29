@@ -10,7 +10,7 @@ class Listagem extends Component {
     super();
     this.state = {
       categories: [],
-      listOfProducts: undefined,
+      listOfProducts: [],
       query: undefined,
       category: undefined,
     };
@@ -19,16 +19,33 @@ class Listagem extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.handleClickCategory = this.handleClickCategory.bind(this);
   }
 
   componentDidMount() {
-    this.createAllCategories();
+    this.createAllCategories(this.handleClickCategory);
     this.fetchProducts();
   }
 
   handleClick(e) {
     e.preventDefault();
     this.fetchProducts();
+  }
+
+  async handleClickCategory(e) {
+    const { query } = this.state;
+    if (query === undefined) {
+      await this.setState({
+        category: e.target.id,
+        query: '',
+      });
+      this.fetchProducts();
+    } else {
+      await this.setState({
+        category: e.target.id,
+      });
+      this.fetchProducts();
+    }
   }
 
   handleChange(e) {
@@ -59,15 +76,18 @@ class Listagem extends Component {
     }
   }
 
-  async createAllCategories() {
+  async createAllCategories(onClick) {
     const itemList = await api.getCategories();
     const spanList = itemList.map((data) => (
-      <li
+      <button
+        type="button"
         key={ data.id }
+        id={ data.id }
         data-testid="category"
+        onClick={ onClick }
       >
         { data.name }
-      </li>));
+      </button>));
     this.setState({ categories: spanList });
   }
 
@@ -82,9 +102,7 @@ class Listagem extends Component {
         <main className="main">
           <div className="left-content">
             <div className="categories-list">
-              <ul>
-                {categories}
-              </ul>
+              {categories}
             </div>
           </div>
           <div className="right-content">
