@@ -90,7 +90,7 @@ class ProductList extends React.Component {
     return (
       <button
         type="button"
-        onClick= { () => { this.handleQueryClick(); } }
+        onClick={ () => { this.handleQueryClick(); } }
         data-testid="query-button"
       >
         Pesquisar
