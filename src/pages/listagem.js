@@ -17,6 +17,7 @@ class Listagem extends Component {
 
     this.createAllCategories = this.createAllCategories.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
   }
 
@@ -25,13 +26,9 @@ class Listagem extends Component {
     this.fetchProducts();
   }
 
-  async handleClick(e) {
+  handleClick(e) {
     e.preventDefault();
-    try {
-      this.fetchProducts();
-    } catch (err) {
-      return undefined;
-    }
+    this.fetchProducts();
   }
 
   handleChange(e) {
