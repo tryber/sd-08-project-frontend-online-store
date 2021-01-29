@@ -1,6 +1,7 @@
 import React from 'react';
 import Categories from './Categories';
 import * as api from '../services/api';
+import SearchBar from '../components/SearchBar';
 
 export default class Home extends React.Component {
   constructor() {
@@ -10,33 +11,20 @@ export default class Home extends React.Component {
       categoriesList: [],
       loadingMessenge: true,
     };
-    // this.fetchCategories = this.fetchCategories.bind(this);
   }
 
   componentDidMount() {
-    this.fetchCategories();
-  }
-
-  async fetchCategories() {
-    const objCategories = await api.getCategories();
-    this.setState({
-      categoriesList: [...objCategories],
+    api.getCategories().then((result) => this.setState({
+      categoriesList: result,
       loadingMessenge: false,
-    });
+    }));
   }
 
   render() {
-    const { loadingMessenge, categoriesList } = this.state;
+    const { categoriesList, loadingMessenge } = this.state;
     return (
       <main>
-        <div className="search-bar-container">
-          <section className="search-bar">
-            <input type="text" placeholder="Pesquisa" />
-          </section>
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-        </div>
+        <SearchBar />
         {loadingMessenge
           ? <p>Loading...</p>
           : <Categories categoriesList={ categoriesList } />}
