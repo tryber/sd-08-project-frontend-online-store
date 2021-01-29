@@ -4,15 +4,24 @@ import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   render() {
-    const { productInfo, categoryID } = this.props;
+    const { productInfo, categoryID, callback } = this.props;
     const { title, thumbnail, price, id } = productInfo;
     const path = `/product/${categoryID}&${id}`;
     return (
       <div className="product-card" data-testid="product">
         <h3>{ title }</h3>
         <img src={ thumbnail } alt="product model" />
-        <h4>{price}</h4>
-        <Link to={ path } data-testid="product-detail-link">Ver Detalhes</Link>
+        <h4>{ price }</h4>
+        <Link to={ path } data-testid="product-detail-link">
+          Ver Detalhes
+        </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => callback(productInfo) }
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }
@@ -29,4 +38,5 @@ ProductCard.propTypes = {
     id: PropTypes.string.isRequired,
   }).isRequired,
   categoryID: PropTypes.string.isRequired,
+  callback: PropTypes.func.isRequired,
 };
