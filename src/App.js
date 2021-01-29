@@ -10,8 +10,13 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/cartcheckout" component={ CartCheckout } />
-        <Route exact path="/" component={ Home } />
-        <Route exact path="/details" component={ Details } />
+        <Route exact path="/details/:product" component={ Details } />
+        <Route
+          path="/"
+          render={ (props) => (
+          <Home { ...props } /> 
+          )}
+        />
       </Switch>
     </BrowserRouter>
   );
