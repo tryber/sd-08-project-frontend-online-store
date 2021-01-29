@@ -9,7 +9,7 @@ class CategoryList extends Component {
     };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     const category = await api.getCategories();
     this.setState({ category });
   }
