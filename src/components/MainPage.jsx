@@ -5,7 +5,7 @@ import Search from './Search';
 
 class MainPage extends React.Component {
   render() {
-    const { categories, products, onclick } = this.props;
+    const { categories, products, onclick, addCart } = this.props;
     return (
       <div>
         <Search />
@@ -22,7 +22,7 @@ class MainPage extends React.Component {
             </button>
           ))}
         </div>
-        <ListagemDeProdutos products={ products } />
+        <ListagemDeProdutos products={ products } addCart={ addCart } />
       </div>
     );
   }
