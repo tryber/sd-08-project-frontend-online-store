@@ -17,6 +17,7 @@ class Home extends React.Component {
       products: [],
       value: '',
       category: '',
+      // filter: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -38,11 +39,11 @@ class Home extends React.Component {
     this.setState({
       products: product,
     });
-    console.log(product);
   }
 
   handleChange({ target }) {
-    const { name, value } = target;
+    const { name } = target;
+    const value = target.type === 'button' ? target.innerText : target.value;
     this.setState({
       [name]: value,
     });
@@ -74,7 +75,14 @@ class Home extends React.Component {
         <br />
         <Link to="/cart" data-testid="shopping-cart-button">Ver carrinho</Link>
 
-        <CategoryList list={ categories } />
+        <CategoryList
+          list={ categories }
+          filterProducts={ this.handleChange }
+          onClick={ () => {
+            // this.handleChange();
+            this.handleClick();
+          } }
+        />
         <ProductsList list={ products } />
       </div>
     );
