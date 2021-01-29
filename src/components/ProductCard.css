@@ -1,0 +1,25 @@
+.card-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: center;
+  margin: 10px 15px;
+  width: 200px;
+}
+
+.product-title {
+  font-size: 15px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.product-image {
+  height: 150px;
+  width: 150px;
+}
+
+.product-price {
+  font-size: 25px;
+  padding-top: 5px;
+}
