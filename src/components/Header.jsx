@@ -8,7 +8,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <img className="logo" src={ Logo } alt=""/>
+        <img className="logo" src={ Logo } alt="" />
         <SearchBar />
         <Link
           data-testid="shopping-cart-button"
