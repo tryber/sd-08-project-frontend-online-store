@@ -26,7 +26,8 @@ class Categories extends Component {
     return (
       <div>
         <p>Categorias</p>
-        { list.map(({ id, name }) => (
+        {
+          list.map(({ id, name }) => (
             <div key={ id }>
               <input
                 type="radio"
@@ -37,8 +38,8 @@ class Categories extends Component {
               />
               <label htmlFor={ id }>{ name }</label>
             </div>
-          )
-        ) };
+          ))
+        };
       </div>
     );
   }
