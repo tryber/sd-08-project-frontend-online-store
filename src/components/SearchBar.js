@@ -15,10 +15,7 @@ class SearchBar extends Component {
   }
 
   setQuery(event) {
-    const { query, categoryID } = this.state;
-    const { requestProducts } = this.props;
     this.setState({ query: event.target.value });
-    requestProducts(categoryID, query);
   }
 
   setCategory(event) {
