@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ShoppingCartIcon from './ShoppingCartIcon';
-import Category from './Category';
+import ProductList from './ProductList';
 
 class Home extends React.Component {
   render() {
@@ -12,8 +12,8 @@ class Home extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <ProductList />
         <ShoppingCartIcon />
-        <Category />
       </>
     );
   }
