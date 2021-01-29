@@ -3,12 +3,13 @@ import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Home from './components/Home';
-import Category from './components/Category';
+import ShoppingCart from './components/ShoppingCart';
 
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" component={ Home } />
+      <Route path="/shop-cart" component={ ShoppingCart } />
+      <Route path="/" exact component={ Home } />
     </BrowserRouter>
   );
 }

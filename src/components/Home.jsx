@@ -1,14 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 
+import ShoppingCartIcon from './ShoppingCartIcon';
 import Category from './Category';
 
 class Home extends React.Component {
   render() {
-
-   // this.componentDidMount() {
-      //
-  //  }
 
     return (
       <>
@@ -17,10 +13,11 @@ class Home extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria
         </p>
+        <ShoppingCartIcon />
         <Category />
       </>
     );
   }
 }
 
-export default Home;
+export default Home
