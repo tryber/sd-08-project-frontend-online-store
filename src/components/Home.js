@@ -2,6 +2,7 @@ import React from 'react';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from './Categories';
 import ProductList from './ProductList';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor() {
@@ -17,6 +18,7 @@ class Home extends React.Component {
     this.fetchCategories = this.fetchCategories.bind(this);
     this.onChange = this.onChange.bind(this);
     this.search = this.search.bind(this);
+    this.fetchCategories = this.fetchCategories.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +54,11 @@ class Home extends React.Component {
 
     return (
       <div>
+        <div>
+          <Link to="/shoppingcart" data-testid="shopping-cart-button">
+            Futura imagem do carrinho
+          </Link>
+        </div>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
