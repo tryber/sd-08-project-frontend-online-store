@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
 
 class Main extends React.Component {
@@ -12,5 +13,9 @@ class Main extends React.Component {
     );
   }
 }
+
+Main.propTypes = {
+  itemsProducts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+};
 
 export default Main;

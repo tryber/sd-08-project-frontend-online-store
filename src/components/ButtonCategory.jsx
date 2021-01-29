@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class ButtonCategory extends React.Component {
@@ -34,5 +35,9 @@ class ButtonCategory extends React.Component {
     );
   }
 }
+
+ButtonCategory.propTypes = {
+  onClickRequest: PropTypes.func.isRequired,
+};
 
 export default ButtonCategory;

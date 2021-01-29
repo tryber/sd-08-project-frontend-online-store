@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Search extends React.Component {
   constructor(props) {
@@ -11,13 +12,13 @@ class Search extends React.Component {
   }
 
   render() {
-    const { nameProdut, onQueryProduct, onClickRequest } = this.props;
+    const { nameProduct, onQueryProduct, onClickRequest } = this.props;
     return (
       <form onSubmit={ this.handleSubmit }>
         <input
           data-testid="query-input"
           type="text"
-          value={ nameProdut }
+          value={ nameProduct }
           name="nameProduct"
           onChange={ onQueryProduct }
         />
@@ -36,5 +37,11 @@ class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  nameProduct: PropTypes.string.isRequired,
+  onQueryProduct: PropTypes.func.isRequired,
+  onClickRequest: PropTypes.func.isRequired,
+};
 
 export default Search;
