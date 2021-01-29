@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 // import PropTypes from 'prop-types';
 
 import ProductList from '../components/ProductList';
@@ -31,13 +33,20 @@ class Home extends Component {
     const { items } = this.state;
 
     return (
-      <section>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        <QueryInput handleClick={ this.makeApiRequest } />
-        <ProductList items={ items } />
-      </section>
+      <>
+        <header>
+          <Link to="/pages/shoppingcart" data-testid="shopping-cart-button">
+            Carrinho
+          </Link>
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+          <QueryInput handleClick={ this.makeApiRequest } />
+        </header>
+        <section>
+          <ProductList items={ items } />
+        </section>
+      </>
     );
   }
 }
