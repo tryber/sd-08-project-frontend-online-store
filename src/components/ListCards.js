@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../App.css';
 
 class ListCards extends Component {
   render() {
-    const { title, price, thumbnail } = this.props;
+    const { prop } = this.props;
+    const { title, price, thumbnail } = prop;
     return (
-      <section>
+      <section data-testid="product" className="section-card">
         <p>{ title }</p>
         <img src={ thumbnail } alt={ title } />
         <p>
           R$
           { price }
         </p>
-      </section>);
+      </section>
+    );
   }
 }
 

@@ -37,11 +37,13 @@ class Home extends Component {
         >
           Buscar
         </button>
-        <h2 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h2>
         <section>
-          {object.map((item) => <ListCards key={ item.id } item={ item } />)}
+          {
+            object.map((item) => (<ListCards
+              key={ item.id }
+              prop={ item }
+            />))
+          }
         </section>
       </div>
     );
