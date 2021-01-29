@@ -36,6 +36,15 @@ class Home extends React.Component {
     });
   }
 
+  async handleProducts(id) {
+    const { category, value } = this.state;
+    const product = await (await api.getProductsFromCategoryAndQuery(id, value))
+      .results;
+    this.setState({
+      products: product,
+    });
+  }
+
   handleChange({ target }) {
     const { name, value } = target;
     this.setState({
@@ -71,7 +80,7 @@ class Home extends React.Component {
         <ul>
           {categories.map((category) => (
             <li key={ category.id } data-testid="category">
-              <Link to="/details">
+              <Link to="/details" onClick={ () => this.handleProducts(category.id) }>
                 { category.name }
               </Link>
             </li>
