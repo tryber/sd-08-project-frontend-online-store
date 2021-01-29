@@ -1,7 +1,7 @@
 import React from 'react';
 import { getCategories } from '../services/api';
 
-class Catefories extends React.Component {
+class Categories extends React.Component {
   constructor() {
     super();
 
@@ -35,4 +35,4 @@ class Catefories extends React.Component {
   }
 }
 
-export default Catefories;
+export default Categories;
