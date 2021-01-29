@@ -1,14 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-// import ProductList from './components/ProductList';
 import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
 
 function App() {
   return (
     <div>
-      {/* <ProductList /> */}
       <BrowserRouter>
         <Switch>
           <Route
