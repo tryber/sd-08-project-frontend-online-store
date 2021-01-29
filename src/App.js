@@ -6,6 +6,7 @@ import './services/api';
 import TopNavBar from './components/TopNavBar';
 import * as api from './services/api';
 import MainPage from './components/MainPage';
+import ProductDetails from './components/ProductDetails';
 
 class App extends React.Component {
   constructor() {
@@ -39,6 +40,7 @@ class App extends React.Component {
         <TopNavBar />
         <Switch>
           <Route path="/shoppingCart" component={ CartPage } />
+          <Route path="/:id" render={ (props) => <ProductDetails { ...props } /> } />
           <Route
             path="/"
             render={ (props) => (<MainPage
