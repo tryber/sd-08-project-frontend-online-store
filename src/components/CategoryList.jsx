@@ -23,7 +23,6 @@ class CategoryList extends Component {
   render() {
     const { category } = this.state;
     const { onClick } = this.props;
-    console.log(category);
     return (
       <div className="category-list">
         {category.map((item) => (
