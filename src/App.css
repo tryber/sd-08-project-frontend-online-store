@@ -45,6 +45,16 @@ a {
   color: #61dafb;
 }
 
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.categoryContainer button + button {
+  margin-top: 4px;
+}
+
 @keyframes App-logo-spin {
 
   from {
