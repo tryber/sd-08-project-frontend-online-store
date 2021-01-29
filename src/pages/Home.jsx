@@ -1,6 +1,7 @@
 import React from 'react';
 import MapCategories from '../components/MapCategories';
 import ProductList from '../components/ProductList';
+import ShopCartButton from '../components/ShopCartButton'
 
 class Home extends React.Component {
   constructor() {
@@ -56,6 +57,7 @@ class Home extends React.Component {
             Search
           </button>
         </form>
+        <ShopCartButton/>
 
         <MapCategories callback={ this.changeCategorieState } />
 
