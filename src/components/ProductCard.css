@@ -4,8 +4,8 @@
   flex-direction: column;
   justify-content: center;
   height: 250px;
-  width: 200px;
   margin: 10px 15px;
+  width: 200px;
 }
 
 .product-title {
