@@ -62,7 +62,7 @@ header .header-wrap {
 }
 
 header .header-wrap .header-left {
-  width: 20%;
+  width: auto;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -83,7 +83,7 @@ header .header-wrap .header-left .shopping-logo {
 }
 
 header .header-wrap .header-right {
-  width: 20%;
+  width: auto;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -94,21 +94,29 @@ header .header-wrap .header-right {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-left: 12px;
+  padding-right: 4px;
+}
+
+header .header-wrap .header-right:hover {
+  cursor: pointer;
 }
 
 header .header-wrap .header-right .checkout-image {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
+  display: block;
 }
 
 header .header-wrap .header-right .checkout-count {
   display: block;
   position: relative;
-  top: -6px;
+  top: -10px;
   margin-left: 4px;
   margin-right: 4px;
-  color: dimgray;
+  color: rgba(0, 0, 0, 0.808);
   font-size: 0.9em;
+  font-weight: 600;
 }
 
 .navbar {

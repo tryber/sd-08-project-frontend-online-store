@@ -70,7 +70,7 @@ header {
     margin-right: auto;
     justify-content: space-between;
     .header-left {
-      width: 20%;
+      width: auto;
       height: 100%;
       display: flex;
       justify-content: flex-start;  
@@ -85,24 +85,31 @@ header {
     }
 
     .header-right {
-      width: 20%;
+      width: auto;
       height: 100%;
       display: flex;
       justify-content: flex-end;  
       align-items: center;   
-      // border: 1px solid blue;
+      &:hover {
+        cursor: pointer;
+      }
+      //  border: 1px solid blue;
+       padding-left: 12px;
+       padding-right: 4px;
       .checkout-image {
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
+        display: block;
       } 
       .checkout-count {
         display: block;
         position: relative;
-        top: -6px;
+        top: -10px;
         margin-left: 4px;
         margin-right: 4px;
-        color: rgb(105, 105, 105);
+        color: rgba(0, 0, 0, 0.808);
         font-size: 0.9em;
+        font-weight: 600;
       }
     }
   }
