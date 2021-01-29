@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './Search.css';
+import PropTypes from 'prop-types';
 
 class Search extends Component {
   render() {
+    const { buscaInput, submitBotao } = this.props;
     return (
       <div className="search">
         <label htmlFor="search" data-testid="home-initial-message">
@@ -14,9 +16,14 @@ class Search extends Component {
             className="search-input"
             id="search"
             name="search"
+            onChange={ buscaInput }
             placeholder="Faça uma Busca Por Produtos"
           />
-          <button type="button" data-testid="query-button">
+          <button
+            type="button"
+            data-testid="query-button"
+            onClick={ submitBotao }
+          >
             Pesquisar
           </button>
         </label>
@@ -25,4 +32,8 @@ class Search extends Component {
   }
 }
 
+Search.propTypes = {
+  buscaInput: PropTypes.func.isRequired,
+  submitBotao: PropTypes.func.isRequired,
+};
 export default Search;
