@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from './Loading';
 
 class MapCategories extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       categories: [],
       loading: true,
-    }
+    };
   }
 
   componentDidMount() {
@@ -24,28 +25,38 @@ class MapCategories extends React.Component {
           loading: false,
         });
       });
-  };
+  }
 
-  categoriesCard () {
+  categoriesCard() {
     const { categories } = this.state;
+    const { callback } = this.props;
     return (
-    <div>
-        { categories.map((result) =>
-        <button key={ result.id } data-testid="category">
-          { result.name }
-        </button>)}
-    </div>
-    )
+      <div>
+        { categories.map((result) => (
+          <button
+            type="button"
+            key={ result.id }
+            data-testid="category"
+            onClick={ () => callback(result.id) }
+          >
+            { result.name }
+          </button>))}
+      </div>
+    );
   }
 
   render() {
     const { loading } = this.state;
     return (
-    <div>
-      { loading ? <Loading /> : this.categoriesCard() }
-    </div>
+      <div>
+        { loading ? <Loading /> : this.categoriesCard() }
+      </div>
     );
   }
 }
 
 export default MapCategories;
+
+MapCategories.propTypes = {
+  callback: PropTypes.func.isRequired,
+};
