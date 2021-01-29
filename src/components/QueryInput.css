@@ -1,0 +1,26 @@
+.query-input-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.query-input-wrapper input {
+  border-radius: 10px;
+  margin-right: 10px;
+  padding: 5px 8px;
+  width: 40vw;
+}
+
+.query-input-wrapper button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.query-input-wrapper button:hover {
+  cursor: pointer;
+}
+
+.query-input-wrapper button i {
+  font-size: 20px;
+}
