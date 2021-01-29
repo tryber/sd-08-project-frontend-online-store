@@ -1,12 +1,12 @@
 import React from 'react';
-
-import CategoriesList from '../components/CategoriesList';
+import Header from '../components/Header';
+import ProductList from '../components/ProductList';
 
 export default function Home() {
   return (
     <main className="Home">
-      <h1>Home</h1>
-      <CategoriesList />
+      <Header />
+      <ProductList />
     </main>
   );
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 
-export default function CategoriesList() {
-  // const [searchText, setSearchText] = useState('');
+export default function Categories() {
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     //
@@ -13,7 +13,7 @@ export default function CategoriesList() {
   };
 
   return (
-    <section className="CategoriesList">
+    <section className="NavCategories">
       <div>
         <label htmlFor="searchText">
           <input type="Text" name="searchText" onChange={ handleChangeSearchText } />

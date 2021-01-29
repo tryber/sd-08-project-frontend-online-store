@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function CardList() {
+export default function ButtonBack() {
   return (
     <div>
-      <h1>CardList</h1>
+      <p>ButtonBack</p>
     </div>
   );
 }
