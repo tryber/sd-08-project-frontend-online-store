@@ -39,7 +39,7 @@ class Categories extends Component {
               <label htmlFor={ id }>{ name }</label>
             </div>
           ))
-        };
+        }
       </div>
     );
   }
