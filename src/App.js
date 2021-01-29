@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SearchBar from './components/SearchBar';
 import Button from './components/Button';
 import PageShoppingCart from './pages/ShoppingCart';
-import CategoryMenu from './components/CategoryMenu';
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
         <Route exact path="/" component={ SearchBar } />
       </Switch>
       <Button />
-      <CategoryMenu />
     </BrowserRouter>
 
   );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import CardItem from './CardItem';
+import CategoryMenu from './CategoryMenu';
 
 class SearchBar extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class SearchBar extends Component {
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onClickHandler = this.onClickHandler.bind(this);
     this.listItems = this.listItems.bind(this);
+    this.onClickHandlerCategory = this.onClickHandlerCategory.bind(this);
   }
 
   onChangeHandler({ target }) {
@@ -21,11 +23,15 @@ class SearchBar extends Component {
   }
 
   async onClickHandler() {
-    const { inputValue, apiReturn } = this.state;
+    const { inputValue } = this.state;
     const apiObjectsReturn = (await getProductsFromCategoryAndQuery('', inputValue))
       .results;
-    this.setState({ apiReturn: apiObjectsReturn, teste: false },
-      () => console.log('apiReturn', apiReturn));
+    this.setState({ apiReturn: apiObjectsReturn, teste: false });
+  }
+
+  async onClickHandlerCategory(id) {
+    const apiObjectsReturn = (await getProductsFromCategoryAndQuery(id, '')).results;
+    this.setState({ apiReturn: apiObjectsReturn });
   }
 
   listItems() {
@@ -77,6 +83,7 @@ class SearchBar extends Component {
             { this.listItems() }
           </ul>
         </section>
+        <CategoryMenu click={ this.onClickHandlerCategory } />
       </>
     );
   }
