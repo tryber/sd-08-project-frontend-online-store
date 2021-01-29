@@ -43,15 +43,17 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 26px;
+  height: 38px;
   background-color: #fff159;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 header .header-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 60%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   -webkit-box-pack: justify;
@@ -68,6 +70,16 @@ header .header-wrap .header-left {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .header-wrap .header-left .shopping-logo {
+  width: auto;
+  height: 80px;
+  position: relative;
+  margin-left: 12px;
 }
 
 header .header-wrap .header-right {
@@ -79,9 +91,29 @@ header .header-wrap .header-right {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .header-wrap .header-right .checkout-image {
+  width: 24px;
+  height: 24px;
+}
+
+header .header-wrap .header-right .checkout-count {
+  display: block;
+  position: relative;
+  top: -6px;
+  margin-left: 4px;
+  margin-right: 4px;
+  color: dimgray;
+  font-size: 0.9em;
 }
 
 .navbar {
+  padding-top: 8px;
+  padding-bottom: 4px;
   min-height: 20px;
   max-height: 60px;
   width: 100%;
@@ -89,7 +121,7 @@ header .header-wrap .header-right {
   display: -ms-flexbox;
   display: flex;
   background-color: #fff159;
-  border-top: 1px solid rgba(0, 0, 0, 0.082);
+  border-top: 1px solid rgba(56, 56, 56, 0.068);
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 

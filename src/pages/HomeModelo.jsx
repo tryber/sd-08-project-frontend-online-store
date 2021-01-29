@@ -8,11 +8,12 @@ export default function Home() {
       <header>
         <div className="header-wrap">
           <section className="header-left">
-            <span>Logo</span>
+            <img className="shopping-logo" src="shopping.png" />
           </section>
 
           <section className="header-right">
-            <span>Carrinho</span>
+            <img className="checkout-image" src="checkout.png" />
+            <span className="checkout-count">3</span>
           </section>
         </div>
       </header>
