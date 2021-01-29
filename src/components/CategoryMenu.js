@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import * as Api from '../services/api';
 import './CategoryMenu.css';
 
@@ -27,22 +29,29 @@ class CategoryMenu extends Component {
 
   render() {
     const { categories } = this.state;
+    const { click } = this.props;
     return (
       <navbar className="sideBar">
         <h4 className="categoryTitle">Categorias</h4>
         <ul className="sideBarUl">
           {categories.map((categorie) => (
-            <li
+            <button
+              type="button"
               data-testid="category"
               key={ categorie.id }
               className="categoryItem"
+              onClick={ () => click(categorie.id) }
             >
               {categorie.name}
-            </li>))}
+            </button>))}
         </ul>
       </navbar>
     );
   }
 }
+
+CategoryMenu.propTypes = {
+  click: PropTypes.func.isRequired,
+};
 
 export default CategoryMenu;
