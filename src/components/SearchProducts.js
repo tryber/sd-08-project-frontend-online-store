@@ -69,7 +69,7 @@ class SearchProducts extends React.Component {
       <section className="Home">
         { this.inputTest() }
         { this.buttonTest() }
-
+        <FetchCategories callback={ this.getProducts } />
         {products.map((item) => (
           <div key={ item.id } data-testid="product">
             <p>{ item.title }</p>
@@ -77,8 +77,6 @@ class SearchProducts extends React.Component {
             <span>{ item.price }</span>
           </div>
         ))}
-
-        <FetchCategories callback={ this.getProducts } />
       </section>
     );
   }
