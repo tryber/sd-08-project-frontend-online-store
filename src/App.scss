@@ -1,0 +1,22 @@
+// main {
+
+// }
+
+// header {
+
+// }
+
+// .content {
+
+// }
+.product-card {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 400px;
+
+  .product-card-image {
+    width: 100%;
+  }
+}

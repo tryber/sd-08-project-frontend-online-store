@@ -1,1 +1,17 @@
-/* No CSS *//*# sourceMappingURL=App.css.map */
+.product-card {
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 400px;
+  width: 400px;
+}
+
+.product-card .product-card-image {
+  width: 100%;
+}
+/*# sourceMappingURL=App.css.map */
