@@ -1,0 +1,39 @@
+header {
+  background-color: rgb(180, 110, 240);
+  color: white;
+  display: flex;
+  padding: 30px;
+  text-align: center;
+}
+
+.logo {
+  height: 60px;
+  width: 70px;
+}
+
+.search-bar-content {
+  width: 90%;
+}
+
+.search-bar {
+  border: none;
+  border-radius: 10px;
+  height: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+  width: 600px;
+}
+
+textarea:focus, input:focus, select:focus {
+  border: 0;
+  box-shadow: 0 0 0 0;
+  outline: none;
+}
+
+.cart-icon {
+  background-color: rgb(210, 160, 245);
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 40px;
+}
