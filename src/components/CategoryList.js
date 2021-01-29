@@ -5,7 +5,7 @@ class CategoryList extends Component {
   constructor() {
     super();
     this.state = {
-      categories: [{name: 'Aguarde'}],
+      categories: [{ name: 'Aguarde' }],
     };
     this.renderCategoryList = this.renderCategoryList.bind(this);
   }
