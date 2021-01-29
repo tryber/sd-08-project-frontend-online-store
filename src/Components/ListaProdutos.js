@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import * as api from '../services/api';
+import CardProduto from './CardProduto';
 
 export default class ListaProdutos extends React.Component {
   constructor(props) {
@@ -17,10 +19,16 @@ export default class ListaProdutos extends React.Component {
     const { inputStatus } = this.props;
     const { getProductsFromCategoryAndQuery } = api;
 
-    getProductsFromCategoryAndQuery('', inputStatus);
+    getProductsFromCategoryAndQuery('', inputStatus)
+      .then((products) => {
+        this.setState({
+          objectAPI: products.results,
+        });
+      });
   }
 
   render() {
+    const { objectAPI } = this.state;
     return (
       <div>
         <button
@@ -30,7 +38,19 @@ export default class ListaProdutos extends React.Component {
         >
           Buscar
         </button>
+        <div>
+          { objectAPI.map((product) => (<CardProduto
+            key={ product.id }
+            title={ product.title }
+            thumbnail={ product.thumbnail }
+            price={ product.price }
+          />))}
+        </div>
       </div>
     );
   }
 }
+
+ListaProdutos.propTypes = {
+  inputStatus: PropTypes.string.isRequired,
+};
