@@ -1,5 +1,6 @@
 import React from 'react';
 // import Categories from './Categories';
+import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import SearchBar from '../components/SearchBar';
 
@@ -30,12 +31,12 @@ export default class Home extends React.Component {
         <SearchBar />
         {typeof (categoriesList) !== 'undefined'
           ? (
-            <aside className="categories-list">
+            <aside>
               {categoriesList
                 .map((item) => (
-                  <div key={ item.id } data-testid="category">
+                  <button type="button" key={ item.id } data-testid="category">
                     {item.name}
-                  </div>
+                  </button>
                 ))}
             </aside>
           )
