@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as apiConsult from '../services/api';
 import ListaCardProdutos from '../components/LIstaCardProdutos';
+import NavBar from '../components/NavBar';
+
 import * as api from '../services/api';
 
 class Listagem extends Component {
@@ -50,7 +51,7 @@ class Listagem extends Component {
   }
 
   async createAllCategories() {
-    const itemList = await apiConsult.getCategories();
+    const itemList = await api.getCategories();
     const spanList = itemList.map((data) => (
       <li
         key={ data.id }
@@ -65,32 +66,21 @@ class Listagem extends Component {
     const { listOfProducts, categories } = this.state;
     return (
       <div className="main">
-        <div className="categorias">
-          <ul>
-            {categories}
-          </ul>
+        <div className="left-content">
+          <div className="categories-list">
+            <ul>
+              {categories}
+            </ul>
+          </div>
         </div>
-        <label htmlFor="busca" data-testid="home-initial-message">
-          <input
-            type="text"
-            name="query"
-            onChange={ this.handleChange }
-            id="busca"
-            data-testid="query-input"
-          />
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </label>
-        <button
-          className="query-button"
-          data-testid="query-button"
-          type="button"
-          onClick={ this.handleClick }
-        >
-          Pesquisar
-        </button>
-        <Link to="/carrinho" data-testid="shopping-cart-button"><img alt="carrinho" src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png" width="50" height="50" /></Link>
-        <div>
-          <ListaCardProdutos listOfProducts={ listOfProducts } />
+        <div className="right-content">
+          <nav className="nav">
+            <NavBar handleChange={ this.handleChange } handleClick={ this.handleClick } />
+            <Link to="/carrinho" data-testid="shopping-cart-button"><img alt="carrinho" src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png" width="50" height="50" /></Link>
+          </nav>
+          <div className="show-products">
+            <ListaCardProdutos listOfProducts={ listOfProducts } />
+          </div>
         </div>
       </div>
     );

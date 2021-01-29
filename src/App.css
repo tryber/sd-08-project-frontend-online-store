@@ -4,12 +4,23 @@ body {
 
 .main {
   display: flex;
+  justify-content: center;
   margin: 5px auto;
   width: 90%;
 }
 
-.categorias {
+.categories-list {
   border: 1px solid black;
   margin-right: 5px;
   padding: 5px;
+}
+
+.nav {
+  display: flex;
+}
+
+.s-bar {
+  align-items: end;
+  display: flex;
+  flex-direction: column;
 }
