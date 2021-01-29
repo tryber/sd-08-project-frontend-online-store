@@ -10,6 +10,7 @@ class SearchPage extends Component {
     super();
     this.requestProducts = this.requestProducts.bind(this);
     this.handleCategorySelection = this.handleCategorySelection.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       products: [],
       category: '',
@@ -17,23 +18,30 @@ class SearchPage extends Component {
   }
 
   handleCategorySelection(event) {
-    this.setState(() => ({ category: event.target.name }));
+    const categoryName = event.target.name;
+    this.setState(() => ({ category: categoryName }));
   }
 
-  requestProducts(category, query) {
-    this.setState(async (previous) => {
-      const results = previous.category === ''
+  handleClick(event) {
+    this.handleCategorySelection(event);
+    this.requestProducts();
+  };
+
+  requestProducts(categ, query) {
+    const { category } = this.state;
+    this.setState(async () => {
+      const results = category === ''
         ? await api.getProductsFromCategoryAndQuery('ALL', query)
         : await api.getProductsFromCategoryAndQuery(category, query);
-      this.setState({ products: results.results });
+      this.setState(() => ({ products: results.results }));
     });
   }
 
   render() {
-    const { products } = this.state;
+    const { products, category } = this.state;
     return (
       <div>
-        <SearchBar requestProducts={ this.requestProducts } />
+        <SearchBar requestProducts={ this.requestProducts } category={ category } />
         <div className="searchPage-container">
           {products.map((product) => (
             <ProductCard
@@ -44,7 +52,7 @@ class SearchPage extends Component {
             />
           ))}
           {!products.length && <p>Nenhum produto foi encontrado</p>}
-          <CategoryList />
+          <CategoryList onclick={ this.handleClick } />
         </div>
       </div>
     );

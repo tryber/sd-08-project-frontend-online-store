@@ -16,7 +16,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { requestProducts } = this.props;
+    const { requestProducts, category } = this.props;
     const { query } = this.state;
     return (
       <div className="searchbar-container">
@@ -30,7 +30,7 @@ class SearchBar extends Component {
             <button
               data-testid="query-button"
               type="button"
-              onClick={ () => requestProducts(query) }
+              onClick={ () => requestProducts(category, query) }
             >
               Pesquisar
             </button>
@@ -44,5 +44,6 @@ class SearchBar extends Component {
 }
 SearchBar.propTypes = {
   requestProducts: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
 };
 export default SearchBar;

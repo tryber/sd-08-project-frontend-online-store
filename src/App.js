@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import ButtonCart from './components/ButtonCart';
 import Cart from './pages/Cart';
-import CategoryList from './components/CategoryList';
 import SearchPage from './pages/SearchPage';
 
 function App() {
