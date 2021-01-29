@@ -5,16 +5,17 @@ class Categories extends Component {
   render() {
     const { categories, onChange } = this.props;
     return (
-      <select name="selected-category" onChange={ onChange }>
+      <div>
         { categories.map(({ name, id }) => (
-          <option
-            key={ id }
+          <button
+            type="button"
             value={ id }
             data-testid="category"
+            key={ id }
           >
             { name }
-          </option>)) }
-      </select>
+          </button>)) }
+      </div>
     );
   }
 }

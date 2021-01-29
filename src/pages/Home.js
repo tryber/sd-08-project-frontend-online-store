@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
-import Categories from '../components/Categories';
+import CategoriesList from '../components/CategoriesList';
 
 import * as api from '../services/api';
 
@@ -20,42 +20,49 @@ class Home extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleSearchSelect = this.handleSearchSelect.bind(this);
+    this.updateResults = this.updateResults.bind(this);
   }
 
   componentDidMount() {
     api.getCategories().then((categories) => this.setState({ categories }));
   }
 
-  handleChange({ target }) {
+  handleChange({ target }, callback) {
     const { name, value } = target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, callback);
   }
 
   handleSearch() {
-    const {
-      'query-input': queryInput,
-    } = this.state;
-
+    const { 'query-input': queryInput } = this.state;
     api.getProductsFromCategoryAndQuery(null, queryInput)
-      .then(({ results }) => this.setState({
-        results,
-      }));
+      .then(this.updateResults);
+  }
+
+  handleSearchSelect(event) {
+    this.handleChange(event, () => {
+      const { 'selected-category': selectedCategory } = this.state;
+      api.getProductsFromCategoryAndQuery(selectedCategory)
+        .then(this.updateResults);
+    });
+  }
+
+  updateResults({ results }) {
+    this.setState({ results });
   }
 
   render() {
     const { categories, results } = this.state;
-    const { 'selected-category': selectedCategory } = this.state;
-    const filteredResults = results.filter(({ category_id: categoryId }) => {
-      console.log(`categoryid ${categoryId},selected ${selectedCategory}`);
-      return categoryId === selectedCategory;
-    });
     return (
       <div className="home">
         <SearchBar
           onChange={ this.handleChange }
           onClick={ this.handleSearch }
         />
-        <Categories onChange={ this.handleChange } categories={ categories } />
+        <CategoriesList
+          handleChange={ this.handleSearchSelect }
+          categories={ categories }
+        />
         <Link
           style={ { display: 'block' } }
           to="/shoppingcart"
@@ -63,7 +70,7 @@ class Home extends Component {
         >
           Carrinho
         </Link>
-        { !!results.length && <SearchResults results={ filteredResults } /> }
+        { !!results.length && <SearchResults results={ results } /> }
       </div>
     );
   }
