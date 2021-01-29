@@ -33,7 +33,7 @@ class ProductList extends React.Component {
 
   render() {
     const { products, isLoading } = this.state;
-    console.log(isLoading, products.length);
+    const { category } = this.props;
     if (isLoading) {
       return <h2>Loading...</h2>;
     } if (!isLoading && products.length === 0) {
@@ -44,7 +44,11 @@ class ProductList extends React.Component {
         {isLoading
           ? this.renderLoadingMessage()
           : products.results.map((product) => (
-            <ProductCard productInfo={ product } key={ product.id } />
+            <ProductCard
+              productInfo={ product }
+              key={ product.id }
+              categoryID={ category }
+            />
           ))}
       </div>
     );
