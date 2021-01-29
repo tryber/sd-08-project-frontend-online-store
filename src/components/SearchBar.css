@@ -1,0 +1,11 @@
+.searchbar-container form input {
+  width: 90%;
+  height: 25px;
+  border-radius: 30px;
+  margin: 10px 50px;
+}
+.searchbar-container form label {
+  display: block;
+  text-align: center;
+  font-size: 30px;
+}
