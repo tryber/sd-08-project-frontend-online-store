@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import ButtonCart from './components/ButtonCart';
 import Cart from './pages/Cart';
-import SearchBar from './components/SearchBar';
 import CategoryList from './components/CategoryList';
 import SearchPage from './pages/SearchPage';
 
@@ -18,7 +17,7 @@ function App() {
         </header>
         <Switch>
           <Route path="/cart" component={ Cart } />
-          <Route path="/" component={ SearchPage } />  
+          <Route path="/" component={ SearchPage } />
         </Switch>
         <CategoryList />
       </div>
