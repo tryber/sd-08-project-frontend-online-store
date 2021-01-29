@@ -4,8 +4,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import ButtonCart from './components/ButtonCart';
 import Cart from './pages/Cart';
-import SearchBar from './components/SearchBar';
-import { getCategories, getProductsFromCategoryAndQuery } from './services/api';
 import SearchPage from './pages/SearchPage';
 
 function App() {
@@ -16,7 +14,6 @@ function App() {
           <ButtonCart />
           <h1>Frontend Online Store</h1>
         </header>
-        <SearchBar />
         <Switch>
           <Route path="/cart" component={ Cart } />
           <Route path="/" component={ SearchPage } />
