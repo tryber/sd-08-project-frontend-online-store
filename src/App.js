@@ -2,12 +2,13 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import Search from './components/Search';
+import Home from './components/Home';
+import Category from './components/Category';
 
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" component={ Search } />
+      <Route path="/" component={ Home } />
     </BrowserRouter>
   );
 }
