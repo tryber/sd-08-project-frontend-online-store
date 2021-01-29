@@ -19,7 +19,6 @@ function App() {
           <Route path="/cart" component={ Cart } />
           <Route path="/" component={ SearchPage } />
         </Switch>
-        <CategoryList />
       </div>
     </BrowserRouter>
   );

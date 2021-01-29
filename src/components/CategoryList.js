@@ -41,6 +41,7 @@ class CategoryList extends Component {
               <li
                 key={ index }
                 data-testid="category"
+                name={ category.name }
               >
                 { category.name }
               </li>))}
