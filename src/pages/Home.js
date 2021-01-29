@@ -11,6 +11,8 @@ export default class Home extends React.Component {
       categoriesList: [],
       loadingMessenge: true,
     };
+
+    this.changeLoadingState = this.changeLoadingState.bind(this);
   }
 
   componentDidMount() {
@@ -18,15 +20,21 @@ export default class Home extends React.Component {
   }
 
   async fetchCategories() {
-    const categories = await api.getCategories();
     this.setState({
-      categoriesList: categories,
+      categoriesList: await api.getCategories(),
+      loadingMessenge: false,
+    });
+  }
+
+  changeLoadingState() {
+    this.setState({
       loadingMessenge: false,
     });
   }
 
   render() {
     const { categoriesList, loadingMessenge } = this.state;
+    console.log(categoriesList);
     return (
       <main>
         <SearchBar />
