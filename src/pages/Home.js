@@ -1,16 +1,45 @@
 import React from 'react';
 
+import * as api from '../services/api';
+import SearchBar from '../components/SearchBar';
+
 export default class Home extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      categoriesList: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchCategories();
+  }
+
+  async fetchCategories() {
+    const list = await api.getCategories();
+    this.setState({
+      categoriesList: list,
+    });
+  }
+
   render() {
+    const { categoriesList } = this.state;
     return (
-      <div className="search-bar-container">
-        <section className="search-bar">
-          <input type="text" placeholder="Digite aqui sua pesquisa" />
-        </section>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-      </div>
+      <main>
+        <SearchBar />
+        {typeof (categoriesList) !== 'undefined'
+          && (
+            <aside>
+              {categoriesList
+                .map((item) => (
+                  <button type="button" key={ item.id } data-testid="category">
+                    {item.name}
+                  </button>
+                ))}
+            </aside>
+          )}
+      </main>
     );
   }
 }
