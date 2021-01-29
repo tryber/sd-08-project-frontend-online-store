@@ -27,15 +27,16 @@ class CategoriesFilter extends Component {
     return (
       <form>
         <div>
-            <h3>Categorias:</h3>
-            {categories.map((category) => {
-              return( 
-                <label data-testid="category" key={ category.id }>
-                  <input type="checkbox" name={ category.id } value={ category.id } />
-                  { category.name }
-                  <br />
-               </label>
-            )})}
+          <h3>Categorias:</h3>
+          {categories.map((category) => {
+            return (
+              <label data-testid="category" key={ category.id }>
+                <input type="checkbox" name={ category.id } value={ category.id } />
+                { category.name }
+                <br />
+              </label>
+            )})
+          };
         </div>
       </form>
     );
