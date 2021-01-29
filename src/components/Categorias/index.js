@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Categorias.css';
+import PropTypes from 'prop-types';
 
 class Categorias extends Component {
   render() {
@@ -27,4 +28,8 @@ class Categorias extends Component {
   }
 }
 
+Categorias.propTypes = {
+  categorias: PropTypes.arrayOf(PropTypes.object).isRequired,
+  funcCategoria: PropTypes.func.isRequired,
+};
 export default Categorias;
