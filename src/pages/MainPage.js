@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductList from '../components/ProductList';
+import ShoppingCartButton from '../components/ShoppingCartButton';
 
 class MainPage extends React.Component {
   constructor() {
@@ -59,6 +60,9 @@ class MainPage extends React.Component {
     const { query, products } = this.state;
     return (
       <div>
+        <div>
+          <ShoppingCartButton />
+        </div>
         { this.renderInputSearch() }
         <ProductList products={ products } query={ query } />
       </div>
