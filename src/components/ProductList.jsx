@@ -33,7 +33,7 @@ class ProductList extends React.Component {
 
   render() {
     const { products, isLoading } = this.state;
-    const { category } = this.props;
+    const { category, callback } = this.props;
     if (isLoading) {
       return <h2>Loading...</h2>;
     } if (!isLoading && products.length === 0) {
@@ -48,6 +48,7 @@ class ProductList extends React.Component {
               productInfo={ product }
               key={ product.id }
               categoryID={ category }
+              callback={ callback }
             />
           ))}
       </div>
@@ -60,6 +61,7 @@ export default ProductList;
 ProductList.propTypes = {
   category: PropTypes.string,
   query: PropTypes.string,
+  callback: PropTypes.func.isRequired,
 };
 
 ProductList.defaultProps = {

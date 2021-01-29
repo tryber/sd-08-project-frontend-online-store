@@ -14,6 +14,7 @@ class Home extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.changeCategorieState = this.changeCategorieState.bind(this);
+    this.addProductCart = this.addProductCart.bind(this);
   }
 
   handleClick(event) {
@@ -30,6 +31,27 @@ class Home extends React.Component {
       searchInput: event.target.value,
     });
   }
+
+  addProductCart(product) {
+    let itensFromLocalStorage = [];
+    if (localStorage.length !== 0) {
+      itensFromLocalStorage = JSON.parse(localStorage.products);
+    }
+    localStorage.setItem('products',
+      JSON.stringify([...itensFromLocalStorage, product]));
+    // this.setState((state) => ({
+    //   cartProducts: [...state.cartProducts, product],
+    // }), () => {
+    //   const { cartProducts } = this.state;
+    //   let itensFromLocalStorage = [];
+    //   if (localStorage.length !== 0) {
+    //     itensFromLocalStorage = JSON.parse(localStorage.products);
+    //   }
+    //   console.log(itensFromLocalStorage);
+    //   localStorage.setItem('products',
+    //     JSON.stringify([...cartProducts, ...itensFromLocalStorage]));
+    // });
+  } // só atualizar o localStorage e nao o estado fazer o estado receber o local storage
 
   changeCategorieState(name) {
     this.setState({ filter: false }, () => {
@@ -65,7 +87,11 @@ class Home extends React.Component {
         <ShopCartButton />
         <MapCategories callback={ this.changeCategorieState } />
 
-        {filter ? <ProductList category={ categorie } query={ searchInput } /> : '' }
+        {filter ? <ProductList
+          category={ categorie }
+          query={ searchInput }
+          callback={ this.addProductCart }
+        /> : ''}
       </div>
     );
   }
