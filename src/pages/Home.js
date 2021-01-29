@@ -33,11 +33,10 @@ class Home extends Component {
 
   handleSearch() {
     const {
-      'selected-category': selectedCategory,
       'query-input': queryInput,
     } = this.state;
 
-    api.getProductsFromCategoryAndQuery(selectedCategory, queryInput)
+    api.getProductsFromCategoryAndQuery(null, queryInput)
       .then(({ results }) => this.setState({
         results,
       }));
@@ -45,6 +44,11 @@ class Home extends Component {
 
   render() {
     const { categories, results } = this.state;
+    const { 'selected-category': selectedCategory } = this.state;
+    const filteredResults = results.filter(({ category_id: categoryId }) => {
+      console.log(`categoryid ${categoryId},selected ${selectedCategory}`);
+      return categoryId === selectedCategory;
+    });
     return (
       <div className="home">
         <SearchBar
@@ -59,7 +63,7 @@ class Home extends Component {
         >
           Carrinho
         </Link>
-        { !!results.length && <SearchResults results={ results } /> }
+        { !!results.length && <SearchResults results={ filteredResults } /> }
       </div>
     );
   }
