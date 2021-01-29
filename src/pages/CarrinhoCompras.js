@@ -18,33 +18,40 @@ class CarrinhoCompras extends Component {
   }
 
   async restoreState() {
+    const products = await JSON.parse(localStorage.getItem('itemsCart'));
     this.setState({ productsTeste: products });
   }
 
   removeItem(item) {
     const { productsTeste } = this.state;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
     const itemsIndex = items.findIndex((element) => element.id === item.id);
     const flag = -1;
     if (itemsIndex !== flag) {
       delete items[itemsIndex];
     }
+    localStorage.setItem('itemsCart', JSON.stringify(items));
     productsTeste.find((element) => element.id === item.id);
+    localStorage.removeItem(item.id);
     this.setState({ productsTeste });
   }
 
   increaseItem(item) {
     const { productsTeste } = this.state;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
     const itemsIndex = items.findIndex((element) => element.id === item.id);
     const flag = -1;
     if (itemsIndex !== flag) {
       items[itemsIndex].qtd += 1;
     }
+    localStorage.setItem('itemsCart', JSON.stringify(items));
     productsTeste.find((element) => element.id === item.id).qtd += 1;
     this.setState({ productsTeste });
   }
 
   decreaseItem(item) {
     const { productsTeste } = this.state;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
     const itemsIndex = items.findIndex((element) => element.id === item.id);
     const flag = -1;
     const flagZero = 0;
@@ -52,6 +59,7 @@ class CarrinhoCompras extends Component {
       if (itemsIndex !== flag) {
         items[itemsIndex].qtd -= 1;
       }
+      localStorage.setItem('itemsCart', JSON.stringify(items));
       productsTeste.find((element) => element.id === item.id).qtd -= 1;
       this.setState({ productsTeste });
     }
