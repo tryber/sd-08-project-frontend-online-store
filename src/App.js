@@ -7,7 +7,6 @@ import ProductList from './components/ProductList';
 import ProductDetails from './components/ProductDetails';
 import ShoppingCart from './components/ShoppingCart';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
