@@ -29,7 +29,7 @@ export default class Home extends React.Component {
       <main>
         <SearchBar />
         {typeof (categoriesList) !== 'undefined'
-          ? (
+          && (
             <aside>
               {categoriesList
                 .map((item) => (
@@ -38,8 +38,7 @@ export default class Home extends React.Component {
                   </button>
                 ))}
             </aside>
-          )
-          : <p>Loading...</p>}
+          )}
       </main>
     );
   }
