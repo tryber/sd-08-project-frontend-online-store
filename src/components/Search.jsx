@@ -5,7 +5,7 @@ class Search extends React.Component {
     return (
       <section>
         <form>
-          <input type="search" />
+          <input type="search" data-testid="input" />
         </form>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
