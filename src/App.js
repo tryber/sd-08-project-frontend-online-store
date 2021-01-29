@@ -1,6 +1,6 @@
 import React from 'react';
-import MainPage from './pages/MainPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import MainPage from './pages/MainPage';
 import ShoppingCart from './pages/ShoppingCart';
 import './App.css';
 
@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={ MainPage } />
+          <Route exact path="/" component={ MainPage } />
           <Route path="/ShoppingCart" component={ ShoppingCart } />
         </Switch>
       </BrowserRouter>

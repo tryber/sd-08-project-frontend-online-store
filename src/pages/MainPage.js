@@ -2,33 +2,52 @@ import React from 'react';
 import Categories from '../components/Categories';
 import ProductList from '../components/ProductList';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
 
 class MainPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       query: '',
+      categoriesList: [],
+      categoryID: '',
       products: [],
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.getProductsAPI = this.getProductsAPI.bind(this);
+    this.categoriesAPI = this.categoriesAPI.bind(this);
   }
 
   componentDidMount() {
-    this.getProducts();
+    this.categoriesAPI();
   }
 
   handleChange({ target }) {
     this.setState({
       [target.name]: target.value,
     });
+    if (target.name === 'categoryID') {
+      this.getProductsAPI();
+    }
   }
 
-  async getProducts() {
-    const { query } = this.state;
-    const getProducts = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`)
-      .then((response) => response.json());
+  handleClick() {
+    this.getProductsAPI();
+  }
+
+  async getProductsAPI() {
+    const { query, categoryID } = this.state;
+    const getProducts = await getProductsFromCategoryAndQuery(categoryID, query);
     this.setState({
       products: getProducts.results,
+    });
+  }
+
+  async categoriesAPI() {
+    const result = await getCategories();
+    this.setState({
+      categoriesList: result.map((categories) => categories),
     });
   }
 
@@ -37,22 +56,34 @@ class MainPage extends React.Component {
       <section>
         <label htmlFor="input-text" data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
-          <input id="input-text" onChange={ this.handleChange } name="query" />
+          <input
+            id="input-text"
+            onChange={ this.handleChange }
+            name="query"
+            data-testid="query-input"
+          />
         </label>
+        <button
+          type="button"
+          onClick={ this.handleClick }
+          data-testid="query-button"
+        >
+          Buscar
+        </button>
       </section>
     );
   }
 
   render() {
-    const { query, products } = this.state;
+    const { query, products, categoriesList } = this.state;
     return (
       <div>
+        { this.renderInputSearch() }
         <div>
           <ShoppingCartButton />
-          <Categories />
+          <Categories categories={ categoriesList } onClick={ this.handleChange } />
         </div>
-        { this.renderInputSearch() }
-        {/* <ProductList products={ products } query={ query } /> */}
+        <ProductList products={ products } query={ query } />
       </div>
     );
   }

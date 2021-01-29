@@ -1,29 +1,10 @@
 import React from 'react';
-import getProductsFromCategoryAndQuery from '../services/api';
+import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [],
-    };
-  }
-
-  componentDidMount() {
-    this.getProducts();
-  }
-
-  getProducts() {
-    const { query } = this.props;
-    const result = getProductsFromCategoryAndQuery(query);
-    this.setState({
-      products: result,
-    });
-  }
-
   render() {
-    const { products } = this.state;
+    const { products } = this.props;
     return (
       <div>
         { products
@@ -32,5 +13,9 @@ class ProductList extends React.Component {
     );
   }
 }
+
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ProductList;

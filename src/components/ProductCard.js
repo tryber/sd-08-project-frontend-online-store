@@ -1,23 +1,28 @@
 import React from 'react';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      product: {}
-    };
-  }
-
   render() {
+    const { product: { title, price, thumbnail } } = this.props;
     return (
-      <div>
-        <h3>{}</h3>
-        {/* <img src={} alt="Imagem do produto"/> */}
-        <span>{}</span>
+      <div data-testid="product">
+        <h3>{title}</h3>
+        <img src={ thumbnail } alt="Imagem do produto" />
+        <span>
+          R$
+          {price}
+        </span>
       </div>
     );
   }
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ProductCard;
