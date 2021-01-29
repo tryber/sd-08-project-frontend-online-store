@@ -8,13 +8,24 @@ class LandingPage extends React.Component {
 
     this.state = {
       categoriesList: [],
+      categoryId: '',
+      query: '',
+      productList: [],
     };
 
+    this.handleChange = this.handleChange.bind(this);
     this.getCategoriesList = this.getCategoriesList.bind(this);
+    this.getProductsFromAPI = this.getProductsFromAPI.bind(this);
   }
 
   componentDidMount() {
     this.getCategoriesList();
+  }
+
+  handleChange({ target }) {
+    this.setState({
+      query: target.value,
+    });
   }
 
   async getCategoriesList() {
@@ -24,11 +35,31 @@ class LandingPage extends React.Component {
     });
   }
 
+  async getProductsFromAPI(categoryId, query) {
+    const apiResponse = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    const productList = await apiResponse.results;
+    this.setState({
+      productList,
+    });
+  }
+
   render() {
-    const { categoriesList } = this.state;
+    const { categoriesList, categoryId, query, productList } = this.state;
     return (
       <div>
-        <input type="text" />
+        <button
+          type="button"
+          data-testid="query-button"
+          onClick={ () => this.getProductsFromAPI(categoryId, query) }
+        >
+          Pesquisar
+        </button>
+        <input
+          type="text"
+          data-testid="query-input"
+          value={ query }
+          onChange={ this.handleChange }
+        />
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
           Carrinho de Compras
         </Link>
@@ -45,6 +76,18 @@ class LandingPage extends React.Component {
                   { category.name }
                 </div>))
           }
+        </div>
+        <div>
+          { productList.map((product) => (
+            <div key={ product.id } data-testid="product">
+              <p>{ product.title }</p>
+              <p>
+                R$
+                { product.price }
+              </p>
+              <img src={ product.thumbnail } alt={ product.title } />
+            </div>
+          )) }
         </div>
       </div>
     );
