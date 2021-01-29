@@ -7,7 +7,7 @@ class ListagemDeProdutos extends React.Component {
     const { products } = this.props;
 
     return (
-      <div>
+      <div data-testid="product">
         { products.map((product) => (<CardProducts
           key={ product.id }
           product={ product }

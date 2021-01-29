@@ -12,6 +12,7 @@ class MainPage extends React.Component {
         <div className="categoriesList" data-testid="category">
           { categories.map(({ name, id }) => (
             <button
+              data-testid="query-button"
               type="button"
               key={ name }
               className="categoriesItem"
