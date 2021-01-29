@@ -1,5 +1,5 @@
 import React from 'react';
-import Categories from './Categories';
+// import Categories from './Categories';
 import * as api from '../services/api';
 import SearchBar from '../components/SearchBar';
 
@@ -32,7 +32,15 @@ export default class Home extends React.Component {
         <SearchBar />
         {loadingMessenge
           ? <p>Loading...</p>
-          : <Categories categoriesList={ categoriesList } />}
+          : (
+            <aside className="categories-list">
+              {categoriesList
+                .map((item) => (
+                  <div key={ item.id } data-testid="category">
+                    {item.name}
+                  </div>))}
+            </aside>
+          )}
       </main>
     );
   }
