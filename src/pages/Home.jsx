@@ -17,8 +17,10 @@ class Home extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
-    this.setState({
-      filter: true,
+    this.setState({ filter: false }, () => {
+      this.setState({
+        filter: true,
+      });
     });
   }
 
@@ -29,8 +31,11 @@ class Home extends React.Component {
   }
 
   changeCategorieState(name) {
-    this.setState({
-      categorie: name,
+    this.setState({ filter: false }, () => {
+      this.setState({
+        categorie: name,
+        filter: true,
+      });
     });
   }
 
