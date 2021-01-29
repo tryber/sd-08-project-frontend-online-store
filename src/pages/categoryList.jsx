@@ -19,14 +19,14 @@ class CategoryList extends Component {
     console.log(category);
     return (
       <div className="category-list">
-          { category.map((item) => (
-            <li
-              data-testid="category"
-              key={ item.id }
-            >
-              {item.name}
-            </li>
-          ))}
+        {category.map((item) => (
+          <li
+            data-testid="category"
+            key={ item.id }
+          >
+            {item.name}
+          </li>
+        ))}
       </div>
     );
   }
