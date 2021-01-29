@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" component={ ProductsList } exact />
-        <Route path="/shoppingcart" component={ ShoppingCart } exact />
+        <Route path="/shoppingcart" component={ ShoppingCart } />
       </Switch>
     </Router>
   );
