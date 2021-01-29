@@ -2,15 +2,7 @@ import React, { Component } from 'react';
 
 import Header from '../components/Header';
 import CategoriesList from '../components/CategoriesList';
-<<<<<<< HEAD
 
-export default class Home extends Component {
-  render() {
-    return (
-      <div className="busca">
-        <Header />
-        <CategoriesList />
-=======
 import ItemList from '../components/ItemList';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
@@ -55,7 +47,6 @@ export default class Home extends Component {
         <Header getQuery={ this.getQuery } getItems={ this.getItems } />
         <CategoriesList onClick={ this.handleCategories } />
         <ItemList products={ product } />
->>>>>>> d526e9b411828c3e55ec368c686ea00cbac25218
       </div>
     );
   }
