@@ -16,12 +16,17 @@ export default class App extends Component {
       categorias: false,
       produtos: false,
       catID: '',
-      search: 'Chinelo',
+      search: '',
     };
+    this.alteraCategoriaBusca = this.alteraCategoriaBusca.bind(this);
   }
 
   componentDidMount() {
     this.buscarListaCategorias();
+    // this.getProdutos();
+  }
+
+  componentDidUpdate() {
     this.getProdutos();
   }
 
@@ -41,13 +46,21 @@ export default class App extends Component {
     });
   }
 
+  alteraCategoriaBusca(e) {
+    const nameId = e.target.name;
+    this.setState({ catID: nameId });
+  }
+
   render() {
     const { cart, categorias, produtos } = this.state;
     return (
       <BrowserRouter>
         <Header cart={ cart } />
         <main className="App">
-          <Categorias categorias={ categorias } />
+          <Categorias
+            categorias={ categorias }
+            funcCategoria={ this.alteraCategoriaBusca }
+          />
           <Switch>
             <Route
               path="/"
