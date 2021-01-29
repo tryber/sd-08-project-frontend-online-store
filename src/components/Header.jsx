@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import ShoppingCart from '../pages/shoppingCart';
 import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
+import '../styles/headerStyle.css';
 
 class Header extends Component {
   render() {
     return (
-      <div>
+      <header>
         <SearchBar />
-        <BrowserRouter>
-          <Link data-testid="shopping-cart-button" to="/shoppingCart">Carrinho</Link>
-          <Route exact path="/shoppingCart" component={ ShoppingCart } />
-        </BrowserRouter>
-      </div>
+        <Link
+          data-testid="shopping-cart-button"
+          to="/ShoppingCart"
+        >
+          <img
+            className="cart-icon"
+            src="https://image.flaticon.com/icons/png/512/2404/2404120.png"
+            alt="Imagem do carrinho"
+          />
+        </Link>
+      </header>
     );
   }
 }
