@@ -30,12 +30,12 @@ class Home extends React.Component {
     ));
   }
 
-  async handleClick({target}) {
+  async handleClick({ target }) {
     const { value } = this.state;
     const newCategory = target.id;
     const product = await (await api.getProductsFromCategoryAndQuery(newCategory, value))
       .results;
-    this.setState({ products: product })
+    this.setState({ products: product });
   }
 
   handleChange({ target }) {
