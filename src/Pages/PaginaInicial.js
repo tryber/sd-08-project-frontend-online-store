@@ -1,5 +1,6 @@
 import React from 'react';
 import Listadecategorias from '../Components/Listaecategorias';
+import BotaoCarrinho from '../Components/BotaoCarrinho';
 
 export default class PaginaInicial extends React.Component {
   constructor() {
@@ -20,6 +21,7 @@ export default class PaginaInicial extends React.Component {
           value={ inputStatus }
           // onChange={}
         />
+        <BotaoCarrinho />
         {inputStatus === '' && (
           <div data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
