@@ -37,7 +37,6 @@ class Category extends React.Component {
           </li>
         ))}
       </ul>
-
     );
   }
 }
