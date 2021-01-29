@@ -9,16 +9,18 @@ class MainPage extends React.Component {
       products: [],
     };
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.getProducts();
+    this.handleClick = this.handleClick.bind(this);
+    this.getProducts = this.getProducts.bind(this);
   }
 
   handleChange({ target }) {
     this.setState({
       [target.name]: target.value,
     });
+  }
+
+  handleClick() {
+    this.getProducts();
   }
 
   async getProducts() {
@@ -35,8 +37,20 @@ class MainPage extends React.Component {
       <section>
         <label htmlFor="input-text" data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
-          <input id="input-text" onChange={ this.handleChange } name="query" />
+          <input
+            id="input-text"
+            onChange={ this.handleChange }
+            name="query"
+            data-testid="query-input"
+          />
         </label>
+        <button
+          type="button"
+          onClick={ this.handleClick }
+          data-testid="query-button"
+        >
+          Buscar
+        </button>
       </section>
     );
   }
