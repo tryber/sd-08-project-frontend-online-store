@@ -38,7 +38,6 @@ class LandingPage extends React.Component {
   async getProductsFromAPI(categoryId, query) {
     const apiResponse = await api.getProductsFromCategoryAndQuery(categoryId, query);
     const productList = await apiResponse.results;
-    console.log(apiResponse);
     this.setState({
       productList,
     });
