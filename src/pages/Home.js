@@ -14,20 +14,38 @@ class Home extends Component {
 
     this.state = {
       items: [],
+      category: 'MLB1182',
+      query: 'mais-vendidos',
     };
 
     this.makeApiRequest = this.makeApiRequest.bind(this);
+    this.updateQuery = this.updateQuery.bind(this);
+    this.updateCategory = this.updateCategory.bind(this);
   }
 
-  componentDidMount() {
-    this.makeApiRequest('mais-vendidos');
-  }
+  // componentDidMount() {
+  //   console.log('montou');
+  //   this.makeApiRequest();
+  // }
 
-  async makeApiRequest(query) {
-    const { results } = await getProduct('', query);
+  async makeApiRequest() {
+    const { category, query } = this.state;
+    const { results } = await getProduct(category, query);
     this.setState({
       items: results,
     });
+  }
+
+  updateQuery(query) {
+    this.setState({
+      query,
+    }, () => { this.makeApiRequest(); });
+  }
+
+  updateCategory(catId) {
+    this.setState({
+      category: catId,
+    }, () => { this.makeApiRequest(); });
   }
 
   render() {
@@ -42,10 +60,10 @@ class Home extends Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <QueryInput handleClick={ this.makeApiRequest } />
+          <QueryInput handleClick={ this.updateQuery } />
         </header>
         <section>
-          <FilterCategories />
+          <FilterCategories handleClick={ this.updateCategory } />
           <ProductList items={ items } />
         </section>
       </>
