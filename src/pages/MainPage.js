@@ -1,4 +1,5 @@
 import React from 'react';
+import Categories from '../components/Categories';
 import ProductList from '../components/ProductList';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 import { getProductsFromCategoryAndQuery } from '../services/api';
@@ -14,7 +15,12 @@ class MainPage extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.getProducts = this.getProducts.bind(this);
+    this.getProductsAPI = this.getProductsAPI.bind(this);
+    this.categoriesAPI = this.categoriesAPI.bind(this);
+  }
+
+  componentDidMount() {
+    this.categoriesAPI();
   }
 
   handleChange({ target }) {
@@ -32,6 +38,13 @@ class MainPage extends React.Component {
     const getProducts = getProductsFromCategoryAndQuery(categoryID, query);
     this.setState({
       products: getProducts.results,
+    });
+  }
+
+  async categoriesAPI() {
+    const result = await getCategories();
+    this.setState({
+      categories: result.map((categories) => categories.name),
     });
   }
 
@@ -64,6 +77,7 @@ class MainPage extends React.Component {
       <div>
         <div>
           <ShoppingCartButton />
+          <Categories />
         </div>
         { this.renderInputSearch() }
         <ProductList products={ products } query={ query } />
