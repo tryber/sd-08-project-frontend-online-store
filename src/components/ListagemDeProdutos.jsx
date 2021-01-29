@@ -20,6 +20,7 @@ class ListagemDeProdutos extends React.Component {
 
 ListagemDeProdutos.propTypes = {
   products: PropTypes.arrayOf(PropTypes.any).isRequired,
+  addCart: PropTypes.func.isRequired,
 };
 
 export default ListagemDeProdutos;

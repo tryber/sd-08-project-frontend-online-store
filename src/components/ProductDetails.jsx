@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ProductDetails extends React.Component {
   render() {
-    const { product } = this.props.location.state;
+    const { location: { state: { product } } } = this.props;
     const { addCart } = this.props;
     const { title, thumbnail, price } = product;
 
@@ -11,11 +12,31 @@ class ProductDetails extends React.Component {
         <h1 data-testid="product-detail-name">{title}</h1>
         <img src={ thumbnail } alt="item" />
         <p>{price}</p>
-        <button onClick={ () => addCart(product) } type="button">Adicionar ao carrinho</button>
+        <button
+          onClick={
+            () => addCart(product)
+          }
+          type="button"
+        >
+          Adicionar ao carrinho
+        </button>
 
       </div>
     );
   }
 }
+
+ProductDetails.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      product: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        thumbnail: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+  addCart: PropTypes.func.isRequired,
+};
 
 export default ProductDetails;

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom';
 import CartIcon from './CartIcon';
 import './TopNavBar.css';
@@ -23,5 +25,9 @@ class TopNavBar extends React.Component {
     );
   }
 }
+
+TopNavBar.propTypes = {
+  cartSize: PropTypes.number.isRequired,
+};
 
 export default TopNavBar;

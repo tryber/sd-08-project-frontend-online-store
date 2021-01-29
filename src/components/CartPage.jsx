@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CardProducts from './CardProducts';
 
 class CartPage extends React.Component {
@@ -19,5 +20,12 @@ class CartPage extends React.Component {
     );
   }
 }
+
+CartPage.propTypes = {
+  productsOnCart: PropTypes.shape({
+    length: PropTypes.number.isRequired,
+    map: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default CartPage;

@@ -32,6 +32,7 @@ MainPage.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.any).isRequired,
   products: PropTypes.arrayOf(PropTypes.any).isRequired,
   onclick: PropTypes.func.isRequired,
+  addCart: PropTypes.func.isRequired,
 };
 
 export default MainPage;
