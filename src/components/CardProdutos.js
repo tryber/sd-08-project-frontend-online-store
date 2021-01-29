@@ -21,7 +21,8 @@ class CardProdutos extends React.Component {
               </div>
             )
           }
-          {shipping && <p className="frete-gratis" data-testid="free-shipping">Frete grátis</p>}
+          {shipping
+          && <p className="frete-gratis" data-testid="free-shipping">Frete grátis</p>}
           <h2>{ title }</h2>
         </div>
       </div>
