@@ -9,13 +9,13 @@ class CategoryList extends Component {
       category: [],
     };
   }
-  
+
   async componentDidMount() {
     const category = await api.getCategories();
     this.updateState(category);
   }
 
-  updateState(category) {  
+  updateState(category) {
     this.setState({ category });
   }
 
