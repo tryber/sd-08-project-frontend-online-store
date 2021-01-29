@@ -10,6 +10,7 @@ class CategoryList extends React.Component {
       <div>
         {list.map((category) => (
           <button
+            id={ category.id }
             type="button"
             data-testid="category"
             key={ category.id }
