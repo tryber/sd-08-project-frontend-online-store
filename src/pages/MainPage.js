@@ -75,7 +75,7 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const { query, products, categoriesList } = this.state;
+    const { query, products, categoriesList, categoryID } = this.state;
     return (
       <div>
         { this.renderInputSearch() }
@@ -83,7 +83,7 @@ class MainPage extends React.Component {
           <ShoppingCartButton />
           <Categories categories={ categoriesList } onClick={ this.handleChange } />
         </div>
-        <ProductList products={ products } query={ query } />
+        <ProductList products={ products } query={ query } categoryID={ categoryID } />
       </div>
     );
   }
