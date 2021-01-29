@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 // import PropTypes from 'prop-types';
 
+import FilterCategories from '../components/FilterCategories';
 import ProductList from '../components/ProductList';
 import QueryInput from '../components/QueryInput';
 import { getProductsFromCategoryAndQuery as getProduct } from '../services/api';
@@ -44,6 +45,7 @@ class Home extends Component {
           <QueryInput handleClick={ this.makeApiRequest } />
         </header>
         <section>
+          <FilterCategories />
           <ProductList items={ items } />
         </section>
       </>

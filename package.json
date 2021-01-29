@@ -9,7 +9,11 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
+<<<<<<< HEAD
+    "react-scripts": "^3.4.4"
+=======
     "react-scripts": "^4.0.1"
+>>>>>>> d674446f30188a0ea7bb98061100a8cdb00ebf76
   },
   "scripts": {
     "start": "react-scripts start",
