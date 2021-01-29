@@ -4,14 +4,19 @@ import * as api from '../services/api';
 class CategoryList extends Component {
   constructor() {
     super();
+    this.updateState = this.updateState.bind(this);
     this.state = {
       category: [],
     };
   }
 
-  async componentWillMount() {
+updateState(category){
+  this.setState({ category });
+
+}
+  async componentDidMount() {
     const category = await api.getCategories();
-    this.setState({ category });
+    this.updateState(category);
   }
 
   render() {
@@ -20,7 +25,7 @@ class CategoryList extends Component {
     return (
       <div className="category-list">
         {category.map((item) => (
-          <li
+          <li 
             data-testid="category"
             key={ item.id }
           >
