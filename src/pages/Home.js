@@ -1,7 +1,5 @@
 import React from 'react';
 import * as api from '../services/api';
-
-import SearchBar from '../components/SearchBar';
 import ShoppingCartLink from '../components/ShoppingCartLink';
 import ListCategories from '../components/ListCategories';
 import ProductList from '../components/ProductList';
@@ -31,7 +29,6 @@ class Home extends React.Component {
     const { listCategories } = this.state;
     return (
       <div>
-        <SearchBar />
         <ShoppingCartLink />
         <ListCategories categories={ listCategories } />
         <ProductList />
