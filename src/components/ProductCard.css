@@ -2,8 +2,8 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 250px;
+  justify-content: center;
   margin: 10px 15px;
   width: 200px;
 }
