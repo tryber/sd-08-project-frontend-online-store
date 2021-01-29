@@ -7,13 +7,27 @@ class ProductList extends Component {
     super();
     this.state = {
       products: [],
+      query: '',
     };
 
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    this.fetchProducts();
+    const { query } = this.state;
+    this.fetchProducts(query);
+  }
+
+  handleChange({ target }) {
+    const { value } = target;
+    this.setState({ query: value });
+  }
+
+  handleClick() {
+    const { query } = this.state;
+    this.fetchProducts(query);
   }
 
   async fetchProducts(query) {
@@ -25,14 +39,26 @@ class ProductList extends Component {
     const { products } = this.state;
     return (
       <div className="header">
-        <input data-testid="query-input" type="text" className="input" />
-        <button data-testid="query-button" type="button">Pesquisar</button>
+        <input
+          data-testid="query-input"
+          type="text"
+          className="input"
+          onChange={ this.handleChange }
+        />
+        <button
+          data-testid="query-button"
+          type="button"
+          onClick={ this.handleClick }
+        >
+          Pesquisar
+        </button>
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         {products.map((product) => (<ProductCard
           key={ product.id }
           product={ product }
+          handleChange={ this.fetchProducts }
         />))}
       </div>
     );
