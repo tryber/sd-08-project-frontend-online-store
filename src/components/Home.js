@@ -22,6 +22,11 @@ class Home extends React.Component {
     const { categories } = this.state;
     return (
       <div>
+        <span
+          data-testid="home-initial-message"
+        >
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </span>
         <ul>
           {categories.map((cat) => (
             <li
