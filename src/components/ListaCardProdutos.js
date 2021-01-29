@@ -18,6 +18,7 @@ class ListaCardProdutos extends React.Component {
         {listOfProducts.map((products) => (
           <CardProdutos
             key={ products.id }
+            id={ products.id }
             title={ products.title }
             thumbnail={ products.thumbnail }
             price={ products.price }

@@ -12,7 +12,7 @@ class Listagem extends Component {
       categories: [],
       listOfProducts: undefined,
       query: undefined,
-      category: undefined,
+      category: undefined,  
     };
 
     this.createAllCategories = this.createAllCategories.bind(this);

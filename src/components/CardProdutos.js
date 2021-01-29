@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class CardProdutos extends React.Component {
+  
   render() {
-    const { title, thumbnail, price, shipping, installments } = this.props;
+    const { title, thumbnail, price, shipping, installments, id } = this.props;
     return (
+      <Link to={`/produto/${id}`} data-testid="product-detail-link">
       <div data-testid="product" className="product">
         <img src={ thumbnail } alt={ title } className="product-img" />
         <div className="product-info-wraper">
@@ -26,6 +29,7 @@ class CardProdutos extends React.Component {
           <h2>{ title }</h2>
         </div>
       </div>
+      </Link>
     );
   }
 }
