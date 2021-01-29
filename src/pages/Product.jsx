@@ -6,6 +6,9 @@ export default function Product() {
 
   return (
     <main className="ProductDetails">
+      <header>
+        <div />
+      </header>
       <h1>ProductDetails</h1>
       <h2>{id || ''}</h2>
     </main>
