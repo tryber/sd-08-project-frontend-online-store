@@ -10,9 +10,11 @@ export default class PaginaInicial extends React.Component {
 
     this.state = {
       inputStatus: '',
+      categoryId: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange({ target }) {
@@ -22,8 +24,15 @@ export default class PaginaInicial extends React.Component {
     });
   }
 
+  handleClick({ target }) {
+    const { value } = target;
+    this.setState({
+      categoryId: value,
+    });
+  }
+
   render() {
-    const { inputStatus } = this.state;
+    const { inputStatus, categoryId } = this.state;
     return (
       <div>
         <input
@@ -33,15 +42,14 @@ export default class PaginaInicial extends React.Component {
           onChange={ this.handleChange }
           data-testid="query-input"
         />
-        <ListaProdutos inputStatus={ inputStatus } />
+        <ListaProdutos inputStatus={ inputStatus } categoryId={ categoryId } />
         <BotaoCarrinho />
-        {inputStatus === '' && (
+        {(inputStatus === '' && categoryId === '') && (
           <div data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </div>
         ) }
-        <Listadecategorias />
-
+        <Listadecategorias onClick={ this.handleClick } />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
 import './Listadecategorias.css';
+import PropTypes from 'prop-types';
 
 export default class Listadecategorias extends Component {
   constructor() {
@@ -24,6 +25,7 @@ export default class Listadecategorias extends Component {
 
   render() {
     const { categories } = this.state;
+    const { onClick } = this.props;
     return (
       <div className="container-lists-categories">
         {categories.map((categoria) => (
@@ -40,7 +42,7 @@ export default class Listadecategorias extends Component {
               value={ categoria.id }
               name="category"
               type="radio"
-              onClick=""
+              onClick={ onClick }
             />
           </label>
         ))}
@@ -48,3 +50,7 @@ export default class Listadecategorias extends Component {
     );
   }
 }
+
+Listadecategorias.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
