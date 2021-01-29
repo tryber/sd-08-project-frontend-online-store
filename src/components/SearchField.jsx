@@ -7,6 +7,7 @@ class SearchField extends React.Component {
   }
 
   render() {
+    const { handleInputChange } = this.props;
     return (
       <label htmlFor="search-field">
         <input
@@ -14,6 +15,7 @@ class SearchField extends React.Component {
           type="text"
           name="search-field"
           id="search-field"
+          onChange={ handleInputChange }
         />
       </label>
     );
