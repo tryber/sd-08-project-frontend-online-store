@@ -4,8 +4,8 @@
   font-size: 1.5vw;
   height: 350px;
   padding: 20px;
-  width: 100%;
   position: relative;
+  width: 100%;
 }
 
 .footer-contain:nth-child( 2 ) {
