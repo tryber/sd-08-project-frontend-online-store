@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { localStorageSave } from '../localStorage';
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,7 @@ class Search extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { value } = this.state;
-    console.log(value);
+    localStorageSave('nameProduct', value);
   }
 
   render() {
@@ -24,11 +26,12 @@ class Search extends React.Component {
     return (
       <form onSubmit={ this.handleSubmit }>
         <input
+          data-testid="query-input"
           type="text"
           value={ value }
           onChange={ this.handleChange }
         />
-        <input type="submit" value="Enviar" />
+        <button data-testid="query-button" type="submit">Enviar</button>
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma
           categoria.

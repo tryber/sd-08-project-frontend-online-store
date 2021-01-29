@@ -5,19 +5,19 @@ class ButtonCategory extends React.Component {
   constructor() {
     super();
     this.state = {
-      categorys: [],
+      categories: [],
     };
   }
 
   componentDidMount() {
-    api.getCategories().then((resolve) => this.setState({ categorys: resolve }));
+    api.getCategories().then((resolve) => this.setState({ categories: resolve }));
   }
 
   render() {
-    const { categorys } = this.state;
+    const { categories } = this.state;
     return (
       <div>
-        { categorys.map((category) => (
+        { categories.map((category) => (
           <button
             key={ category.id }
             type="button"
