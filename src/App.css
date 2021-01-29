@@ -7,15 +7,7 @@ body {
 }
 
 button {
-  border: 1px solid rgba(149, 149, 149, 0.692);
   color: #272727;
-  font-weight: 600;
-  background-color: #ffee31;
-}
-
-button:hover {
-  background-color: #ffec1e;
-  color: #1a1a1a;
 }
 
 button:focus {
@@ -88,12 +80,14 @@ header .header-wrap .header-right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border: 0;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: #fff159;
   padding-left: 12px;
   padding-right: 4px;
 }
@@ -365,5 +359,18 @@ header .header-wrap .header-right .checkout-count {
       align-self: center;
   width: 100%;
   height: 100%;
+  border: 1px solid rgba(149, 149, 149, 0.692);
+  color: #272727;
+  font-weight: 600;
+  background-color: #ffee31;
+}
+
+.product-card .product-card-buy .product-card-buy-button:hover {
+  background-color: #ffec1e;
+  color: #1a1a1a;
+}
+
+.product-card .product-card-buy .product-card-buy-button:focus {
+  outline: none;
 }
 /*# sourceMappingURL=App.css.map */

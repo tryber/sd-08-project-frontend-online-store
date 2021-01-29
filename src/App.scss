@@ -26,14 +26,7 @@ body {
 // ------------------------------------------------------------
 
 button {
-  border: 1px solid rgba(149, 149, 149, 0.692);
-  color: $card-primary-color;
-  font-weight: 600;
-  background-color: #ffee31;
-  &:hover {
-    background-color: #ffec1e;
-    color: rgb(26, 26, 26);
-  }
+  color: $card-primary-color;  
   &:focus {
     outline: none;
   }
@@ -88,8 +81,10 @@ header {
       width: auto;
       height: 100%;
       display: flex;
+      border: 0;
       justify-content: flex-end;  
       align-items: center;   
+      background-color:$primary-bg-color;
       &:hover {
         cursor: pointer;
       }
@@ -309,6 +304,17 @@ header {
       align-self: center;
       width: 100%;
       height: 100%;
+      border: 1px solid rgba(149, 149, 149, 0.692);
+      color: $card-primary-color;
+      font-weight: 600;
+      background-color: #ffee31;
+      &:hover {
+        background-color: #ffec1e;
+        color: rgb(26, 26, 26);
+      }
+      &:focus {
+        outline: none;
+      }
     }
   }
 }
