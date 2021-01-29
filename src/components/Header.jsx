@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import '../styles/headerStyle.css';
+import Logo from '../images/Cat.png';
 
 class Header extends Component {
   render() {
     return (
       <header>
+        <img className="logo" src={ Logo } alt=""/>
         <SearchBar />
         <Link
           data-testid="shopping-cart-button"
