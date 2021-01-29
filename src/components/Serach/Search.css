@@ -1,14 +1,14 @@
 .search {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 .search p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .search-input {
-    padding: 10px;
-    width: 100%;
+  padding: 10px;
+  width: 100%;
 }
