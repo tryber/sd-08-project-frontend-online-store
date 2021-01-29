@@ -2,7 +2,7 @@ import React from 'react';
 import Categories from '../components/Categories';
 import ProductList from '../components/ProductList';
 import ShoppingCartButton from '../components/ShoppingCartButton';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -27,15 +27,18 @@ class MainPage extends React.Component {
     this.setState({
       [target.name]: target.value,
     });
+    if (target.name === 'categoryID') {
+      this.getProductsAPI();
+    }
   }
 
   handleClick() {
-    this.getProducts();
+    this.getProductsAPI();
   }
 
-  getProductsAPI() {
+  async getProductsAPI() {
     const { query, categoryID } = this.state;
-    const getProducts = getProductsFromCategoryAndQuery(categoryID, query);
+    const getProducts = await getProductsFromCategoryAndQuery(categoryID, query);
     this.setState({
       products: getProducts.results,
     });
@@ -44,7 +47,7 @@ class MainPage extends React.Component {
   async categoriesAPI() {
     const result = await getCategories();
     this.setState({
-      categories: result.map((categories) => categories.name),
+      categoriesList: result.map((categories) => categories),
     });
   }
 
@@ -72,14 +75,14 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const { query, products } = this.state;
+    const { query, products, categoriesList } = this.state;
     return (
       <div>
+        { this.renderInputSearch() }
         <div>
           <ShoppingCartButton />
-          <Categories />
+          <Categories categories={ categoriesList } onClick={ this.handleChange } />
         </div>
-        { this.renderInputSearch() }
         <ProductList products={ products } query={ query } />
       </div>
     );

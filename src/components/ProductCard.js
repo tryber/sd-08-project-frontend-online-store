@@ -8,7 +8,10 @@ class ProductCard extends React.Component {
       <div data-testid="product">
         <h3>{title}</h3>
         <img src={ thumbnail } alt="Imagem do produto" />
-        <span>{price}</span>
+        <span>
+          R$
+          {price}
+        </span>
       </div>
     );
   }
