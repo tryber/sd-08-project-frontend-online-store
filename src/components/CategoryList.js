@@ -5,25 +5,30 @@ import './categoryList.css';
 
 class CategoryList extends React.Component {
   render() {
-    const { list } = this.props;
+    const { list, filterProducts, onClick } = this.props;
     return (
-      <ul>
+      <div>
         {list.map((category) => (
-          <li
+          <button
+            type="button"
             data-testid="category"
             key={ category.id }
-            to={ `/${category.id}` }
+            onChange={ filterProducts }
+            onClick={ onClick }
+            name="category"
           >
             { category.name }
-          </li>
+          </button>
         ))}
-      </ul>
+      </div>
     );
   }
 }
 
 CategoryList.propTypes = {
   list: PropTypes.arrayOf(String).isRequired,
+  filterProducts: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default CategoryList;
