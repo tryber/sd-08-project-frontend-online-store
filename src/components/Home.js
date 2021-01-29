@@ -2,14 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import * as api from '../services/api';
+import ListCategories from './ListCategories';
 
 class Home extends React.Component {
   constructor() {
     super();
-
     this.state = {
       categories: [],
+      category: '',
     };
+    this.handleClickCategory = this.handleClickCategory.bind(this);
   }
 
   componentDidMount() {
@@ -18,6 +20,19 @@ class Home extends React.Component {
         categories,
       })
     ));
+  }
+
+  handleClickCategory(name, value) {
+    this.setState({ category: [name, value] });
+    const { category } = this.state;
+    console.log(category);
+    api.getProductsFromCategoryAndQuery(...category).then((data) => console.log(data));
+  }
+
+  fetchApiFromCategory() {
+    const { category } = this.state;
+    console.log(category);
+    api.getProductsFromCategoryAndQuery(...category).then((data) => console.log(data));
   }
 
   render() {
@@ -35,15 +50,7 @@ class Home extends React.Component {
         >
           Carrinho
         </Link>
-        <ul>
-          {categories.map((cat) => (
-            <li
-              data-testid="category"
-              key={ cat.name }
-            >
-              { cat.name }
-            </li>))}
-        </ul>
+        <ListCategories onClick={ this.handleClickCategory } categoriesList={ categories } />
         <Search />
       </div>
     );
