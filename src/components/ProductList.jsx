@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Categories from './Categories';
-import * as api from '../services/api';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -11,7 +11,6 @@ class ProductList extends React.Component {
     this.handleCategory = this.handleCategory.bind(this);
     this.state = {
       inputText: '',
-      productList: [],
       selectedCategory: undefined,
     };
   }
@@ -23,61 +22,91 @@ class ProductList extends React.Component {
     });
   }
 
-  handleRequest() {
+  handleQuery() {
     const { inputText, selectedCategory } = this.state;
-    api.getProductsFromCategoryAndQuery(selectedCategory, inputText)
-      .then((data) => {
-        this.setState({
-          productList: data.results,
-        });
-      });
+    const { handleRequest } = this.props;
+    handleRequest(selectedCategory, inputText);
   }
 
   handleClick(event) {
     event.preventDefault();
-    this.handleRequest();
+    this.handleQuery();
   }
 
   handleCategory(event) {
     this.setState({
       selectedCategory: event.target.id,
-    }, () => this.handleRequest());
+    }, () => this.handleQuery());
+  }
+
+  renderForm() {
+    return (
+      <form>
+        <input type="text" onChange={ this.handleChange } data-testid="query-input" />
+        <button type="submit" onClick={ this.handleClick } data-testid="query-button">
+          Pesquisar
+        </button>
+        <Link data-testid="shopping-cart-button" to="/shopping-cart">Carrinho</Link>
+      </form>
+    );
+  }
+
+  renderProductList() {
+    const { productList } = this.props;
+    const { handleAddToCart } = this.props;
+
+    if (!productList.length) {
+      return (
+        <p data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
+      );
+    }
+
+    return (
+      <section>
+        { productList.map((item) => (
+          <article
+            key={ item.id }
+            data-testid="product"
+          >
+            <img src={ item.thumbnail } alt="Imagem do produto" />
+            <h3>{ item.title }</h3>
+            <p>{ item.price }</p>
+            <button
+              type="button"
+              onClick={ handleAddToCart }
+              id={ item.id }
+              list={ productList }
+              data-testid="product-add-to-cart"
+            >
+              Adicionar ao carrinho
+            </button>
+          </article>
+        ))}
+      </section>
+    );
   }
 
   render() {
-    const { productList } = this.state;
     return (
       <div className="App">
         <section className="categorie-container">
           <Categories handleCategory={ this.handleCategory } />
         </section>
         <section>
-          <form>
-            <input type="text" onChange={ this.handleChange } data-testid="query-input" />
-            <button type="submit" onClick={ this.handleClick } data-testid="query-button">
-              Pesquisar
-            </button>
-            <p data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </p>
-          </form>
-          <ul>
-            { productList.map((item) => (
-              <article
-                key={ item.id }
-                data-testid="product"
-              >
-                <img src={ item.thumbnail } alt="Imagem do produto" />
-                <h3>{ item.title }</h3>
-                <p>{ item.price }</p>
-              </article>
-            ))}
-          </ul>
+          {this.renderForm()}
+          {this.renderProductList()}
         </section>
-        <Link data-testid="shopping-cart-button" to="/shopping-cart">Carrinho</Link>
       </div>
     );
   }
 }
+
+ProductList.propTypes = {
+  handleAddToCart: PropTypes.func.isRequired,
+  handleRequest: PropTypes.func.isRequired,
+  productList: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ProductList;

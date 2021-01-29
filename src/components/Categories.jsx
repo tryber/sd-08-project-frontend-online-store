@@ -35,6 +35,14 @@ class Categories extends React.Component {
             {item.name}
           </button>
         ))}
+        <button
+          type="button"
+          onClick={ handleCategory }
+          data-testid="category"
+          id=""
+        >
+          Limpar
+        </button>
       </>
     );
   }
