@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import './Listadecategorias.css';
-import PropTypes from 'prop-types';
 
 export default class Listadecategorias extends Component {
   constructor() {
