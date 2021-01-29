@@ -25,9 +25,9 @@ class Categorias extends Component {
     const { categorias } = this.state;
     return (
       <div className="cat-container">
-        <h1 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h1>
+        <h3>
+          Categorias.
+        </h3>
         <nav>
           {categorias.map((item) => (
             <div data-testid="category" key={ item.id } className="cat-item">

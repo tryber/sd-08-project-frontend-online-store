@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Search from '../Serach';
 import './Header.css';
 
 class Header extends Component {
@@ -9,6 +10,7 @@ class Header extends Component {
     return (
       <header className="header-container">
         <Link to="/" className="header-logo">LogoMarca</Link>
+        <Search />
         <Link
           to="/cart"
           className="header-cart"
