@@ -8,7 +8,7 @@ export default class Home extends React.Component {
     super();
 
     this.state = {
-      categoriesList: [],
+      categoriesList: [1],
     };
 
     this.fetchCategories();
@@ -28,7 +28,7 @@ export default class Home extends React.Component {
     return (
       <main>
         <SearchBar />
-        {categoriesList.length > 0
+        {categoriesList.length > 1
           ? (
             <aside className="categories-list">
               {categoriesList
