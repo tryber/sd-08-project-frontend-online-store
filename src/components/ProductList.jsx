@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import ProductCard from './ProductCard';
 
+import { getRandomProducts } from '../helpers/products';
+
 export default function ProductList() {
   const [productList, setProductList] = useState([]);
 
@@ -9,9 +11,9 @@ export default function ProductList() {
     // Atualiza o titulo do documento usando a API do browser
   });
 
-  // const handleSearchInputChange = (e) => {
-  //   setSearchText(e.target.value);
-  // };
+  const getDefaultProductList = async () => {
+    //
+  };
 
   return (
     <section className="content">
