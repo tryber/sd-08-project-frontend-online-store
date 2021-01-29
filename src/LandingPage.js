@@ -11,6 +11,7 @@ class LandingPage extends React.Component {
       categoryId: '',
       query: '',
       productList: [],
+      shoppingCart: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -53,6 +54,12 @@ class LandingPage extends React.Component {
     });
   }
 
+  addItemToCart(product) {
+    this.setState((prevState) => ({
+      shoppingCart: [...prevState.shoppingCart, product],
+    }));
+  }
+
   renderCategoryList(categoriesList) {
     return (
       <div>
@@ -66,7 +73,7 @@ class LandingPage extends React.Component {
                 data-testid="category"
                 onClick={ this.handleClick }
               >
-                { category.name }
+                { category.name}
               </button>))
         }
       </div>
@@ -74,7 +81,7 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { categoriesList, categoryId, query, productList } = this.state;
+    const { categoriesList, categoryId, query, productList, shoppingCart } = this.state;
     return (
       <div>
         <button
@@ -90,26 +97,34 @@ class LandingPage extends React.Component {
           value={ query }
           onChange={ this.handleChange }
         />
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+        <Link
+          to={ { pathname: '/shopping-cart', state: { shoppingCart } } }
+          data-testid="shopping-cart-button"
+        >
           Carrinho de Compras
         </Link>
-        <h1
-          data-testid="home-initial-message"
-        >
+        <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         { this.renderCategoryList(categoriesList)}
         <div>
-          { productList.map((product) => (
+          {productList.map((product) => (
             <div key={ product.id } data-testid="product">
-              <p>{ product.title }</p>
+              <p>{product.title}</p>
               <p>
                 R$
-                { product.price }
+                {product.price}
               </p>
               <img src={ product.thumbnail } alt={ product.title } />
+              <button
+                type="button"
+                data-testid="product-add-to-cart"
+                onClick={ () => this.addItemToCart(product) }
+              >
+                Adicionar produto ao carrinho
+              </button>
             </div>
-          )) }
+          ))}
         </div>
       </div>
     );
