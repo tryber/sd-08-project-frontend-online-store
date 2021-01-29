@@ -31,7 +31,7 @@ class ProductList extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         <aside>
-          <h3>Categories:</h3>
+          <h3>Categorias:</h3>
           {
             listCategories.map((category) => (
               <div key={ category.id }>
