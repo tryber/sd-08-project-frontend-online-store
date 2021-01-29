@@ -19,7 +19,6 @@ class App extends React.Component {
 
   componentDidMount() {
     api.getCategories().then((categories) => {
-      console.log(categories);
       this.setState({ categories });
     });
   }
