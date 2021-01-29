@@ -5,13 +5,19 @@ import './TopNavBar.css';
 
 class TopNavBar extends React.Component {
   render() {
+    const { cartSize } = this.props;
     return (
       <div className="topNavBar">
         <ul className="topNavList">
           <li className="topNavIcon logo">
             <Link to="/">LOGO</Link>
           </li>
-          <li className="topNavIcon cart"><CartIcon /></li>
+          <li className="topNavIcon cart">
+            <CartIcon />
+            (
+            { cartSize }
+            )
+          </li>
         </ul>
       </div>
     );

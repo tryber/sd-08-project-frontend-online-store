@@ -12,9 +12,11 @@ class App extends React.Component {
   constructor() {
     super();
     this.buscaDeProdutos = this.buscaDeProdutos.bind(this);
+    this.addCart = this.addCart.bind(this);
     this.state = {
       categories: [],
       products: [],
+      productsOnCart: [],
     };
   }
 
@@ -32,15 +34,28 @@ class App extends React.Component {
     });
   }
 
+  addCart(obj) {
+    this.setState((old) => ({ productsOnCart: [...old.productsOnCart, obj] }));
+  }
+
   render() {
-    const { categories, products } = this.state;
+    const { categories, products, productsOnCart } = this.state;
 
     return (
       <BrowserRouter>
-        <TopNavBar />
+        <TopNavBar cartSize={ productsOnCart.length } />
         <Switch>
-          <Route path="/shoppingCart" component={ CartPage } />
-          <Route path="/:id" render={ (props) => <ProductDetails { ...props } /> } />
+          <Route
+            path="/shoppingCart"
+            render={ (props) => (<CartPage
+              { ...props }
+              productsOnCart={ productsOnCart }
+            />) }
+          />
+          <Route
+            path="/:id"
+            render={ (props) => <ProductDetails { ...props } addCart={ this.addCart } /> }
+          />
           <Route
             path="/"
             render={ (props) => (<MainPage
@@ -48,6 +63,7 @@ class App extends React.Component {
               categories={ categories }
               products={ products }
               onclick={ this.buscaDeProdutos }
+              addCart={ this.addCart }
             />) }
           />
         </Switch>
