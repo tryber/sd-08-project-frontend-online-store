@@ -37,7 +37,9 @@ export default class Home extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
         </div>
-        <Categories loading={ loadingMessenge } categoriesList={ categoriesList } />
+        {loadingMessenge
+          ? <p>Loading...</p>
+          : <Categories categoriesList={ categoriesList } />}
       </main>
     );
   }
