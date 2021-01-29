@@ -11,10 +11,14 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     path = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
   } else if (categoryId) {
     path = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}`;
-  } else {
+  } else if (query) {
     path = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
+  } else {
+    return '';
   }
 
-  const dataFetch = await fetch(path).then((response) => response.json());
+  const dataFetch = await fetch(path)
+    .then((response) => response.json())
+    .then((products) => products);
   return dataFetch;
 }

@@ -13,33 +13,37 @@ class ProductList extends React.Component {
     this.getResultsFromAPI = this.getResultsFromAPI.bind(this);
   }
 
-  getResultsFromAPI(category, query) {
+  componentDidMount() {
+    this.getResultsFromAPI();
+  }
+
+  getResultsFromAPI() {
+    const { category, query } = this.props;
     this.setState({ isLoading: true }, async () => {
-      const allProducts = await api.getProductsFromCategoryAndQuery(
+      const products = await api.getProductsFromCategoryAndQuery(
         category,
         query,
       );
       this.setState({
         isLoading: false,
-        products: allProducts,
+        products,
       });
     });
   }
 
-  renderLoadingMessage() {
-    return <h2>Loading...</h2>;
-  }
-
   render() {
-    const { filters } = this.props;
-    const { category, query } = filters;
-    this.getResultsFromAPI(category, query);
     const { products, isLoading } = this.state;
+    console.log(isLoading, products.length);
+    if (isLoading) {
+      return <h2>Loading...</h2>;
+    } if (!isLoading && products.length === 0) {
+      return <p>Nenhum produto foi encontrado</p>;
+    }
     return (
       <div>
         {isLoading
           ? this.renderLoadingMessage()
-          : products.map((product) => (
+          : products.results.map((product) => (
             <ProductCard productInfo={ product } key={ product.id } />
           ))}
       </div>
@@ -50,8 +54,11 @@ class ProductList extends React.Component {
 export default ProductList;
 
 ProductList.propTypes = {
-  filters: PropTypes.shape({
-    category: PropTypes.string,
-    query: PropTypes.string,
-  }).isRequired,
+  category: PropTypes.string,
+  query: PropTypes.string,
+};
+
+ProductList.defaultProps = {
+  category: undefined,
+  query: undefined,
 };
