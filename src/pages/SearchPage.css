@@ -1,3 +1,5 @@
 .searchPage-container {
-    display: flex;
+  display: flex;
+  width: 90%;
+  margin: 10px auto;
 }

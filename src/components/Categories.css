@@ -1,0 +1,19 @@
+.categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  margin: 30px auto;
+}
+.categories-container span {
+  display: inline-block;
+  margin: 10px 10px;
+  padding: 10px 15px;
+  border-radius: 30px;
+  background-color: rgb(160, 112, 8);
+}
+.categorie {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+}

@@ -9,3 +9,14 @@
   text-align: center;
   font-size: 30px;
 }
+.searchbar-container form button {
+  color: white;
+  background-color: rgb(39, 38, 38);
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 20px;
+}
+.searchbar-container form button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
