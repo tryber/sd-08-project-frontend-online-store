@@ -9,14 +9,14 @@ class CategoryList extends Component {
       category: [],
     };
   }
-
-updateState(category){
-  this.setState({ category });
-
-}
+  
   async componentDidMount() {
     const category = await api.getCategories();
     this.updateState(category);
+  }
+
+  updateState(category) {  
+    this.setState({ category });
   }
 
   render() {
@@ -25,7 +25,7 @@ updateState(category){
     return (
       <div className="category-list">
         {category.map((item) => (
-          <li 
+          <li
             data-testid="category"
             key={ item.id }
           >
