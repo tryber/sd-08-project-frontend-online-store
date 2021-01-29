@@ -8,8 +8,10 @@
 }
 
 .header-logo {
+  color: white;
   font-size: 20px;
   font-weight: 700;
+  text-decoration: none;
   width: 200px;
 }
 

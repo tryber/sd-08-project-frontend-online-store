@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getCategories } from '../../services/api';
+import './Categorias.css';
 
 class Categorias extends Component {
   constructor(props) {
@@ -23,13 +24,13 @@ class Categorias extends Component {
   render() {
     const { categorias } = this.state;
     return (
-      <div>
+      <div className="cat-container">
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         <nav>
           {categorias.map((item) => (
-            <div data-testid="category" key={ item.id }>
+            <div data-testid="category" key={ item.id } className="cat-item">
               {item.name}
             </div>
           ))}

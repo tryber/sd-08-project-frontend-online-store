@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Cart from './components/Cart';
 import Categorias from './components/Categorias';
@@ -17,10 +18,12 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Header cart={ cart } />
-        <Categorias />
-        <Switch>
-          <Route path="/cart" component={ Cart } />
-        </Switch>
+        <main className="App">
+          <Categorias />
+          <Switch>
+            <Route path="/cart" component={ Cart } />
+          </Switch>
+        </main>
       </BrowserRouter>
     );
   }
