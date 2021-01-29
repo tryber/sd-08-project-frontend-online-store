@@ -1,0 +1,5 @@
+.searchResults {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 10px;
+}
