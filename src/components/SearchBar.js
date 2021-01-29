@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class SerchBar extends React.Component {
   constructor() {
@@ -7,10 +8,12 @@ export default class SerchBar extends React.Component {
   }
 
   getValue({ target }) {
-    this.props.onChange(target.value);
+    const { onChange } = this.props;
+    onChange(target.value);
   }
 
   render() {
+    const { onClick } = this.props;
     return (
       <div>
         <input
@@ -19,7 +22,13 @@ export default class SerchBar extends React.Component {
           data-testid="query-input"
           onChange={ this.getValue }
         />
-        <button type="button" data-testid="query-button">Pesquisar</button>
+        <button
+          type="button"
+          data-testid="query-button"
+          onClick={ onClick }
+        >
+          Pesquisar
+        </button>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
@@ -27,3 +36,8 @@ export default class SerchBar extends React.Component {
     );
   }
 }
+
+SerchBar.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

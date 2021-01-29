@@ -43,7 +43,7 @@ export default class Home extends Component {
     const { product } = this.state;
     return (
       <div className="busca">
-        <Header getQuery={ this.getQuery } />
+        <Header getQuery={ this.getQuery } getItems={ this.getItems } />
         <CategoriesList onClick={ this.handleCategories } />
         <ItemList products={ product } />
       </div>

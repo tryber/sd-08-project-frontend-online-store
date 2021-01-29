@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
 
 export default class Header extends React.Component {
   render() {
+    const { getQuery, getItems } = this.props;
     return (
       <header>
-        <SearchBar onChange={ this.props.getQuery } />
+        <SearchBar onChange={ getQuery } onClick={ getItems } />
         <Link
           to="/shoppingcart"
           data-testid="shopping-cart-button"
@@ -18,3 +20,8 @@ export default class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  getQuery: PropTypes.func.isRequired,
+  getItems: PropTypes.func.isRequired,
+};
