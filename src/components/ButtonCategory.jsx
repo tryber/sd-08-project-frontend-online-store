@@ -1,27 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class ButtonCategory extends React.Component {
   constructor() {
     super();
     this.state = {
-      categorys: [],
+      categories: [],
     };
   }
 
   componentDidMount() {
-    api.getCategories().then((resolve) => this.setState({ categorys: resolve }));
+    api.getCategories().then((resolve) => this.setState({ categories: resolve }));
   }
 
   render() {
-    const { categorys } = this.state;
+    const { categories } = this.state;
+    const { onClickRequest } = this.props;
     return (
       <div>
-        { categorys.map((category) => (
+        { categories.map((category) => (
           <button
+            value={ category.id }
+            name="category"
             key={ category.id }
             type="button"
             data-testid="category"
+            onClick={ onClickRequest }
           >
             {category.name}
           </button>
@@ -30,5 +35,9 @@ class ButtonCategory extends React.Component {
     );
   }
 }
+
+ButtonCategory.propTypes = {
+  onClickRequest: PropTypes.func.isRequired,
+};
 
 export default ButtonCategory;

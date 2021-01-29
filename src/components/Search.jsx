@@ -1,34 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
-
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ value: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { value } = this.state;
-    console.log(value);
   }
 
   render() {
-    const { value } = this.state;
+    const { nameProduct, onQueryProduct, onClickRequest } = this.props;
     return (
       <form onSubmit={ this.handleSubmit }>
         <input
+          data-testid="query-input"
           type="text"
-          value={ value }
-          onChange={ this.handleChange }
+          value={ nameProduct }
+          name="nameProduct"
+          onChange={ onQueryProduct }
         />
-        <input type="submit" value="Enviar" />
+        <button
+          data-testid="query-button"
+          type="submit"
+          onClick={ onClickRequest }
+        >
+          Enviar
+        </button>
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma
           categoria.
@@ -37,5 +37,11 @@ class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  nameProduct: PropTypes.string.isRequired,
+  onQueryProduct: PropTypes.func.isRequired,
+  onClickRequest: PropTypes.func.isRequired,
+};
 
 export default Search;
