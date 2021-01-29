@@ -1,8 +1,9 @@
 .empty-box {
-    font-size: 300px;
-    color: rgb(2, 43, 43);
+  color: rgb(2, 43, 43);
+  font-size: 300px;
 }
+
 .message-cart {
-    color: #000;
-    font-size: 30px;
+  color: black;
+  font-size: 30px;
 }
