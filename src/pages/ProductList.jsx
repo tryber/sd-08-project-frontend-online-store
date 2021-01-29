@@ -7,6 +7,7 @@ import ProductCard from '../components/ProductCard';
 class ProductList extends React.Component {
   constructor() {
     super();
+    localStorage.setItem('selectedProducts', JSON.stringify([]));
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
@@ -29,10 +30,6 @@ class ProductList extends React.Component {
     this.setState({
       filteredProducts: searchResults.results,
     });
-  }
-
-  test() {
-    console.log('funcionou');
   }
 
   render() {
