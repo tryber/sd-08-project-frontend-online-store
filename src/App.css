@@ -2,3 +2,8 @@
   display: flex;
   text-align: center;
 }
+
+.categorie-container {
+  display: flex;
+  flex-direction: column;
+}
