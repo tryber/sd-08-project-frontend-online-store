@@ -10,11 +10,15 @@ class Search extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
           <input
+            data-testid="query-input"
             className="search-input"
             id="search"
             name="search"
             placeholder="Faça uma Busca Por Produtos"
           />
+          <button type="button" data-testid="query-button">
+            Pesquisar
+          </button>
         </label>
       </div>
     );

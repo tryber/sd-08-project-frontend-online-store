@@ -1,0 +1,13 @@
+.produtos-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.produtos-card {
+  border: 1px red solid;
+  height: 250px;
+  margin: 10px 15px;
+  padding: 20px;
+  width: 250px;
+}

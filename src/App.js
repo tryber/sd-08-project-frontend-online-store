@@ -5,6 +5,7 @@ import Cart from './components/Cart';
 import Categorias from './components/Categorias';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Produtos from './components/Produtos';
 
 export default class App extends Component {
   constructor() {
@@ -22,6 +23,7 @@ export default class App extends Component {
         <main className="App">
           <Categorias />
           <Switch>
+            <Route path="/" exact component={ Produtos } />
             <Route path="/cart" component={ Cart } />
           </Switch>
         </main>
