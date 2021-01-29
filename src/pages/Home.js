@@ -14,10 +14,15 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    api.getCategories().then((result) => this.setState({
-      categoriesList: result,
+    this.fetchCategories();
+  }
+
+  async fetchCategories() {
+    const categories = await api.getCategories();
+    this.setState({
+      categoriesList: categories,
       loadingMessenge: false,
-    }));
+    });
   }
 
   render() {
