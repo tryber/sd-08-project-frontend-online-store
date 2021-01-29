@@ -9,15 +9,13 @@ export default class Home extends React.Component {
 
     this.state = {
       categoriesList: [],
-      loadingMessenge: true,
     };
 
     this.fetchCategories();
   }
 
-  componentDidMount() {
-    this.changeLoadingState();
-  }
+  // componentDidMount() {
+  // }
 
   async fetchCategories() {
     this.setState({
@@ -25,20 +23,13 @@ export default class Home extends React.Component {
     });
   }
 
-  changeLoadingState() {
-    this.setState({
-      loadingMessenge: false,
-    });
-  }
-
   render() {
-    const { categoriesList, loadingMessenge } = this.state;
+    const { categoriesList } = this.state;
     return (
       <main>
         <SearchBar />
-        {loadingMessenge
-          ? <p>Loading...</p>
-          : (
+        {categoriesList.length > 0
+          ? (
             <aside className="categories-list">
               {categoriesList
                 .map((item) => (
@@ -47,7 +38,8 @@ export default class Home extends React.Component {
                   </div>
                 ))}
             </aside>
-          )}
+          )
+          : <p>Loading...</p>}
       </main>
     );
   }
