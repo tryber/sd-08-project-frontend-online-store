@@ -5,7 +5,7 @@ class ProductList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryArray: [],
+      listCategories: [],
     };
 
     this.callApi = this.callApi.bind(this);
@@ -17,13 +17,13 @@ class ProductList extends Component {
 
   callApi() {
     this.setState(async () => {
-      const listCategories = await api.getCategories();
-      this.setState({ categoryArray: listCategories });
+      const categoryArray = await api.getCategories();
+      this.setState({ listCategories: categoryArray });
     });
   }
 
   render() {
-    const { categoryArray } = this.state;
+    const { listCategories } = this.state;
     return (
       <div className="header">
         <input type="text" placeholder="Buscar" className="input" />
@@ -33,7 +33,7 @@ class ProductList extends Component {
         <aside>
           <h3>Categorias:</h3>
           {
-            categoryArray.map((category) => (
+            listCategories.map((category) => (
               <div key={ category.id }>
                 <label htmlFor="category">
                   <input
