@@ -5,10 +5,10 @@ import './Produtos.css';
 
 export default class Produtos extends Component {
   render() {
-    const { produtos } = this.props;
+    const { produtos, buscaInput, submitBotao } = this.props;
     return (
       <div className="produtos-container">
-        <Search />
+        <Search buscaInput={ buscaInput } submitBotao={ submitBotao } />
         {produtos ? produtos.map((item) => (
           <div className="produtos-card" data-testid="product" key={ item.id }>
             <img src={ item.thumbnail } alt={ item.title } />
@@ -24,4 +24,6 @@ export default class Produtos extends Component {
 
 Produtos.propTypes = {
   produtos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  buscaInput: PropTypes.func.isRequired,
+  submitBotao: PropTypes.func.isRequired,
 };
