@@ -6,17 +6,8 @@ export default class Categories extends React.Component {
     const { categoriesList } = this.props;
     return (
       <aside className="categories-list">
-        <ul>
-          {categoriesList
-            .map((item) => (
-              <li
-                key={ item.id }
-                data-testid="category"
-              >
-                {item.name}
-              </li>
-            ))}
-        </ul>
+        {categoriesList
+          .map((item) => <div key={ item.id } data-testid="category">{item.name}</div>)}
       </aside>
     );
   }
