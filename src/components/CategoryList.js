@@ -6,6 +6,7 @@ class CategoryList extends Component {
     super();
     this.state = {
       categories: [{ name: 'Aguarde' }],
+      loading: true,
     };
     this.renderCategoryList = this.renderCategoryList.bind(this);
   }
@@ -16,12 +17,21 @@ class CategoryList extends Component {
 
   async renderCategoryList() {
     const categoryList = await getCategories();
-    this.setState(() => ({ categories: categoryList }));
+    this.setState(() => ({
+      categories: categoryList,
+      loading: false }));
   }
 
   render() {
-    this.renderCategoryList();
-    const { categories } = this.state;
+    const { categories, loading } = this.state;
+
+    if (loading) {
+      return (
+        <div>
+          <h2>{ categories[0].name}</h2>
+        </div>
+      );
+    }
     return (
       <div>
         <h2>Categorias:</h2>
