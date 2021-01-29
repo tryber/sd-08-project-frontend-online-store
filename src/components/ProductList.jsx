@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ProductCard from './ProductCard';
+import Category from './Category';
 import * as api from '../services/api';
 
 class ProductList extends React.Component {
@@ -35,12 +36,11 @@ class ProductList extends React.Component {
   //  função temporária, vai depender de outros elementos
   handleCategoryClick(event) {
     const { category, query } = this.state;
-    if (event.target.className === '') {
-      this.setState({
-        category: event.target.innerText,
-      });
-    }
-    this.fetchProducts(api.getProductsFromCategoryAndQuery(category, query));
+    console.log(event);
+    this.setState({
+      category: event,
+    },
+    this.fetchProducts(api.getProductsFromCategoryAndQuery(category, query)));
   }
 
   fetchProducts(result) {
@@ -100,7 +100,6 @@ class ProductList extends React.Component {
 
   render() {
     const { products, loading, loadingMessage } = this.state;
-
     return (
       <section>
         {this.renderQueryInput()}
@@ -110,6 +109,7 @@ class ProductList extends React.Component {
             loading ? loadingMessage : this.renderQueryResult(products)
           }
         </div>
+        <Category onSubmit={ this.handleCategoryClick } />
       </section>
     );
   }

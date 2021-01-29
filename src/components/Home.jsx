@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ShoppingCartIcon from './ShoppingCartIcon';
-import Category from './Category';
 import ProductList from './ProductList';
 
 class Home extends React.Component {
@@ -15,7 +14,6 @@ class Home extends React.Component {
         </p>
         <ProductList />
         <ShoppingCartIcon />
-        <Category />
       </>
     );
   }
