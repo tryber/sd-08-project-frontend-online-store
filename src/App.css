@@ -7,6 +7,16 @@
   pointer-events: none;
 }
 
+.prodContainer {
+  border: 1px solid black;
+  margin: 4px;
+  max-width: 400px;
+}
+
+main {
+  display: flex;
+}
+
 a {
   color: black;
   text-decoration: none;
