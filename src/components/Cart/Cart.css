@@ -1,0 +1,11 @@
+.cart-goback {
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 2px 3px;
+}
+
+.cart-goback-icon {
+    font-size: 30px;
+}
