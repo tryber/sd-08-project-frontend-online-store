@@ -3,7 +3,7 @@ import './Categorias.css';
 
 class Categorias extends Component {
   render() {
-    const { categorias } = this.props;
+    const { categorias, funcCategoria } = this.props;
     return (
       <div className="cat-container">
         <h3>
@@ -11,8 +11,14 @@ class Categorias extends Component {
         </h3>
         <nav>
           {categorias && categorias.map((item) => (
-            <div data-testid="category" key={ item.id } className="cat-item">
-              {item.name}
+            <div
+              data-testid="category"
+              key={ item.id }
+              className="cat-item"
+            >
+              <button type="button" name={ item.id } onClick={ funcCategoria }>
+                {item.name}
+              </button>
             </div>
           ))}
         </nav>
