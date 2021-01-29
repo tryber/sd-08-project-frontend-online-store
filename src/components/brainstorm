@@ -1,0 +1,15 @@
+Criar listagem de produtos
+
+Fazer requisição à API do Mercado Livre, enviando os termos buscados por quem usa e usar o retorno para renderizar a listagem dos produtos
+    Do InputSearch, renderiza o ProductCard
+
+
+Se a busca não retornar resultados, deve gerar a tela "Nenhum produto foi encontrado" 
+    Fazer ternário, se a busca não retornar resultados, renderizar o <ProductNotFound /> e se tiver resultados, renderiza o <ProductCard />
+
+Fazer exibição resumida do produto
+  Com título, foto e preço
+
+
+
+
