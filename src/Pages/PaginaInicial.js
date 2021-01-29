@@ -1,4 +1,6 @@
 import React from 'react';
+import Listadecategorias from '../Components/Listaecategorias';
+import BotaoCarrinho from '../Components/BotaoCarrinho';
 
 import ListaProdutos from '../Components/ListaProdutos';
 
@@ -32,11 +34,13 @@ export default class PaginaInicial extends React.Component {
           data-testid="query-input"
         />
         <ListaProdutos inputStatus={ inputStatus } />
+        <BotaoCarrinho />
         {inputStatus === '' && (
           <div data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </div>
         ) }
+        <Listadecategorias />
 
       </div>
     );
