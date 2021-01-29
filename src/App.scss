@@ -39,6 +39,19 @@ button {
   }
 }
 
+input {
+  border: 1px solid rgba(149, 149, 149, 0.692);
+  color: $card-primary-alt-color;
+  background-color:white;
+  &:hover {
+    border: 1px solid rgb(149, 149, 149);
+  }
+  &:focus {
+    outline: none;
+    border: 1px solid rgba(149, 149, 149, 0.883);
+  }
+}
+
 // ------------------------------------------------------------
 
 header {
@@ -145,9 +158,38 @@ header {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  flex-direction: column;
 }
 
-.productlist {
+.product-search {
+  // border: 1px solid red;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  padding: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  justify-content: center;
+  .product-search-input {
+    color: rgb(104, 104, 104);
+    font-size: 0.9em;
+    height: 24px;
+    width: 100%;
+    text-align: center;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 18px;
+    background-color:#ffffff;
+    &:focus {
+      color: rgb(56, 56, 56);
+    }
+  }
+}
+
+.product-list {
   // border: 1px solid green;
   margin: 4px;
   display: flex;

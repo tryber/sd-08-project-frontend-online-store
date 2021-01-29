@@ -22,6 +22,21 @@ button:focus {
   outline: none;
 }
 
+input {
+  border: 1px solid rgba(149, 149, 149, 0.692);
+  color: #4b4b4b;
+  background-color: white;
+}
+
+input:hover {
+  border: 1px solid #959595;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid rgba(149, 149, 149, 0.883);
+}
+
 header {
   -ms-flex-line-pack: center;
       align-content: center;
@@ -156,9 +171,46 @@ header .header-wrap .header-right {
           justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.productlist {
+.product-search {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.product-search .product-search-input {
+  color: #686868;
+  font-size: 0.9em;
+  height: 24px;
+  width: 100%;
+  text-align: center;
+  padding-left: 14px;
+  padding-right: 14px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 18px;
+  background-color: #ffffff;
+}
+
+.product-search .product-search-input:focus {
+  color: #383838;
+}
+
+.product-list {
   margin: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
