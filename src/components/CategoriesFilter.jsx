@@ -13,7 +13,6 @@ class CategoriesFilter extends Component {
 
   async componentDidMount() {
     await this.getCategories();
-
   }
 
   async getCategories() {
@@ -22,6 +21,7 @@ class CategoriesFilter extends Component {
       categories: date,
     });
   }
+
   render() {
     const { categories } = this.state;
     return (
@@ -29,15 +29,16 @@ class CategoriesFilter extends Component {
         <div>
             <h3>Categorias:</h3>
             {categories.map((category) => {
-              return <label data-testid="category">
-                      <input type="checkbox" name={ category.id } value={ category.id } />
-                      { category.name }
-                      <br />
-                    </label>
-            })}
+              return( 
+                <label data-testid="category" key={ category.id }>
+                  <input type="checkbox" name={ category.id } value={ category.id } />
+                  { category.name }
+                  <br />
+               </label>
+            )})}
         </div>
       </form>
-    )
+    );
   }
 }
 
