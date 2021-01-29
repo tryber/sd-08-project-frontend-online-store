@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import CardItem from './CardItem';
 
 class SearchBar extends Component {
   constructor() {
@@ -7,6 +8,7 @@ class SearchBar extends Component {
     this.state = {
       inputValue: '',
       apiReturn: [],
+      teste: true,
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -22,16 +24,19 @@ class SearchBar extends Component {
     const { inputValue } = this.state;
     const apiObjectsReturn = (await getProductsFromCategoryAndQuery('', inputValue))
       .results;
-    console.log(apiObjectsReturn);
-    this.setState({ apiReturn: apiObjectsReturn });
-    // return apiObjectsReturn.length > 0 ? this.listItems() : <li>NÃO ENCONTRADO</li>
+    this.setState({ apiReturn: apiObjectsReturn, teste: false },
+      () => console.log('apiReturn', this.state.apiReturn));
   }
 
-  // listItems() {
-  //     return (apiReturn.map((product) => {
-  //     <li key={ product.id }> { product.id } </li>
-  //     } )
-  // }
+  listItems() {
+    return (
+      this.state.apiReturn.map((product) => (
+        <li key={ product.id }>
+          <CardItem cardList={ product } />
+        </li>
+      ))
+    );
+  }
 
   emptySearch() {
     return (
@@ -41,7 +46,9 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { inputValue, apiReturn } = this.state;
+    const { inputValue, apiReturn, teste } = this.state;
+    const emptyReturnApi = <p>Nenhum produto foi encontraado</p>;
+    console.log(teste);
     return (
       <>
         <form>
@@ -62,9 +69,11 @@ class SearchBar extends Component {
             BUTÃO
           </button>
         </form>
-        {this.emptySearch()}
         <section>
           <ul>
+            { teste && this.emptySearch() }
+            { !teste && apiReturn.length < 1 && emptyReturnApi }
+            { this.listItems() }
           </ul>
         </section>
       </>
