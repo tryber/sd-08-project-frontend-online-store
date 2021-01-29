@@ -1,11 +1,10 @@
 import React from 'react';
 import * as api from '../services/api';
 import FetchCategories from './FetchCategories';
-import Lista from './Lista';
 
-class Home extends React.Component {
-  constructor() {
-    super();
+class SearchProducts extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.handleInputValue = this.handleInputValue.bind(this);
     this.inputTest = this.inputTest.bind(this);
@@ -63,16 +62,6 @@ class Home extends React.Component {
     );
   }
 
-  initialMessage() {
-    return (
-      <h2
-        data-testid="home-initial-message"
-      >
-        Digite algum termo de pesquisa ou escolha uma categoria.
-      </h2>
-    );
-  }
-
   render() {
     const { products } = this.state;
 
@@ -89,12 +78,10 @@ class Home extends React.Component {
           </div>
         ))}
 
-        { this.initialMessage() }
         <FetchCategories callback={ this.getProducts } />
-        <Lista />
       </section>
     );
   }
 }
 
-export default Home;
+export default SearchProducts;
