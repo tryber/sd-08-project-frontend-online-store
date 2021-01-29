@@ -1,10 +1,14 @@
 import React from 'react';
-import Search  from './Search';
+import { Link } from 'react-router-dom';
+import Search from './Search';
 
 class Header extends React.Component {
   render() {
     return (
-      <Search />
+      <div>
+        <Search />
+        <Link data-testid="shopping-cart-button" to="/caritems">CARRINHO DE COMPRAS</Link>
+      </div>
     );
   }
 }
