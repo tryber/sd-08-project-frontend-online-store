@@ -12,8 +12,22 @@ class CardProducts extends React.Component {
         <img src={ thumbnail } alt="Thumb" />
         <p>{ title }</p>
         <p>{ price }</p>
-        <Link to={ { pathname: `/${id}`, state: { product } } } data-testid="product-detail-link">Details</Link>
-        <button onClick={ () => addCart(product) } type="button">Adicionar ao carrinh</button>
+        <Link
+          to={ {
+            pathname: `/${id}`,
+            state: { product } } }
+          data-testid="product-detail-link"
+        >
+          Details
+        </Link>
+        <button
+          onClick={
+            () => addCart(product)
+          }
+          type="button"
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
@@ -24,7 +38,9 @@ CardProducts.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
+  addCart: PropTypes.func.isRequired,
 };
 
 export default CardProducts;
