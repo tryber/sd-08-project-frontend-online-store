@@ -1,10 +1,12 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ProductList from './components/ProductList';
+import './App.css';
 import * as api from './services/api';
 
+import ProductList from './components/ProductList';
+import ProductDetails from './components/ProductDetails';
 import ShoppingCart from './components/ShoppingCart';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -50,6 +52,7 @@ class App extends React.Component {
             <Route path="/shopping-cart">
               <ShoppingCart cartList={ cartList } productList={ productList } />
             </Route>
+            <Route path="/details/:id" component={ ProductDetails } />
           </Switch>
         </BrowserRouter>
       </main>
