@@ -16,8 +16,6 @@ class Home extends React.Component {
       categories: [],
       products: [],
       value: '',
-      category: '',
-      filter: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,20 +30,16 @@ class Home extends React.Component {
     ));
   }
 
-  async handleClick() {
-    const { category, value } = this.state;
-    const newCategory = category;
-    this.setState((estadoAnterior, _props) => ({ category: estadoAnterior.category }))
-    const product = await (await api.getProductsFromCategoryAndQuery(category, value))
+  async handleClick({target}) {
+    const { value } = this.state;
+    const newCategory = target.id;
+    const product = await (await api.getProductsFromCategoryAndQuery(newCategory, value))
       .results;
-    // this.setState({ category: newCategory }, () => {
     this.setState({ products: product })
-    // });
   }
 
   handleChange({ target }) {
-    const { name } = target;
-    const value = target.type === 'button' ? target.id : target.value;
+    const { name, value } = target;
     this.setState({
       [name]: value,
     });
@@ -80,10 +74,7 @@ class Home extends React.Component {
         <CategoryList
           list={ categories }
           filterProducts={ this.handleChange }
-          onClick={ (target) => {
-            this.handleChange(target);
-            this.handleClick();
-          } }
+          onClick={ this.handleClick }
         />
         <ProductsList list={ products } />
       </div>
