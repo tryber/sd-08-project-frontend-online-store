@@ -1,12 +1,15 @@
 import React from 'react';
 import ProductList from '../components/ProductList';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class MainPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       query: '',
+      categoriesList: [],
+      categoryID: '',
       products: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -24,10 +27,9 @@ class MainPage extends React.Component {
     this.getProducts();
   }
 
-  async getProducts() {
-    const { query } = this.state;
-    const getProducts = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`)
-      .then((response) => response.json());
+  getProductsAPI() {
+    const { query, categoryID } = this.state;
+    const getProducts = getProductsFromCategoryAndQuery(categoryID, query);
     this.setState({
       products: getProducts.results,
     });
