@@ -46,9 +46,9 @@ a {
 }
 
 .categoryContainer {
-  width: 300px;
   display: flex;
   flex-direction: column;
+  width: 300px;
 }
 
 .categoryContainer button + button {
