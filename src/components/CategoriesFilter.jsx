@@ -36,8 +36,7 @@ class CategoriesFilter extends Component {
                 <br />
               </label>
             );
-          })
-          }
+          })}
         </div>
       </form>
     );

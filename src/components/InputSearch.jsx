@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ShoppingCartImg from '../shopping-cart.png';
 import '../App.css';
+import CategoriesFilter from './CategoriesFilter';
 
 export default function InputSearch() {
   return (
     <div>
+      <CategoriesFilter />
       <form>
         <input
           type="search"
