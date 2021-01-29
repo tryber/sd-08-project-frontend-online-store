@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import SearchBar from '../components/SearchBar';
+import Header from '../components/Header';
+import CategoriesList from '../components/CategoriesList';
 
-export default class Home extends React.Component {
+export default class Home extends Component {
   render() {
     return (
-      <SearchBar />
+      <div className="busca">
+        <Header />
+        <CategoriesList />
+      </div>
     );
   }
 }
