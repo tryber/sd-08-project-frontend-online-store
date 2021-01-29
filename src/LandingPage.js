@@ -73,6 +73,37 @@ class LandingPage extends React.Component {
     );
   }
 
+  renderProductList(productList) {
+    return (
+      <div>
+        { productList.map((product) => (
+          <section
+            key={ product.id }
+            data-testid="product-detail-name product"
+          >
+            <p>{ product.title }</p>
+            <p>
+              R$
+              { product.price }
+            </p>
+            <img src={ product.thumbnail } alt={ product.title } />
+            <Link
+              to={ {
+                pathname: '/product-details',
+                search: '?sort=name',
+                hash: '#the-hash',
+                state: { product },
+              } }
+              data-testid="product-detail-link"
+            >
+              <button type="button">Detalhes</button>
+            </Link>
+          </section>
+        )) }
+      </div>
+    );
+  }
+
   render() {
     const { categoriesList, categoryId, query, productList } = this.state;
     return (
@@ -99,18 +130,7 @@ class LandingPage extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         { this.renderCategoryList(categoriesList)}
-        <div>
-          { productList.map((product) => (
-            <div key={ product.id } data-testid="product">
-              <p>{ product.title }</p>
-              <p>
-                R$
-                { product.price }
-              </p>
-              <img src={ product.thumbnail } alt={ product.title } />
-            </div>
-          )) }
-        </div>
+        { this.renderProductList(productList)}
       </div>
     );
   }
