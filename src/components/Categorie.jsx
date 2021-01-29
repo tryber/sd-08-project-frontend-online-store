@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-class CategoryList extends React.Component {
+class Categorie extends React.Component {
   constructor() {
     super();
     this.Submit = this.Submit.bind(this);
@@ -12,7 +13,8 @@ class CategoryList extends React.Component {
   }
 
   render() {
-    const { key, value } = this.props;
+    const { items } = this.props;
+    const { key, value } = items;
     return (
       <div>
         <input
@@ -29,4 +31,12 @@ class CategoryList extends React.Component {
   }
 }
 
-export default CategoryList;
+Categorie.propTypes = {
+  items: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+  }).isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+export default Categorie;
