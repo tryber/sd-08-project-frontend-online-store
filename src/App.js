@@ -17,8 +17,11 @@ export default class App extends Component {
       produtos: [],
       catID: '',
       search: '',
+      searchBtn: '',
     };
     this.alteraCategoriaBusca = this.alteraCategoriaBusca.bind(this);
+    this.buscaInput = this.buscaInput.bind(this);
+    this.submitBotao = this.submitBotao.bind(this);
   }
 
   componentDidMount() {
@@ -30,8 +33,8 @@ export default class App extends Component {
   }
 
   async getProdutos() {
-    const { catID, search } = this.state;
-    const prodData = await api.getProductsFromCategoryAndQuery(catID, search);
+    const { catID, searchBtn } = this.state;
+    const prodData = await api.getProductsFromCategoryAndQuery(catID, searchBtn);
     const { results } = prodData;
     this.setState({
       produtos: results,
@@ -47,7 +50,20 @@ export default class App extends Component {
 
   alteraCategoriaBusca(e) {
     const nameId = e.target.name;
-    this.setState({ catID: nameId });
+    this.setState({ catID: nameId,
+      searchBtn: '' });
+  }
+
+  buscaInput(e) {
+    const valor = e.target.value;
+    this.setState({ search: valor });
+    console.log(valor);
+  }
+
+  submitBotao() {
+    const { search } = this.state;
+    this.setState({ searchBtn: search,
+      catID: '' });
   }
 
   render() {
@@ -64,7 +80,11 @@ export default class App extends Component {
             <Route
               path="/"
               exact
-              render={ () => <Produtos produtos={ produtos } /> }
+              render={ () => (<Produtos
+                produtos={ produtos }
+                buscaInput={ this.buscaInput }
+                submitBotao={ this.submitBotao }
+              />) }
             />
             <Route path="/cart" component={ Cart } />
           </Switch>
