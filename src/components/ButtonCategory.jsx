@@ -15,13 +15,17 @@ class ButtonCategory extends React.Component {
 
   render() {
     const { categories } = this.state;
+    const { onClickRequest } = this.props;
     return (
       <div>
         { categories.map((category) => (
           <button
+            value={ category.id }
+            name="category"
             key={ category.id }
             type="button"
             data-testid="category"
+            onClick={ onClickRequest }
           >
             {category.name}
           </button>

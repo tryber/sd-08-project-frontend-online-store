@@ -6,11 +6,18 @@ import ButtonCategory from './ButtonCategory';
 
 class Header extends React.Component {
   render() {
+    const { onQueryProduct, value, onClickRequest } = this.props;
     return (
       <div>
-        <Search />
+        <Search
+          onQueryProduct={ onQueryProduct }
+          nameProduct={ value }
+          onClickRequest={ onClickRequest }
+        />
         <Link data-testid="shopping-cart-button" to="/caritems">CARRINHO DE COMPRAS</Link>
-        <ButtonCategory />
+        <ButtonCategory
+          onClickRequest={ onClickRequest }
+        />
       </div>
     );
   }

@@ -1,18 +1,14 @@
 import React from 'react';
+import Card from './Card';
 
 class Main extends React.Component {
-  
-    window.onstorage = () => {
-      // When local storage changes, dump the list to
-      // the console.
-      console.log(JSON.parse(window.localStorage.getItem('nameProduct')));
-    };
-  
-
   render() {
-    this.onStorage();
+    const { itemsProducts } = this.props;
     return (
-      <div>DFMKD</div>
+      <div>
+        {itemsProducts.map((product) => (
+          <Card dat key={ product.id } product={ product } />))}
+      </div>
     );
   }
 }
