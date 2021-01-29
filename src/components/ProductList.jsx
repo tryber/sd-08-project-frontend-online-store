@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Categories from './Categories';
-import * as api from '../services/api'
+import * as api from '../services/api';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -40,8 +40,10 @@ class ProductList extends React.Component {
         </section>
         <section>
           <form>
-            <input type="text" onChange={ this.handleChange } data-testid="query-input"/>
-            <button type="button" onClick={ this.handleClick } data-testid="query-button">Pesquisar</button>
+            <input type="text" onChange={ this.handleChange } data-testid="query-input" />
+            <button type="button" onClick={ this.handleClick } data-testid="query-button">
+              Pesquisar
+            </button>
             <p data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </p>
