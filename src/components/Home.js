@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Search from './Search';
 import * as api from '../services/api';
 
 class Home extends React.Component {
@@ -22,6 +24,17 @@ class Home extends React.Component {
     const { categories } = this.state;
     return (
       <div>
+        <span
+          data-testid="home-initial-message"
+        >
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </span>
+        <Link
+          to="/Cart"
+          data-testid="shopping-cart-button"
+        >
+          Carrinho
+        </Link>
         <ul>
           {categories.map((cat) => (
             <li
@@ -31,6 +44,7 @@ class Home extends React.Component {
               { cat.name }
             </li>))}
         </ul>
+        <Search />
       </div>
     );
   }
