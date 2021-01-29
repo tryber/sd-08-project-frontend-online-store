@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductList from '../components/ProductList';
+import ShoppingCartButton from '../components/ShoppingCartButton';
 
 class MainPage extends React.Component {
   constructor() {
@@ -21,14 +22,14 @@ class MainPage extends React.Component {
     });
   }
 
-  async getProducts() {
-    const { query } = this.state;
-    const getProducts = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`)
-      .then((response) => response.json());
-    this.setState({
-      products: getProducts.results,
-    });
-  }
+  // async getProducts() {
+  //   const { query } = this.state;
+  //   const getProducts = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`)
+  //     .then((response) => response.json());
+  //   this.setState({
+  //     products: getProducts.results,
+  //   });
+  // }
 
   renderInputSearch() {
     return (
@@ -45,8 +46,11 @@ class MainPage extends React.Component {
     const { query, products } = this.state;
     return (
       <div>
+        <div>
+          <ShoppingCartButton />
+        </div>
         { this.renderInputSearch() }
-        <ProductList products={ products } query={ query } />
+        {/* <ProductList products={ products } query={ query } /> */}
       </div>
     );
   }
