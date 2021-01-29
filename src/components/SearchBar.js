@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ProductList extends Component {
+class SearchBar extends Component {
   render() {
     return (
       <div className="header">
@@ -13,4 +13,4 @@ class ProductList extends Component {
   }
 }
 
-export default ProductList;
+export default SearchBar;
