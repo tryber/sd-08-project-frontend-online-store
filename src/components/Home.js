@@ -8,9 +8,9 @@ class Home extends React.Component {
     super();
 
     this.handleInputValue = this.handleInputValue.bind(this);
-    this.listProducts = this.listProducts.bind(this);
     this.inputTest = this.inputTest.bind(this);
     this.buttonTest = this.buttonTest.bind(this);
+    this.getProducts = this.getProducts.bind(this);
 
     this.state = {
       input: '',
@@ -21,6 +21,19 @@ class Home extends React.Component {
   handleInputValue({ target }) {
     this.setState({
       input: target.value,
+    });
+  }
+
+  async getProducts({ target }) {
+    const categoryId = target.value;
+    const { input } = this.state;
+    const response = (categoryId)
+      ? await api.getProductsFromCategoryAndQuery(categoryId, '')
+      : await api.getProductsFromCategoryAndQuery('', input);
+    const products = response.results;
+    this.setState({
+      products,
+      input: '',
     });
   }
 
@@ -38,21 +51,12 @@ class Home extends React.Component {
     );
   }
 
-  async listProducts() {
-    const { input } = this.state;
-    const response = await api.getProductsFromCategoryAndQuery('', input);
-    const products = response.results;
-    this.setState({
-      products,
-    });
-  }
-
   buttonTest() {
     return (
       <button
         type="button"
         data-testid="query-button"
-        onClick={ this.listProducts }
+        onClick={ this.getProducts }
       >
         Buscar
       </button>
@@ -86,7 +90,7 @@ class Home extends React.Component {
         ))}
 
         { this.initialMessage() }
-        <FetchCategories />
+        <FetchCategories callback={ this.getProducts } />
         <Lista />
       </section>
     );
