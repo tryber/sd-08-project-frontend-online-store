@@ -27,12 +27,12 @@ class Home extends React.Component {
     ));
   }
 
-  async handleClik () {
+  async handleClik() {
     const { category, value } = this.state;
     const product = await (await api.getProductsFromCategoryAndQuery(category, value))
-       .results;
+      .results;
     this.setState({
-      products: product, 
+      products: product,
     });
   }
 
@@ -56,14 +56,14 @@ class Home extends React.Component {
           Digite algum termo de pesquisa ou escolha uma
           categoria.
           <input
-          onChange= {this.handleChange }
-          name="value"
-          data-testid="query-input"
+            onChange={ this.handleChange }
+            name="value"
+            data-testid="query-input"
           />
           <button
             type="button"
             data-testid="query-button"
-            onClick= {this.handleClik}
+            onClick={ this.handleClik }
           >
             Pesquisar
           </button>
