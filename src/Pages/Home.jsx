@@ -33,7 +33,7 @@ class Home extends React.Component {
   async clickHandle() {
     const { query } = this.state;
     const listProduct = await api.getProductsFromCategoryAndQuery('', query);
-    this.setState({ listProduct, clicked: true, });
+    this.setState({ listProduct, clicked: true });
   }
 
   async fetchCategory() {
