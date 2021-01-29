@@ -1,4 +1,5 @@
 import React from 'react';
+import Categories from './Components/Categories';
 
 // import * as api from './services/api';
 
@@ -9,6 +10,7 @@ function App() {
       <p data-testid="home-initial-message">
         Digite algum termo de pesquisa ou escolha uma categoria.
       </p>
+      <Categories />
     </div>
   );
 }
