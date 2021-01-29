@@ -11,7 +11,6 @@ class ProductList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       queryInput: '',
-      categoryInput: '',
       filteredProducts: [],
     };
   }
@@ -22,13 +21,18 @@ class ProductList extends React.Component {
     });
   }
 
-  async handleClick() {
-    const { queryInput, categoryInput } = this.state;
+  async handleClick(event) {
+    const categoryInput = event.target.id;
+    const { queryInput } = this.state;
     const searchResults = await
     api.getProductsFromCategoryAndQuery(categoryInput, queryInput);
     this.setState({
       filteredProducts: searchResults.results,
     });
+  }
+
+  test() {
+    console.log('funcionou');
   }
 
   render() {
@@ -54,9 +58,9 @@ class ProductList extends React.Component {
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
-        <ul>
-          <CategoryList />
-        </ul>
+        <div>
+          <CategoryList onClick={ this.handleClick } />
+        </div>
         {filteredProducts.map(
           (product) => (<ProductCard
             title={ product.title }
