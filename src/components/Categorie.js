@@ -3,8 +3,6 @@ import React from 'react';
 class CategoryList extends React.Component {
   constructor() {
     super();
-
-
     this.Submit = this.Submit.bind(this);
   }
 
@@ -14,8 +12,7 @@ class CategoryList extends React.Component {
   }
 
   render() {
-    const { items } = this.props;
-    const { key, value } = items;
+    const { key, value } = this.props;
     return (
       <div>
         <input
