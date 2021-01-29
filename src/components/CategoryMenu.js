@@ -18,9 +18,8 @@ class CategoryMenu extends Component {
   }
 
   async categorieGetList() {
-    const options = [];
-    await Api.getCategories()
-      .then((data) => data.map((categorie) => options.push(categorie)));
+    const options = await Api.getCategories()
+      .then((data) => data.map((categorie) => categorie));
     this.setState({
       categories: options,
     });
