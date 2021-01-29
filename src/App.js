@@ -2,14 +2,14 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import Search from './components/Search';
+import Home from './components/Home';
 import ShoppingCart from './components/ShoppingCart';
 
 function App() {
   return (
     <BrowserRouter>
       <Route path="/shop-cart" component={ ShoppingCart } />
-      <Route path="/" exact component={ Search } />
+      <Route path="/" exact component={ Home } />
     </BrowserRouter>
   );
 }

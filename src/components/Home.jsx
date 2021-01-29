@@ -1,7 +1,9 @@
 import React from 'react';
-import ShoppingCartIcon from './ShoppingCartIcon';
 
-class Search extends React.Component {
+import ShoppingCartIcon from './ShoppingCartIcon';
+import Category from './Category';
+
+class Home extends React.Component {
   render() {
     return (
       <>
@@ -11,9 +13,10 @@ class Search extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <ShoppingCartIcon />
+        <Category />
       </>
     );
   }
 }
 
-export default Search;
+export default Home;
