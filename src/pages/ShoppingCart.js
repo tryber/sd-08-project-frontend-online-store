@@ -5,6 +5,7 @@ class PageShoppingCart extends Component {
     return (
       <>
         <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
+        <span />
       </>
     );
   }
