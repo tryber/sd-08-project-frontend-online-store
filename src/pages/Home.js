@@ -12,17 +12,16 @@ export default class Home extends React.Component {
       loadingMessenge: true,
     };
 
-    this.changeLoadingState = this.changeLoadingState.bind(this);
+    this.fetchCategories();
   }
 
   componentDidMount() {
-    this.fetchCategories();
+    this.changeLoadingState();
   }
 
   async fetchCategories() {
     this.setState({
       categoriesList: await api.getCategories(),
-      loadingMessenge: false,
     });
   }
 
@@ -34,7 +33,6 @@ export default class Home extends React.Component {
 
   render() {
     const { categoriesList, loadingMessenge } = this.state;
-    console.log(categoriesList);
     return (
       <main>
         <SearchBar />
@@ -46,7 +44,8 @@ export default class Home extends React.Component {
                 .map((item) => (
                   <div key={ item.id } data-testid="category">
                     {item.name}
-                  </div>))}
+                  </div>
+                ))}
             </aside>
           )}
       </main>
