@@ -71,7 +71,9 @@ class Home extends React.Component {
         <ul>
           {categories.map((category) => (
             <li key={ category.id } data-testid="category">
-              { category.name }
+              <Link to="/details">
+                { category.name }
+              </Link>
             </li>
           ))}
         </ul>
