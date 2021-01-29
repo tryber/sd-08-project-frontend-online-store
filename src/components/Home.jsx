@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import ShopButton from './ShopButton';
 import * as api from '../services/api';
+
+import ShopButton from './ShopButton';
 import CategoriesList from './CategoriesList';
+import SearchBar from './SearchBar';
 
 class Home extends Component {
   constructor(props) {
@@ -23,7 +25,7 @@ class Home extends Component {
     return (
       <section>
         <CategoriesList list={ categories } />
-        <input type="text" />
+        <SearchBar />
         <ShopButton />
         <ul>
           <li data-testid="home-initial-message">
