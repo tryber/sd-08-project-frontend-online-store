@@ -10,10 +10,9 @@ import Home from './pages/Home';
 function App() {
   return (
     <main>
-      <Header />
-      <Hero />
       <BrowserRouter>
         <Header />
+        <Hero />
         <Switch>
           <Route exact path="/cart/" component={ Cart } />
           <Route exact path="/" component={ Home } />
