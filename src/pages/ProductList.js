@@ -8,7 +8,8 @@ class ProductList extends React.Component {
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
-        <ul><CategoryList />
+        <ul>
+          <CategoryList />
         </ul>
       </div>
     );
