@@ -9,10 +9,14 @@ export default class Home extends React.Component {
 
     this.state = {
       categoriesList: [],
+      search: "",
+      searchResults: [],
     };
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
+    this.onSubmit();
     this.fetchCategories();
   }
 
@@ -23,11 +27,22 @@ export default class Home extends React.Component {
     });
   }
 
+  async onSubmit(event) {
+    const search = event.value;
+    console.log(search);
+    const result = await api.getProductsSearch(search);
+    console.log(result);
+    this.setState({
+      searchResults: result,
+    })
+  }
+
   render() {
-    const { categoriesList } = this.state;
+    const { categoriesList, search, searchResults } = this.state;
     return (
       <main>
         <SearchBar />
+        <button type"button"  data-testid="query-button" onClick={this.onSubmit}/>
         {typeof (categoriesList) !== 'undefined'
           && (
             <aside>
@@ -39,6 +54,7 @@ export default class Home extends React.Component {
                 ))}
             </aside>
           )}
+        <Cardlist results= { searchResults } />
       </main>
     );
   }
