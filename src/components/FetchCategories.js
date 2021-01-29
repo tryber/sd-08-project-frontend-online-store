@@ -51,7 +51,7 @@ class FetchCategories extends React.Component {
     const { loading } = this.state;
     return (
       <div>
-        {loading ? <h6>Loading</h6>
+        {loading ? <h6>Loading...</h6>
           : this.categoryCard() }
       </div>
     );
