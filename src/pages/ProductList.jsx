@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CategoryList from '../components/CategoryList';
 import * as api from '../services/api';
 import ProductCard from '../components/ProductCard';
 
@@ -53,6 +54,9 @@ class ProductList extends React.Component {
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
+        <ul>
+          <CategoryList />
+        </ul>
         {filteredProducts.map(
           (product) => (<ProductCard
             title={ product.title }
