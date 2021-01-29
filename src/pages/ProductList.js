@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as api from '../services/api';
+import * as API from '../services/api';
 
 class ProductList extends Component {
   constructor(props) {
@@ -8,16 +8,16 @@ class ProductList extends Component {
       listCategories: [],
     };
 
-    this.callApi = this.callApi.bind(this);
+    this.callAPI = this.callAPI.bind(this);
   }
 
   componentDidMount() {
-    this.callApi();
+    this.callAPI();
   }
 
-  callApi() {
+  callAPI() {
     this.setState(async () => {
-      const categoryArray = await api.getCategories();
+      const categoryArray = await API.getCategories();
       this.setState({ listCategories: categoryArray });
     });
   }
