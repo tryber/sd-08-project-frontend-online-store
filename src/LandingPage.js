@@ -16,6 +16,7 @@ class LandingPage extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.getCategoriesList = this.getCategoriesList.bind(this);
     this.getProductsFromAPI = this.getProductsFromAPI.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +26,15 @@ class LandingPage extends React.Component {
   handleChange({ target }) {
     this.setState({
       query: target.value,
+    });
+  }
+
+  async handleClick({ target }) {
+    this.setState({
+      categoryId: target.name,
+    }, () => {
+      const { categoryId, query } = this.state;
+      this.getProductsFromAPI(categoryId, query);
     });
   }
 
@@ -41,6 +51,26 @@ class LandingPage extends React.Component {
     this.setState({
       productList,
     });
+  }
+
+  renderCategoryList(categoriesList) {
+    return (
+      <div>
+        {
+          categoriesList
+            .map((category) => (
+              <button
+                type="button"
+                key={ category.id }
+                name={ category.id }
+                data-testid="category"
+                onClick={ this.handleClick }
+              >
+                { category.name }
+              </button>))
+        }
+      </div>
+    );
   }
 
   render() {
@@ -68,15 +98,7 @@ class LandingPage extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
-        <div>
-          {
-            categoriesList
-              .map((category) => (
-                <div key={ category.id } data-testid="category">
-                  { category.name }
-                </div>))
-          }
-        </div>
+        { this.renderCategoryList(categoriesList)}
         <div>
           { productList.map((product) => (
             <div key={ product.id } data-testid="product">
