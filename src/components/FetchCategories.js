@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class FetchCategories extends React.Component {
@@ -27,16 +28,21 @@ class FetchCategories extends React.Component {
 
   categoryCard() {
     const { categories } = this.state;
+    const { callback } = this.props;
+
     return (
       <div>
         { categories
           .map((category) => (
-            <h6
+            <button
+              value={ category.id }
+              type="button"
               key={ category.id }
               data-testid="category"
+              onClick={ callback }
             >
               { category.name }
-            </h6>)) }
+            </button>)) }
       </div>
     );
   }
@@ -45,11 +51,15 @@ class FetchCategories extends React.Component {
     const { loading } = this.state;
     return (
       <div>
-        {loading ? <h6>Loading</h6>
+        {loading ? <h6>Loading...</h6>
           : this.categoryCard() }
       </div>
     );
   }
 }
+
+FetchCategories.propTypes = {
+  callback: PropTypes.func.isRequired,
+};
 
 export default FetchCategories;
