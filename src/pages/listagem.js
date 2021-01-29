@@ -55,7 +55,6 @@ class Listagem extends Component {
         listOfProducts: produtosx,
       });
     } catch (error) {
-      console.log('fetchProduct');
       return undefined;
     }
   }
