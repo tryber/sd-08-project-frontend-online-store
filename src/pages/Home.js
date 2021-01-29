@@ -17,8 +17,9 @@ export default class Home extends React.Component {
   }
 
   async fetchCategories() {
+    const list = await api.getCategories();
     this.setState({
-      categoriesList: await api.getCategories(),
+      categoriesList: list,
     });
   }
 
