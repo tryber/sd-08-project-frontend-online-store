@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import * as api from '../services/api';
+
+import CategoryList from '../components/CategoryList';
+import ProductsList from '../components/ProductsList';
+
+import './home.css';
 
 class Home extends React.Component {
   constructor() {
@@ -49,6 +55,7 @@ class Home extends React.Component {
         <h1>Sales</h1>
         <label htmlFor="textInput" data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
+          <br />
           <input
             onChange={ this.handleChange }
             name="value"
@@ -64,22 +71,11 @@ class Home extends React.Component {
           Pesquisar
 
         </button>
+        <br />
         <Link to="/cart" data-testid="shopping-cart-button">Ver carrinho</Link>
-        {categories.map((c) => (
-          <Link
-            data-testid="category"
-            key={ c.id }
-            to={ `/${c.id}` }
-          >
-            { c.name }
-          </Link>))}
-        {products.map((product) => (
-          <section key={ product.id } data-testid="product">
-            <p>{product.title}</p>
-            <img src={ `${product.thumbnail}` } alt={ product.title } />
-            <p>{product.price}</p>
-          </section>
-        ))}
+
+        <CategoryList list={ categories } />
+        <ProductsList list={ products } />
       </div>
     );
   }
