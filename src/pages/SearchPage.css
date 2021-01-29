@@ -2,6 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 90%;
   margin: 10px auto;
+  width: 90%;
 }

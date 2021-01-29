@@ -2,18 +2,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 80%;
   margin: 30px auto;
+  width: 80%;
 }
 .categories-container span {
+  background-color: rgb(160, 112, 8);
+  border-radius: 30px;
   display: inline-block;
   margin: 10px 10px;
   padding: 10px 15px;
-  border-radius: 30px;
-  background-color: rgb(160, 112, 8);
 }
 .categorie {
-  text-transform: uppercase;
-  text-decoration: none;
   color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
 }

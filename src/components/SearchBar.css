@@ -1,22 +1,25 @@
 .searchbar-container form input {
-  width: 90%;
-  height: 25px;
   border-radius: 30px;
+  height: 25px;
   margin: 10px 50px;
+  width: 90%;
 }
+
 .searchbar-container form label {
   display: block;
-  text-align: center;
   font-size: 30px;
+  text-align: center;
 }
+
 .searchbar-container form button {
-  color: white;
   background-color: rgb(39, 38, 38);
   border-radius: 25px;
-  padding: 10px 20px;
+  color: white;
   font-size: 20px;
+  padding: 10px 20px;
 }
+
 .searchbar-container form button:hover {
-  opacity: 0.7;
   cursor: pointer;
+  opacity: 0.7;
 }

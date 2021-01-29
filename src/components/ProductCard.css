@@ -1,21 +1,24 @@
 .card-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   height: 250px;
   width: 200px;
   margin: 10px 15px;
 }
+
 .product-title {
   font-size: 15px;
   padding-bottom: 5px;
   text-align: center;
 }
+
 .product-image {
   height: 150px;
   width: 150px;
 }
+
 .product-price {
   font-size: 25px;
   padding-top: 5px;

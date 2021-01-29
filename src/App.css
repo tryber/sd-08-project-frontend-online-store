@@ -1,9 +1,9 @@
 .App-header {
-  display: flex;
   background-color: #282c34;
   color: white;
+  display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-  padding: 10px 30px; 
   margin-bottom: 15px;
+  padding: 10px 30px; 
 }
