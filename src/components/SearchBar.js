@@ -21,16 +21,17 @@ class SearchBar extends Component {
   }
 
   async onClickHandler() {
-    const { inputValue } = this.state;
+    const { inputValue, apiReturn } = this.state;
     const apiObjectsReturn = (await getProductsFromCategoryAndQuery('', inputValue))
       .results;
     this.setState({ apiReturn: apiObjectsReturn, teste: false },
-      () => console.log('apiReturn', this.state.apiReturn));
+      () => console.log('apiReturn', apiReturn));
   }
 
   listItems() {
+    const { apiReturn } = this.state;
     return (
-      this.state.apiReturn.map((product) => (
+      apiReturn.map((product) => (
         <li key={ product.id }>
           <CardItem cardList={ product } />
         </li>
