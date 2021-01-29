@@ -320,22 +320,22 @@ header .header-wrap .header-right .checkout-count {
 
 .product-card .product-card-info .product-card-info-price .price-part-1 {
   color: black;
-  font-size: 1.1em;
+  font-size: 1.4vw;
   font-weight: 300;
 }
 
 .product-card .product-card-info .product-card-info-price .price-part-2 {
   color: #272727;
   margin-left: 2px;
-  font-size: 1.1em;
+  font-size: 2vw;
 }
 
 .product-card .product-card-info .product-card-info-price .price-part-3 {
   color: #4b4b4b;
   margin-left: 2px;
   position: relative;
-  top: -5px;
-  font-size: 0.8em;
+  top: -9px;
+  font-size: 1vw;
   font-weight: 300;
 }
 

@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default function Header() {
+  const handleClickCheckout = () => {
+    console.log('checkout');
+  };
   return (
     <header>
       <div className="header-wrap">
@@ -9,7 +12,12 @@ export default function Header() {
         </section>
 
         <section className="header-right">
-          <img className="checkout-image" src="checkout.png" alt="checkout" />
+          <img
+            className="checkout-image"
+            src="checkout.png"
+            alt="checkout"
+            onClick={ handleClickCheckout }
+          />
           <span className="checkout-count">3</span>
         </section>
       </div>
