@@ -12,7 +12,6 @@ function App() {
         <Route exact path="/" component={ InputSearch } />
         <Route path="/shoppingcart" component={ ShoppingCart } />
         <Route path="/categories" component={ CategoriesFilter } />
-
       </Switch>
     </BrowserRouter>
 

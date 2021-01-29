@@ -30,7 +30,7 @@ class CategoriesFilter extends Component {
           <h3>Categorias:</h3>
           {categories.map((category) => (
             <label data-testid="category" key={ category.id } htmlFor="category">
-              <input type="checkbox" name={ category.id } value={ category.id } />
+              <input type="radio" name="categoryRadio" value={ category.id } id={ category.id }/>
               { category.name }
               <br />
             </label>
