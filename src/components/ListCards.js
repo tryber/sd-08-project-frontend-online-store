@@ -1,36 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-class ListCard extends Component() {
-  constructor() {
-    super();
-
-    this.ListFormation = this.ListFormation.bind(this);
-  }
-
-  ListFormation(props) {
-    const { objectrecived } = props;
-    objectrecived.map((result) => (
-      <div key={ result.id }>
-        <p>{result.title}</p>
-        <img src={ result.thumbnail } alt={ result.title } />
-        <p>
-          R$
-          {result.price}
-        </p>
-      </div>));
-  }
-
-  componentDidMount() {
-    console.log(test);
-  }
-
+class ListCards extends Component {
   render() {
+    const { title, price, thumbnail } = this.props;
     return (
       <section>
-        {this.ListFormation(this.props)}
-      </section>
-    );
+        <p>{ title }</p>
+        <img src={ thumbnail } alt={ title } />
+        <p>
+          R$
+          { price }
+        </p>
+      </section>);
   }
 }
 
-export default ListCard;
+export default ListCards;

@@ -19,7 +19,7 @@ class Home extends Component {
   }
 
   render() {
-    const test = this.state;
+    const { object } = this.state;
     return (
       <div>
         <input
@@ -40,7 +40,9 @@ class Home extends Component {
         <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
-        <ListCards props={ test } />
+        <section>
+          {object.map((item) => <ListCards key={ item.id } item={ item } />)}
+        </section>
       </div>
     );
   }
