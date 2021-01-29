@@ -64,12 +64,19 @@ class ProductList extends React.Component {
           <ul>
             { productList.map((item) => (
               <article
+                className="productElement"
                 key={ item.id }
                 data-testid="product"
               >
                 <img src={ item.thumbnail } alt="Imagem do produto" />
                 <h3>{ item.title }</h3>
                 <p>{ item.price }</p>
+                <Link
+                  to={ `/details/${item.id}` }
+                  data-testid="product-detail-link"
+                >
+                  Ver detalhes...
+                </Link>
               </article>
             ))}
           </ul>
