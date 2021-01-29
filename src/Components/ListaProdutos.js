@@ -15,11 +15,18 @@ export default class ListaProdutos extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const { categoryId } = this.props;
+    if (prevProps.categoryId !== categoryId) {
+      this.handleClick();
+    }
+  }
+
   handleClick() {
-    const { inputStatus } = this.props;
+    const { inputStatus, categoryId } = this.props;
     const { getProductsFromCategoryAndQuery } = api;
 
-    getProductsFromCategoryAndQuery('', inputStatus)
+    getProductsFromCategoryAndQuery(categoryId, inputStatus)
       .then((products) => {
         this.setState({
           objectAPI: products.results,
@@ -29,6 +36,7 @@ export default class ListaProdutos extends React.Component {
 
   render() {
     const { objectAPI } = this.state;
+
     return (
       <div>
         <button
@@ -38,7 +46,7 @@ export default class ListaProdutos extends React.Component {
         >
           Buscar
         </button>
-        <div>
+        <div className="container-product-list">
           { objectAPI.map((product) => (<CardProduto
             key={ product.id }
             title={ product.title }
@@ -53,4 +61,5 @@ export default class ListaProdutos extends React.Component {
 
 ListaProdutos.propTypes = {
   inputStatus: PropTypes.string.isRequired,
+  categoryId: PropTypes.string.isRequired,
 };
