@@ -8,9 +8,11 @@ class ProductList extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleCategory = this.handleCategory.bind(this);
     this.state = {
       inputText: '',
       productList: [],
+      selectedCategory: undefined,
     };
   }
 
@@ -21,9 +23,9 @@ class ProductList extends React.Component {
     });
   }
 
-  handleClick() {
-    const { inputText } = this.state;
-    api.getProductsFromCategoryAndQuery(undefined, inputText)
+  handleRequest() {
+    const { inputText, selectedCategory } = this.state;
+    api.getProductsFromCategoryAndQuery(selectedCategory, inputText)
       .then((data) => {
         this.setState({
           productList: data.results,
@@ -31,17 +33,28 @@ class ProductList extends React.Component {
       });
   }
 
+  handleClick(event) {
+    event.preventDefault();
+    this.handleRequest();
+  }
+
+  handleCategory(event) {
+    this.setState({
+      selectedCategory: event.target.id,
+    }, () => this.handleRequest());
+  }
+
   render() {
     const { productList } = this.state;
     return (
       <div className="App">
         <section className="categorie-container">
-          <Categories />
+          <Categories handleCategory={ this.handleCategory } />
         </section>
         <section>
           <form>
             <input type="text" onChange={ this.handleChange } data-testid="query-input" />
-            <button type="button" onClick={ this.handleClick } data-testid="query-button">
+            <button type="submit" onClick={ this.handleClick } data-testid="query-button">
               Pesquisar
             </button>
             <p data-testid="home-initial-message">
