@@ -21,10 +21,15 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { product } = this.state;
+    const { product: { title, thumbnail, price } } = this.state;
     return (
-      <div data-testid="product-detail-name">
-        <h3>Teste</h3>
+      <div>
+        <h3 data-testid="product-detail-name">{title}</h3>
+        <img src={ thumbnail } alt={ title } />
+        <p>
+          Preço: R$
+          {price}
+        </p>
       </div>
     );
   }
