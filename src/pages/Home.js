@@ -9,10 +9,12 @@ export default class Home extends Component {
   constructor() {
     super();
     this.handleCategories = this.handleCategories.bind(this);
+    this.getQuery = this.getQuery.bind(this);
     this.getItems = this.getItems.bind(this);
     this.state = {
       id: '',
       product: [],
+      query: '',
     };
   }
 
@@ -20,6 +22,12 @@ export default class Home extends Component {
     this.setState({
       id,
     }, () => this.getItems());
+  }
+
+  getQuery(value) {
+    this.setState({
+      query: value,
+    });
   }
 
   async getItems() {
@@ -35,7 +43,7 @@ export default class Home extends Component {
     const { product } = this.state;
     return (
       <div className="busca">
-        <Header />
+        <Header getQuery={ this.getQuery } />
         <CategoriesList onClick={ this.handleCategories } />
         <ItemList products={ product } />
       </div>

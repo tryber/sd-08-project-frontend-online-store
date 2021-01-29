@@ -5,7 +5,7 @@ class ItemCard extends React.Component {
     const { title, img, price } = this.props;
     console.log(this.props);
     return (
-      <div>
+      <div data-testid="product">
         <h1>{title}</h1>
         <img alt="" src={ img } />
         <p>{price}</p>

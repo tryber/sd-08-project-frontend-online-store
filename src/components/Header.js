@@ -7,10 +7,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <header>
-        <input type="text" name="query" />
-        <button type="button">Pesquisar</button>
-        <span>Digite algum termo de pesquisa ou escolha uma categoria</span>
-        <SearchBar />
+        <SearchBar onChange={ this.props.getQuery } />
         <Link
           to="/shoppingcart"
           data-testid="shopping-cart-button"
