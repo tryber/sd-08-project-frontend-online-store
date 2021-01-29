@@ -17,7 +17,7 @@ class Home extends React.Component {
       products: [],
       value: '',
       category: '',
-      filter: false,
+      // filter: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
