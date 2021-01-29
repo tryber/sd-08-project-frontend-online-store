@@ -1,15 +1,14 @@
 $primary-bg-color: #fff159;
 $secundary-bg-color: #ebebeb;
 
-
 //
-$card-bg-color:#ffffff;
+$card-bg-color: #ffffff;
 
-$card-primary-color:#272727;
-$card-primary-alt-color:#4b4b4b;
+$card-primary-color: #272727;
+$card-primary-alt-color: #4b4b4b;
 $card-secundary-color: #979fa7;
 
-$nav-text-color:#252525;
+$nav-text-color: #252525;
 
 //
 $card-green-color: #39b54a;
@@ -18,7 +17,7 @@ $card-green-color: #39b54a;
 
 body {
   border: 0;
-  font-family: 'Poppins' , sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   background-color: $secundary-bg-color;
@@ -27,8 +26,7 @@ body {
 // ------------------------------------------------------------
 
 button {
-  border: 1px solid #70680f;
-  border-radius: 1px;
+  border: 1px solid rgba(149, 149, 149, 0.692);
   color: $card-primary-color;
   font-weight: 600;
   background-color: #ffee31;
@@ -45,14 +43,14 @@ button {
 
 header {
   align-content: center;
-  border: 1px solid black;
+  // border: 1px solid black;
   display: flex;
-  height: 30px;
+  height: 26px;
   background-color: $primary-bg-color;
   .header-wrap {
-    border: 1px solid green;
+    // border: 1px solid green;
     display: flex;
-    width: 80%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
     justify-content: space-between;
@@ -60,81 +58,88 @@ header {
       width: 20%;
       height: 100%;
       display: flex;
-      justify-content: center;
-      border: 1px solid blue;
+      justify-content: flex-start;
+      // border: 1px solid blue;
     }
 
     .header-right {
       width: 20%;
       height: 100%;
       display: flex;
-      justify-content: center;
-      border: 1px solid blue;
+      justify-content: flex-end;
+      // border: 1px solid blue;
     }
   }
 }
 // ------------------------------------------------------------
-.navbar {  
+.navbar {
   min-height: 20px;
   max-height: 60px;
   width: 100%;
   display: flex;
   background-color: $primary-bg-color;
-  border-top: 1px solid rgb(46, 46, 46);
-  border-bottom: 1px solid rgb(46, 46, 46);
+  border-top: 1px solid rgba(0, 0, 0, 0.082);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 
-  .nav-wrap {
-    margin-top: 2px;
-    margin-bottom: 2px;
-    display: flex;
+  .nav-categories {
+    min-height: 20px;
+    max-height: 60px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+    // border: 1px solid blueviolet;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    color: $nav-text-color;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    border: 1px solid red;
+    font-size: 0.9vw;
 
-
-    .nav-categories {
-      border: 1px solid blueviolet;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 2px;
-      font-weight: 300;
-      color:$nav-text-color;
-      
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
       display: flex;
-      justify-content:center;
-      height: 100%;
-      font-size: 0.9vw;
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 2px;
+
+      li {
         display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content:baseline;    
-        width: 100%; 
-        height: 100%;
+        justify-content: center;
+        padding: 0;
+        margin-left: 4px;
+        margin-right: 4px;
+        a {
+          text-decoration: none;
+          color: $card-primary-alt-color;
+          font-weight: 300;          
         
-        li {
-          display:flex;
-          justify-content: center;
-          padding: 0;
+          &:hover {
+            color: rgba(0, 0, 0, 0.822);
+            cursor: pointer;
+            font-weight: 400;
+          }
+          &:visited {
+            color: $card-primary-alt-color;
+          }
         }
       }
     }
   }
+
 }
+
+
 
 // ------------------------------------------------------------
 
-
 .content {
   background-color: $secundary-bg-color;
-  margin-top: 4px;
-  border: 1px solid red;
+  margin-top: 2px;
+  // border: 1px solid red;
   display: flex;
   width: 80%;
   justify-content: center;
@@ -143,11 +148,11 @@ header {
 }
 
 .productlist {
-  margin-top: 4px;
-  border: 1px solid green;
+  // border: 1px solid green;
+  margin: 4px;
   display: flex;
   width: 100%;
-  justify-content:center;
+  justify-content: center;
   flex-wrap: wrap;
   align-items: stretch;
 }
@@ -171,7 +176,7 @@ header {
     img {
       width: 100%;
       max-height: 100%;
-    } 
+    }
   }
 
   .product-card-info {
@@ -182,7 +187,6 @@ header {
     font-size: 1em;
     margin-left: auto;
     margin-right: auto;
-    
 
     .product-card-info-price {
       color: $card-primary-color;
@@ -212,7 +216,7 @@ header {
       font-size: 1vw;
       margin-top: 2px;
       margin-left: 6px;
-   }
+    }
   }
 
   .product-card-buy {

@@ -1,14 +1,13 @@
 body {
   border: 0;
-  font-family: 'Poppins' , sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #ebebeb;
 }
 
 button {
-  border: 1px solid #70680f;
-  border-radius: 1px;
+  border: 1px solid rgba(149, 149, 149, 0.692);
   color: #272727;
   font-weight: 600;
   background-color: #ffee31;
@@ -26,20 +25,18 @@ button:focus {
 header {
   -ms-flex-line-pack: center;
       align-content: center;
-  border: 1px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 30px;
+  height: 26px;
   background-color: #fff159;
 }
 
 header .header-wrap {
-  border: 1px solid green;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 80%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
   -webkit-box-pack: justify;
@@ -53,10 +50,9 @@ header .header-wrap .header-left {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border: 1px solid blue;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 header .header-wrap .header-right {
@@ -65,10 +61,9 @@ header .header-wrap .header-right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border: 1px solid blue;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .navbar {
@@ -79,44 +74,34 @@ header .header-wrap .header-right {
   display: -ms-flexbox;
   display: flex;
   background-color: #fff159;
-  border-top: 1px solid #2e2e2e;
-  border-bottom: 1px solid #2e2e2e;
+  border-top: 1px solid rgba(0, 0, 0, 0.082);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.navbar .nav-wrap {
-  margin-top: 2px;
-  margin-bottom: 2px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.navbar .nav-categories {
+  min-height: 20px;
+  max-height: 60px;
   width: 70%;
   margin-left: auto;
   margin-right: auto;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border: 1px solid red;
-}
-
-.navbar .nav-wrap .nav-categories {
-  border: 1px solid blueviolet;
-  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 2px;
   font-weight: 300;
   color: #252525;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 100%;
   font-size: 0.9vw;
 }
 
-.navbar .nav-wrap .nav-categories ul {
+.navbar .nav-categories ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -125,18 +110,13 @@ header .header-wrap .header-right {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: baseline;
-      -ms-flex-pack: baseline;
-          justify-content: baseline;
-  width: 100%;
-  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px;
 }
 
-.navbar .nav-wrap .nav-categories ul li {
+.navbar .nav-categories ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -144,12 +124,29 @@ header .header-wrap .header-right {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 0;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.navbar .nav-categories ul li a {
+  text-decoration: none;
+  color: #4b4b4b;
+  font-weight: 300;
+}
+
+.navbar .nav-categories ul li a:hover {
+  color: rgba(0, 0, 0, 0.822);
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.navbar .nav-categories ul li a:visited {
+  color: #4b4b4b;
 }
 
 .content {
   background-color: #ebebeb;
-  margin-top: 4px;
-  border: 1px solid red;
+  margin-top: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -162,8 +159,7 @@ header .header-wrap .header-right {
 }
 
 .productlist {
-  margin-top: 4px;
-  border: 1px solid green;
+  margin: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -8,40 +8,83 @@ export default function Home() {
       <header>
         <div className="header-wrap">
           <section className="header-left">
-            <span>Shopping</span>
+            <span>Logo</span>
           </section>
 
           <section className="header-right">
-            <span>Shopping</span>
+            <span>Carrinho</span>
           </section>
         </div>
       </header>
 
       <section className="navbar">
-        <div className="nav-wrap">
-          <nav className="nav-categories">
-            <ul>
-              <li>Computador</li>
-              <li>Veiculos</li>
-              <li>Computador</li>
-              <li>Veiculos</li>
-              <li>Sex Shop</li>
-              <li>Eletrodomesticos</li>
-              <li>Produtos do Lar</li>
-              <li>Computador</li>
-              <li>Veiculos</li>
-              <li>Sex Shop</li>
-              <li>Eletrodomesticos</li>
-              <li>Produtos do Lar</li>
-              <li>Produtos do Lar</li>
-              <li>Computador</li>
-              <li>Veiculos</li>
-              <li>Sex Shop</li>
-              <li>Eletrodomesticos</li>
-              <li>Produtos do Lar</li>
-            </ul>
-          </nav>
-        </div>
+        <nav className="nav-categories">
+          <ul>
+            <li>
+              <a className="nav-link">Computador</a>
+            </li>
+            <li>
+              <a className="nav-link">Veiculos</a>
+            </li>
+            <li>
+              <a className="nav-link">Computador</a>
+            </li>
+            <li>
+              <a className="nav-link">Veiculos</a>
+            </li>
+            <li>
+              <a className="nav-link">Sex Shop</a>
+            </li>
+            <li>
+              <a className="nav-link">Eletrodomesticos</a>
+            </li>
+            <li>
+              <a className="nav-link">Produtos do Lar</a>
+            </li>
+            <li>
+              <a className="nav-link">Computador</a>
+            </li>
+            <li>
+              <a className="nav-link">Veiculos</a>
+            </li>
+            <li>
+              <a className="nav-link">Computador</a>
+            </li>
+            <li>
+              <a className="nav-link">Veiculos</a>
+            </li>
+            <li>
+              <a className="nav-link">Sex Shop</a>
+            </li>
+            <li>
+              <a className="nav-link">Eletrodomesticos</a>
+            </li>
+            <li>
+              <a className="nav-link">Produtos do Lar</a>
+            </li>
+            <li>
+              <a className="nav-link">Computador</a>
+            </li>
+            <li>
+              <a className="nav-link">Veiculos</a>
+            </li>
+            <li>
+              <a className="nav-link">Computador</a>
+            </li>
+            <li>
+              <a className="nav-link">Veiculos</a>
+            </li>
+            <li>
+              <a className="nav-link">Sex Shop</a>
+            </li>
+            <li>
+              <a className="nav-link">Eletrodomesticos</a>
+            </li>
+            <li>
+              <a className="nav-link">Produtos do Lar</a>
+            </li>
+          </ul>
+        </nav>
       </section>
 
       <section className="content">
