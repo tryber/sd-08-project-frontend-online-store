@@ -8,8 +8,14 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
 
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClik = this.handleClik.bind(this);
+
     this.state = {
       categories: [],
+      products: [],
+      value: '',
+      category: '',
     };
   }
 
@@ -21,8 +27,24 @@ class Home extends React.Component {
     ));
   }
 
+  async handleClik () {
+    const { category, value } = this.state;
+    const product = await (await api.getProductsFromCategoryAndQuery(category, value))
+       .results;
+    this.setState({
+      products: product, 
+    });
+  }
+
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
   render() {
-    const { categories } = this.state;
+    const { categories, products } = this.state;
 
     return (
       <div>
@@ -33,14 +55,33 @@ class Home extends React.Component {
         <p htmlFor="inputText" data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma
           categoria.
+          <input
+          onChange= {this.handleChange }
+          name="value"
+          data-testid="query-input"
+          />
+          <button
+            type="button"
+            data-testid="query-button"
+            onClick= {this.handleClik}
+          >
+            Pesquisar
+          </button>
         </p>
         <ul>
           {categories.map((category) => (
-            <li key={ category.name } data-testid="category">
-              {category.name}
+            <li key={ category.id } data-testid="category">
+              { category.name }
             </li>
           ))}
         </ul>
+        {products.map((product) => (
+          <div key={ product.id } data-testid="product">
+            <p>{product.title}</p>
+            <img src={ `${product.thumbnail}` } alt={ product.title } />
+            <p>{product.price}</p>
+          </div>
+        ))}
       </div>
     );
   }
