@@ -15,11 +15,7 @@ class SearchPage extends Component {
 
   requestProducts(categoryId, query) {
     this.setState(async () => {
-      const results = categoryId === ''
-        ? await api.getProductsFromCategoryAndQuery('ALL', query)
-        : await api.getProductsFromCategoryAndQuery(categoryId, query);
-
-      // const results = await api.getProductsFromCategoryAndQuery('ALL', query);
+      const results = await api.getProductsFromCategoryAndQuery(categoryId, query);
       this.setState({ products: results.results });
     });
   }

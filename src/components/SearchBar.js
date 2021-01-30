@@ -10,7 +10,7 @@ class SearchBar extends Component {
     this.setCategory = this.setCategory.bind(this);
     this.state = {
       query: '',
-      categoryID: 'ALL',
+      categoryID: '',
     };
   }
 
@@ -20,7 +20,12 @@ class SearchBar extends Component {
 
   setCategory(event) {
     // console.log(event.target.id);
-    this.setState({ categoryID: event.target.id });
+    const { requestProducts } = this.props;
+    this.setState({ categoryID: event.target.id },
+      () => {
+        const { query, categoryID } = this.state;
+        return requestProducts(categoryID, query);
+      });
   }
 
   render() {
@@ -53,6 +58,5 @@ class SearchBar extends Component {
 }
 SearchBar.propTypes = {
   requestProducts: PropTypes.func.isRequired,
-  categoryID: PropTypes.string.isRequired,
 };
 export default SearchBar;
