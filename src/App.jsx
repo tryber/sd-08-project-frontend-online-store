@@ -14,7 +14,7 @@ export default function App() {
       <Switch>
         <Route path="/" exact component={ Home } />
         {/* <Route path="/product" exact component={ ProductDetails } /> */}
-        <Route path="/product/:id" exact component={ ProductDetails } />
+        <Route path="/product/:id/:title" exact component={ ProductDetails } />
         <Route path="/cart" exact component={ Cart } />
 
         <Redirect from="*" to="/" />

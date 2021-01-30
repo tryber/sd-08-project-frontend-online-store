@@ -11,7 +11,7 @@ export default function ProductCard(props) {
   // const aprice = parsePrice(price);
 
   const handleClick = () => {
-    history.push(`/product/${id}`);
+    history.push(`/product/${id}/${title}`);
     // handleAddCartClick(product);
   };
 
