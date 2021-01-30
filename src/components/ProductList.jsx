@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import ProductCard from './ProductCard';
-import Loading from './Loading';
+// import Loading from './Loading';
 // import NotFound from './NotFound';
 
 // import { getRandomProducts } from '../helpers/products';
@@ -11,10 +11,8 @@ import * as api from '../services/api';
 //  const [error, setError] = useState(false);
 export default function ProductList() {
   const [productList, setProductList] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState([undefined, undefined]);
   const getProductList = async () => {
-    setLoading(true);
     setProductList([]);
     try {
       const data = await api.getProductsFromCategoryAndQuery(search[0], search[1]);
@@ -23,7 +21,6 @@ export default function ProductList() {
     } catch (e) {
       setProductList([]);
     }
-    setLoading(false);
   };
   const handleQueryChange = (data) => {
     setSearch([search[0], data]);

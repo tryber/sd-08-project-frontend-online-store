@@ -1,31 +1,49 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import Header from '../components/Header';
 
 import * as api from '../services/api';
 
-export default function Cart(props) {
-  // const { product } = props;
-  const { id, title } = useParams();
+const DEF_CART_KEY = 'CART_ITENS';
 
-  api.getCategories();
-  api.getProductsFromCategoryAndQuery();
+export default function Cart() {
+  const [productList, setProductList] = useState(null);
+
+  // api.getCategories();
+  // api.getProductsFromCategoryAndQuery();
+
+  useEffect(() => {
+    if (productList === null) {
+      const cart = JSON.parse(localStorage.getItem(DEF_CART_KEY)) || [];
+      if (cart.length !== 0) {
+        setProductList(cart);
+      }
+    }
+  }, [productList]);
+
+  const handleClearCart = () => {
+    localStorage.setItem(DEF_CART_KEY, []);
+    setProductList([]);
+  };
 
   return (
     <main>
       <Header showLogo={ false } showBack />
-      <div>
-        Cart
-        {id}
-      </div>
-      <div data-testid="shopping-cart-empty-message">
-        {title || 'Seu carrinho está vazio'}
-      </div>
-      <div data-testid="shopping-cart-product-name">
-        {title ? title.split('-').join(' ') : ''}
-      </div>
-      <div data-testid="shopping-cart-product-quantity">1</div>
+      {productList === null ? (
+        <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>
+      ) : null}
+      {productList !== null
+        ? productList.map((i) => (
+          <div key={ i.id }>
+            <div data-testid="shopping-cart-product-name">{i.title}</div>
+            <div data-testid="shopping-cart-product-quantity">1</div>
+          </div>
+        ))
+        : null}
+      <button type="button" onClick={ handleClearCart }>
+        Limpar
+      </button>
     </main>
   );
 }

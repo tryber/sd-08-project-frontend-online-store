@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-import * as cart from '../helpers/cart';
-
 const DEF_CART_KEY = 'CART_ITENS';
 
 export default function ProductCard(props) {
@@ -11,21 +9,20 @@ export default function ProductCard(props) {
     product: { id, title, thumbnail, price },
   } = props;
   const history = useHistory();
-
-  // const aprice = parsePrice(price);
-
   const handleClick = () => {
     history.push(`/product/${id}/${title}`);
   };
-
   const handleBuyClick = () => {
     const { product } = props;
-    const cart = JSON.parse(localStorage.getItem(DEF_CART_KEY)) || [];
-    cart.push(product);
-    localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
-    console.log(product);
+    const data = localStorage.getItem(DEF_CART_KEY);
+    if (data === '' || !data) {
+      localStorage.setItem(DEF_CART_KEY, JSON.stringify([product]));
+    } else {
+      const cart = JSON.parse(data);
+      cart.push(product);
+      localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
+    }
   };
-
   return (
     <section className="product-card-wraper">
       <button
