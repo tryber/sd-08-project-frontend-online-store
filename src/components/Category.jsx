@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import * as api from '../services/api';
 
@@ -52,5 +53,9 @@ class Category extends React.Component {
     );
   }
 }
+
+Category.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Category;
