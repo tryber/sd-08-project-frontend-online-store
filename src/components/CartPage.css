@@ -1,6 +1,16 @@
-.cardDiv {
+.mainCartPage {
   display: flex;
   flex-flow: row wrap;
   margin: auto;
   max-width: 1200px;
+}
+
+.listOfProducts {
+  width: 50%;
+}
+
+.emptyCart {
+  color: lightgray;
+  font-size: 2em;
+  text-align: center;
 }

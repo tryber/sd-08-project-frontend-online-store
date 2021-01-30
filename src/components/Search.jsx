@@ -18,15 +18,15 @@ class Search extends React.Component {
             />
             <button
               type="button"
-              onClick={ onClickInput }
+              className="searchIcon"
               data-testid="query-button"
+              onClick={ onClickInput }
             >
-              Pesquisar
+              <AiOutlineSearch />
             </button>
-            <div className="searchIcon"><AiOutlineSearch /></div>
           </div>
         </form>
-        <p data-testid="home-initial-message">
+        <p data-testid="home-initial-message" className="searchText">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
       </section>

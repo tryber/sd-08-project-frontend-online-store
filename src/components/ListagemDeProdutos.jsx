@@ -6,6 +6,12 @@ class ListagemDeProdutos extends React.Component {
   render() {
     const { products, addCart } = this.props;
 
+    if (products.length === 0) {
+      return (
+        <div className="zeroProducts">Nenhum produto foi encontrado</div>
+      );
+    }
+
     return (
       <div className="cardsDiv">
         { products.map((product) => (<CardProducts

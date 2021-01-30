@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardProducts from './CardProducts';
+import ProductOnCart from './ProductOnCart';
 import './CartPage.css';
 
 class CartPage extends React.Component {
@@ -8,26 +8,32 @@ class CartPage extends React.Component {
     const { productsOnCart } = this.props;
 
     if (productsOnCart.length === 0) {
-      return (<p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>);
+      return (
+        <p
+          className="emptyCart"
+          data-testid="shopping-cart-empty-message"
+        >
+          Seu carrinho está vazio
+        </p>);
     }
     return (
-      <div className="cardDiv" data-testid="shopping-cart-product-name">
-        { productsOnCart.map((product) => (<CardProducts
-          key={ product.id }
-          product={ product }
-          dontShowAddButton
-        />))}
+      <div className="mainCartPage">
+        <div className="listOfProducts">
+          { productsOnCart.map((product) => (<ProductOnCart
+            key={ product.id }
+            product={ product }
+          />))}
+        </div>
+        <div className="totalPrice">
+          TOTAL
+        </div>
       </div>
-
     );
   }
 }
 
 CartPage.propTypes = {
-  productsOnCart: PropTypes.shape({
-    length: PropTypes.number.isRequired,
-    map: PropTypes.func.isRequired,
-  }).isRequired,
+  productsOnCart: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default CartPage;

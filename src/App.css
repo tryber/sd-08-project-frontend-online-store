@@ -6,6 +6,7 @@
   display: flex;
   flex-flow: row wrap;
   list-style: none;
+  margin-bottom: 20px;
 }
 
 .categoriesItem {
@@ -44,4 +45,9 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+}
+
+.zeroProducts {
+  font-size: 2em;
+  text-align: center;
 }

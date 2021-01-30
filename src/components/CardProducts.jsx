@@ -5,7 +5,7 @@ import './CardProducts.css';
 
 class CardProducts extends React.Component {
   render() {
-    const { product, addCart, dontShowAddButton } = this.props;
+    const { product, addCart } = this.props;
     const { thumbnail, price, title, id } = product;
 
     return (
@@ -18,7 +18,7 @@ class CardProducts extends React.Component {
             R$
             { price }
           </p>
-          <h4>{ title }</h4>
+          <h4 data-testid="product-detail-name">{ title }</h4>
           <Link
             to={ {
               pathname: `/${id}`,
@@ -27,15 +27,13 @@ class CardProducts extends React.Component {
           >
             More Info
           </Link>
-          { !dontShowAddButton
-            && (
-              <button
-                onClick={ () => addCart(product) }
-                type="button"
-                data-testid="product-add-to-cart"
-              >
-                Adicionar ao carrinho
-              </button>)}
+          <button
+            data-testid="product-add-to-cart"
+            onClick={ () => addCart(product) }
+            type="button"
+          >
+            Adicionar ao carrinho
+          </button>
         </div>
       </div>
     );
@@ -50,11 +48,6 @@ CardProducts.propTypes = {
     id: PropTypes.string.isRequired,
   }).isRequired,
   addCart: PropTypes.func.isRequired,
-  dontShowAddButton: PropTypes.bool,
-};
-
-CardProducts.defaultProps = {
-  dontShowAddButton: false,
 };
 
 export default CardProducts;
