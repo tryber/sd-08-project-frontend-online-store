@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Categories from '../components/Categories';
 import Header from '../components/Header';
 import CardProducts from './CardProducts';
+import * as api from '../services/api';
 
 class Home extends Component {
   constructor() {

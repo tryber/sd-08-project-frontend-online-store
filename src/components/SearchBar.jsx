@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
   render() {
-    const { onClick } = this.props;
+    const { query, onChange, onClick } = this.props;
     return (
       <div className="search-bar-content">
         <input
@@ -13,6 +13,8 @@ class SearchBar extends Component {
           className="search-bar"
           type="text"
           placeholder="Digite aqui"
+          value={ query }
+          onChange={ onChange }
         />
         <button
           type="button"
@@ -30,6 +32,8 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
+  query: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

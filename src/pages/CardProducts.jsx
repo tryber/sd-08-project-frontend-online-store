@@ -19,7 +19,7 @@ class CardProducts extends React.Component {
 }
 
 CardProducts.propTypes = {
-  products: PropTypes.string.isRequired,
+  products: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
 };
 
 export default CardProducts;
