@@ -36,14 +36,14 @@ class App extends React.Component {
   }
 
   buscaDeProdutos(id) {
-    api.getProductsFromCategoryAndQuery(id).then((result) => {
+    const { input } = this.state;
+    api.getProductsFromCategoryAndQuery(id, input).then((result) => {
       this.setState(() => ({ products: result.results }));
     });
   }
 
   buscaProdutosInput() {
     const { input } = this.state;
-
     api.getProductsFromCategoryAndQuery('', input)
       .then(({ results }) => this.setState({
         products: results,
