@@ -13,7 +13,6 @@ export default function App() {
     <Router>
       <Switch>
         <Route path="/" exact component={ Home } />
-        {/* <Route path="/home" exact component={ HomeModelo } /> */}
         {/* <Route path="/product" exact component={ ProductDetails } /> */}
         <Route path="/product/:id" exact component={ ProductDetails } />
         <Route path="/cart" exact component={ Cart } />

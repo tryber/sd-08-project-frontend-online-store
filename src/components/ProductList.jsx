@@ -28,14 +28,14 @@ export default function ProductList() {
     if (productList.length === 0 && !error) {
       getDefaultProductList();
     }
-  });
+  }, [productList]);
 
   return (
     <section className="content">
       <SearchBar />
       <section className="product-list">
-        {error ? <NotFound /> : null}
-        {loading ? <Loading /> : null}
+        <NotFound show={ error } />
+        <Loading show={ loading } />
         {productList.length > 0
           ? productList.map((product) => (
             <ProductCard key={ product.id } product={ product } />

@@ -18,7 +18,7 @@ export default function SearchBar() {
 
   useEffect(() => {
     console.log(searchText, searchCategory);
-  });
+  }, [searchText, searchCategory]);
 
   return (
     <section className="product-search">

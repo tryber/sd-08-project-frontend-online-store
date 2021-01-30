@@ -30,7 +30,7 @@ export default function ProductDetails() {
     if (product === null && !error) {
       getProductInfo();
     }
-  });
+  }, [product]);
 
   const handleBuyClick = () => {
     if (product !== null) {
@@ -46,8 +46,8 @@ export default function ProductDetails() {
       <span data-testid="product-detail-name">
         {product !== null ? product.title : null}
       </span>
-      {error ? <NotFound /> : null}
-      {loading ? <Loading /> : null}
+      <NotFound show={ error } />
+      <Loading show={ loading } />
       {product !== null ? <div>{JSON.stringify(product)}</div> : null}
       <section className="product-add-cart">
         <button className="product-buy-button" type="button" onClick={ handleBuyClick }>
