@@ -8,7 +8,7 @@ class MainContent extends React.Component {
   // componentDidMount() {
   //   const { handleInputChange, handleInputRadio, handleInputSubmit, categories } = this.props;
   //   console.log(categories);
-  // }
+  // } teting
 
   render() {
     const { handleInputChange, handleInputRadio, handleInputSubmit, categories,
