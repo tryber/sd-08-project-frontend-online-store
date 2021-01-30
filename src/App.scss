@@ -211,7 +211,7 @@ header {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 16px;
+    padding-bottom: 10px;
     font-weight: 300;
     color: $nav-text-color;
     display: flex;
@@ -238,7 +238,7 @@ header {
           text-decoration: none;
           background-color: $secundary-bg-color;
           border: 0;
-          font-size: 1vw;
+          font-size: 0.8vw;
           color: $card-primary-alt-color;
           font-weight: 300;
   
