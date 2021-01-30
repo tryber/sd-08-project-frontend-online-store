@@ -12,14 +12,12 @@ import * as api from '../services/api';
 export default function ProductList() {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState({ query: undefined, category: undefined });
+  const [search, setSearch] = useState([undefined, undefined]);
   const getProductList = async () => {
     setLoading(true);
     try {
-      const data = await api.getProductsFromCategoryAndQuery(
-        search.category,
-        search.query,
-      );
+      setProductList([]);
+      const data = await api.getProductsFromCategoryAndQuery(search[0], search[1]);
       const products = await parseProductData(data.results);
       setProductList(products);
     } catch (e) {
@@ -28,16 +26,14 @@ export default function ProductList() {
     setLoading(false);
   };
   const handleQueryChange = (data) => {
-    console.log(data);
+    setSearch([search[0], data]);
   };
   const handleCategoryChange = (data) => {
-    console.log(data);
+    setSearch([data, search[1]]);
   };
   useEffect(() => {
-    if (productList.length === 0) {
-      getProductList();
-    }
-  }, [productList]);
+    getProductList();
+  }, [search]);
 
   return (
     <section className="content">
