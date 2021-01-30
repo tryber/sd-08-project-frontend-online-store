@@ -17,6 +17,7 @@ class ProductDetails extends React.Component {
             () => addCart(product)
           }
           type="button"
+          data-testid="product-detail-add-to-cart"
         >
           Adicionar ao carrinho
         </button>

@@ -39,11 +39,23 @@ class ProductOnCart extends React.Component {
           { title }
         </h4>
         <div className="quantidadeDiv">
-          <button type="button" onClick={ this.decrement }>-</button>
+          <button
+            type="button"
+            onClick={ this.decrement }
+            data-testid="product-decrease-quantity"
+          >
+            -
+          </button>
           <div data-testid="shopping-cart-product-quantity">
             { quantity }
           </div>
-          <button type="button" onClick={ this.increment }>+</button>
+          <button
+            type="button"
+            onClick={ this.increment }
+            data-testid="product-increase-quantity"
+          >
+            +
+          </button>
         </div>
       </div>
     );
