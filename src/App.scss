@@ -343,7 +343,8 @@ header {
       .product-card-info-title {
         color: $card-secundary-color;
         font-size: 0.9vw;
-        margin-top: 12px;
+        text-size-adjust: auto;
+        margin-top: 2px;
       }
     }
  
