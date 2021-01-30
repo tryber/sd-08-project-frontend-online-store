@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ListCard from './list';
+import ListCard from './ListCard';
 import * as api from '../services/api';
 
 class ProductsList extends Component {
