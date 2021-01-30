@@ -79,7 +79,7 @@ class LandingPage extends React.Component {
         { productList.map((product) => (
           <section
             key={ product.id }
-            data-testid="product-detail-name product"
+            data-testid="product"
           >
             <p>{ product.title }</p>
             <p>
