@@ -10,11 +10,18 @@ class Category extends React.Component {
       category: [],
       missstate: false,
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() {
     const categories = await api.getCategories();
     this.attstate(categories);
+  }
+
+  handleClick(event) {
+    const { onClick } = this.props;
+    onClick(event.target.id);
   }
 
   attstate(categories) {
@@ -23,18 +30,22 @@ class Category extends React.Component {
 
   render() {
     const { category, missstate } = this.state;
+
     if (missstate === false) {
       return <p>\o/</p>;
     }
     return (
       <ul>
         {category.map((obj) => (
-          <li
+          <button
+            type="button"
+            id={ obj.id }
             key={ obj.id }
             data-testid="category"
+            onClick={ this.handleClick }
           >
             {obj.name}
-          </li>
+          </button>
         ))}
       </ul>
 
