@@ -7,6 +7,6 @@
 
 .catButton:hover {
   border: 2px solid black;
-  cursor: pointer; 
+  cursor: pointer;
   opacity: 1;
 }
