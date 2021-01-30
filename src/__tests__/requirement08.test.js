@@ -6,12 +6,8 @@ import mockedCategoriesResult from '../__mocks__/categories';
 import mockedQueryResult from '../__mocks__/query';
 
 jest.mock('../services/api');
-api.getCategories.mockImplementation(
-  () => Promise.resolve(mockedCategoriesResult),
-);
-api.getProductsFromCategoryAndQuery.mockImplementation(
-  () => Promise.resolve(mockedQueryResult),
-);
+api.getCategories.mockImplementation(() => Promise.resolve(mockedCategoriesResult));
+api.getProductsFromCategoryAndQuery.mockImplementation(() => Promise.resolve(mockedQueryResult));
 
 describe('8 - Adicione produtos a partir da tela de listagem de produtos', () => {
   it('Adiciona da tela de listagem um produto que aparece no carrinho', async () => {

@@ -1,16 +1,31 @@
 import React from 'react';
-// , { useState, useEffect }
+import { useParams } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import Header from '../components/Header';
 
+import * as api from '../services/api';
+
 export default function Cart(props) {
   // const { product } = props;
+  const { id, title } = useParams();
+
+  api.getCategories();
+  api.getProductsFromCategoryAndQuery();
 
   return (
     <main>
       <Header showLogo={ false } showBack />
-      <div>Cart</div>
-      <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>
+      <div>
+        Cart
+        {id}
+      </div>
+      <div data-testid="shopping-cart-empty-message">
+        {title || 'Seu carrinho está vazio'}
+      </div>
+      <div data-testid="shopping-cart-product-name">
+        {title ? title.split('-').join(' ') : ''}
+      </div>
+      <div data-testid="shopping-cart-product-quantity">1</div>
     </main>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 // , { useState, useEffect }
 import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import Header from '../components/Header';
 // import Loading from '../components/Loading';
@@ -15,6 +16,7 @@ export default function ProductDetails() {
   // const [loading, setLoading] = useState(false);
 
   const { id, title } = useParams();
+  const history = useHistory();
   // const history = useHistory();
 
   // const getProductInfo = async () => {
@@ -32,8 +34,10 @@ export default function ProductDetails() {
   api.getProductsFromCategoryAndQuery();
 
   const handleBuyClick = () => {
-    // if (product !== null) {
-    console.log(id);
+    const aux = title.split(' ').join('-');
+    console.log(aux);
+    history.push(`/cart/${id}/${aux}`);
+    // console.log(id);
     // }
   };
 
@@ -45,7 +49,12 @@ export default function ProductDetails() {
       <span data-testid="product-detail-name">{title}</span>
 
       <section className="product-add-cart">
-        <button className="product-buy-button" type="button" onClick={ handleBuyClick }>
+        <button
+          data-testid="shopping-cart-button"
+          className="product-buy-button"
+          type="button"
+          onClick={ handleBuyClick }
+        >
           Adicionar ao Carrinho
         </button>
       </section>

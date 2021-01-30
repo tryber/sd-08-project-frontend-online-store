@@ -16,8 +16,9 @@ export default function ProductCard(props) {
   };
 
   const handleBuyClick = () => {
-    const { product } = props;
-    console.log(product);
+    // const { product } = props;
+    // console.log(product);
+    history.push(`/cart/${id}/${title}`);
   };
 
   return (

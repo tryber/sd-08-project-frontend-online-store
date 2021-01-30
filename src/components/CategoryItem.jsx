@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as api from '../services/api';
+
 export default function CategoryItem(props) {
   const { handleClick, id, name } = props;
 
@@ -8,6 +10,8 @@ export default function CategoryItem(props) {
     if (handleClick) {
       handleClick(e.target.value);
     }
+    api.getCategories();
+    // api.getProductsFromCategoryAndQuery();
   };
 
   return (
