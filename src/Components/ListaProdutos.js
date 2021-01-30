@@ -49,9 +49,7 @@ export default class ListaProdutos extends React.Component {
         <div className="container-product-list">
           { objectAPI.map((product) => (<CardProduto
             key={ product.id }
-            title={ product.title }
-            thumbnail={ product.thumbnail }
-            price={ product.price }
+            produto={ product }
           />))}
         </div>
       </div>
