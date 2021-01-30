@@ -22,7 +22,9 @@ export default function ProductCard(props) {
       localStorage.setItem(DEF_CART_KEY, JSON.stringify([product]));
     } else {
       const cart = JSON.parse(data);
-      cart.push(product);
+      const item = { ...product };
+      item.count = 1;
+      cart.push(item);
       localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
     }
     history.push('/');

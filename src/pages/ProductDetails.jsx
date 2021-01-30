@@ -18,21 +18,6 @@ export default function ProductDetails() {
 
   const { id, title } = useParams();
   const history = useHistory();
-  // const history = useHistory();
-
-  // const getProductInfo = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const data = await getProduct(id);
-  //     setProduct(data);
-  //   } catch (e) {
-  //     setError(true);
-  //   }
-  //   setLoading(false);
-  // };
-
-  api.getCategories();
-  api.getProductsFromCategoryAndQuery();
 
   const handleBuyClick = () => {
     const data = localStorage.getItem(DEF_CART_KEY);
@@ -40,7 +25,7 @@ export default function ProductDetails() {
       localStorage.setItem(DEF_CART_KEY, JSON.stringify([{ id, title }]));
     } else {
       const cart = JSON.parse(data);
-      cart.push({ id, title });
+      cart.push({ id, title, count: 1 });
       localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
     }
     history.push('/');
