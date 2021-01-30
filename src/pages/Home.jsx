@@ -19,10 +19,10 @@ class Home extends Component {
     this.setState({
       radioValue: id,
     });
-    this.getQueryList(id);
+    this.getProductsFromCategoryById(id);
   }
 
-  async getQueryList(categoryId) {
+  async getProductsFromCategoryById(categoryId) {
     const response = await getProductsFromCategoryAndQuery(categoryId);
     this.setState({
       products: response.results,
