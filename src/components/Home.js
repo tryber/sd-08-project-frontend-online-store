@@ -22,7 +22,11 @@ class Home extends Component {
   CardMount() {
     const { object } = this.state;
     if (object[0] === 1) {
-      return <h2> Digite algum termo de pesquisa ou escolha uma categoria. </h2>;
+      return (
+        <h2 data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </h2>
+      );
     }
     if (object.length === 0) {
       return <h2> Nenhum produto foi encontrado </h2>;
