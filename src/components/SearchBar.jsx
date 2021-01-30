@@ -14,13 +14,15 @@ export default function SearchBar(props) {
   const handleCategoryClick = (value) => {
     handleCategoryChange(value);
   };
-
+  // data-testid=query-button
   return (
     <section className="product-search">
       <div className="home-message" data-testid="home-initial-message">
         Digite algum termo de pesquisa ou escolha uma categoria.
       </div>
+
       <input
+        data-testid="query-input"
         className="product-search-input"
         type="text"
         placeholder="Buscar produtos, marcas e muito mais..."

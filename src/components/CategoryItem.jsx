@@ -12,7 +12,13 @@ export default function CategoryItem(props) {
 
   return (
     <li>
-      <button type="button" onClick={ handleCategoryClick } value={ id } className="nav-link">
+      <button
+        data-testid="category"
+        type="button"
+        onClick={ handleCategoryClick }
+        value={ id }
+        className="nav-link"
+      >
         {name}
       </button>
     </li>
