@@ -1,16 +1,40 @@
+.btn {
+  border-radius: 5px;
+  display: inline-flex;
+  margin-left: 5px;
+}
+
 .CardListContainer {
   display: flex;
-  flex-flow: row wrap ;
+  flex-flow: row wrap;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchbar {
+  border-radius: 5px;
+  display: inline-flex;
+  width: 400px;
 }
 
 .section-card {
   align-content: flex-start;
   align-items: center;
-  background-color: darkslateblue;
+  background-color: rgb(103, 94, 163);
   border: 1px solid darkorchid;
   border-radius: 20px;
-  flex-flow: column wrap;
   display: flex;
+  flex-flow: column wrap;
+  height: 250px;
   width: 250px;
-  height: 250px ;
+
+}
+
+.shop-cart-img {
+  display: inline-flex;
+  height: 40px;
+  width: 40px;
 }

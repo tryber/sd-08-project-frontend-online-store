@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListCards from './ListCards';
+import ShoppingCartIcon from './ShoppingCartIcon';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
@@ -16,7 +17,6 @@ class Home extends Component {
   async listUpdate(newValue) {
     const objectquery = await getProductsFromCategoryAndQuery(newValue);
     await this.setState({ object: objectquery.results });
-    console.log(this.state);
   }
 
   CardMount() {
@@ -36,21 +36,27 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <input
-          data-testid="query-input"
-          type="text"
-          className="searchbar"
-        />
-        <button
-          type="submit"
-          data-testid="query-button"
-          onClick={ () => {
-            const searchWord = document.querySelector('.searchbar').value;
-            this.listUpdate(searchWord);
-          } }
-        >
-          Buscar
-        </button>
+        <header className="header">
+          <div>
+            <input
+              data-testid="query-input"
+              type="text"
+              className="searchbar"
+            />
+            <button
+              type="submit"
+              className="btn"
+              data-testid="query-button"
+              onClick={ () => {
+                const searchWord = document.querySelector('.searchbar').value;
+                this.listUpdate(searchWord);
+              } }
+            >
+              Buscar
+            </button>
+          </div>
+          <ShoppingCartIcon />
+        </header>
         <section className="CardListContainer">
           {this.CardMount()}
         </section>
