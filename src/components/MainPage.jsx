@@ -9,13 +9,14 @@ class MainPage extends React.Component {
     return (
       <div className="mainPage">
         <Search onChange={ onChange } onClickInput={ onClickInput } />
-        <div className="categoriesList" data-testid="query-button">
+        <div className="categoriesList">
           { categories.map(({ name, id }) => (
             <button
               type="button"
               key={ name }
               onClick={ () => onclick(id) }
               data-testid="category"
+
             >
               {name}
             </button>

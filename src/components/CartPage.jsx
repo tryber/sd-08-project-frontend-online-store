@@ -11,7 +11,7 @@ class CartPage extends React.Component {
       return (<p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>);
     }
     return (
-      <div className="cardDiv">
+      <div className="cardDiv" data-testid="shopping-cart-product-name">
         { productsOnCart.map((product) => (<CardProducts
           key={ product.id }
           product={ product }

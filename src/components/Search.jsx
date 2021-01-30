@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { AiOutlineSearch } from 'react-icons/ai';
 import './Search.css';
 
-
 class Search extends React.Component {
   render() {
     const { onChange, onClickInput } = this.props;
@@ -11,20 +10,20 @@ class Search extends React.Component {
       <section>
         <form onSubmit={ onChange }>
           <div className="inputDiv">
-          <input
-            type="search"
-            name="input"
-            data-testid="query-input"
-            onChange={ onChange }
-          />
-          <button
-            type="button"
-            data-testid="query-button"
-            onClick={ onClickInput }
-          >
-            Pesquisar
-          </button>
-          <div className="searchIcon"><AiOutlineSearch /></div>
+            <input
+              type="search"
+              name="input"
+              data-testid="query-input"
+              onChange={ onChange }
+            />
+            <button
+              type="button"
+              onClick={ onClickInput }
+              data-testid="query-button"
+            >
+              Pesquisar
+            </button>
+            <div className="searchIcon"><AiOutlineSearch /></div>
           </div>
         </form>
         <p data-testid="home-initial-message">
