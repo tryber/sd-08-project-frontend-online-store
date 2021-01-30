@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import Header from '../components/Header';
 
-import * as api from '../services/api';
-
 const DEF_CART_KEY = 'CART_ITENS';
 
 export default function Cart() {
