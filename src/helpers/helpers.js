@@ -11,4 +11,10 @@ function shuffle(arr) {
   return arr;
 }
 
-module.exports = { shuffle };
+function parsePrice(price) {
+  const aux = `${price}.00`;
+  const arr = aux.split('.').map((i) => i.padEnd(2, '0'));
+  return `${arr[0]},${arr[1]}`;
+}
+
+module.exports = { shuffle, parsePrice };
