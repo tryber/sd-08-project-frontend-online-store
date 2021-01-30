@@ -1,10 +1,13 @@
 import React from 'react';
+import { shuffle } from '../helpers/helpers';
 
-export default function ProductCard() {
+export default function ProductCard(props) {
+  const { title, images, price } = props;
+
   return (
     <section className="product-card">
       <section className="product-card-image">
-        <img src="product.png" alt="Tenis Muito Feliz e Legal" />
+        <img src={ images } alt={ title } />
       </section>
 
       <section className="product-card-info">
@@ -13,10 +16,7 @@ export default function ProductCard() {
           <span className="price-part-2">100</span>
           <span className="price-part-3">00</span>
         </div>
-        <span className="product-card-info-title">
-          {' '}
-          Tenis muito felizsssssssss sssssssssssssss ddd
-        </span>
+        <span className="product-card-info-title">{title}</span>
       </section>
 
       <section className="product-card-buy">

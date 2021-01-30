@@ -29,6 +29,21 @@ input:focus {
   border: 1px solid rgba(149, 149, 149, 0.883);
 }
 
+.loading {
+  font-size: 1.5em;
+  color: black;
+  font-weight: 600;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 header {
   -ms-flex-line-pack: center;
       align-content: center;
@@ -268,7 +283,7 @@ header .header-wrap .header-right .checkout-count {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 280px;
+  height: 320px;
   width: 220px;
   background-color: #ffffff;
   margin-bottom: 8px;
@@ -335,7 +350,7 @@ header .header-wrap .header-right .checkout-count {
 
 .product-card .product-card-info .product-card-info-title {
   color: #979fa7;
-  font-size: 1vw;
+  font-size: 0.8vw;
   margin-top: 2px;
   margin-left: 6px;
 }
