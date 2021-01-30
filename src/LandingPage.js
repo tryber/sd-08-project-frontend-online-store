@@ -92,10 +92,10 @@ class LandingPage extends React.Component {
             key={ product.id }
             data-testid="product"
           >
-            <p>{ product.title }</p>
+            <p>{product.title}</p>
             <p>
               R$
-              { product.price }
+              {product.price}
             </p>
             <img src={ product.thumbnail } alt={ product.title } />
             <Link
@@ -109,8 +109,15 @@ class LandingPage extends React.Component {
             >
               <button type="button">Detalhes</button>
             </Link>
+            <button
+              type="button"
+              data-testid="product-add-to-cart"
+              onClick={ () => this.addItemToCart(this.product) }
+            >
+              Adicionar produto ao carrinho
+            </button>
           </section>
-        )) }
+        ))}
       </div>
     );
   }
@@ -141,15 +148,8 @@ class LandingPage extends React.Component {
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
-        { this.renderCategoryList(categoriesList)}
-        { this.renderProductList(productList)}
-        <button
-          type="button"
-          data-testid="product-add-to-cart"
-          onClick={ () => this.addItemToCart(this.product) }
-        >
-          Adicionar produto ao carrinho
-        </button>
+        { this.renderCategoryList(categoriesList) }
+        { this.renderProductList(productList) }
       </div>
     );
   }
