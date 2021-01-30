@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function CategoryItem(props) {
-  const { handleClick, label, value } = props;
+  const { handleClick, id, name } = props;
 
   const handleCategoryClick = (e) => {
     if (handleClick) {
@@ -12,13 +12,8 @@ export default function CategoryItem(props) {
 
   return (
     <li>
-      <button
-        type="button"
-        onClick={ handleCategoryClick }
-        value={ value }
-        className="nav-link"
-      >
-        {label}
+      <button type="button" onClick={ handleCategoryClick } value={ id } className="nav-link">
+        {name}
       </button>
     </li>
   );
@@ -26,6 +21,6 @@ export default function CategoryItem(props) {
 
 CategoryItem.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };

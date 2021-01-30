@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+// , { useState, useEffect }
 // import PropTypes from 'prop-types';
 import Header from '../components/Header';
 
 export default function Cart(props) {
-  const { product } = props;
+  // const { product } = props;
 
   return (
     <main>

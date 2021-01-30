@@ -18,7 +18,7 @@ export default function ProductList() {
     try {
       const data = await api.getProductsFromCategoryAndQuery();
       const products = await parseProductData(data.results);
-      console.log(products);
+      // console.log(products);
       // const products = await shuffle(list.filter((i) => i !== null && i !== undefined));
       setProductList(products);
     } catch (e) {
@@ -32,7 +32,7 @@ export default function ProductList() {
     if (productList.length === 0 && !error) {
       getProductList();
     }
-  }, [productList]);
+  }, [productList, error]);
 
   return (
     <section className="content">

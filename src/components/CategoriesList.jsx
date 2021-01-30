@@ -10,8 +10,13 @@ export default function CategoriesList(props) {
 
   const { handleClick } = props;
 
-  const fetchCategories = () => {
-    //
+  const fetchCategories = async () => {
+    try {
+      const categories = await api.getCategories();
+      setCategories(categories);
+    } catch (e) {
+      setCategories([]);
+    }
   };
 
   useEffect(() => {
@@ -23,10 +28,11 @@ export default function CategoriesList(props) {
   return (
     <nav className="categories-list">
       <ul>
-        <CategoryItem label="Computadores" value="id" />
-        <CategoryItem label="Computadores" value="id" />
-        <CategoryItem label="Computadores" value="id" />
-        <CategoryItem label="Computadores" value="id" />
+        {categories.length > 0
+          ? categories.map((i) => (
+            <CategoryItem key={ i.id } { ...i } handleClick={ handleClick } />
+          ))
+          : null}
       </ul>
     </nav>
   );
