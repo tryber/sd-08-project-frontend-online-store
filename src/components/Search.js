@@ -15,6 +15,10 @@ class Search extends React.Component {
     this.handleButton = this.handleButton.bind(this);
   }
 
+  componentDidMount() {
+    document.addEventListener('click', (e) => this.api(e));
+  }
+
   handleChange({ target }) {
     const { name, value } = target;
     this.setState((state) => ({
@@ -25,8 +29,15 @@ class Search extends React.Component {
   async handleButton() {
     const { searchText } = this.state;
     const { getProductsFromCategoryAndQuery } = mercadolibreAPI;
-    const fetchQuery = await getProductsFromCategoryAndQuery('', searchText);
+    const fetchQuery = await getProductsFromCategoryAndQuery(searchText);
     this.setState({ query: fetchQuery.results, loading: false });
+  }
+
+  api(e) {
+    mercadolibreAPI.getProductsFromCategoryAndQuery(e.target.textContent)
+      .then((category) => (
+        this.setState({ query: category.results, loading: false })
+      ));
   }
 
   productCards(products) {

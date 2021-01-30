@@ -1,27 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
-import * as api from '../services/api';
+import ListCategories from './ListCategories';
 
 class Home extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      categories: [],
-    };
-  }
-
-  componentDidMount() {
-    api.getCategories().then((categories) => (
-      this.setState({
-        categories,
-      })
-    ));
-  }
-
   render() {
-    const { categories } = this.state;
     return (
       <div>
         <span
@@ -35,15 +18,7 @@ class Home extends React.Component {
         >
           Carrinho
         </Link>
-        <ul>
-          {categories.map((cat) => (
-            <li
-              data-testid="category"
-              key={ cat.name }
-            >
-              { cat.name }
-            </li>))}
-        </ul>
+        <ListCategories />
         <Search />
       </div>
     );
