@@ -3,7 +3,7 @@
   position: relative;
   width: 40px;
 }
-
+/* 
 @media ( prefers-reduced-motion : no-preference ) {
 
   .cart-img {
@@ -55,4 +55,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
