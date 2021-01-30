@@ -20,6 +20,7 @@ export default function ProductList() {
       setProductList(products);
     } catch (e) {
       setError(true);
+      setProductList([]);
     }
     setLoading(false);
   };
