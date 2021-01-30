@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
+import CardImage from './card/CardImage';
+import CardInfo from './card/CardInfo';
+
 const DEF_CART_KEY = 'CART_ITENS';
 
 export default function ProductCard(props) {
@@ -31,18 +34,8 @@ export default function ProductCard(props) {
         data-testid="product-detail-link"
         onClick={ handleClick }
       >
-        <section className="product-card-image">
-          <img src={ thumbnail } alt={ title } />
-        </section>
-
-        <section className="product-card-info" data-testid="product">
-          <div className="product-card-info-price">
-            <span className="price-part-1">R$</span>
-            <span className="price-part-2">{price.split(',')[0]}</span>
-            <span className="price-part-3">{price.split(',')[1]}</span>
-          </div>
-          <span className="product-card-info-title">{title}</span>
-        </section>
+        <CardImage url={ thumbnail } alt={ title } />
+        <CardInfo price={ price } title={ title } />
       </button>
       <section className="product-buy">
         <button
