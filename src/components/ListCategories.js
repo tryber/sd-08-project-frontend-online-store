@@ -1,42 +1,46 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
+import * as api from '../services/api';
+/* import PropTypes from 'prop-types';
+ */
 class ListCategories extends React.Component {
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      categories: [],
+    };
   }
 
-  handleClick(event) {
-    const { name, value } = event.target;
-    const { onClick } = this.props;
-    onClick(name, value);
+  componentDidMount() {
+    api.getCategories().then((categories) => (
+      this.setState({
+        categories,
+      })
+    ));
   }
 
   render() {
-    const { categoriesList } = this.props;
+    const { categories } = this.state;
     return (
-      <div>
-        {categoriesList.map((cat) => (
-          <input
-            type="button"
+      <ul>
+        {categories.map((cat) => (
+          <li
             data-testid="category"
             key={ cat.name }
-            onClick={ this.handleClick }
             value={ cat.name }
             name={ cat.id }
-          />
+          >
+            {cat.name}
+          </li>
         ))}
-      </div>
+      </ul>
     );
   }
 }
 
-ListCategories.propTypes = {
-  onClick: PropTypes.func.isRequired,
+/* ListCategories.propTypes = {
   categoriesList: PropTypes.arrayOf({
     name: PropTypes.string,
   }).isRequired,
-};
+}; */
 
 export default ListCategories;
