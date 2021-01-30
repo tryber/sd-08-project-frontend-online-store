@@ -10,19 +10,23 @@ class Categorias extends Component {
         <h3>
           Categorias.
         </h3>
-        <nav>
+        <ul>
           {categorias && categorias.map((item) => (
-            <div
-              data-testid="category"
+            <li
               key={ item.id }
               className="cat-item"
             >
-              <button type="button" name={ item.id } onClick={ funcCategoria }>
+              <button
+                type="button"
+                data-testid="category"
+                name={ item.id }
+                onClick={ () => funcCategoria(item) }
+              >
                 {item.name}
               </button>
-            </div>
+            </li>
           ))}
-        </nav>
+        </ul>
       </div>
     );
   }

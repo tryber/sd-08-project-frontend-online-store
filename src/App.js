@@ -17,7 +17,7 @@ export default class App extends Component {
       produtos: [],
       catID: '',
       search: '',
-      searchBtn: '',
+      // searchBtn: undefined,
     };
     this.alteraCategoriaBusca = this.alteraCategoriaBusca.bind(this);
     this.buscaInput = this.buscaInput.bind(this);
@@ -26,16 +26,11 @@ export default class App extends Component {
 
   componentDidMount() {
     this.buscarListaCategorias();
-    // this.getProdutos();
-  }
-
-  componentDidUpdate() {
-    this.getProdutos();
   }
 
   async getProdutos() {
-    const { catID, searchBtn } = this.state;
-    const prodData = await api.getProductsFromCategoryAndQuery(catID, searchBtn);
+    const { catID, search } = this.state;
+    const prodData = await api.getProductsFromCategoryAndQuery(catID, search);
     const { results } = prodData;
     this.setState({
       produtos: results,
@@ -49,22 +44,36 @@ export default class App extends Component {
     });
   }
 
-  alteraCategoriaBusca(e) {
-    const nameId = e.target.name;
-    this.setState({ catID: nameId,
-      searchBtn: '' });
+  async alteraCategoriaBusca(item) {
+    const { search } = this.state;
+    const idCategoria = item.id;
+    if (search === undefined) {
+      await this.setState({
+        catID: idCategoria,
+        search: '',
+      });
+      this.getProdutos();
+    }
+    await this.setState({
+      catID: idCategoria,
+    });
+    this.getProdutos();
   }
 
   buscaInput(e) {
     const valor = e.target.value;
     this.setState({ search: valor });
-    console.log(valor);
   }
 
-  submitBotao() {
+  async submitBotao(e) {
     const { search } = this.state;
-    this.setState({ searchBtn: search,
-      catID: '' });
+    e.preventDefault();
+    const prodData = await api.getProductsFromCategoryAndQuery('', search);
+    console.log(prodData);
+    const { results } = prodData;
+    this.setState({
+      produtos: results,
+    });
   }
 
   render() {
