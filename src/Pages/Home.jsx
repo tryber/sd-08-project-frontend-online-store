@@ -16,27 +16,33 @@ class Home extends React.Component {
       clicked: false,
     };
 
-    this.fetchCategory = this.fetchCategory.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.clickHandle = this.clickHandle.bind(this);
+    this.fetchCategories = this.fetchCategories.bind(this);
+    this.inputChange = this.inputChange.bind(this);
+    this.clickSearch = this.clickSearch.bind(this);
+    this.clickCategory = this.clickCategory.bind(this);
   }
 
   componentDidMount() {
-    this.fetchCategory();
+    this.fetchCategories();
   }
 
-  handleChange({ target }) {
+  inputChange({ target }) {
     const { value } = target;
     this.setState({ query: value });
   }
 
-  async clickHandle() {
+  async clickSearch() {
     const { query } = this.state;
     const listProduct = await api.getProductsFromCategoryAndQuery('', query);
     this.setState({ listProduct, clicked: true });
   }
 
-  async fetchCategory() {
+  async clickCategory(id) {
+    const listProduct = await api.getProductsFromCategoryAndQuery(id, '');
+    this.setState({ listProduct, clicked: true });
+  }
+
+  async fetchCategories() {
     const categories = await api.getCategories();
     this.setState({ categories });
   }
@@ -52,20 +58,23 @@ class Home extends React.Component {
               data-testid="query-input"
               type="text"
               id="input-search"
-              onChange={ this.handleChange }
+              onChange={ this.inputChange }
             />
             <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
           </label>
           <button
             data-testid="query-button"
             type="button"
-            onClick={ this.clickHandle }
+            onClick={ this.clickSearch }
           >
             Pesquisar
           </button>
         </form>
         <aside>
-          <CategoriesList categories={ categories } />
+          <CategoriesList
+            categories={ categories }
+            clickCategory={ this.clickCategory }
+          />
         </aside>
         <main>
           <ProductList
