@@ -4,7 +4,7 @@ import { parsePrice } from '../helpers/helpers';
 export default function ProductCard(props) {
   const { title, images, price } = props;
 
-  const auxPrice = parsePrice(price);
+  const aprice = parsePrice(price);
 
   return (
     <section className="product-card">
@@ -15,8 +15,8 @@ export default function ProductCard(props) {
       <section className="product-card-info">
         <div className="product-card-info-price">
           <span className="price-part-1">R$</span>
-          <span className="price-part-2">{auxPrice.split(',')[0]}</span>
-          <span className="price-part-3">{auxPrice.split(',')[1]}</span>
+          <span className="price-part-2">{aprice.split(',')[0]}</span>
+          <span className="price-part-3">{aprice.split(',')[1]}</span>
         </div>
         <span className="product-card-info-title">{title}</span>
       </section>
