@@ -5,21 +5,33 @@ import { Redirect } from 'react-router-dom';
 class ProductCard extends React.Component {
   constructor() {
     super();
-
+    this.state = {
+      shouldRedirect: false,
+    };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    const { productInfo, id } = this.props;
-    return <Redirect to={{ pathname: `/ProductDetails/${id}`, state: { productInfo, }} }/>;
+    this.setState({
+      shouldRedirect: true,
+    });
   }
 
   render() {
-    const { product: { title, price, thumbnail, productInfo, id } } = this.props;
+    const { shouldRedirect } = this.state;
+    const { product: { title, price, thumbnail, id }, query, category } = this.props;
+    if (shouldRedirect) {
+      return (
+        <Redirect
+          to={ {
+            pathname: `/ProductDetails/${id}`,
+            state: { queryAPI: query, categoryAPI: category } } }
+        />
+      );
+    }
     return (
-      <div data-testid="product">
-        <div data-testid="product-detail-link" onClick={ this.handleClick } >
-          <Redirect to={{ pathname: `/ProductDetails/${id}`, state: { productInfo, }} }/>
+      <div data-testid="product" onClick={ this.handleClick } aria-hidden="true">
+        <div data-testid="product-detail-link">
           <h3>{title}</h3>
           <img src={ thumbnail } alt="Imagem do produto" />
           <span>
@@ -39,6 +51,8 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
+  query: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default ProductCard;
