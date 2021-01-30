@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class SearchField extends React.Component {
   constructor(props) {
@@ -8,15 +8,23 @@ class SearchField extends React.Component {
   }
 
   render() {
+    const { handleInputChange } = this.props;
     return (
-      <div>
-        <label htmlFor="search-field">
-          <input type="text" name="search-field" id="search-field" />
-        </label>
-        <Link data-testid="shopping-cart-button" to="/pages/Cart">Search</Link>
-      </div>
+      <label htmlFor="search-field">
+        <input
+          data-testid="query-input"
+          type="text"
+          name="search-field"
+          id="search-field"
+          onChange={ handleInputChange }
+        />
+      </label>
     );
   }
 }
+
+SearchField.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+};
 
 export default SearchField;
