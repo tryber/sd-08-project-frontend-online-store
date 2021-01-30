@@ -11,7 +11,6 @@ class Header extends Component {
     super();
 
     this.state = {
-      categoryId: '',
       query: '',
     };
 
@@ -24,8 +23,9 @@ class Header extends Component {
   }
 
   async getProdutsByQuery() {
-    const { categoryId, query } = this.state;
-    const result = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    const { query } = this.state;
+    const { radioValue } = this.props;
+    const result = await api.getProductsFromCategoryAndQuery(radioValue, query);
     const { products } = this.props;
     products(result.results);
   }
@@ -57,6 +57,7 @@ class Header extends Component {
 
 Header.propTypes = {
   products: PropTypes.func.isRequired,
+  radioValue: PropTypes.string.isRequired,
 };
 
 export default Header;
