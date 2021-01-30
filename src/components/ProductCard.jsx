@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
+import * as cart from '../helpers/cart';
+
+const DEF_CART_KEY = 'CART_ITENS';
+
 export default function ProductCard(props) {
   const {
     product: { id, title, thumbnail, price },
@@ -12,13 +16,14 @@ export default function ProductCard(props) {
 
   const handleClick = () => {
     history.push(`/product/${id}/${title}`);
-    // handleAddCartClick(product);
   };
 
   const handleBuyClick = () => {
-    // const { product } = props;
-    // console.log(product);
-    history.push(`/cart/${id}/${title}`);
+    const { product } = props;
+    const cart = JSON.parse(localStorage.getItem(DEF_CART_KEY)) || [];
+    cart.push(product);
+    localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
+    console.log(product);
   };
 
   return (
