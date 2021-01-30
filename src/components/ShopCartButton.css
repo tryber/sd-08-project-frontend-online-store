@@ -3,8 +3,8 @@
   position: relative;
   width: 40px;
 }
-/* 
-@media ( prefers-reduced-motion : no-preference ) {
+
+/* @media ( prefers-reduced-motion : no-preference ) {
 
   .cart-img {
     animation: cart-img-spin infinite 6s linear;
@@ -18,19 +18,19 @@
 
 @keyframes cart-img-spin {
 
-  0%   { 
+  0%   {
     background-color:red;
-    left:0; 
-    right:0; 
+    left:0;
+    right:0;
     }
 
-  25%  { 
+  25%  {
     background-color:yellow;
     left:300px;
     right:0;
    }
 
-  50%  { 
+  50%  {
     background-color:blue;
     left:0;
     right:300px;
