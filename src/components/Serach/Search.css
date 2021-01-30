@@ -1,7 +1,7 @@
 .search {
   display: flex;
-  margin: 3% 2%;
   flex-direction: column;
+  margin: 3% 2%;
   width: 80%;
 }
 
