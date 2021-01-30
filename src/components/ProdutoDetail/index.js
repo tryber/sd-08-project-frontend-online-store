@@ -47,6 +47,7 @@ class ProdutoDetail extends Component {
     const { produto } = this.state;
     let foto = '';
     let price = '';
+    window.scrollTo(0, 0);
     if (produto) {
       console.log(produto);
       foto = produto.pictures[0].url;

@@ -1,7 +1,13 @@
-.produtos-container {
+.produtos-main {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.produtos-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
 }
 
 .produtos-card {
