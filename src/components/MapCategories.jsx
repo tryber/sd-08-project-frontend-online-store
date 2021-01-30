@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from './Loading';
+import './MapCategories.css';
 
 class MapCategories extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class MapCategories extends React.Component {
       <div>
         { categories.map((result) => (
           <button
+            className="catButton"
             type="button"
             key={ result.id }
             data-testid="category"
