@@ -12,11 +12,17 @@ class App extends React.Component {
   constructor() {
     super();
     this.buscaDeProdutos = this.buscaDeProdutos.bind(this);
+    this.buscaProdutosInput = this.buscaProdutosInput.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
     this.addCart = this.addCart.bind(this);
     this.state = {
       categories: [],
       products: [],
       productsOnCart: [],
+      result: [],
+      'query-input': '',
+      'selected-category': '',
     };
   }
 
@@ -27,10 +33,25 @@ class App extends React.Component {
     // this.buscaDeProdutos(); -- Creio que não precisa mais desse, temos que fazer outra coisa
   }
 
+  handleChange(envet) {
+    envet.preventDefault();
+    const { name, value } = envet.target;
+    this.setState({ [name]: value });
+  }
+
   buscaDeProdutos(id) {
     api.getProductsFromCategoryAndQuery(id).then((result) => {
       this.setState(() => ({ products: result.results }));
     });
+  }
+
+  buscaProdutosInput() {
+    const { input } = this.state;
+
+    api.getProductsFromCategoryAndQuery('', input)
+      .then(({ results }) => this.setState({
+        products: results,
+      }));
   }
 
   addCart(obj) {
@@ -63,6 +84,8 @@ class App extends React.Component {
               products={ products }
               onclick={ this.buscaDeProdutos }
               addCart={ this.addCart }
+              onChange={ this.handleChange }
+              onClickInput={ this.buscaProdutosInput }
             />) }
           />
         </Switch>

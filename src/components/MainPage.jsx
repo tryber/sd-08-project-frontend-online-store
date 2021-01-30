@@ -5,10 +5,10 @@ import Search from './Search';
 
 class MainPage extends React.Component {
   render() {
-    const { categories, products, onclick, addCart } = this.props;
+    const { categories, products, onclick, addCart, onChange, onClickInput } = this.props;
     return (
       <div>
-        <Search />
+        <Search onChange={ onChange } onClickInput={ onClickInput } />
         <div className="categoriesList" data-testid="query-button">
           { categories.map(({ name, id }) => (
             <button
@@ -33,6 +33,8 @@ MainPage.propTypes = {
   products: PropTypes.arrayOf(PropTypes.any).isRequired,
   onclick: PropTypes.func.isRequired,
   addCart: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onClickInput: PropTypes.func.isRequired,
 };
 
 export default MainPage;
