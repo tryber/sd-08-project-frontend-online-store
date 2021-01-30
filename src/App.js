@@ -24,8 +24,7 @@ class App extends React.Component {
     api.getCategories().then((result) => {
       this.setState(() => ({ categories: result }));
     });
-
-    this.buscaDeProdutos('MLB5672');
+    // this.buscaDeProdutos(); -- Creio que não precisa mais desse, temos que fazer outra coisa
   }
 
   buscaDeProdutos(id) {
