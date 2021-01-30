@@ -233,6 +233,7 @@ header .header-wrap .cart-button .cart-count {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 16px;
   font-weight: 300;
   color: #252525;
   display: -webkit-box;
@@ -309,23 +310,29 @@ header .header-wrap .cart-button .cart-count {
 
 .product-card-wraper {
   border: 1px solid rgba(0, 0, 0, 0.137);
-  margin-left: 4px;
-  margin-right: 4px;
-  margin-bottom: 8px;
+  margin: 10px;
   background-color: #ffffff;
   height: 291px;
-  border: 1px solid rgba(0, 0, 0, 0.205);
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.075);
+  border: 1px solid rgba(0, 0, 0, 0.445);
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.212);
+          box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.212);
 }
 
 .product-card-wraper:hover {
-  border: 1px solid rgba(0, 0, 0, 0.274);
-  cursor: pointer;
-  position: relative;
-  top: -1px;
-  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
-          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+  border: 1px solid rgba(0, 0, 0, 0.637);
+}
+
+.product-card-wraper:not:hover {
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
 }
 
 .product-card-wraper .product-card {
@@ -417,7 +424,7 @@ header .header-wrap .cart-button .cart-count {
 }
 
 .product-card-wraper .product-buy {
-  border-top: 1px solid rgba(0, 0, 0, 0.137);
+  border-top: 1px solid rgba(0, 0, 0, 0.472);
   height: 30px;
   width: 100%;
   margin-left: auto;

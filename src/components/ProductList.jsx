@@ -16,7 +16,6 @@ export default function ProductList() {
   const getProductList = async () => {
     setLoading(true);
     try {
-      setProductList([]);
       const data = await api.getProductsFromCategoryAndQuery(search[0], search[1]);
       const products = await parseProductData(data.results);
       setProductList(products);
@@ -27,10 +26,13 @@ export default function ProductList() {
   };
   const handleQueryChange = (data) => {
     setSearch([search[0], data]);
+    getProductList();
   };
   const handleCategoryChange = (data) => {
     setSearch([data, search[1]]);
+    getProductList();
   };
+
   useEffect(() => {
     getProductList();
   }, [search]);
