@@ -58,16 +58,12 @@ class App extends React.Component {
       const { category, query } = this.state;
       const produtos = await api.getProductsFromCategoryAndQuery(category, query)
         .then((data) => data.results);
-      const produtosx = produtos.map((prod) => (
-        { id: prod.id,
-          title: prod.title,
-          thumbnail: prod.thumbnail,
-          price: prod.price,
-          shipping: prod.shipping.free_shipping,
-          installments: prod.installments,
-        }));
+      const produtoComThumbBoa = produtos.map((product) => {
+        product.thumbnail = product.thumbnail.replace('-I.jpg', '-O.jpg');
+        return product;
+      });
       this.setState({
-        listOfProducts: produtosx,
+        listOfProducts: produtoComThumbBoa,
       });
     } catch (error) {
       return undefined;
