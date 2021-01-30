@@ -1,15 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AiOutlineSearch } from 'react-icons/ai';
 import './Search.css';
 
+
 class Search extends React.Component {
   render() {
+    const { onChange, onClickInput } = this.props;
     return (
       <section>
-        <form>
+        <form onSubmit={ onChange }>
           <div className="inputDiv">
-            <input type="search" data-testid="input" />
-            <div className="searchIcon"><AiOutlineSearch /></div>
+          <input
+            type="search"
+            name="input"
+            data-testid="query-input"
+            onChange={ onChange }
+          />
+          <button
+            type="button"
+            data-testid="query-button"
+            onClick={ onClickInput }
+          >
+            Pesquisar
+          </button>
+          <div className="searchIcon"><AiOutlineSearch /></div>
           </div>
         </form>
         <p data-testid="home-initial-message">
@@ -19,5 +34,10 @@ class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onClickInput: PropTypes.func.isRequired,
+};
 
 export default Search;
