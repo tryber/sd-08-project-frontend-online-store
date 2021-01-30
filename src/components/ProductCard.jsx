@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { parsePrice } from '../helpers/helpers';
-
 export default function ProductCard(props) {
   const {
     product: { title, images, price },
   } = props;
 
-  const aprice = parsePrice(price);
+  // const aprice = parsePrice(price);
 
   const handleAddCart = () => {
     const { product, handleAddCartClick } = props;
@@ -26,8 +24,8 @@ export default function ProductCard(props) {
       <section className="product-card-info">
         <div className="product-card-info-price">
           <span className="price-part-1">R$</span>
-          <span className="price-part-2">{aprice.split(',')[0]}</span>
-          <span className="price-part-3">{aprice.split(',')[1]}</span>
+          <span className="price-part-2">{price.split(',')[0]}</span>
+          <span className="price-part-3">{price.split(',')[1]}</span>
         </div>
         <span className="product-card-info-title">{title}</span>
       </section>
@@ -47,7 +45,7 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     category_id: PropTypes.string,
     thumbnail: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    price: PropTypes.string.isRequired,
     mercadopago: PropTypes.bool.isRequired,
     images: PropTypes.arrayOf(PropTypes.string).isRequired,
     attributes: PropTypes.arrayOf(

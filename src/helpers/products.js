@@ -1,13 +1,13 @@
-// const fetch = require('node-fetch');
-const { shuffle } = require('./helpers');
-//
+const helpers = require('./helpers');
 
-async function getCategories() {
-  const result = await fetch(
-    'https://api.mercadolibre.com/sites/MLB/categories',
-  ).then((res) => res.json());
-  return result;
-}
+const DEF_LIMIT = 40;
+
+// async function getCategories() {
+//   const result = await fetch(
+//     'https://api.mercadolibre.com/sites/MLB/categories',
+//   ).then((res) => res.json());
+//   return result;
+// }
 
 async function getProductImages(productId) {
   const result = await fetch(`https://api.mercadolibre.com/items/${productId}`)
@@ -42,45 +42,40 @@ async function getProductAttributes(productId) {
   return result;
 }
 
-async function getProductsByCategory(categoryId, limit = 50) {
+async function parseProductData(data) {
+  if (!data) return [];
+  const result = Promise.all(
+    data.map(async (i) => ({
+      id: i.id,
+      title: i.title,
+      category_id: i.category_id,
+      price: helpers.parsePrice(i.price),
+      mercadopago: i.accepts_mercadopago,
+      thumbnail: i.thumbnail,
+      images: (await getProductImages(i.id)) || [],
+      attributes: (await getProductAttributes(i.id)) || [],
+    })),
+  );
+  return result;
+}
+
+async function getProductsByCategory(categoryId, limit = DEF_LIMIT) {
   const result = await fetch(
     `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&limit=${limit}`,
   )
     .then((res) => res.json())
     .then((data) => data.results)
-    .then(async (data) => Promise.all(
-      data.map(async (i) => ({
-        id: i.id,
-        title: i.title,
-        category_id: i.category_id,
-        price: i.price,
-        mercadopago: i.accepts_mercadopago,
-        thumbnail: i.thumbnail,
-        images: (await getProductImages(i.id)) || [],
-        attributes: (await getProductAttributes(i.id)) || [],
-      })),
-    ));
+    .then(async (data) => parseProductData(data));
   return result;
 }
 
-async function getProducts(query, limit) {
+async function getProducts(query, limit = DEF_LIMIT) {
   const result = await fetch(
     `https://api.mercadolibre.com/sites/MLB/search?q=${query}&limit=${limit}`,
   )
     .then((res) => res.json())
     .then((data) => data.results)
-    .then(async (data) => Promise.all(
-      data.map(async (i) => ({
-        id: i.id,
-        title: i.title,
-        category_id: i.category_id,
-        price: i.price,
-        mercadopago: i.accepts_mercadopago,
-        thumbnail: i.thumbnail,
-        images: (await getProductImages(i.id)) || [],
-        attributes: (await getProductAttributes(i.id)) || [],
-      })),
-    ));
+    .then(async (data) => parseProductData(data));
   return result;
 }
 
@@ -96,7 +91,6 @@ async function getRandomProducts() {
 }
 
 module.exports = {
-  shuffle,
   getProductAttributes,
   getProductImages,
   getProductsByCategory,

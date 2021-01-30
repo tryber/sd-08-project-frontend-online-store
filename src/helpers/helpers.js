@@ -2,7 +2,7 @@ function shuffle(arr) {
   let j;
   let x;
   let index;
-  for (index = arr.length - 1; index > 0; index--) {
+  for (index = arr.length - 1; index > 0; index -= 1) {
     j = Math.floor(Math.random() * (index + 1));
     x = arr[index];
     arr[index] = arr[j];

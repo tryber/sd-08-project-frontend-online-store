@@ -6,88 +6,88 @@ export default function NavBar() {
       <nav className="nav-categories">
         <ul>
           <li>
-            <a className="nav-link">Computador</a>
+            <button className="nav-link">Computador</button>
           </li>
           <li>
-            <a className="nav-link">Veiculos</a>
+            <button className="nav-link">Veiculos</button>
           </li>
           <li>
-            <a className="nav-link">Computador</a>
+            <button className="nav-link">Computador</button>
           </li>
           <li>
-            <a className="nav-link">Veiculos</a>
+            <button className="nav-link">Veiculos</button>
           </li>
           <li>
-            <a className="nav-link">Sex Shop</a>
+            <button className="nav-link">Sex Shop</button>
           </li>
           <li>
-            <a className="nav-link">Eletrodomesticos</a>
+            <button className="nav-link">Eletrodomesticos</button>
           </li>
           <li>
-            <a className="nav-link">Produtos do Lar</a>
+            <button className="nav-link">Produtos do Lar</button>
           </li>
           <li>
-            <a className="nav-link">Computador</a>
+            <button className="nav-link">Computador</button>
           </li>
           <li>
-            <a className="nav-link">Veiculos</a>
+            <button className="nav-link">Veiculos</button>
           </li>
           <li>
-            <a className="nav-link">Computador</a>
+            <button className="nav-link">Computador</button>
           </li>
           <li>
-            <a className="nav-link">Veiculos</a>
+            <button className="nav-link">Veiculos</button>
           </li>
           <li>
-            <a className="nav-link">Sex Shop</a>
+            <button className="nav-link">Sex Shop</button>
           </li>
           <li>
-            <a className="nav-link">Eletrodomesticos</a>
+            <button className="nav-link">Eletrodomesticos</button>
           </li>
           <li>
-            <a className="nav-link">Produtos do Lar</a>
+            <button className="nav-link">Produtos do Lar</button>
           </li>
           <li>
-            <a className="nav-link">Computador</a>
+            <button className="nav-link">Computador</button>
           </li>
           <li>
-            <a className="nav-link">Veiculos</a>
+            <button className="nav-link">Veiculos</button>
           </li>
           <li>
-            <a className="nav-link">Computador</a>
+            <button className="nav-link">Computador</button>
           </li>
           <li>
-            <a className="nav-link">Veiculos</a>
+            <button className="nav-link">Veiculos</button>
           </li>
           <li>
-            <a className="nav-link">Sex Shop</a>
+            <button className="nav-link">Sex Shop</button>
           </li>
           <li>
-            <a className="nav-link">Eletrodomesticos</a>
+            <button className="nav-link">Eletrodomesticos</button>
           </li>
           <li>
-            <a className="nav-link">Produtos do Lar</a>
+            <button className="nav-link">Produtos do Lar</button>
           </li>
           <li>
-            <a className="nav-link">Computador</a>
+            <button className="nav-link">Computador</button>
           </li>
           <li>
-            <a className="nav-link">Veiculos</a>
+            <button className="nav-link">Veiculos</button>
           </li>
           <li>
-            <a className="nav-link">Computador</a>
+            <button className="nav-link">Computador</button>
           </li>
           <li>
-            <a className="nav-link">Veiculos</a>
+            <button className="nav-link">Veiculos</button>
           </li>
           <li>
-            <a className="nav-link">Sex Shop</a>
+            <button className="nav-link">Sex Shop</button>
           </li>
           <li>
-            <a className="nav-link">Eletrodomesticos</a>
+            <button className="nav-link">Eletrodomesticos</button>
           </li>
           <li>
-            <a className="nav-link">Produtos do Lar</a>
+            <button className="nav-link">Produtos do Lar</button>
           </li>
         </ul>
       </nav>

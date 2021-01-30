@@ -165,18 +165,19 @@ header {
         padding: 0;
         margin-left: 4px;
         margin-right: 4px;
-        a {
+        .nav-link {
           text-decoration: none;
+          background-color: $primary-bg-color;
+          border: 0;
+          font-size: 1vw;
           color: $card-primary-alt-color;
           font-weight: 300;          
         
           &:hover {
-            color: rgba(0, 0, 0, 0.822);
+            color: rgba(0, 0, 0, 0.87);
             cursor: pointer;
-            font-weight: 400;
-          }
-          &:visited {
-            color: $card-primary-alt-color;
+            font-weight: 600;
+            font-size: 0.9vw;
           }
         }
       }
@@ -194,7 +195,7 @@ header {
   margin-top: 2px;
   // border: 1px solid red;
   display: flex;
-  width: 80%;
+  width: 90%;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
@@ -207,7 +208,7 @@ header {
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  padding: 2px;
+  padding: 6px;
   margin-top: 2px;
   margin-bottom: 2px;
   justify-content: center;
@@ -298,7 +299,7 @@ header {
     }
     .product-card-info-title {
       color: $card-secundary-color;
-      font-size: 1vw;
+      font-size: 0.8vw;
       margin-top: 2px;
       margin-left: 6px;
     }
