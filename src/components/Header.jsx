@@ -34,14 +34,14 @@ export default function Header(props) {
               type="button"
               onClick={ handleClickBack }
             >
-              <img className="button-back-image" src="icon-back.png" alt="back" />
+              <img className="button-back-image" src="/icon-back.png" alt="back" />
             </button>
           ) : null}
-          {showLogo ? <img className="shopping-logo" src="logo.png" alt="logo" /> : null}
+          {showLogo ? <img className="shopping-logo" src="/logo.png" alt="logo" /> : null}
         </section>
         {showCheckout ? (
           <button type="button" className="cart-button" onClick={ handleClickCart }>
-            <img className="cart-image" src="icon-cart.png" alt="cart" />
+            <img className="cart-image" src="/icon-cart.png" alt="cart" />
             <span className="cart-count">{count}</span>
           </button>
         ) : null}

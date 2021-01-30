@@ -79,6 +79,21 @@ async function getProducts(query, limit = DEF_LIMIT) {
   return result;
 }
 
+async function getProduct(productId) {
+  const result = await fetch(`https://api.mercadolibre.com/items/${productId}`)
+    .then((res) => res.json())
+    .then(async (i) => ({
+      id: i.id,
+      title: i.title,
+      category_id: i.category_id,
+      price: helpers.parsePrice(i.price),
+      mercadopago: i.accepts_mercadopago,
+      thumbnail: i.thumbnail,
+      attributes: (await getProductAttributes(i.id)) || [],
+    }));
+  return result;
+}
+
 async function getRandomProducts() {
   const list = await getCategoriesIds();
   const result = Promise.all(
@@ -94,6 +109,7 @@ module.exports = {
   getProductAttributes,
   getProductImages,
   getProductsByCategory,
+  getProduct,
   getProducts,
   getCategoriesIds,
   getRandomProducts,

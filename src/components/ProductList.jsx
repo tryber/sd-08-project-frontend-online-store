@@ -2,25 +2,30 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import ProductCard from './ProductCard';
 import Loading from './Loading';
+import NotFound from './NotFound';
 
 import { getRandomProducts } from '../helpers/products';
 import { shuffle } from '../helpers/helpers';
 
 export default function ProductList() {
   const [productList, setProductList] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getDefaultProductList = async () => {
-    const list = await getRandomProducts();
-    const products = await shuffle(list.filter((i) => i !== null && i !== undefined));
-    setProductList(products);
-  };
-
-  const handleAddCardClick = (data) => {
-    console.log(data);
+    setLoading(true);
+    try {
+      const list = await getRandomProducts();
+      const products = await shuffle(list.filter((i) => i !== null && i !== undefined));
+      setProductList(products);
+    } catch (e) {
+      setError(true);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
-    if (productList.length === 0) {
+    if (productList.length === 0 && !error) {
       getDefaultProductList();
     }
   });
@@ -29,17 +34,13 @@ export default function ProductList() {
     <section className="content">
       <SearchBar />
       <section className="product-list">
-        {productList.length > 0 ? (
-          productList.map((product, i) => (
-            <ProductCard
-              key={ i }
-              product={ product }
-              handleAddCartClick={ handleAddCardClick }
-            />
+        {error ? <NotFound /> : null}
+        {loading ? <Loading /> : null}
+        {productList.length > 0
+          ? productList.map((product) => (
+            <ProductCard key={ product.id } product={ product } />
           ))
-        ) : (
-          <Loading />
-        )}
+          : null}
       </section>
     </section>
   );

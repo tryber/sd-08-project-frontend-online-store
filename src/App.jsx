@@ -4,7 +4,7 @@ import { Switch, BrowserRouter as Router, Route, Redirect } from 'react-router-d
 import './App.css';
 
 import Home from './pages/Home';
-import Product from './pages/Product';
+import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 // import HomeModelo from './pages/HomeModelo';
 
@@ -14,8 +14,8 @@ export default function App() {
       <Switch>
         <Route path="/" exact component={ Home } />
         {/* <Route path="/home" exact component={ HomeModelo } /> */}
-        <Route path="/product" exact component={ Product } />
-        <Route path="/product/:id" exact component={ Product } />
+        {/* <Route path="/product" exact component={ ProductDetails } /> */}
+        <Route path="/product/:id" exact component={ ProductDetails } />
         <Route path="/cart" exact component={ Cart } />
 
         <Redirect from="*" to="/" />
