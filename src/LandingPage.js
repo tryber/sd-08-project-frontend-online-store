@@ -11,12 +11,14 @@ class LandingPage extends React.Component {
       categoryId: '',
       query: '',
       productList: [],
+      shoppingCart: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.getCategoriesList = this.getCategoriesList.bind(this);
     this.getProductsFromAPI = this.getProductsFromAPI.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.addItemToCart = this.addItemToCart.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +55,15 @@ class LandingPage extends React.Component {
     });
   }
 
+  addItemToCart(product) {
+    const { shoppingCart } = this.state;
+    if (!shoppingCart.includes(product)) {
+      this.setState({
+        shoppingCart: [...shoppingCart, product],
+      });
+    }
+  }
+
   renderCategoryList(categoriesList) {
     return (
       <div>
@@ -66,7 +77,7 @@ class LandingPage extends React.Component {
                 data-testid="category"
                 onClick={ this.handleClick }
               >
-                { category.name }
+                { category.name}
               </button>))
         }
       </div>
@@ -105,35 +116,43 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { categoriesList, categoryId, query, productList } = this.state;
+    const { categoriesList, categoryId, query, productList, shoppingCart } = this.state;
     return (
       <div>
         <button
           type="button"
           data-testid="query-button"
-          onClick={ () => this.getProductsFromAPI(categoryId, query) }
+          onClick={() => this.getProductsFromAPI(categoryId, query)}
         >
           Pesquisar
         </button>
         <input
           type="text"
           data-testid="query-input"
-          value={ query }
-          onChange={ this.handleChange }
+          value={query}
+          onChange={this.handleChange}
         />
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+        <Link
+          to={{ pathname: '/shopping-cart', state: { shoppingCart } }}
+          data-testid="shopping-cart-button"
+        >
           Carrinho de Compras
         </Link>
-        <h1
-          data-testid="home-initial-message"
-        >
+        <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         { this.renderCategoryList(categoriesList)}
         { this.renderProductList(productList)}
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={() => this.addItemToCart(this.product)}
+        >
+          Adicionar produto ao carrinho
+        </button>
       </div>
-    );
-  }
+    )
+  };
 }
 
 export default LandingPage;
