@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './SearchBar.css';
+import CategoryList from './CategoryList';
 
 class SearchBar extends Component {
   constructor() {
     super();
     this.setQuery = this.setQuery.bind(this);
+    this.setCategory = this.setCategory.bind(this);
     this.state = {
       query: '',
+      categoryID: '',
     };
   }
 
@@ -15,9 +18,19 @@ class SearchBar extends Component {
     this.setState({ query: event.target.value });
   }
 
+  setCategory(event) {
+    // console.log(event.target.id);
+    const { requestProducts } = this.props;
+    this.setState({ categoryID: event.target.id },
+      () => {
+        const { query, categoryID } = this.state;
+        return requestProducts(categoryID, query);
+      });
+  }
+
   render() {
     const { requestProducts } = this.props;
-    const { query } = this.state;
+    const { query, categoryID } = this.state;
     return (
       <div className="searchbar-container">
         <form>
@@ -30,7 +43,7 @@ class SearchBar extends Component {
             <button
               data-testid="query-button"
               type="button"
-              onClick={ () => requestProducts(query) }
+              onClick={ () => requestProducts(categoryID, query) }
             >
               Pesquisar
             </button>
@@ -38,6 +51,7 @@ class SearchBar extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </label>
         </form>
+        <CategoryList onClick={ this.setCategory } />
       </div>
     );
   }
