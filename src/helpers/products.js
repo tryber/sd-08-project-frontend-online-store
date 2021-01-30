@@ -57,7 +57,7 @@ async function getProductsByCategory(categoryId, limit = 50) {
         mercadopago: i.accepts_mercadopago,
         thumbnail: i.thumbnail,
         images: (await getProductImages(i.id)) || [],
-        // attributes: (await getProductAttributes(i.id)) || [],
+        attributes: (await getProductAttributes(i.id)) || [],
       })),
     ));
   return result;
@@ -78,10 +78,9 @@ async function getProducts(query, limit) {
         mercadopago: i.accepts_mercadopago,
         thumbnail: i.thumbnail,
         images: (await getProductImages(i.id)) || [],
-        // attributes: (await getProductAttributes(i.id)) || [],
+        attributes: (await getProductAttributes(i.id)) || [],
       })),
     ));
-
   return result;
 }
 

@@ -1,13 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { parsePrice } from '../helpers/helpers';
 
 export default function ProductCard(props) {
-  const { title, images, price } = props;
+  const {
+    product: { title, images, price },
+  } = props;
 
   const aprice = parsePrice(price);
 
   const handleAddCart = () => {
-    console.log(props);
+    const { product, handleAddCartClick } = props;
+    if (handleAddCartClick) {
+      handleAddCartClick(product);
+    }
   };
 
   return (
@@ -33,3 +40,22 @@ export default function ProductCard(props) {
     </section>
   );
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    category_id: PropTypes.string,
+    thumbnail: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    mercadopago: PropTypes.bool.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    attributes: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.string,
+        value: PropTypes.string,
+      }),
+    ),
+  }).isRequired,
+  handleAddCartClick: PropTypes.func.isRequired,
+};

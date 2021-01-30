@@ -15,6 +15,10 @@ export default function ProductList() {
     setProductList(products);
   };
 
+  const handleAddCardClick = (data) => {
+    console.log(data);
+  };
+
   useEffect(() => {
     if (productList.length === 0) {
       getDefaultProductList();
@@ -26,7 +30,13 @@ export default function ProductList() {
       <SearchBar />
       <section className="product-list">
         {productList.length > 0 ? (
-          productList.map((product, i) => <ProductCard key={ i } { ...product } />)
+          productList.map((product, i) => (
+            <ProductCard
+              key={ i }
+              product={ product }
+              handleAddCartClick={ handleAddCardClick }
+            />
+          ))
         ) : (
           <Loading />
         )}
