@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import * as api from '../services/api';
 
 // import { getProduct } from '../helpers/products';
+const DEF_CART_KEY = 'CART_ITENS';
 
 export default function ProductDetails() {
   // const [product, setProduct] = useState(null);
@@ -34,11 +35,15 @@ export default function ProductDetails() {
   api.getProductsFromCategoryAndQuery();
 
   const handleBuyClick = () => {
-    const aux = title.split(' ').join('-');
-    console.log(aux);
-    history.push(`/cart/${id}/${aux}`);
-    // console.log(id);
-    // }
+    const data = localStorage.getItem(DEF_CART_KEY);
+    if (data === '' || !data) {
+      localStorage.setItem(DEF_CART_KEY, JSON.stringify([{ id, title }]));
+    } else {
+      const cart = JSON.parse(data);
+      cart.push({ id, title });
+      localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
+    }
+    history.push('/');
   };
 
   return (
@@ -47,10 +52,9 @@ export default function ProductDetails() {
       <h1>ProductDetails</h1>
       <h2>{id || ''}</h2>
       <span data-testid="product-detail-name">{title}</span>
-
       <section className="product-add-cart">
         <button
-          data-testid="shopping-cart-button"
+          data-testid="product-detail-add-to-cart"
           className="product-buy-button"
           type="button"
           onClick={ handleBuyClick }
