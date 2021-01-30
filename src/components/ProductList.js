@@ -3,23 +3,17 @@ import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
-  constructor(props) {
-    super(props);
-    const { query, categoryID } = this.props;
-    this.state = {
-      productInfo: {
-        querySearched: query,
-        category: categoryID,
-      }
-    }
-  }
   render() {
-    const { products } = this.props;
-    const { productInfo } = this.state;
+    const { products, query, categoryID } = this.props;
     return (
       <div>
         { products
-          .map((product) => <ProductCard key={ product.id } product={ product } productInfo={ productInfo } />) }
+          .map((product) => (<ProductCard
+            key={ product.id }
+            product={ product }
+            query={ query }
+            category={ categoryID }
+          />))}
       </div>
     );
   }
@@ -27,6 +21,8 @@ class ProductList extends React.Component {
 
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  query: PropTypes.string.isRequired,
+  categoryID: PropTypes.string.isRequired,
 };
 
 export default ProductList;
