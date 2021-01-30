@@ -43,6 +43,9 @@ export default function ProductDetails() {
       <Header showLogo={ false } showBack />
       <h1>ProductDetails</h1>
       <h2>{id || ''}</h2>
+      <span data-testid="product-detail-name">
+        {product !== null ? product.title : null}
+      </span>
       {error ? <NotFound /> : null}
       {loading ? <Loading /> : null}
       {product !== null ? <div>{JSON.stringify(product)}</div> : null}

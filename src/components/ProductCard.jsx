@@ -21,7 +21,7 @@ export default function ProductCard(props) {
   };
 
   return (
-    <section className="product-card-wraper">
+    <section className="product-card-wraper" data-testid="product-detail-link">
       <button type="button" className="product-card" onClick={ handleClick }>
         <section className="product-card-image">
           <img src={ images } alt={ title } />
@@ -37,7 +37,12 @@ export default function ProductCard(props) {
         </section>
       </button>
       <section className="product-buy">
-        <button className="product-buy-button" type="button" onClick={ handleBuyClick }>
+        <button
+          className="product-buy-button"
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={ handleBuyClick }
+        >
           Adicionar ao Carrinho
         </button>
       </section>
