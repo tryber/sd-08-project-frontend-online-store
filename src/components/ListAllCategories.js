@@ -1,28 +1,9 @@
 import React, { Component } from 'react';
-import { getCategories } from '../services/api';
+import PropTypes from 'prop-types';
 
 export default class ListAllCategories extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      categories: [],
-    };
-
-    this.fetchCategories = this.fetchCategories.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchCategories();
-  }
-
-  async fetchCategories() {
-    const categories = await getCategories();
-    this.setState({ categories });
-  }
-
   render() {
-    const { categories } = this.state;
+    const { categories } = this.props;
     return (
       <div>
         {categories.map((category) => (
@@ -38,3 +19,7 @@ export default class ListAllCategories extends Component {
     );
   }
 }
+
+ListAllCategories.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

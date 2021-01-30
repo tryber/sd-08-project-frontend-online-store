@@ -1,8 +1,25 @@
 import React from 'react';
 import ListAllCategories from './ListAllCategories';
+import { getCategories } from '../services/api';
 
 class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = { categories: [] };
+    this.fetchCategories = this.fetchCategories.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchCategories();
+  }
+
+  async fetchCategories() {
+    const categories = await getCategories();
+    this.setState({ categories });
+  }
+
   render() {
+    const { categories } = this.state;
     return (
       <>
         <form>
@@ -14,7 +31,7 @@ class Home extends React.Component {
             />
           </label>
         </form>
-        <ListAllCategories />
+        <ListAllCategories categories={ categories } />
       </>
     );
   }
