@@ -30,6 +30,7 @@ export default function ProductList() {
   };
   const handleCategoryChange = (data) => {
     setSearch([data, search[1]]);
+    getProductList(data, search[1]);
   };
 
   /* useEffect(() => {
@@ -43,11 +44,7 @@ export default function ProductList() {
         handleCategoryChange={ handleCategoryChange }
       />
       <section className="product-list">
-        <button
-          type="button"
-          onClick={ getProductList }
-          data-testid="query-button"
-        >
+        <button type="button" onClick={ getProductList } data-testid="query-button">
           Pesquisa
         </button>
         {/* <Loading show={ loading } /> */}
