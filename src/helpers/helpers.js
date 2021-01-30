@@ -17,4 +17,21 @@ function parsePrice(price) {
   return `${arr[0]},${arr[1]}`;
 }
 
-module.exports = { shuffle, parsePrice };
+async function parseProductData(data) {
+  if (!data) return [];
+  const result = Promise.all(
+    data.map(async (i) => ({
+      id: i.id,
+      title: i.title,
+      category_id: i.category_id,
+      price: parsePrice(i.price),
+      mercadopago: i.accepts_mercadopago,
+      thumbnail: i.thumbnail.replace('-I.jpg', '-O.jpg'),
+      // images: (await getProductImages(i.id)) || [],
+      // attributes: (await getProductAttributes(i.id)) || [],
+    })),
+  );
+  return result;
+}
+
+module.exports = { shuffle, parsePrice, parseProductData };

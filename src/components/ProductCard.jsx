@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function ProductCard(props) {
   const {
-    product: { id, title, images, price },
+    product: { id, title, thumbnail, price },
   } = props;
   const history = useHistory();
 
@@ -29,7 +29,7 @@ export default function ProductCard(props) {
         onClick={ handleClick }
       >
         <section className="product-card-image">
-          <img src={ images } alt={ title } />
+          <img src={ thumbnail } alt={ title } />
         </section>
 
         <section className="product-card-info">
@@ -63,12 +63,5 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     mercadopago: PropTypes.bool.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    attributes: PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.string,
-        value: PropTypes.string,
-      }),
-    ),
   }).isRequired,
 };

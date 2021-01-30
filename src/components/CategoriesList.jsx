@@ -1,104 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import CategoryItem from './CategoryItem';
+
+import * as api from '../services/api';
+
 export default function CategoriesList(props) {
+  const [categories, setCategories] = useState([]);
+
   const { handleClick } = props;
 
-  const handleCategoryClick = (e) => {
-    if (handleClick) {
-      handleClick(e.target.value);
-    }
+  const fetchCategories = () => {
+    //
   };
+
+  useEffect(() => {
+    if (categories.length === 0) {
+      fetchCategories();
+    }
+  }, [categories]);
 
   return (
     <nav className="categories-list">
       <ul>
-        <li>
-          <button onClick={ handleCategoryClick } value="Computador" className="nav-link">
-            Computador
-          </button>
-        </li>
-        <li>
-          <button className="nav-link">Veiculos</button>
-        </li>
-        <li>
-          <button className="nav-link">Computador</button>
-        </li>
-        <li>
-          <button className="nav-link">Veiculos</button>
-        </li>
-        <li>
-          <button className="nav-link">Sex Shop</button>
-        </li>
-        <li>
-          <button className="nav-link">Eletrodomesticos</button>
-        </li>
-        <li>
-          <button className="nav-link">Produtos do Lar</button>
-        </li>
-        <li>
-          <button className="nav-link">Computador</button>
-        </li>
-        <li>
-          <button className="nav-link">Veiculos</button>
-        </li>
-        <li>
-          <button className="nav-link">Computador</button>
-        </li>
-        <li>
-          <button className="nav-link">Veiculos</button>
-        </li>
-        <li>
-          <button className="nav-link">Sex Shop</button>
-        </li>
-        <li>
-          <button className="nav-link">Eletrodomesticos</button>
-        </li>
-        <li>
-          <button className="nav-link">Produtos do Lar</button>
-        </li>
-        <li>
-          <button className="nav-link">Computador</button>
-        </li>
-        <li>
-          <button className="nav-link">Veiculos</button>
-        </li>
-        <li>
-          <button className="nav-link">Computador</button>
-        </li>
-        <li>
-          <button className="nav-link">Veiculos</button>
-        </li>
-        <li>
-          <button className="nav-link">Sex Shop</button>
-        </li>
-        <li>
-          <button className="nav-link">Eletrodomesticos</button>
-        </li>
-        <li>
-          <button className="nav-link">Produtos do Lar</button>
-        </li>
-        <li>
-          <button className="nav-link">Computador</button>
-        </li>
-        <li>
-          <button className="nav-link">Veiculos</button>
-        </li>
-        <li>
-          <button className="nav-link">Computador</button>
-        </li>
-        <li>
-          <button className="nav-link">Veiculos</button>
-        </li>
-        <li>
-          <button className="nav-link">Sex Shop</button>
-        </li>
-        <li>
-          <button className="nav-link">Eletrodomesticos</button>
-        </li>
-        <li>
-          <button className="nav-link">Produtos do Lar</button>
-        </li>
+        <CategoryItem label="Computadores" value="id" />
+        <CategoryItem label="Computadores" value="id" />
+        <CategoryItem label="Computadores" value="id" />
+        <CategoryItem label="Computadores" value="id" />
       </ul>
     </nav>
   );
