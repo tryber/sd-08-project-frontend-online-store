@@ -14,8 +14,9 @@ class Home extends React.Component {
     this.requestApi = this.requestApi.bind(this);
   }
 
-  handleChange({ target }) {
-    this.setState({ [target.name]: target.value });
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+    this.requestApi(event);
   }
 
   requestApi({ target }) {
@@ -30,7 +31,6 @@ class Home extends React.Component {
 
   render() {
     const { nameProduct, products } = this.state;
-    console.log(products);
     return (
       <>
         <Header

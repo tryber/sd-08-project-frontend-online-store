@@ -19,8 +19,15 @@ Card.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+  }),
+};
 
-  }).isRequired,
+Card.defaultProps = {
+  product: {
+    title: '',
+    thumbnail: '',
+    price: '',
+  },
 };
 
 export default Card;
