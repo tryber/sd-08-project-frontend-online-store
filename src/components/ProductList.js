@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as RequestAPI from '../services/api';
 import ProductCard from './ProductCard';
 import SearchBar from './SearchBar';
@@ -45,10 +46,18 @@ class ProductList extends Component {
     return (
       <div className="header">
         <SearchBar handleClick={ this.handleClick } handleChange={ this.handleChange } />
-        {products.map((product) => (<ProductCard
-          key={ product.id }
-          product={ product }
-        />))}
+        {products.map((product) => (
+          <Link
+            to={ {
+              pathname: `/product/${product.id}`,
+              state: { productObj: product } } }
+            data-testid="product-detail-link"
+            key={ product.id }
+          >
+            <ProductCard
+              product={ product }
+            />
+          </Link>))}
       </div>
     );
   }
