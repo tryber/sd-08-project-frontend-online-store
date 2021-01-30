@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 // import Loading from '../components/Loading';
 // import NotFound from '../components/NotFound';
+import * as api from '../services/api';
 
 // import { getProduct } from '../helpers/products';
 
@@ -13,7 +14,7 @@ export default function ProductDetails() {
   // const [error, setError] = useState(false);
   // const [loading, setLoading] = useState(false);
 
-  const { id } = useParams();
+  const { id, title } = useParams();
   // const history = useHistory();
 
   // const getProductInfo = async () => {
@@ -27,11 +28,8 @@ export default function ProductDetails() {
   //   setLoading(false);
   // };
 
-  // useEffect(() => {
-  //   if (product === null && !error) {
-  //     getProductInfo();
-  //   }
-  // }, [product, error]);
+  api.getCategories();
+  api.getProductsFromCategoryAndQuery();
 
   const handleBuyClick = () => {
     // if (product !== null) {
@@ -44,7 +42,7 @@ export default function ProductDetails() {
       <Header showLogo={ false } showBack />
       <h1>ProductDetails</h1>
       <h2>{id || ''}</h2>
-      <span data-testid="product-detail-name">title</span>
+      <span data-testid="product-detail-name">{title}</span>
 
       <section className="product-add-cart">
         <button className="product-buy-button" type="button" onClick={ handleBuyClick }>
