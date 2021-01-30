@@ -18,6 +18,7 @@ class LandingPage extends React.Component {
     this.getCategoriesList = this.getCategoriesList.bind(this);
     this.getProductsFromAPI = this.getProductsFromAPI.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.addItemToCart = this.addItemToCart.bind(this);
   }
 
   componentDidMount() {
@@ -55,9 +56,12 @@ class LandingPage extends React.Component {
   }
 
   addItemToCart(product) {
-    this.setState((prevState) => ({
-      shoppingCart: [...prevState.shoppingCart, product],
-    }));
+    const { shoppingCart } = this.state;
+    if (!shoppingCart.includes(product)) {
+      this.setState({
+        shoppingCart: [...shoppingCart, product],
+      });
+    }
   }
 
   renderCategoryList(categoriesList) {
@@ -76,6 +80,37 @@ class LandingPage extends React.Component {
                 { category.name}
               </button>))
         }
+      </div>
+    );
+  }
+
+  renderProductList(productList) {
+    return (
+      <div>
+        { productList.map((product) => (
+          <section
+            key={ product.id }
+            data-testid="product"
+          >
+            <p>{ product.title }</p>
+            <p>
+              R$
+              { product.price }
+            </p>
+            <img src={ product.thumbnail } alt={ product.title } />
+            <Link
+              to={ {
+                pathname: '/product-details',
+                search: '?sort=name',
+                hash: '#the-hash',
+                state: { product },
+              } }
+              data-testid="product-detail-link"
+            >
+              <button type="button">Detalhes</button>
+            </Link>
+          </section>
+        )) }
       </div>
     );
   }
@@ -107,25 +142,14 @@ class LandingPage extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         { this.renderCategoryList(categoriesList)}
-        <div>
-          {productList.map((product) => (
-            <div key={ product.id } data-testid="product">
-              <p>{product.title}</p>
-              <p>
-                R$
-                {product.price}
-              </p>
-              <img src={ product.thumbnail } alt={ product.title } />
-              <button
-                type="button"
-                data-testid="product-add-to-cart"
-                onClick={ () => this.addItemToCart(product) }
-              >
-                Adicionar produto ao carrinho
-              </button>
-            </div>
-          ))}
-        </div>
+        { this.renderProductList(productList)}
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => this.addItemToCart(this.product) }
+        >
+          Adicionar produto ao carrinho
+        </button>
       </div>
     );
   }
