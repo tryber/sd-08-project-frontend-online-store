@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CardProducts from './CardProducts';
+import './CartPage.css';
 
 class CartPage extends React.Component {
   render() {
@@ -10,10 +11,11 @@ class CartPage extends React.Component {
       return (<p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>);
     }
     return (
-      <div>
+      <div className="cardDiv">
         { productsOnCart.map((product) => (<CardProducts
           key={ product.id }
           product={ product }
+          dontShowAddButton
         />))}
       </div>
 
