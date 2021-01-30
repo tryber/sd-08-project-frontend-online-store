@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { AiOutlineSearch } from 'react-icons/ai';
+import './Search.css';
+
 
 class Search extends React.Component {
   render() {
@@ -7,6 +10,7 @@ class Search extends React.Component {
     return (
       <section>
         <form onSubmit={ onChange }>
+          <div className="inputDiv">
           <input
             type="search"
             name="input"
@@ -20,6 +24,8 @@ class Search extends React.Component {
           >
             Pesquisar
           </button>
+          <div className="searchIcon"><AiOutlineSearch /></div>
+          </div>
         </form>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.

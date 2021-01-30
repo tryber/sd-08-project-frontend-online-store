@@ -1,0 +1,29 @@
+.inputDiv {
+  align-items: center;
+  border: 1px solid lightgray;
+  box-shadow: 1px 1px 3px salmon;
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  width: 458px;
+}
+
+.inputDiv input {
+  border: 0;
+  height: 35px;
+  padding-left: 7px;
+  width: 420px;
+}
+
+.inputDiv input:focus {
+  border: 0;
+  outline: 0;
+}
+
+.searchIcon {
+  align-items: center;
+  border-left: 1px solid lightgray;
+  color: lightgray;
+  display: flex;
+  font-size: 2em;
+}
