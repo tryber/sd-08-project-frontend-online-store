@@ -32,7 +32,7 @@ export default function ProductCard(props) {
           <img src={ thumbnail } alt={ title } />
         </section>
 
-        <section className="product-card-info">
+        <section className="product-card-info" data-testid="product">
           <div className="product-card-info-price">
             <span className="price-part-1">R$</span>
             <span className="price-part-2">{price.split(',')[0]}</span>

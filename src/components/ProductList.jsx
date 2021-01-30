@@ -32,9 +32,9 @@ export default function ProductList() {
     setSearch([data, search[1]]);
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     getProductList();
-  }, [search]);
+  }, [search]); */
 
   return (
     <section className="content">
@@ -43,7 +43,14 @@ export default function ProductList() {
         handleCategoryChange={ handleCategoryChange }
       />
       <section className="product-list">
-        <Loading show={ loading } />
+        <button
+          type="button"
+          onClick={ getProductList }
+          data-testid="query-button"
+        >
+          Pesquisa
+        </button>
+        {/* <Loading show={ loading } /> */}
         {productList.length > 0
           ? productList.map((product) => (
             <ProductCard key={ product.id } product={ product } />
