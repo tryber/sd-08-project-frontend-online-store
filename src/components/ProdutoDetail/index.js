@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './ProdutoDetail.css';
 
 class ProdutoDetail extends Component {
@@ -61,5 +62,13 @@ class ProdutoDetail extends Component {
     );
   }
 }
+
+ProdutoDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.arrayOf(PropTypes.object).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default ProdutoDetail;

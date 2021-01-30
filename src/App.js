@@ -98,7 +98,10 @@ export default class App extends Component {
               />) }
             />
             <Route path="/cart" component={ Cart } />
-            <Route path="/produto/:produtoId" render={ (props) => <ProdutoDetail { ...props } produtos={ produtos } /> } />
+            <Route
+              path="/produto/:produtoId"
+              render={ (props) => <ProdutoDetail { ...props } produtos={ produtos } /> }
+            />
           </Switch>
         </main>
         <Footer />
