@@ -16,6 +16,11 @@ class Header extends Component {
     };
 
     this.getProdutsByQuery = this.getProdutsByQuery.bind(this);
+    this.onSearchText = this.onSearchText.bind(this);
+  }
+
+  onSearchText({ target: { name, value } }) {
+    this.setState({ [name]: value });
   }
 
   async getProdutsByQuery() {
@@ -33,6 +38,7 @@ class Header extends Component {
         <SearchBar
           query={ query }
           onClick={ this.getProdutsByQuery }
+          onChange={ this.onSearchText }
         />
         <Link
           data-testid="shopping-cart-button"
@@ -50,7 +56,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  products: PropTypes.string.isRequired,
+  products: PropTypes.func.isRequired,
 };
 
 export default Header;

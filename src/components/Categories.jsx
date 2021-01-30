@@ -9,6 +9,10 @@ class Categories extends Component {
       list: [],
     };
 
+    this.state = {
+      list: [{ id: 0, name: '' }],
+    };
+
     this.loadingCategories = this.loadingCategories.bind(this);
   }
 
@@ -33,7 +37,7 @@ class Categories extends Component {
                 type="radio"
                 id={ id }
                 value={ name }
-                name="radio-option"
+                name="categoryId"
                 data-testid="category"
               />
               <label htmlFor={ id }>{ name }</label>

@@ -6,7 +6,6 @@ import CardProducts from './CardProducts';
 class Home extends Component {
   constructor() {
     super();
-
     this.state = {
       products: [],
     };
