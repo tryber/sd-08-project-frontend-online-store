@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ShowDetails from './ShowDetailsButton';
 
 class SearchResult extends React.Component {
   renderCard(productsList) {
@@ -9,6 +10,7 @@ class SearchResult extends React.Component {
           <h3 className="product-title">{ title }</h3>
           <img src={ thumbnail } alt={ title } />
           <p className="product-price">{ price }</p>
+          <ShowDetails />
         </section>))
     );
   }
