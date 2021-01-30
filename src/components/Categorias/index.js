@@ -18,6 +18,7 @@ class Categorias extends Component {
             >
               <button
                 type="button"
+                className="cat-btn"
                 data-testid="category"
                 name={ item.id }
                 onClick={ () => funcCategoria(item) }

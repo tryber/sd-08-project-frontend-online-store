@@ -1,11 +1,12 @@
 .search {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  margin: 3% 2%;
+  width: 80%;
 }
 
 .search p {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .search-input {

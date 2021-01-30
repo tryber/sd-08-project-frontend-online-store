@@ -8,11 +8,6 @@
   width: 100%;
 }
 
-.footer-contain:nth-child( 2 ) {
-  background-color: violet;
-  justify-self: baseline;
-}
-
 .footer-contain a {
   color: white;
   text-decoration: none;

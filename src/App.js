@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Cart from './components/Cart';
-import Categorias from './components/Categorias';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Produtos from './components/Produtos';
 import * as api from './services/api';
+import ProdutoDetail from './components/ProdutoDetail';
 
 export default class App extends Component {
   constructor() {
@@ -82,10 +82,6 @@ export default class App extends Component {
       <BrowserRouter>
         <Header cart={ cart } />
         <main className="App">
-          <Categorias
-            categorias={ categorias }
-            funcCategoria={ this.alteraCategoriaBusca }
-          />
           <Switch>
             <Route
               path="/"
@@ -94,9 +90,15 @@ export default class App extends Component {
                 produtos={ produtos }
                 buscaInput={ this.buscaInput }
                 submitBotao={ this.submitBotao }
+                categorias={ categorias }
+                funcCategoria={ this.alteraCategoriaBusca }
               />) }
             />
             <Route path="/cart" component={ Cart } />
+            <Route
+              path="/produto/:produtoId"
+              render={ (props) => <ProdutoDetail { ...props } produtos={ produtos } /> }
+            />
           </Switch>
         </main>
         <Footer />
