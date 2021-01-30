@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
-import NavBar from './NavBar';
+import CategoriesList from './CategoriesList';
 
 export default function SearchBar() {
   const [searchText, setSearchText] = useState('');
+  const [searchCategory, setSearchCategory] = useState('');
 
   const handleSearchInputChange = (e) => {
     setSearchText(e.target.value);
+    setSearchCategory('');
+  };
+
+  const handleCategoryClick = (value) => {
+    setSearchCategory(value);
+    setSearchText('');
   };
 
   useEffect(() => {
-    // Atualiza o titulo do documento usando a API do browser
+    console.log(searchText, searchCategory);
   });
 
   return (
@@ -18,7 +25,6 @@ export default function SearchBar() {
       <div className="home-message" data-testid="home-initial-message">
         Digite algum termo de pesquisa ou escolha uma categoria.
       </div>
-
       <input
         className="product-search-input"
         type="text"
@@ -26,7 +32,7 @@ export default function SearchBar() {
         onChange={ handleSearchInputChange }
         value={ searchText }
       />
-      <NavBar />
+      <CategoriesList handleClick={ handleCategoryClick } />
     </section>
   );
 }
