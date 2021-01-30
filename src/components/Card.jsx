@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 class Card extends React.Component {
   render() {
-    const { product: { title, thumbnail, price } } = this.props;
+    const { product: { id, title, thumbnail, price } } = this.props;
     return (
-      <div>
+      <div key={ id } data-testid="product">
         <img src={ thumbnail } alt={ title } />
         <span>{title}</span>
-        <span>{`R$${price.toFixed(2)}`}</span>
+        <span>{`R$${price}`}</span>
       </div>
     );
   }
@@ -16,6 +16,7 @@ class Card extends React.Component {
 
 Card.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
@@ -24,6 +25,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   product: {
+    id: '',
     title: '',
     thumbnail: '',
     price: '',

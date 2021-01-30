@@ -2,30 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
   handleSubmit(event) {
     event.preventDefault();
   }
 
   render() {
-    const { nameProduct, onQueryProduct, onClickRequest } = this.props;
+    const { queryProduct, handleChange, requestApi } = this.props;
     return (
       <form onSubmit={ this.handleSubmit }>
         <input
           data-testid="query-input"
+          name="queryProduct"
+          onChange={ handleChange }
           type="text"
-          value={ nameProduct }
-          name="nameProduct"
-          onChange={ onQueryProduct }
+          value={ queryProduct }
         />
         <button
           data-testid="query-button"
+          onClick={ requestApi }
           type="submit"
-          onClick={ onClickRequest }
         >
           Enviar
         </button>
@@ -35,9 +30,9 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
-  nameProduct: PropTypes.string.isRequired,
-  onQueryProduct: PropTypes.func.isRequired,
-  onClickRequest: PropTypes.func.isRequired,
+  queryProduct: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  requestApi: PropTypes.func.isRequired,
 };
 
 export default Search;

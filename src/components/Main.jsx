@@ -4,34 +4,31 @@ import Card from './Card';
 
 class Main extends React.Component {
   render() {
-    const { itemsProducts } = this.props;
-    if (!Array.isArray(itemsProducts)) {
+    const { listProducts } = this.props;
+    if (listProducts.length === 0) {
       return (
-        <div>Vazio</div>
+        <>
+          <h1 data-testid="product">Vázio</h1>
+          <h1 data-testid="product">{' '}</h1>
+        </>
       );
     }
-    const renderItems = itemsProducts.map((product) => (
-      <Card data-testid="product" key={ product.id } product={ product } />));
     return (
-      <div>
-        {renderItems}
+      <div key="allProducts">
+        { listProducts.map((product, index) => (
+          <Card key={ index } product={ product } />
+        ))}
       </div>
     );
   }
 }
 
 Main.propTypes = {
-  itemsProducts: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      thumbnail: PropTypes.string,
-      price: PropTypes.number,
-    }),
-  ),
+  listProducts: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 Main.defaultProps = {
-  itemsProducts: undefined,
+  listProducts: [],
 };
 
 export default Main;

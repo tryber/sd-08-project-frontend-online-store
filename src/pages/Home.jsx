@@ -6,40 +6,38 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameProduct: '',
-      category: '',
-      products: [],
+      // categoryID: '',
+      queryProduct: '',
+      listProducts: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.requestApi = this.requestApi.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-    this.requestApi(event);
+  handleChange({ target }) {
+    this.setState({ [target.name]: target.value });
   }
 
-  requestApi({ target }) {
-    this.setState({ [target.name]: target.value },
-      async () => {
-        const { category, nameProduct } = this.state;
-        this.setState({
-          products: await api.getProductsFromCategoryAndQuery(category, nameProduct),
-        });
-      });
+  requestApi() {
+    const { queryProduct } = this.state;
+    api.getProductsFromCategoryAndQuery('', queryProduct)
+      .then((resolve) => this.setState(
+        { listProducts: resolve.length > 0 ? resolve.results : [],
+          queryProduct: '' },
+      ));
   }
 
   render() {
-    const { nameProduct, products } = this.state;
+    const { queryProduct, listProducts } = this.state;
     return (
-      <>
+      <div>
         <Header
-          value={ nameProduct }
-          onQueryProduct={ this.handleChange }
-          onClickRequest={ this.requestApi }
+          queryProduct={ queryProduct }
+          handleChange={ this.handleChange }
+          requestApi={ this.requestApi }
         />
-        <Main itemsProducts={ products } />
-      </>
+        <Main listProducts={ listProducts } />
+      </div>
     );
   }
 }
