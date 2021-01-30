@@ -1,0 +1,12 @@
+.catButton {
+  background: tomato;
+  border-radius: 20px;
+  color: white;
+  opacity: 0.8;
+}
+
+.catButton:hover {
+ opacity: 1;
+ border: 2px solid black;
+ cursor: pointer; 
+}

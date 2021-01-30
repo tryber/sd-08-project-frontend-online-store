@@ -1,0 +1,41 @@
+.free-shipping {
+  color: red;
+  font-weight: 900;
+}
+
+.linkButtonContainer {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  margin: auto;
+  width: fit-content;
+}
+
+.msg {
+  display: none;
+}
+
+.product-card {
+  border: 1px solid black;
+  border-radius: 10px ;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 10px;
+  width: 250px;
+}
+
+.product-card button {
+  border-radius: 10px ;
+  width: 150px;
+  opacity: 0.8;
+}
+
+.product-card button:hover {
+  opacity: 1;
+  cursor: pointer;
+} 
+
+.product-card button:hover + .msg {
+  display: inline;
+}
