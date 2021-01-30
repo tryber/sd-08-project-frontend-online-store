@@ -1,9 +1,15 @@
 import React from 'react';
 import CartButton from '../components/CartButton';
-import SearchResult from '../components/SearchResult';
 import Categories from '../components/Categories';
+import SearchResult from '../components/SearchResult';
+// import CartButton from '../components/CartButton';
+// import SearchResult from '../components/SearchResult';
+// import Categories from '../components/Categories';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import SearchForm from '../components/SearchForm';
+// import MainContent from './MainContent';
+// import InitialMessage from '../components/InitialMessage';
+// import MainContent from './MainContent';
 
 class Home extends React.Component {
   constructor() {
@@ -13,6 +19,10 @@ class Home extends React.Component {
       productsList: [],
       categories: [],
       radioValue: '',
+      // productDetail: [],
+      // cartItems: [],
+      // showCart: false,
+      // isLoading: true,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
@@ -74,6 +84,24 @@ class Home extends React.Component {
           handleInputRadio={ this.handleInputRadio }
         />
         <SearchResult productsList={ productsList } />
+        {/* {
+          productsList.length < 1
+            ? <InitialMessage />
+            : <MainContent
+              submitCallback={ this.handleInputSubmit }
+              handleInputChange={ this.handleInputChange }
+              categories={ categories }
+              handleInputRadio={ this.handleInputRadio }
+              productsList={ productsList }
+            />
+        } */}
+        {/* <MainContent
+          submitCallback={ this.handleInputSubmit }
+          handleInputChange={ this.handleInputChange }
+          categories={ categories }
+          handleInputRadio={ this.handleInputRadio }
+          productsList={ productsList }
+        /> */}
       </>
     );
   }

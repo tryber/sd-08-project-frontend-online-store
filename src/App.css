@@ -1,3 +1,15 @@
 li {
   display: flex;
 }
+
+/* .categoriesList {
+  position: absolute;
+} */
+
+.product-by-query {
+  display: block;
+}
+
+/* .product-card {
+  float: right;
+} */
