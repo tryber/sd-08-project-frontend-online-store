@@ -21,8 +21,13 @@ export default function ProductCard(props) {
   };
 
   return (
-    <section className="product-card-wraper" data-testid="product-detail-link">
-      <button type="button" className="product-card" onClick={ handleClick }>
+    <section className="product-card-wraper">
+      <button
+        type="button"
+        className="product-card"
+        data-testid="product-detail-link"
+        onClick={ handleClick }
+      >
         <section className="product-card-image">
           <img src={ images } alt={ title } />
         </section>
