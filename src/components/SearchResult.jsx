@@ -8,9 +8,9 @@ class SearchResult extends React.Component {
     return (
       <ul className="product-card" data-testid="product" key={ productsList.id }>
         {
-          productsList.map(({ id, title, thumbnail, price, attributes, condition,
+          productsList.map(({ id, title, thumbnail, price, attributes, condition, address,
             // available_quantity, sold_quantity, stop_time, accepts_mercadopago, currency_id,
-            address, shipping }) => (
+          }) => (
             <li key={ id } className="product-by-query">
               <h3 className="product-title">{ title }</h3>
               <img src={ thumbnail } alt={ title } />
@@ -26,8 +26,8 @@ class SearchResult extends React.Component {
                 // stop_time={ stop_time }
                 // accepts_mercadopago={ accepts_mercadopago }
                 // currency_id={ currency_id }
+                // shipping={ shipping }
                 address={ address }
-                shipping={ shipping }
                 condition={ condition }
               />
             </li>
