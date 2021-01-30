@@ -7,7 +7,7 @@ export default function Cart() {
     <main>
       <Header showLogo={ false } showBack />
 
-      <h1>Checkout</h1>
+      <h1>Cart</h1>
     </main>
   );
 }

@@ -37,9 +37,7 @@ export default function Header(props) {
               <img className="button-back-image" src="icon-back.png" alt="back" />
             </button>
           ) : null}
-          {showLogo ? (
-            <img className="shopping-logo" src="shopping.png" alt="logo" />
-          ) : null}
+          {showLogo ? <img className="shopping-logo" src="logo.png" alt="logo" /> : null}
         </section>
         {showCheckout ? (
           <button type="button" className="cart-button" onClick={ handleClickCart }>
