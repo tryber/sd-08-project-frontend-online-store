@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ListCards from './ListCards';
 import ShoppingCartIcon from './ShoppingCartIcon';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import CategoryList from './CategoryList';
 
 class Home extends Component {
   constructor() {
@@ -61,9 +62,14 @@ class Home extends Component {
           </div>
           <ShoppingCartIcon />
         </header>
-        <section className="CardListContainer">
-          {this.CardMount()}
-        </section>
+        <container className="container">
+          <ul className="categorylist">
+            <CategoryList />
+          </ul>
+          <section className="CardListContainer">
+            {this.CardMount()}
+          </section>
+        </container>
       </div>
     );
   }
