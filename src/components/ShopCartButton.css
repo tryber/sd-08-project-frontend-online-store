@@ -1,0 +1,37 @@
+.cart-img {
+  border-radius: 10px;
+  position: relative;
+  width: 40px;
+}
+
+@media ( prefers-reduced-motion : no-preference ) {
+
+  .cart-img {
+    animation: cart-img-spin infinite 6s linear;
+    
+  }
+
+  .cart-img:hover {
+    animation-play-state: paused;
+  }
+  
+
+}
+
+
+@keyframes cart-img-spin {
+
+  0%   {background-color:red; left:0px; right:0px;}
+  25%  {background-color:yellow; left:300px; right:0px;}
+  50%  {background-color:blue; left:0px; right:300px;}
+  75%  {background-color:green; left:-300px; right:0px;}
+  100% {background-color:red; left: 0px; right:0px;}
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
