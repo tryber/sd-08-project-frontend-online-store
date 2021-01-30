@@ -31,11 +31,13 @@ class Home extends React.Component {
 
   async handleInputSubmit(event) {
     event.preventDefault();
-    const { searchField } = this.state;
-    const response = await getProductsFromCategoryAndQuery(undefined, searchField);
-    this.setState({
-      productsList: response.results,
-    });
+    const { searchField, radioValue } = this.state;
+    if (searchField || radioValue) {
+      const response = await getProductsFromCategoryAndQuery(radioValue, searchField);
+      this.setState({
+        productsList: response.results,
+      });
+    }
   }
 
   async handleInputRadio(event) {
