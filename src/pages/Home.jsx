@@ -1,7 +1,5 @@
 import React from 'react';
 import CartButton from '../components/CartButton';
-import SearchButton from '../components/SearchButton';
-import SearchField from '../components/SearchField';
 import SearchResult from '../components/SearchResult';
 import Categories from '../components/Categories';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
@@ -31,19 +29,18 @@ class Home extends React.Component {
   }
 
   handleInputChange(event) {
-    const { searchField } = this.state;
     this.setState({
       searchField: event.target.value,
     });
   }
 
-  handleInputSubmit(event) {
+  async handleInputSubmit(event) {
     event.preventDefault();
     const { searchField } = this.state;
-    const result = async () => {
-      await getProductsFromCategoryAndQuery(searchField);
-    };
-    console.log(result);
+    const response = await getProductsFromCategoryAndQuery(undefined, searchField);
+    this.setState({
+      productsList: response.results,
+    });
   }
 
   async getCategoriesList() {
@@ -54,7 +51,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories, productsList } = this.state;
     return (
       <>
         <SearchForm
@@ -63,7 +60,7 @@ class Home extends React.Component {
         />
         <CartButton />
         <Categories categories={ categories } />
-        <SearchResult />
+        <SearchResult productsList={ productsList } />
       </>
     );
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchField extends React.Component {
   constructor(props) {
@@ -21,5 +22,9 @@ class SearchField extends React.Component {
     );
   }
 }
+
+SearchField.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+};
 
 export default SearchField;

@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Categories extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      categories: [],
-    };
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     categories: [],
+  //   };
+  // }
 
   render() {
     const { categories } = this.props;
