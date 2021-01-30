@@ -19,7 +19,9 @@ export default function ProductCard(props) {
     const { product } = props;
     const data = localStorage.getItem(DEF_CART_KEY);
     if (data === '' || !data) {
-      localStorage.setItem(DEF_CART_KEY, JSON.stringify([product]));
+      const item = { ...product };
+      item.count = 1;
+      localStorage.setItem(DEF_CART_KEY, JSON.stringify([item]));
     } else {
       const cart = JSON.parse(data);
       const item = { ...product };

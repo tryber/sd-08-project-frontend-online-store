@@ -491,4 +491,36 @@ header .header-wrap .cart-button .cart-count {
 .product-add-cart .product-buy-button:focus {
   outline: none;
 }
+
+.shopping-cart-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: 1px solid green;
+  padding: 6px;
+}
+
+.shopping-cart-list .shopping-cart-list-item {
+  padding: 2px;
+  border: 1px solid blue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.shopping-cart-list .shopping-cart-list-item .item-name {
+  width: 40%;
+  padding: 5px;
+}
+
+.shopping-cart-list .shopping-cart-list-item .item-count {
+  color: red;
+  width: 5%;
+  font-weight: 600;
+  padding: 5px;
+}
 /*# sourceMappingURL=App.css.map */

@@ -31,14 +31,20 @@ export default function Cart() {
       {productList === null ? (
         <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>
       ) : null}
-      {productList !== null
-        ? productList.map((i) => (
-          <div key={ i.id }>
-            <div data-testid="shopping-cart-product-name">{i.title}</div>
-            <div data-testid="shopping-cart-product-quantity">1</div>
-          </div>
-        ))
-        : null}
+      <div className="shopping-cart-list">
+        {productList !== null
+          ? productList.map((i, index) => (
+            <div className="shopping-cart-list-item" key={ index }>
+              <div className="item-name" data-testid="shopping-cart-product-name">
+                {i.title}
+              </div>
+              <div className="item-count" data-testid="shopping-cart-product-quantity">
+                {i.count}
+              </div>
+            </div>
+          ))
+          : null}
+      </div>
       <button type="button" onClick={ handleClearCart }>
         Limpar
       </button>

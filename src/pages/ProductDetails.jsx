@@ -28,12 +28,11 @@ export default function ProductDetails() {
       cart.push({ id, title, count: 1 });
       localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
     }
-    history.push('/');
   };
 
   return (
     <main>
-      <Header showLogo={ false } showBack />
+      <Header showLogo={ false } showBack showCheckout={ false } />
       <h1>ProductDetails</h1>
       <h2>{id || ''}</h2>
       <span data-testid="product-detail-name">{title}</span>
