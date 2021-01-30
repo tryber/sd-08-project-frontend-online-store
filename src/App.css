@@ -4,6 +4,17 @@
   margin-left: 5px;
 }
 
+.container {
+  display: flex;
+}
+
+.categorylist {
+  border: 1px solid black;
+  display: flex;
+  flex-flow: column;
+  list-style-type: none;
+}
+
 .CardListContainer {
   display: flex;
   flex-flow: row wrap;
