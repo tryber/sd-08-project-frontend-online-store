@@ -62,14 +62,14 @@ class Home extends Component {
           </div>
           <ShoppingCartIcon />
         </header>
-        <container className="container">
+        <section className="container">
           <ul className="categorylist">
             <CategoryList />
           </ul>
           <section className="CardListContainer">
             {this.CardMount()}
           </section>
-        </container>
+        </section>
       </div>
     );
   }
