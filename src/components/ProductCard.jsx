@@ -6,6 +6,10 @@ export default function ProductCard(props) {
 
   const aprice = parsePrice(price);
 
+  const handleAddCart = () => {
+    console.log(props);
+  };
+
   return (
     <section className="product-card">
       <section className="product-card-image">
@@ -22,7 +26,7 @@ export default function ProductCard(props) {
       </section>
 
       <section className="product-card-buy">
-        <button className="product-card-buy-button" type="button">
+        <button className="product-card-buy-button" type="button" onClick={ handleAddCart }>
           Adicionar ao Carrinho
         </button>
       </section>
