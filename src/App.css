@@ -54,6 +54,7 @@ header {
   background-color: #fff159;
   padding-top: 6px;
   padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.164);
 }
 
 header .header-wrap {
@@ -86,10 +87,28 @@ header .header-wrap .header-left .shopping-logo {
   width: auto;
   height: 80px;
   position: relative;
-  margin-left: 12px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
-header .header-wrap .header-right {
+header .header-wrap .header-left .header-button-back {
+  background-color: #fff159;
+  border: 0;
+  font-size: 1.2em;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+header .header-wrap .header-left .header-button-back:hover {
+  cursor: pointer;
+}
+
+header .header-wrap .header-left .header-button-back .button-back-image {
+  width: 30px;
+  height: 30px;
+}
+
+header .header-wrap .cart-button {
   width: auto;
   height: 100%;
   display: -webkit-box;
@@ -107,17 +126,17 @@ header .header-wrap .header-right {
   padding-right: 4px;
 }
 
-header .header-wrap .header-right:hover {
+header .header-wrap .cart-button:hover {
   cursor: pointer;
 }
 
-header .header-wrap .header-right .checkout-image {
+header .header-wrap .cart-button .cart-image {
   width: 26px;
   height: 26px;
   display: block;
 }
 
-header .header-wrap .header-right .checkout-count {
+header .header-wrap .cart-button .cart-count {
   display: block;
   position: relative;
   top: -10px;
@@ -138,8 +157,7 @@ header .header-wrap .header-right .checkout-count {
   display: -ms-flexbox;
   display: flex;
   background-color: #fff159;
-  border-top: 1px solid rgba(56, 56, 56, 0.068);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.164);
 }
 
 .navbar .nav-categories {

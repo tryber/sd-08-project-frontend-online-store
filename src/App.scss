@@ -66,6 +66,7 @@ header {
   background-color: $primary-bg-color;
   padding-top: 6px;
   padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.164);
   .header-wrap {
     // border: 1px solid green;
     display: flex;
@@ -84,11 +85,26 @@ header {
         width: auto;
         height: 80px;
         position: relative;
-        margin-left: 12px;
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+      .header-button-back {
+        background-color: $primary-bg-color;
+        border: 0;
+        font-size: 1.2em;
+        margin-left: 4px;
+        margin-right: 4px;
+        &:hover {
+          cursor: pointer;
+        }
+        .button-back-image  {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
 
-    .header-right {
+    .cart-button {
       width: auto;
       height: 100%;
       display: flex;
@@ -102,12 +118,12 @@ header {
       //  border: 1px solid blue;
        padding-left: 12px;
        padding-right: 4px;
-      .checkout-image {
+      .cart-image {
         width: 26px;
         height: 26px;
         display: block;
       } 
-      .checkout-count {
+      .cart-count {
         display: block;
         position: relative;
         top: -10px;
@@ -131,8 +147,7 @@ header {
   width: 100%;
   display: flex;
   background-color: $primary-bg-color;
-  border-top: 1px solid rgba(56, 56, 56, 0.068);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.164);
 
   .nav-categories {
     min-height: 20px;
