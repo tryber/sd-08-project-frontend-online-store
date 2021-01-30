@@ -18,6 +18,7 @@ class LandingPage extends React.Component {
     this.getCategoriesList = this.getCategoriesList.bind(this);
     this.getProductsFromAPI = this.getProductsFromAPI.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.addItemToCart = this.addItemToCart.bind(this);
   }
 
   componentDidMount() {
@@ -55,9 +56,12 @@ class LandingPage extends React.Component {
   }
 
   addItemToCart(product) {
-    this.setState((prevState) => ({
-      shoppingCart: [...prevState.shoppingCart, product],
-    }));
+    const { shoppingCart } = this.state;
+    if (!shoppingCart.includes(product)) {
+      this.setState({
+        shoppingCart: [...shoppingCart, product],
+      });
+    }
   }
 
   renderCategoryList(categoriesList) {
