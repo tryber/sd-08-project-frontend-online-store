@@ -1,24 +1,19 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import CategoriesList from './CategoriesList';
 
-export default function SearchBar() {
-  const [searchText, setSearchText] = useState('');
-  const [searchCategory, setSearchCategory] = useState('');
+export default function SearchBar(props) {
+  const { handleCategoryChange, handleQueryChange } = props;
 
-  const handleSearchInputChange = (e) => {
-    setSearchText(e.target.value);
-    setSearchCategory('');
+  const handleInputChange = (e) => {
+    const value = e.target.value.trim();
+    if (value === '') return handleQueryChange(undefined);
+    handleQueryChange(value);
   };
 
   const handleCategoryClick = (value) => {
-    setSearchCategory(value);
-    setSearchText('');
+    handleCategoryChange(value);
   };
-
-  useEffect(() => {
-    console.log(searchText, searchCategory);
-  }, [searchText, searchCategory]);
 
   return (
     <section className="product-search">
@@ -29,10 +24,14 @@ export default function SearchBar() {
         className="product-search-input"
         type="text"
         placeholder="Buscar produtos, marcas e muito mais..."
-        onChange={ handleSearchInputChange }
-        value={ searchText }
+        onChange={ handleInputChange }
       />
       <CategoriesList handleClick={ handleCategoryClick } />
     </section>
   );
 }
+
+SearchBar.propTypes = {
+  handleQueryChange: PropTypes.func.isRequired,
+  handleCategoryChange: PropTypes.func.isRequired,
+};
