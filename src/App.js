@@ -20,9 +20,6 @@ class App extends React.Component {
       categories: [],
       products: [],
       productsOnCart: [],
-      result: [],
-      'query-input': '',
-      'selected-category': '',
     };
   }
 
@@ -30,7 +27,6 @@ class App extends React.Component {
     api.getCategories().then((result) => {
       this.setState(() => ({ categories: result }));
     });
-    // this.buscaDeProdutos(); -- Creio que não precisa mais desse, temos que fazer outra coisa
   }
 
   handleChange(envet) {

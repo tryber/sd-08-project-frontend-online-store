@@ -11,7 +11,6 @@ class Search extends React.Component {
             type="search"
             name="input"
             data-testid="query-input"
-            placeholder="Digite algum termo de pesquisa ou escolha uma categoria"
             onChange={ onChange }
           />
           <button
@@ -22,9 +21,9 @@ class Search extends React.Component {
             Pesquisar
           </button>
         </form>
-        {/* <p data-testid="home-initial-message">
+        <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>  creio que fica melhor no placeholder */}
+        </p>
       </section>
     );
   }
