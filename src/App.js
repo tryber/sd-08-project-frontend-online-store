@@ -1,17 +1,26 @@
 import React from 'react';
-import Categories from './Components/Categories';
-
-// import * as api from './services/api';
+import { Link, Route, BrowserRouter, Switch } from 'react-router-dom';
+import Shop from './pages/Shop';
+import Home from './pages/Home';
+import ShoppingCart from './Components/ShoppingCart';
 
 function App() {
-  // api.getProductsFromCategoryAndQuery("MLB271599", "Ração").then(cat => console.log(cat));
   return (
-    <div>
-      <p data-testid="home-initial-message">
-        Digite algum termo de pesquisa ou escolha uma categoria.
-      </p>
-      <Categories />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Link to="/shop" data-testid="shopping-cart-button">
+          <ShoppingCart />
+        </Link>
+      </div>
+      <Switch>
+        <Route exact path="/shop">
+          <Shop />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
