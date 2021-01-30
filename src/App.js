@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Produtos from './components/Produtos';
 import * as api from './services/api';
+import ProdutoDetail from './components/ProdutoDetail';
 
 export default class App extends Component {
   constructor() {
@@ -97,6 +98,7 @@ export default class App extends Component {
               />) }
             />
             <Route path="/cart" component={ Cart } />
+            <Route path="/produto/:produtoId" render={ (props) => <ProdutoDetail { ...props } produtos={ produtos } /> } />
           </Switch>
         </main>
         <Footer />

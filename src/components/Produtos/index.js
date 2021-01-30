@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Search from '../Serach';
 import './Produtos.css';
+import { Link } from 'react-router-dom';
 
 export default class Produtos extends Component {
   render() {
@@ -14,6 +15,7 @@ export default class Produtos extends Component {
             <img src={ item.thumbnail } alt={ item.title } />
             <p className="produtos-title">{item.title}</p>
             <p className="produtos-price">{item.price}</p>
+            <Link data-testid="product-detail-link" to={ `/produto/${item.id}` }>Mais detalhes...</Link>
           </div>
         ))
           : 'Carregando...'}

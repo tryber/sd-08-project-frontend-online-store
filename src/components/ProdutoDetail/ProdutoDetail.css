@@ -1,0 +1,12 @@
+.prod-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.prod-main {
+    margin-top: 15px;
+    padding: 3%;
+    text-align: center;
+    width: 90%;
+}
