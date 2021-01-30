@@ -9,7 +9,7 @@ class CardProducts extends React.Component {
     const { thumbnail, price, title, id } = product;
 
     return (
-      <div className="productCard">
+      <div className="productCard" data-testid="product">
         <div className="imgDiv">
           <img src={ thumbnail } alt="Thumb" />
         </div>
