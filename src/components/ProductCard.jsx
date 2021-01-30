@@ -25,6 +25,7 @@ export default function ProductCard(props) {
       cart.push(product);
       localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
     }
+    history.push('/');
   };
   return (
     <section className="product-card-wraper">
