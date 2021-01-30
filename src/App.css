@@ -368,7 +368,7 @@ header .header-wrap .header-right .checkout-count {
           justify-content: center;
 }
 
-.product-card .product-card-buy .product-card-buy-button {
+.product-card .product-card-buy .buy-button {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -380,12 +380,12 @@ header .header-wrap .header-right .checkout-count {
   background-color: #ffee31;
 }
 
-.product-card .product-card-buy .product-card-buy-button:hover {
+.product-card .product-card-buy .buy-button:hover {
   background-color: #ffec1e;
   color: #1a1a1a;
 }
 
-.product-card .product-card-buy .product-card-buy-button:focus {
+.product-card .product-card-buy .buy-button:focus {
   outline: none;
 }
 /*# sourceMappingURL=App.css.map */

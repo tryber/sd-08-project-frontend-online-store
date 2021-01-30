@@ -33,7 +33,7 @@ export default function ProductCard(props) {
       </section>
 
       <section className="product-card-buy">
-        <button className="product-card-buy-button" type="button" onClick={ handleAddCart }>
+        <button className="buy-button" type="button" onClick={ handleAddCart }>
           Adicionar ao Carrinho
         </button>
       </section>
