@@ -6,10 +6,11 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      object: [],
+      object: [1],
     };
 
     this.listUpdate = this.listUpdate.bind(this);
+    this.CardMount = this.CardMount.bind(this);
   }
 
   async listUpdate(newValue) {
@@ -18,8 +19,21 @@ class Home extends Component {
     console.log(this.state);
   }
 
-  render() {
+  CardMount() {
     const { object } = this.state;
+    if (object[0] === 1) {
+      return <h2> Digite algum termo de pesquisa ou escolha uma categoria. </h2>;
+    }
+    if (object.length === 0) {
+      return <h2> Nenhum produto foi encontrado </h2>;
+    }
+    return object.map((item) => (<ListCards
+      key={ item.id }
+      productprop={ item }
+    />));
+  }
+
+  render() {
     return (
       <div>
         <input
@@ -37,13 +51,8 @@ class Home extends Component {
         >
           Buscar
         </button>
-        <section>
-          {
-            object.map((item) => (<ListCards
-              key={ item.id }
-              prop={ item }
-            />))
-          }
+        <section className="CardListContainer">
+          {this.CardMount()}
         </section>
       </div>
     );

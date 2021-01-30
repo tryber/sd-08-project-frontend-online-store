@@ -4,8 +4,8 @@ import '../App.css';
 
 class ListCards extends Component {
   render() {
-    const { prop } = this.props;
-    const { title, price, thumbnail } = prop;
+    const { productprop } = this.props;
+    const { title, price, thumbnail } = productprop;
     return (
       <section data-testid="product" className="section-card">
         <p>{ title }</p>
@@ -18,5 +18,13 @@ class ListCards extends Component {
     );
   }
 }
+
+ListCards.propTypes = {
+  productprop: PropTypes.shape({
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.number,
+  }).isRequired,
+};
 
 export default ListCards;

@@ -1,0 +1,16 @@
+.CardListContainer {
+  display: flex;
+  flex-flow: row wrap ;
+}
+
+.section-card {
+  align-content: flex-start;
+  align-items: center;
+  background-color: darkslateblue;
+  border: 1px solid darkorchid;
+  border-radius: 20px;
+  flex-flow: column wrap;
+  display: flex;
+  width: 250px;
+  height: 250px ;
+}
