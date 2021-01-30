@@ -26,3 +26,12 @@
 .cat-item:hover {
   background-color: rgb(8, 47, 131);
 }
+
+.cat-btn{
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
