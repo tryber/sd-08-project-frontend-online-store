@@ -46,7 +46,7 @@ export default function ProductDetails() {
       {error ? <NotFound /> : null}
       {loading ? <Loading /> : null}
       {product !== null ? <div>{JSON.stringify(product)}</div> : null}
-      <section className="product-buy">
+      <section className="product-add-cart">
         <button className="product-buy-button" type="button" onClick={ handleBuyClick }>
           Adicionar ao Carrinho
         </button>

@@ -264,8 +264,8 @@ header {
 }
 
 .product-card-wraper {
-  // border: 1px solid green;
-  border: 0;
+  //border: 1px solid green;
+  border: 1px solid rgba(0, 0, 0, 0.137);
   margin-left: 4px;
   margin-right: 4px;
   margin-bottom: 8px;
@@ -273,9 +273,10 @@ header {
 
   .product-card {
     // border: 1px solid black;
+    border: 0;
     display: flex;
     flex-direction: column;
-    height: 300px;
+    height: 260px;
     width: 220px;
     background-color: $card-bg-color;
 
@@ -330,22 +331,23 @@ header {
       }
       .product-card-info-title {
         color: $card-secundary-color;
-        font-size: 1vw;
-        margin-top: 8px;
+        font-size: 0.9vw;
+        margin-top: 12px;
       }
     }
  
   }
 
   .product-buy {
+    border-top:  1px solid rgba(0, 0, 0, 0.137);
     height: 30px;
     width: 100%;
-    border: 0;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     justify-content: center;
     .product-buy-button {
+      border: 0;
       align-self: center;
       width: 100%;
       height: 100%;
@@ -360,28 +362,28 @@ header {
   }
 }
 
-// .product-buy {
-//   height: 30px;
-//   width: 200px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   display: flex;
-//   justify-content: center;
-//   .product-buy-button {
-//     align-self: center;
-//     width: 100%;
-//     height: 100%;
-//     border: 1px solid rgba(149, 149, 149, 0.692);
-//     color: $card-primary-color;
-//     font-weight: 600;
-//     background-color: #ffee31;
-//     &:hover {
-//       background-color: #ffea00;
-//       color: rgb(26, 26, 26);
-//       border: 1px solid rgba(58, 58, 58, 0.692);
-//     }
-//     &:focus {
-//       outline: none;
-//     }
-//   }
-// }
+.product-add-cart {
+  height: 30px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  .product-buy-button {
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(149, 149, 149, 0.692);
+    color: $card-primary-color;
+    font-weight: 600;
+    background-color: #ffee31;
+    &:hover {
+      background-color: #ffea00;
+      color: rgb(26, 26, 26);
+      border: 1px solid rgba(58, 58, 58, 0.692);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
