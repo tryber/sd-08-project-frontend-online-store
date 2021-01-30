@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import CartIcon from './CartIcon';
 import './TopNavBar.css';
 
 class TopNavBar extends React.Component {
@@ -10,17 +9,13 @@ class TopNavBar extends React.Component {
     const { cartSize } = this.props;
     return (
       <div className="topNavBar">
-        <ul className="topNavList">
-          <li className="topNavIcon logo">
-            <Link to="/">LOGO</Link>
-          </li>
-          <li className="topNavIcon cart">
-            <CartIcon />
-            (
-            { cartSize }
-            )
-          </li>
-        </ul>
+        <Link className="cartLogo" to="/">YUB.COM</Link>
+        <Link className="cartIcon" to="/shoppingCart" data-testid="shopping-cart-button">
+          <FiShoppingCart />
+          (
+          { cartSize }
+          )
+        </Link>
       </div>
     );
   }

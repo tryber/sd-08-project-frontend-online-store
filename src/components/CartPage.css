@@ -1,0 +1,6 @@
+.cardDiv {
+  display: flex;
+  flex-flow: row wrap;
+  margin: auto;
+  max-width: 1200px;
+}

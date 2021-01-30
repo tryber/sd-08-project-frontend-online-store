@@ -7,14 +7,13 @@ class MainPage extends React.Component {
   render() {
     const { categories, products, onclick, addCart } = this.props;
     return (
-      <div>
+      <div className="mainPage">
         <Search />
         <div className="categoriesList" data-testid="query-button">
           { categories.map(({ name, id }) => (
             <button
               type="button"
               key={ name }
-              className="categoriesItem"
               onClick={ () => onclick(id) }
               data-testid="category"
             >
