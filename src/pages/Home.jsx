@@ -12,17 +12,12 @@ class Home extends React.Component {
       searchField: '',
       productsList: [],
       categories: [],
+      radioValue: '',
     };
-    // this.updateProductsList = this.updateProductsList.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
+    this.handleInputRadio = this.handleInputRadio.bind(this);
   }
-  // updateProductsList() {
-  //   getProductsFromCategoryAndQuery(1, SearchField.name);
-  //   this.setState({
-  //     productsList: 'something',
-  //   });
-  // }
 
   componentDidMount() {
     this.getCategoriesList();
@@ -38,6 +33,21 @@ class Home extends React.Component {
     event.preventDefault();
     const { searchField } = this.state;
     const response = await getProductsFromCategoryAndQuery(undefined, searchField);
+    this.setState({
+      productsList: response.results,
+    });
+  }
+
+  async handleInputRadio(event) {
+    this.setState({
+      radioValue: await event.target.value,
+    });
+    await this.getQueryList();
+  }
+
+  async getQueryList() {
+    const { radioValue } = this.state;
+    const response = await getProductsFromCategoryAndQuery(radioValue);
     this.setState({
       productsList: response.results,
     });
@@ -59,7 +69,10 @@ class Home extends React.Component {
           handleInputChange={ this.handleInputChange }
         />
         <CartButton />
-        <Categories categories={ categories } />
+        <Categories
+          categories={ categories }
+          handleInputRadio={ this.handleInputRadio }
+        />
         <SearchResult productsList={ productsList } />
       </>
     );
