@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import ShoppingCartLink from '../components/ShoppingCartLink';
 
@@ -16,11 +16,11 @@ class ProductDetails extends Component {
         <div>
           <ul>
             Especificações Técnicas
-            {attributes.map((atributte) => (
+            {attributes.map((attribute) => (
               <li
-                key={ atributte.value_id }
+                key={ attribute.id }
               >
-                {`${atributte.name}: ${atributte.value_name}`}
+                {`${attribute.name}: ${attribute.value_name}`}
               </li>))}
           </ul>
           <button
@@ -36,10 +36,10 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  location: Proptypes.shape({
-    state: Proptypes.shape({
-      productObj: Proptypes.shape({
-        attributes: Proptypes.arrayOf(),
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      productObj: PropTypes.shape({
+        attributes: PropTypes.arrayOf(PropTypes.object),
       }).isRequired,
     }).isRequired,
   }).isRequired,
