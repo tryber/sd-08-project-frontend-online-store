@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from './SearchBar';
 import ProductCard from './ProductCard';
 // import Loading from './Loading';
@@ -7,19 +8,25 @@ import ProductCard from './ProductCard';
 // import { getRandomProducts } from '../helpers/products';
 import { parseProductData } from '../helpers/helpers';
 import * as api from '../services/api';
+import { actionUpdate } from '../store/products.reducer';
 
 //  const [error, setError] = useState(false);
 export default function ProductList() {
-  const [productList, setProductList] = useState([]);
+  // const [productList, setProductList] = useState([]);
+  const productList = useSelector((state) => state.products);
+  const dispatch = useDispatch();
   const [search, setSearch] = useState([undefined, undefined]);
   const getProductList = async (category, query) => {
-    setProductList([]);
+    // setProductList([]);
+    dispatch(actionUpdate([]));
     try {
       const data = await api.getProductsFromCategoryAndQuery(category, query);
       const products = await parseProductData(data.results);
-      setProductList(products);
+      dispatch(actionUpdate(products));
+      // setProductList(products);
     } catch (e) {
-      setProductList([]);
+      // setProductList([]);
+      dispatch(actionUpdate([]));
     }
   };
   const handleQueryChange = (data) => {
@@ -32,10 +39,6 @@ export default function ProductList() {
   const handleQueryClick = () => {
     getProductList(search[0], search[1]);
   };
-
-  /* useEffect(() => {
-    getProductList();
-  }, [search]); */
 
   return (
     <section className="content">

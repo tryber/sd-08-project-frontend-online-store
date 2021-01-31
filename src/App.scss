@@ -194,8 +194,8 @@ header {
       height: 24px;
       width: 40%;
       text-align: center;
-      padding-left: 14px;
-      padding-right: 14px;
+      padding-left: 10px;
+      padding-right: 24px;
       padding-top: 2px;
       padding-bottom: 2px;
       border-radius: 18px;
@@ -203,23 +203,29 @@ header {
       &:focus {
         color: rgb(56, 56, 56);
       }
+      &:hover {
+        color: rgb(32, 32, 32);
+      }
     }
     .product-search-button {
       color: rgb(53, 53, 53);
       border: 0;
       border-left: 1px solid rgb(160, 160, 160);
       font-size: 0.9em;
-      height: 26px;
-      width: 6%;
+      height: 22px;
+      width: 4%;
       position: relative;
-      left: -85px;
+      left: -56px;
       background-color: #ffffff;
       cursor: pointer;
       &:focus {
         color: rgb(56, 56, 56);
       }
       .find {
-        opacity: 0.9;
+        opacity: 0.80;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
   }
