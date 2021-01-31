@@ -2,24 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ProductDetails extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   // const { id } = this.props;
-  //   console.log(this.props);
-  //   // this.state = { load: true };
-  // }
-
   render() {
-    // const { id } = this.props;
-    // console.log(id);
-    // const { } = this.props;
     const { location: { state: { id, title, thumbnail, price, attributes,
       // available_quantity, sold_quantity, stop_time, condition, accepts_mercadopago,
       // currency_id, address, shipping
     } } } = this.props;
-    // const { id,
-    //   title, thumbnail, price, attributes, available_quantity, sold_quantity, stop_time, condition, accepts_mercadopago, currency_id,
-    //   address, shipping } = this.props.location.state;
     console.log(this.props);
     return (
       <section data-testid="product-detail-name">

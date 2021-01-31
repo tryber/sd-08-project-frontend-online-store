@@ -18,14 +18,15 @@ class ShowDetails extends React.Component {
             thumbnail,
             price,
             attributes,
+            condition,
+            address,
+            shipping,
             // available_quantity,
             // sold_quantity,
             // stop_time,
             // accepts_mercadopago,
             // currency_id,
-            condition,
-            address,
-            shipping },
+          },
         } }
       >
         Product Details

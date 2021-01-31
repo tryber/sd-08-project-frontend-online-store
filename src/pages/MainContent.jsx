@@ -5,11 +5,6 @@ import Categories from '../components/Categories';
 import SearchResult from '../components/SearchResult';
 
 class MainContent extends React.Component {
-  // componentDidMount() {
-  //   const { handleInputChange, handleInputRadio, handleInputSubmit, categories } = this.props;
-  //   console.log(categories);
-  // } teting
-
   render() {
     const { handleInputChange, handleInputRadio, handleInputSubmit, categories,
       productsList } = this.props;

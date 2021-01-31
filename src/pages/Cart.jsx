@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import CartItem from '../components/CartItem';
 
 class Cart extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { };
-  // }
-
   render() {
     console.log(this.props);
     const { location: { state: { cartItems } } } = this.props;
