@@ -2,7 +2,6 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import Search from './Search';
-import ButtonCategory from './ButtonCategory';
 import BtnShoppingCart from './BtnShoppingCart';
 import '../css/Header.css';
 
@@ -13,7 +12,7 @@ class Header extends React.Component {
       <div>
         <div className="banner">
           <div className="logo">
-            <h1>Pantanal</h1>
+            <h1>Correios</h1>
           </div>
         </div>
         <div className="search">
@@ -30,7 +29,6 @@ class Header extends React.Component {
 
         <div className="cartItems">
           <BtnShoppingCart />
-          <ButtonCategory />
         </div>
 
       </div>

@@ -1,6 +1,6 @@
 .banner {
   align-items: center;
-  background-color: #141d37;
+  background-color: #232f3e;
   display: flex;
   height: 1vw;
   justify-content: center;
@@ -19,7 +19,7 @@
 
 .search {
   align-items: center;
-  background-color: #141d37;
+  background-color: #232f3e;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,30 +52,22 @@
 }
 
 .search h1 {
-  color: #ffb200;
+  color: white;
   font-size: 2.5vh;
 }
 
+
 .cartItems {
   align-items: center;
+  border: solid 1px white;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .cartItems a {
-  color: #141d37;
+  background-color: #232f3e;
+  color: white;
   text-decoration: none;
-}
-
-.cartItems button {
-  background-color: #ffb200;
-  border: solid 1px black;
-  color: #141d37;
-  font-size: 8px;
-  font-weight: 600;
-  height: auto;
-  margin: 1px;
-  padding: 4px;
-  width: auto;
+  width: 100%;
 }
