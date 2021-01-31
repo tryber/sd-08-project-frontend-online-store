@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const DEF_CART_KEY = 'CART_ITENS';
+import { useSelector } from 'react-redux';
 
 export default function ButtonCart() {
+  const cart = useSelector((state) => state.cart);
+
   const [count, setCount] = useState(0);
   const history = useHistory();
 
-  const checkoutCounter = (props) => {
-    const data = localStorage.getItem(DEF_CART_KEY);
-    if (data === '' || !data) {
-      setCount(0);
-    } else {
-      const cart = JSON.parse(data);
-      setCount(cart.length);
-    }
+  const checkoutCounter = () => {
+    setCount(cart.length);
   };
 
   useEffect(() => {
     checkoutCounter();
-  });
+  }, [cart]);
 
   const handleClickCart = () => {
     history.push('/cart');

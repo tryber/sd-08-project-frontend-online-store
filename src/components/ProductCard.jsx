@@ -2,33 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
 import CardImage from './card/CardImage';
 import CardInfo from './card/CardInfo';
 
-const DEF_CART_KEY = 'CART_ITENS';
+import { actionAdd } from '../store/cart.reducer';
 
 export default function ProductCard(props) {
   const {
     product: { id, title, thumbnail, price },
   } = props;
+  const dispatch = useDispatch();
+
   const history = useHistory();
   const handleClick = () => {
-    history.push(`/product/${id}/${title}`);
+    history.push(`/product/${id}/${title}/${price}`);
   };
   const handleBuyClick = () => {
-    const { product } = props;
-    const data = localStorage.getItem(DEF_CART_KEY);
-    if (data === '' || !data) {
-      const item = { ...product };
-      item.count = 1;
-      localStorage.setItem(DEF_CART_KEY, JSON.stringify([item]));
-    } else {
-      const cart = JSON.parse(data);
-      const item = { ...product };
-      item.count = 1;
-      cart.push(item);
-      localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
-    }
+    dispatch(actionAdd({ id, title, price }));
     history.push('/');
   };
   return (

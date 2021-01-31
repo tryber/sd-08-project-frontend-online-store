@@ -1,38 +1,27 @@
 import React from 'react';
 // , { useState, useEffect }
 import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
 
 import Header from '../components/Header';
 // import Loading from '../components/Loading';
 // import NotFound from '../components/NotFound';
 import * as api from '../services/api';
 
-// import { getProduct } from '../helpers/products';
-const DEF_CART_KEY = 'CART_ITENS';
+import { actionAdd } from '../store/cart.reducer';
 
 export default function ProductDetails() {
-  // const [product, setProduct] = useState(null);
-  // const [error, setError] = useState(false);
-  // const [loading, setLoading] = useState(false);
-
-  const { id, title } = useParams();
-  const history = useHistory();
+  const { id, title, price } = useParams();
+  const dispatch = useDispatch();
 
   const handleBuyClick = () => {
-    const data = localStorage.getItem(DEF_CART_KEY);
-    if (data === '' || !data) {
-      localStorage.setItem(DEF_CART_KEY, JSON.stringify([{ id, title }]));
-    } else {
-      const cart = JSON.parse(data);
-      cart.push({ id, title, count: 1 });
-      localStorage.setItem(DEF_CART_KEY, JSON.stringify(cart));
-    }
+    dispatch(actionAdd({ id, title, price }));
   };
 
   return (
     <main>
-      <Header showLogo={ false } showBack showCheckout={ false } />
+      <Header showLogo={ false } showBack />
       <h1>ProductDetails</h1>
       <h2>{id || ''}</h2>
       <span data-testid="product-detail-name">{title}</span>
