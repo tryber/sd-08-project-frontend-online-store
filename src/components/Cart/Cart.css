@@ -1,6 +1,7 @@
 .cart-container {
   width: 100%;
 }
+
 .cart-goback {
   align-items: center;
   display: flex;
@@ -28,14 +29,14 @@
   background-color: #eee;
 }
 
-.cart-list:hover img{
-  transform: scale(1);
-}
-
 .cart-list img {
   margin-right: 10px;
   transform: scale(0.7);
   width: 60px;
+}
+
+.cart-list:hover img {
+  transform: scale(1);
 }
 
 .cart-qtd {
