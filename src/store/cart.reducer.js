@@ -18,25 +18,25 @@ export function actionRemove(payload) {
   };
 }
 
-// const INITIAL_STATE = [
-//   {
-//     id: 'MLB1474180944',
-//     title: 'Sandália Kenner Kivah Cushy Masculina ',
-//     price: '177,90',
-//   },
-//   {
-//     id: 'MLB1243505647',
-//     title: 'Aspirador De Pó Wap Silent Speed 1000w 220v Com Nf',
-//     price: '203,90',
-//   },
-//   {
-//     id: 'MLB1243505647',
-//     title: 'Aspirador De Pó Wap Silent Speed 1000w 220v Com Nf',
-//     price: '203,90',
-//   },
-// ];
+const INITIAL_STATE = [
+  {
+    id: 'MLB1474180944',
+    title: 'Sandália Kenner Kivah Cushy Masculina ',
+    price: '177,90',
+  },
+  {
+    id: 'MLB1243505647',
+    title: 'Aspirador De Pó Wap Silent Speed 1000w 220v Com Nf',
+    price: '203,90',
+  },
+  {
+    id: 'MLB1243505647',
+    title: 'Aspirador De Pó Wap Silent Speed 1000w 220v Com Nf',
+    price: '203,90',
+  },
+];
 
-const INITIAL_STATE = [];
+// const INITIAL_STATE = [];
 
 export default function cart(state = INITIAL_STATE, action) {
   // console.log(state, action);

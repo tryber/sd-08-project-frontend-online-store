@@ -13,7 +13,7 @@ export default function Header(props) {
   };
 
   return (
-    <header>
+    <header className="header-main">
       <div className="header-wrap">
         <section className="header-left">
           {showBack ? (
