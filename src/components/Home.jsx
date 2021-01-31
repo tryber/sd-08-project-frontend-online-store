@@ -8,8 +8,8 @@ class Home extends Component {
   render() {
     return (
       <section>
-        <CategoriesList />
         <SearchBar />
+        <CategoriesList />
         <ShopButton />
         <ul>
           <li data-testid="home-initial-message">

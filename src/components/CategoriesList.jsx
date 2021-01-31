@@ -20,7 +20,7 @@ class CategoriesList extends Component {
   }
 
   async handleClick({ target }) {
-    const data = await api.getProductsFromCategoryAndQuery('', target.value);
+    const data = await api.getProductsFromCategoryAndQuery(target.key, target.value);
     this.setState({
       products: data.results,
     });
@@ -29,7 +29,7 @@ class CategoriesList extends Component {
   render() {
     const { categories, products } = this.state;
     return (
-      <div data-testid="category">
+      <div>
         Categorias:
         { categories.map(({ id, name }) => (
           <button
