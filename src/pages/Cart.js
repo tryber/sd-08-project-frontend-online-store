@@ -5,7 +5,7 @@ import './Cart.css';
 class Cart extends Component {
   render() {
     return (
-      <div>
+      <div className="cart-container">
         <FaBoxOpen className="empty-box" />
         <p data-testid="shopping-cart-empty-message" className="message-cart">
           Seu carrinho está vazio

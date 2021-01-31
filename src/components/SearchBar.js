@@ -11,26 +11,26 @@ class SearchBar extends Component {
     this.state = {
       query: '',
       categoryID: '',
+      changed: false,
     };
   }
 
   setQuery(event) {
-    this.setState({ query: event.target.value });
+    this.setState({ query: event.target.value, changed: true });
   }
 
   setCategory(event) {
     // console.log(event.target.id);
     const { requestProducts } = this.props;
-    this.setState({ categoryID: event.target.id },
-      () => {
-        const { query, categoryID } = this.state;
-        return requestProducts(categoryID, query);
-      });
+    this.setState({ categoryID: event.target.id }, () => {
+      const { query, categoryID } = this.state;
+      return requestProducts(categoryID, query);
+    });
   }
 
   render() {
     const { requestProducts } = this.props;
-    const { query, categoryID } = this.state;
+    const { query, categoryID, changed } = this.state;
     return (
       <div className="searchbar-container">
         <form>
@@ -48,7 +48,8 @@ class SearchBar extends Component {
               Pesquisar
             </button>
             <br />
-            Digite algum termo de pesquisa ou escolha uma categoria.
+            {!changed
+              && <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>}
           </label>
         </form>
         <CategoryList onClick={ this.setCategory } />
