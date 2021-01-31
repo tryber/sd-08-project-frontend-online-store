@@ -57,7 +57,7 @@ class ProdutoDetail extends Component {
     const { history } = this.props;
     let foto = '';
     let price = '';
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     if (produto) {
       foto = produto.pictures[0].url;
       price = produto.price;

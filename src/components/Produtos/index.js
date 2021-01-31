@@ -39,7 +39,7 @@ export default class Produtos extends Component {
                 data-testid="product-detail-link"
                 to={ `/produto/${item.id}` }
               >
-                Mais detalhes...
+                + detalhes...
               </Link>
               <FaCartPlus
                 className="prod-btn-add"

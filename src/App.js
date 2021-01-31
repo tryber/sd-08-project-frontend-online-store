@@ -79,10 +79,11 @@ export default class App extends Component {
 
   addCart(id) {
     const { cart } = this.state;
+    const cartStorage = localStorage.getItem('cart');
     this.setState({
       cart: [...cart, id],
     });
-    localStorage.setItem('cart', [...cart, id]);
+    localStorage.setItem('cart', [id, cartStorage]);
   }
 
   render() {

@@ -1,3 +1,6 @@
+.cart-container {
+  width: 100%;
+}
 .cart-goback {
   align-items: center;
   display: flex;
@@ -8,4 +11,33 @@
 
 .cart-goback-icon {
   font-size: 30px;
+}
+
+.cart-list {
+  align-items: center;
+  box-shadow: 3px 3px 3px #ccc;
+  display: flex;
+  font-weight: 800;
+  justify-content: space-evenly;
+  list-style: none;
+  margin: 7px 0 3px 10px;
+  padding: 10px;
+}
+
+.cart-list:hover {
+  background-color: #eee;
+}
+
+.cart-list:hover img{
+  transform: scale(1);
+}
+
+.cart-list img {
+  margin-right: 10px;
+  transform: scale(0.7);
+  width: 60px;
+}
+
+.cart-qtd {
+  color: rgb(167, 4, 4);
 }

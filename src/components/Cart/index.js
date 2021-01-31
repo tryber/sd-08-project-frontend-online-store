@@ -43,20 +43,34 @@ class Cart extends Component {
     const { history } = this.props;
     const { produtos } = this.state;
     return (
-      <div>
+      <div className="cart-container">
         <button type="button" className="cart-goback" onClick={ history.goBack }>
           <TiArrowBack className="cart-goback-icon" />
           Voltar
         </button>
         {produtos.length >= 1
           ? produtos.map((item) => (
-            <li data-testid="shopping-cart-product-name" key={ item.produto.id }>
-              {item.produto.title}
+            <li
+              className="cart-list"
+              data-testid="shopping-cart-product-name"
+              key={ item.produto.id }
+            >
+              <img src={ item.produto.thumbnail } alt={ item.produto.title } />
+              <p>
+                {item.produto.title}
+              </p>
               <span data-testid="shopping-cart-product-quantity">
-                {' '}
                 Quantidade:
-                {item.qtd}
+                <span className="cart-qtd">{item.qtd}</span>
               </span>
+              <p>
+                Preço Unitário:
+                { item.produto.price}
+              </p>
+              <p>
+                Total:
+                <span className="cart-qtd">{ item.produto.price * item.qtd}</span>
+              </p>
             </li>
           ))
           : <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>}
