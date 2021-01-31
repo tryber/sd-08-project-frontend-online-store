@@ -6,4 +6,4 @@ PRIORIDADE 4 - Adicionar quantidade disponível do produto (disponível via cham
 
 **O que será avaliado:**
 
-  * Não adiciona ao carrinho mais produtos do que o disponível em estoque
+- Não adiciona ao carrinho mais produtos do que o disponível em estoque

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import * as api from '../services/api';
+import * as api from "../services/api";
 
 export default function CategoryItem(props) {
   const { handleClick, id, name } = props;
@@ -19,8 +19,8 @@ export default function CategoryItem(props) {
       <button
         data-testid="category"
         type="button"
-        onClick={ handleCategoryClick }
-        value={ id }
+        onClick={handleCategoryClick}
+        value={id}
         className="nav-link"
       >
         {name}

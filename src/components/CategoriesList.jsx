@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 
-import CategoryItem from './CategoryItem';
-import { actionUpdate } from '../store/categories.reducer';
+import CategoryItem from "./CategoryItem";
+import { actionUpdate } from "../store/categories.reducer";
 
-import * as api from '../services/api';
+import * as api from "../services/api";
 
 export default function CategoriesList(props) {
   // const [categories, setCategories] = useState([]);
@@ -36,8 +36,8 @@ export default function CategoriesList(props) {
       <ul>
         {categories.length > 0
           ? categories.map((i) => (
-            <CategoryItem key={ i.id } { ...i } handleClick={ handleClick } />
-          ))
+              <CategoryItem key={i.id} {...i} handleClick={handleClick} />
+            ))
           : null}
       </ul>
     </nav>

@@ -1,6 +1,6 @@
 body {
   border: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #ebebeb;
@@ -259,7 +259,7 @@ input:focus {
 }
 
 .product-search .query-box .product-search-button .find {
-  opacity: 0.80;
+  opacity: 0.8;
 }
 
 .product-search .query-box .product-search-button .find:hover {

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { parseCart } from '../helpers/helpers';
-import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
+import { useSelector, useDispatch } from "react-redux";
+import { parseCart } from "../helpers/helpers";
+import { actionClear, actionAdd, actionRemove } from "../store/cart.reducer";
 
-import CartMessage from './cart/CartMessage';
-import CartButtonClear from './cart/CartButtonClear';
-import CartMenu from './cart/CartMenu';
-import CartListItem from './cart/CartListItem';
+import CartMessage from "./cart/CartMessage";
+import CartButtonClear from "./cart/CartButtonClear";
+import CartMenu from "./cart/CartMenu";
+import CartListItem from "./cart/CartListItem";
 
 export default function CartSlide() {
   const cart = useSelector((state) => state.cart);
@@ -44,16 +44,16 @@ export default function CartSlide() {
       <CartMenu />
       <div className="slide-shopping-cart">
         <div className="slide-shopping-cart-list">
-          <CartMessage quantity={ list.length } />
+          <CartMessage quantity={list.length} />
           {list.map((i) => (
             <CartListItem
-              key={ i.id }
-              item={ i }
-              handleItemAdd={ () => handleItemAdd({ ...i }) }
-              handleItemRemove={ () => handleItemRemove(i) }
+              key={i.id}
+              item={i}
+              handleItemAdd={() => handleItemAdd({ ...i })}
+              handleItemRemove={() => handleItemRemove(i)}
             />
           ))}
-          <CartButtonClear handleClick={ handleClearCart } />
+          <CartButtonClear handleClick={handleClearCart} />
         </div>
       </div>
     </div>

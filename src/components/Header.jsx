@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 // import { useSelector, useDispatch } from 'react-redux';
 // import { actionSlideOpen } from '../store/control.reducer';
 
-import ButtonCart from './ButtonCart';
+import ButtonCart from "./ButtonCart";
 
 export default function Header(props) {
   const { showLogo, showCheckout, showBack } = props;
   const history = useHistory();
 
   const handleClickBack = () => {
-    history.push('/');
+    history.push("/");
   };
 
   return (
@@ -22,12 +22,18 @@ export default function Header(props) {
             <button
               className="header-button-back"
               type="button"
-              onClick={ handleClickBack }
+              onClick={handleClickBack}
             >
-              <img className="button-back-image" src="/icon-back.png" alt="back" />
+              <img
+                className="button-back-image"
+                src="/icon-back.png"
+                alt="back"
+              />
             </button>
           ) : null}
-          {showLogo ? <img className="shopping-logo" src="/logo.png" alt="logo" /> : null}
+          {showLogo ? (
+            <img className="shopping-logo" src="/logo.png" alt="logo" />
+          ) : null}
         </section>
         {showCheckout ? <ButtonCart /> : null}
       </div>

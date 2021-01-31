@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // import { useParams } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { parseCart } from '../helpers/helpers';
-import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
-import Header from '../components/Header';
+import { useSelector, useDispatch } from "react-redux";
+import { parseCart } from "../helpers/helpers";
+import { actionClear, actionAdd, actionRemove } from "../store/cart.reducer";
+import Header from "../components/Header";
 
 // input.reduce((total, value) => {
 //   total[value] = (total[value] || 0) + 1;
@@ -14,7 +14,7 @@ import Header from '../components/Header';
 
 export default function Debug() {
   const cart = useSelector((state) => state.cart);
-  const [id, setId] = useState('');
+  const [id, setId] = useState("");
 
   const dispatch = useDispatch();
   // console.log(cart);
@@ -25,10 +25,10 @@ export default function Debug() {
 
   return (
     <main>
-      <Header showLogo={ false } showBack />
+      <Header showLogo={false} showBack />
       <div>
         {parseCart(cart).map((i, index) => (
-          <div key={ index }>
+          <div key={index}>
             {JSON.stringify(i)}
             <br />
           </div>
@@ -37,21 +37,21 @@ export default function Debug() {
 
       <br />
       <br />
-      <button type="button" onClick={ () => dispatch(actionAdd({ id: '1223' })) }>
+      <button type="button" onClick={() => dispatch(actionAdd({ id: "1223" }))}>
         Add
       </button>
       <br />
       <input
         type="text"
-        onChange={ (e) => setId(e.target.value) }
+        onChange={(e) => setId(e.target.value)}
         placeholder="remove id"
       />
 
-      <button type="button" onClick={ () => dispatch(actionRemove(id)) }>
+      <button type="button" onClick={() => dispatch(actionRemove(id))}>
         Remove
       </button>
       <br />
-      <button type="button" onClick={ handleClearCart }>
+      <button type="button" onClick={handleClearCart}>
         Limpar
       </button>
     </main>

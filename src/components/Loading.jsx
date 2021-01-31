@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 export default function Loading(props) {
   const { show } = props;
 
-  return <div>{show ? <div className="loading">Carregando...</div> : null}</div>;
+  return (
+    <div>{show ? <div className="loading">Carregando...</div> : null}</div>
+  );
 }
 
 Loading.defaultProps = {

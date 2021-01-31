@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import CategoriesList from './CategoriesList';
+import React from "react";
+import PropTypes from "prop-types";
+import CategoriesList from "./CategoriesList";
 
 export default function SearchBar(props) {
   const { handleCategoryChange, handleQueryChange, handleQueryClick } = props;
 
   const handleInputChange = (e) => {
     const value = e.target.value.trim();
-    if (value === '') return handleQueryChange(undefined);
+    if (value === "") return handleQueryChange(undefined);
     handleQueryChange(value);
   };
 
@@ -26,18 +26,18 @@ export default function SearchBar(props) {
           className="product-search-input"
           type="text"
           placeholder="Buscar produtos, marcas e muito mais..."
-          onChange={ handleInputChange }
+          onChange={handleInputChange}
         />
         <button
           className="product-search-button"
           type="button"
-          onClick={ handleQueryClick }
+          onClick={handleQueryClick}
           data-testid="query-button"
         >
           <i className="fas fa-search find" />
         </button>
       </div>
-      <CategoriesList handleClick={ handleCategoryClick } />
+      <CategoriesList handleClick={handleCategoryClick} />
     </section>
   );
 }

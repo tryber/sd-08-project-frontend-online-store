@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 // , { useState, useEffect }
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
-import Header from '../components/Header';
-import CartSlide from '../components/CartSlide';
+import Header from "../components/Header";
+import CartSlide from "../components/CartSlide";
 // import * as api from '../services/api';
 
-import { actionAdd } from '../store/cart.reducer';
-import { actionCartUpdate } from '../store/control.reducer';
+import { actionAdd } from "../store/cart.reducer";
+import { actionCartUpdate } from "../store/control.reducer";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -25,12 +25,12 @@ export default function ProductDetails() {
 
   return (
     <main>
-      <Header showLogo={ false } showBack />
+      <Header showLogo={false} showBack />
       {control.visibility.slide ? <CartSlide /> : null}
       <section className="product-detail">
         <h1>Detalhe do Produto</h1>
         <h2>{product.id}</h2>
-        <img src={ product.thumbnail } alt={ product.title } />
+        <img src={product.thumbnail} alt={product.title} />
         <span className="product-detail-name" data-testid="product-detail-name">
           {product.title}
         </span>
@@ -43,7 +43,7 @@ export default function ProductDetails() {
             data-testid="product-detail-add-to-cart"
             className="product-buy-button"
             type="button"
-            onClick={ handleBuyClick }
+            onClick={handleBuyClick}
           >
             Adicionar ao Carrinho
           </button>

@@ -7,10 +7,10 @@ PRIORIDADE 1 - Criar a listagem de produtos. Fazer a exibição resumida do prod
 
 **Requisito 5.** A alma do site é a sua lógica de busca e listagem de produtos. Após digitar seus termos na caixa de busca uma requisição deverá ser feita à API do Mercado Livre utilizando a ação de um botão, tendo como parâmetros a frase digitada, e tais produtos deverão aparecer na tela numa exibição resumida, conforme protótipo anexo.
 
-  * Adicione o atributo `data-testid` com o valor `query-input` no elemento `input` que servirá para a pessoa que usa sua aplicação digitar o termo de busca.
-  * Adicione o atributo `data-testid` com o valor `query-button` no elemento que dispara a chamada para a API com o termo de busca pesquisado.
-  * Adicione o atributo `data-testid` com o valor `product` nos elementos que possuem os dados dos produtos.
+- Adicione o atributo `data-testid` com o valor `query-input` no elemento `input` que servirá para a pessoa que usa sua aplicação digitar o termo de busca.
+- Adicione o atributo `data-testid` com o valor `query-button` no elemento que dispara a chamada para a API com o termo de busca pesquisado.
+- Adicione o atributo `data-testid` com o valor `product` nos elementos que possuem os dados dos produtos.
 
 **O que será avaliado:**
 
-  * Exibe todos os produtos retornados pela API, dado um determinado filtro
+- Exibe todos os produtos retornados pela API, dado um determinado filtro

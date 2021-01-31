@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { parseCart } from '../helpers/helpers';
-import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
-import Header from '../components/Header';
-import CartMessage from '../components/cart/CartMessage';
-import CartItemSum from '../components/cart/CartItemSum';
-import CartItemControl from '../components/cart/CartItemControl';
-import CartItemPrice from '../components/cart/CartItemPrice';
-import CartItemQuantity from '../components/cart/CartItemQuantity';
-import CartButtonClear from '../components/cart/CartButtonClear';
-import CartItemDetail from '../components/cart/CartItemDetail';
+import { useSelector, useDispatch } from "react-redux";
+import { parseCart } from "../helpers/helpers";
+import { actionClear, actionAdd, actionRemove } from "../store/cart.reducer";
+import Header from "../components/Header";
+import CartMessage from "../components/cart/CartMessage";
+import CartItemSum from "../components/cart/CartItemSum";
+import CartItemControl from "../components/cart/CartItemControl";
+import CartItemPrice from "../components/cart/CartItemPrice";
+import CartItemQuantity from "../components/cart/CartItemQuantity";
+import CartButtonClear from "../components/cart/CartButtonClear";
+import CartItemDetail from "../components/cart/CartItemDetail";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
@@ -36,23 +36,23 @@ export default function Cart() {
   };
   return (
     <main>
-      <Header showLogo={ false } showBack />
+      <Header showLogo={false} showBack />
       <div className="shopping-cart">
         <div className="shopping-cart-list">
-          <CartMessage quantity={ list.length } />
+          <CartMessage quantity={list.length} />
           {list.map((i) => (
-            <div className="shopping-cart-list-item" key={ i.id }>
-              <CartItemDetail id={ i.id } name={ i.title } />
-              <CartItemPrice value={ parseFloat(i.price) } />
-              <CartItemQuantity value={ parseInt(i.quantity) } />
+            <div className="shopping-cart-list-item" key={i.id}>
+              <CartItemDetail id={i.id} name={i.title} />
+              <CartItemPrice value={parseFloat(i.price)} />
+              <CartItemQuantity value={parseInt(i.quantity)} />
               <CartItemControl
-                handleAdd={ () => handleItemAdd({ ...i }) }
-                handleRemove={ () => handleItemRemove(i) }
+                handleAdd={() => handleItemAdd({ ...i })}
+                handleRemove={() => handleItemRemove(i)}
               />
-              <CartItemSum value={ i.total } />
+              <CartItemSum value={i.total} />
             </div>
           ))}
-          <CartButtonClear handleClick={ handleClearCart } />
+          <CartButtonClear handleClick={handleClearCart} />
         </div>
       </div>
     </main>

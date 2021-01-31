@@ -17,7 +17,9 @@ async function getProductImages(productId) {
 }
 
 async function getCategoriesIds() {
-  const result = await fetch('https://api.mercadolibre.com/sites/MLB/categories')
+  const result = await fetch(
+    'https://api.mercadolibre.com/sites/MLB/categories',
+  )
     .then((res) => res.json())
     .then((data) => data.map((i) => i.id));
   return result;
