@@ -400,94 +400,115 @@ header {
   }
 }
 
-.shopping-cart-list {
+.shopping-cart {
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  padding: 10px;
   // border: 1px solid green;
-  padding: 6px;
-  .shopping-cart-list-item {
-    background-color: $secundary-bg-color;
-    font-size: 0.8em;
-    padding: 2px;
-    // border: 1px solid blue;
+
+  .shopping-cart-list {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
-    .item-id {
-      display: flex;
-      align-items: center;
-      font-weight: 600;
-      width: 8%;
-      padding: 5px;
-    }
-    .item-title {
-      display: flex;
-      align-items: center;
-      width: 30%;
-      padding: 5px;
-    }
-    .item-price {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      font-weight: 400;
-      width: 6%;
-      padding: 5px;
-      // border: 1px solid green;
-      margin-right: 6px;
-    }
-    .item-count {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      color: black;
-      width: 2%;
-      font-size: 1.1em;
-      font-weight: 600;
-      padding: 5px;
-      margin-right: 6px;
-    }
+    flex-direction: column;
+    justify-content: center;
+    // border: 1px solid green;
 
-    .item-control {
-      // border: 1px solid blueviolet;
-      width: 4%;
-      font-weight: 600;
-      padding: 5px;
+    // border: 1px solid green;
+    padding: 6px;
+    .shopping-cart-list-item {
+      background-color: $secundary-bg-color;
+      font-size: 0.8em;
+      padding: 2px;
+      // border: 1px solid blue;
       display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      margin-right: 6px;
-
-      button {
+      justify-content: center;
+      
+      .item-id {
         display: flex;
-        justify-content: center;
         align-items: center;
-        border: 0;
-        border-radius: 6px;
-        padding: 4px;
-        align-self: center;
-        cursor: pointer;
-        margin-right: 2px;
-        background-color: $secundary-bg-color;
-        margin-right: 4px;
+        font-weight: 600;
+        width: 12%;
+        padding: 5px;
       }
-    }
-    .item-total {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      font-weight: 500;
-      width: 5%;
-      padding: 5px;
-      // border: 1px solid green;
-      margin-right: 6px;
+      .item-title {
+        display: flex;
+        align-items: center;
+        width: 40%;
+        padding: 5px;
+      }
+      .item-price {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-weight: 400;
+        width: 6%;
+        padding: 5px;
+        // border: 1px solid green;
+        margin-right: 6px;
+      }
+      .item-count {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color: black;
+        width: 2%;
+        font-size: 1.1em;
+        font-weight: 600;
+        padding: 5px;
+        margin-right: 6px;
+      }
+
+      .item-control {
+        // border: 1px solid blueviolet;
+        width: 4%;
+        font-weight: 600;
+        padding: 5px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-right: 6px;
+
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 0;
+          border-radius: 6px;
+          padding: 4px;
+          align-self: center;
+          cursor: pointer;
+          margin-right: 2px;
+          background-color: $secundary-bg-color;
+          margin-right: 4px;
+        }
+      }
+      .item-total {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-weight: 500;
+        width: 5%;
+        padding: 5px;
+        // border: 1px solid green;
+        margin-right: 6px;
+      }
     }
   }
 }
 
-.cart-empty-message {
+.cart-message {
   align-self: center;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  .cart-empty-message {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 }
+
 .cart-clear-button {
   padding: 4px;
   align-self: center;

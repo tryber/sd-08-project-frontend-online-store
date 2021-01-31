@@ -1,86 +1,59 @@
-import React, { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { parseCart } from '../helpers/helpers';
 import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
 import Header from '../components/Header';
+import CartMessage from '../components/cart/CartMessage';
+import CartItemSum from '../components/cart/CartItemSum';
+import CartItemControl from '../components/cart/CartItemControl';
+import CartItemPrice from '../components/cart/CartItemPrice';
+import CartItemQuantity from '../components/cart/CartItemQuantity';
+import CartButtonClear from '../components/cart/CartButtonClear';
+import CartItemDetail from '../components/cart/CartItemDetail';
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
-  const [list, setList] = useState([]);
-  const [id, setId] = useState('');
+  const [list, setList] = useState(parseCart(cart));
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (list.length === 0) {
-      setList(parseCart(cart));
-    }
-  }, [cart]);
-
   const handleItemAdd = (product) => {
-    list[list.findIndex((i) => i.id === product.id)].quantity += 1;
+    const item = list[list.findIndex((i) => i.id === product.id)];
+    item.quantity += 1;
+    item.total += parseFloat(item.price);
     dispatch(actionAdd(product));
   };
-
   const handleItemRemove = (product) => {
-    list[list.findIndex((i) => i.id === product.id)].quantity -= 1;
-    dispatch(actionRemove(product.id));
+    const item = list[list.findIndex((i) => i.id === product.id)];
+    if (item.quantity > 0) {
+      item.quantity -= 1;
+      item.total -= parseFloat(item.price);
+    }
+    dispatch(actionRemove(item.id));
   };
-
   const handleClearCart = () => {
     dispatch(actionClear());
+    setList([]);
   };
-
   return (
     <main>
       <Header showLogo={ false } showBack />
-
-      <div className="shopping-cart-list">
-        {cart.length === 0 ? (
-          <div className="cart-empty-message" data-testid="shopping-cart-empty-message">
-            Seu carrinho está vazio
-          </div>
-        ) : null}
-        {list.map((i) => (
-          <div className="shopping-cart-list-item" key={ i.id }>
-            <div className="item-id">{i.id}</div>
-            <div className="item-title" data-testid="shopping-cart-product-name">
-              {i.title}
+      <div className="shopping-cart">
+        <div className="shopping-cart-list">
+          <CartMessage quantity={ list.length } />
+          {list.map((i) => (
+            <div className="shopping-cart-list-item" key={ i.id }>
+              <CartItemDetail id={ i.id } name={ i.title } />
+              <CartItemPrice value={ parseFloat(i.price) } />
+              <CartItemQuantity value={ parseInt(i.quantity) } />
+              <CartItemControl
+                handleAdd={ () => handleItemAdd({ ...i }) }
+                handleRemove={ () => handleItemRemove(i) }
+              />
+              <CartItemSum value={ i.total } />
             </div>
-            <div className="item-price">
-              R$
-              {parseFloat(i.price).toFixed(2).split('.').join(',')}
-            </div>
-            <div className="item-count" data-testid="shopping-cart-product-quantity">
-              {i.quantity}
-            </div>
-            <div className="item-control">
-              <button
-                data-testid="product-increase-quantity"
-                type="button"
-                onClick={ () => handleItemAdd({ ...i }) }
-              >
-                <i className="fas fa-plus" />
-              </button>
-              <button
-                data-testid="product-decrease-quantity"
-                type="button"
-                onClick={ () => handleItemRemove(i) }
-              >
-                <i className="fas fa-minus" />
-              </button>
-            </div>
-            <div className="item-total">
-              R$
-              {i.total.toFixed(2).split('.').join(',')}
-            </div>
-          </div>
-        ))}
-        <button className="cart-clear-button" type="button" onClick={ handleClearCart }>
-          Limpar Carrinho
-        </button>
+          ))}
+          <CartButtonClear handleClick={ handleClearCart } />
+        </div>
       </div>
     </main>
   );
