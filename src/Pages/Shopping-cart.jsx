@@ -8,6 +8,7 @@ class ShoppingCart extends React.Component {
         <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
       );
     }
+
     return (
       <div>
         { arrayOfProducts.map((product) => (
