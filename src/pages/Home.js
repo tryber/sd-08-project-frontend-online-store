@@ -81,8 +81,8 @@ class Home extends React.Component {
 
         <ul>
           {categories.map((category) => (
-            <li key={ category.id } data-testid="category">
-              <Link to="/details" onClick={ () => this.handleProducts(category.id) }>
+            <li key={ category.id }>
+              <Link to="/details" data-testid="category" onClick={ () => this.handleProducts(category.id) }>
                 { category.name }
               </Link>
             </li>
