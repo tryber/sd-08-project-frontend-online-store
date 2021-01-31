@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
-import ProductCard from './ProductCard';
 
 class CategoriesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       categories: [],
-      products: [],
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -19,15 +17,9 @@ class CategoriesList extends Component {
       }));
   }
 
-  async handleClick({ target }) {
-    const data = await api.getProductsFromCategoryAndQuery(target.key, target.value);
-    this.setState({
-      products: data.results,
-    });
-  }
-
   render() {
-    const { categories, products } = this.state;
+    const { onClick } = this.props;
+    const { categories } = this.state;
     return (
       <div>
         Categorias:
@@ -37,14 +29,17 @@ class CategoriesList extends Component {
             data-testid="category"
             key={ id }
             value={ name }
-            onClick={ this.handleClick }
+            onClick={ onClick }
           >
             { name }
           </button>))}
-        { products.map((item) => <ProductCard key={ item.id } product={ item } />) }
       </div>
     );
   }
 }
+
+CategoriesList.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default CategoriesList;
