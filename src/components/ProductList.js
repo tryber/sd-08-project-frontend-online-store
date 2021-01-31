@@ -58,7 +58,12 @@ class ProductList extends Component {
     const { products, listCategories, query } = this.state;
     return (
       <div className="header">
-        <SearchBar handleClick={ this.handleClick } handleChange={ this.handleChange } />
+        <SearchBar
+          handleClick={ this.handleClick }
+          handleChange={ this.handleChange }
+          value={ query }
+        />
+        <ListCategories categories={ listCategories } onClick={ this.handleChange } />
         {products.map((product) => (
           <Link
             to={ {
