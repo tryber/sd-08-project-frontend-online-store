@@ -22,7 +22,7 @@ class Home extends React.Component {
     const { queryProduct } = this.state;
     api.getProductsFromCategoryAndQuery('', queryProduct)
       .then((resolve) => this.setState(
-        { listProducts: resolve.length > 0 ? resolve.results : [],
+        { listProducts: resolve.results.length > 0 ? resolve.results : [],
           queryProduct: '' },
       ));
   }
