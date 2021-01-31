@@ -8,6 +8,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      categoryID: '',
       queryProduct: '',
       listProducts: [],
     };
@@ -15,13 +16,20 @@ class Home extends React.Component {
     this.requestApi = this.requestApi.bind(this);
   }
 
+  componentDidUpdate(previousProp, previousState) {
+    const { categoryID } = this.state;
+    if (previousState.categoryID !== categoryID) {
+      this.requestApi();
+    }
+  }
+
   handleChange({ target }) {
     this.setState({ [target.name]: target.value });
   }
 
   requestApi() {
-    const { queryProduct } = this.state;
-    api.getProductsFromCategoryAndQuery('', queryProduct)
+    const { queryProduct, categoryID } = this.state;
+    api.getProductsFromCategoryAndQuery(categoryID, queryProduct)
       .then((resolve) => this.setState(
         { listProducts: resolve.results.length > 0 ? resolve.results : [],
           queryProduct: '' },
@@ -38,7 +46,7 @@ class Home extends React.Component {
           requestApi={ this.requestApi }
         />
         <div className="main-content">
-          <ButtonCategory />
+          <ButtonCategory handleChange={ this.handleChange } />
           <Main listProducts={ listProducts } />
         </div>
       </div>
