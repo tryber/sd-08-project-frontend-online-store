@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { HashLink } from 'react-router-hash-link';
 import { getCategories } from '../services/api';
 import './CategoryList.css';
 
@@ -40,15 +41,16 @@ class CategoryList extends Component {
       <div className="categories-container">
         <div>
           {categories.map((category) => (
-            <button
-              type="button"
-              key={ category.id }
-              id={ category.id }
-              data-testid="category"
-              onClick={ onClick }
-            >
-              {category.name}
-            </button>
+            <HashLink key={ category.id } to="/#first-card-category">
+              <button
+                type="button"
+                id={ category.id }
+                data-testid="category"
+                onClick={ onClick }
+              >
+                {category.name}
+              </button>
+            </HashLink>
           ))}
         </div>
       </div>

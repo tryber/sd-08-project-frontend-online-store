@@ -7,7 +7,11 @@ class ProductCard extends Component {
   render() {
     const { id, title, image, price, attributes } = this.props;
     return (
-      <div data-testid="product" className="card-container">
+      <div
+        id="first-card-category"
+        data-testid="product"
+        className="card-container"
+      >
         <span className="product-title">{title}</span>
         <img className="product-image" src={ image } alt="Product Tumbnail" />
         <span className="product-price">{price}</span>

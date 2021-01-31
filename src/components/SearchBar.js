@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './SearchBar.css';
+import { HashLink } from 'react-router-hash-link';
 import CategoryList from './CategoryList';
 
 class SearchBar extends Component {
@@ -40,16 +41,19 @@ class SearchBar extends Component {
               type="text"
               onChange={ this.setQuery }
             />
-            <button
-              data-testid="query-button"
-              type="button"
-              onClick={ () => requestProducts(categoryID, query) }
-            >
-              Pesquisar
-            </button>
+            <HashLink to="/#first-card-category">
+              <button
+                data-testid="query-button"
+                type="button"
+                onClick={ () => requestProducts(categoryID, query) }
+              >
+                Pesquisar
+              </button>
+            </HashLink>
             <br />
-            {!changed
-              && <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>}
+            {!changed && (
+              <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
+            )}
           </label>
         </form>
         <CategoryList onClick={ this.setCategory } />
