@@ -3,12 +3,11 @@ PRIORIDADE 3 - Adicionar formulário ao produto, em sua exibição detalhada, pa
 - [Tela - Detalhamento do produto com avaliações](https://github.com/my-org/my-repo/tree/master/wireframes/card_11.1.png)
 - [Tela - Detalhamento do produto com avaliações pregressas](https://github.com/my-org/my-repo/tree/master/wireframes/card_11.2.png)
 
-
 **Requisito 11.** Avaliações positivas de um produto contribuem para boas vendas e nos dão insumos para, no tempo, destacarmos os produtos melhores e fazermos anúncios direcionados. Produtos ruins, de forma análoga, podem eventualmente ser penalizados por avaliações ruins.
 
-  * Adicione um campo de texto para que a pessoa que utiliza a aplicação possa escrever algo sobre o produto.
-  * Adicione o atributo `data-testid` com o valor `product-detail-evaluation` no campo de texto.
+- Adicione um campo de texto para que a pessoa que utiliza a aplicação possa escrever algo sobre o produto.
+- Adicione o atributo `data-testid` com o valor `product-detail-evaluation` no campo de texto.
 
 **O que será avaliado:**
 
-  * Avalia um produto na sua tela de detalhes
+- Avalia um produto na sua tela de detalhes

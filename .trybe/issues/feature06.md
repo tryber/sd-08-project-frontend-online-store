@@ -6,4 +6,4 @@ PRIORIDADE 2 - Como pessoa usuária, eu quero clicar em uma categoria e ver a li
 
 **O que será avaliado:**
 
-  * Filtra corretamente os produtos de uma página para exibir somente os daquela categoria
+- Filtra corretamente os produtos de uma página para exibir somente os daquela categoria
