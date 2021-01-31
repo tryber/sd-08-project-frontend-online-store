@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from './Categories';
 import ProductList from './ProductList';
-import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor() {
@@ -14,11 +14,13 @@ class Home extends React.Component {
       loadingProducts: false,
       products: [],
       renderProducts: false,
+      selectCategory: '',
     };
     this.fetchCategories = this.fetchCategories.bind(this);
     this.onChange = this.onChange.bind(this);
     this.search = this.search.bind(this);
     this.fetchCategories = this.fetchCategories.bind(this);
+    this.filterForCategory = this.filterForCategory.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +33,10 @@ class Home extends React.Component {
     });
   }
 
+  filterForCategory(event) {
+    this.setState({ selectCategory: event.target.id }, () => this.search());
+  }
+
   async fetchCategories() {
     const data = await getCategories();
     this.setState({
@@ -40,9 +46,9 @@ class Home extends React.Component {
   }
 
   search() {
-    const { searchText } = this.state;
+    const { searchText, selectCategory } = this.state;
     this.setState({ renderProducts: true, loadingProducts: true }, async () => {
-      const dataObj = await getProductsFromCategoryAndQuery('', searchText);
+      const dataObj = await getProductsFromCategoryAndQuery(selectCategory, searchText);
       const data = dataObj.results;
       this.setState({ loadingProducts: false, products: data });
     });
@@ -63,7 +69,7 @@ class Home extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         { loadingCategory ? <p>Carregando categorias</p>
-          : <Categories categories={ categories } />}
+          : <Categories onClick={ this.filterForCategory } categories={ categories } />}
         <input
           type="text"
           onChange={ this.onChange }
