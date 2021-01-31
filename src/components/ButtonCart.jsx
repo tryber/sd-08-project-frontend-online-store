@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionSlideOpen } from '../store/control.reducer';
 
 export default function ButtonCart() {
   const cart = useSelector((state) => state.cart);
-
+  const dispatch = useDispatch();
   const [count, setCount] = useState(0);
-  const history = useHistory();
 
   const checkoutCounter = () => {
     setCount(cart.length);
@@ -18,7 +18,8 @@ export default function ButtonCart() {
   }, [cart]);
 
   const handleClickCart = () => {
-    history.push('/cart');
+    dispatch(actionSlideOpen());
+    // history.push('/cart');
   };
 
   return (

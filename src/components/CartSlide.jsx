@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { parseCart } from '../helpers/helpers';
@@ -15,7 +15,10 @@ import CartMenu from './cart/CartMenu';
 
 export default function CartSlide() {
   const cart = useSelector((state) => state.cart);
+  const control = useSelector((state) => state.control);
   const [list, setList] = useState(parseCart(cart));
+  const [update, setUpdate] = useState(0);
+
   const dispatch = useDispatch();
   const handleItemAdd = (product) => {
     const item = list[list.findIndex((i) => i.id === product.id)];
@@ -35,8 +38,16 @@ export default function CartSlide() {
     dispatch(actionClear());
     setList([]);
   };
+
+  useEffect(() => {
+    if (update <= control.updatecart) {
+      setList(parseCart(cart));
+    }
+    setUpdate(control.updatecart);
+    //
+  }, [control]);
   return (
-    <div className="cart-slide">
+    <div id="cart-slide" className="cart-slide">
       <CartMenu />
       <div className="slide-shopping-cart">
         <div className="slide-shopping-cart-list">

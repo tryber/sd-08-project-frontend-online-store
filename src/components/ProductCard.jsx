@@ -8,6 +8,7 @@ import CardInfo from './card/CardInfo';
 
 import { actionAdd } from '../store/cart.reducer';
 import { actionAdd as actionAddDetail } from '../store/details.reducer';
+import { actionCartUpdate } from '../store/control.reducer';
 
 export default function ProductCard(props) {
   const {
@@ -19,12 +20,12 @@ export default function ProductCard(props) {
   const handleClick = () => {
     const { product } = props;
     dispatch(actionAddDetail({ ...product }));
-    // history.push(`/product/${id}/${title}/${price}`);
     history.push(`/product/${id}`);
   };
   const handleBuyClick = () => {
     dispatch(actionAdd({ id, title, price }));
-    history.push('/');
+    dispatch(actionCartUpdate());
+    // history.push('/');
   };
   return (
     <section className="product-card-wraper">
