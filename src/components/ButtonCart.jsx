@@ -30,7 +30,9 @@ export default function ButtonCart() {
       onClick={ handleClickCart }
     >
       <img className="cart-image" src="/icon-cart.png" alt="cart" />
-      <span className="cart-count">{count}</span>
+      <span className="cart-count" data-testid="shopping-cart-size">
+        {count}
+      </span>
     </button>
   );
 }
