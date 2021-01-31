@@ -13,7 +13,7 @@ export function actionUpdate(payload) {
 
 const INITIAL_STATE = [];
 
-export default function cart(state = INITIAL_STATE, action) {
+export default function categories(state = INITIAL_STATE, action) {
   // console.log(state, action);
   switch (action.type) {
   case 'CATEGORIES_CLEAR': {

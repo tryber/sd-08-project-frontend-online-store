@@ -7,6 +7,7 @@ import CardImage from './card/CardImage';
 import CardInfo from './card/CardInfo';
 
 import { actionAdd } from '../store/cart.reducer';
+import { actionAdd as actionAddDetail } from '../store/details.reducer';
 
 export default function ProductCard(props) {
   const {
@@ -16,7 +17,10 @@ export default function ProductCard(props) {
 
   const history = useHistory();
   const handleClick = () => {
-    history.push(`/product/${id}/${title}/${price}`);
+    const { product } = props;
+    dispatch(actionAddDetail({ ...product }));
+    // history.push(`/product/${id}/${title}/${price}`);
+    history.push(`/product/${id}`);
   };
   const handleBuyClick = () => {
     dispatch(actionAdd({ id, title, price }));
