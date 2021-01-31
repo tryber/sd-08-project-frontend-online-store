@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 class ListCards extends Component {
@@ -14,6 +15,15 @@ class ListCards extends Component {
           R$
           { price }
         </p>
+        <Link
+          data-testid="product-detail-link"
+          to={ { pathname: `/product/${title}`,
+            state: {
+              product: { productprop },
+            } } }
+        >
+          Detalhes
+        </Link>
       </section>
     );
   }
