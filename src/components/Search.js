@@ -1,18 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as mercadolibreAPI from '../services/api';
-import ProductCard from './ProductCard';
-import Loading from './Loading';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchText: '',
-      query: [],
       loading: true,
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleButton = this.handleButton.bind(this);
+    this.fetchQuery = this.fetchQuery.bind(this);
   }
 
   handleChange({ target }) {
@@ -22,21 +20,13 @@ class Search extends React.Component {
     }));
   }
 
-  async handleButton() {
+  async fetchQuery() {
     const { searchText } = this.state;
+    const query = searchText.replace(/\s/ig, '+');
     const { getProductsFromCategoryAndQuery } = mercadolibreAPI;
-    const fetchQuery = await getProductsFromCategoryAndQuery('', searchText);
-    this.setState({ query: fetchQuery.results, loading: false });
-  }
-
-  productCards(products) {
-    return (
-      <div>
-        {products.map(
-          (product) => <ProductCard key={ product.id } product={ product } />,
-        )}
-      </div>
-    );
+    const fetchQuery = await getProductsFromCategoryAndQuery(query, '');
+    const { onClick } = this.props;
+    onClick(fetchQuery.results);
   }
 
   renderInputSearch() {
@@ -53,7 +43,7 @@ class Search extends React.Component {
         />
         <button
           type="button"
-          onClick={ this.handleButton }
+          onClick={ this.fetchQuery }
           data-testid="query-button"
         >
           Pesquisar!
@@ -63,14 +53,16 @@ class Search extends React.Component {
   }
 
   render() {
-    const { query, loading } = this.state;
     return (
       <div>
         {this.renderInputSearch()}
-        {loading ? <Loading /> : this.productCards(query)}
       </div>
     );
   }
 }
+
+Search.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Search;
