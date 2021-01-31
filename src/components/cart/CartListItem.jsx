@@ -16,7 +16,7 @@ export default function CartListItem(props) {
         <CartItemDetail id={ item.id } name={ item.title } />
       </div>
       <CartItemPrice value={ parseFloat(item.price) } />
-      <CartItemQuantity value={ parseInt(item.quantity) } />
+      <CartItemQuantity value={ item.quantity } />
       <CartItemControl
         handleAdd={ () => handleItemAdd({ ...item }) }
         handleRemove={ () => handleItemRemove(item) }
