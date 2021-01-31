@@ -2,4 +2,7 @@
   color: white;
   font-size: 50px;
   margin: 5px 0;
+  position: absolute;
+  top: 15px;  
+  right: 5%;
 }
