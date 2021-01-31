@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
+import './CategoryList.css';
 
 class CategoryList extends Component {
   constructor() {
@@ -20,7 +21,8 @@ class CategoryList extends Component {
     const categoryList = await getCategories();
     this.setState(() => ({
       categories: categoryList,
-      loading: false }));
+      loading: false,
+    }));
   }
 
   render() {
@@ -30,28 +32,26 @@ class CategoryList extends Component {
     if (loading) {
       return (
         <div>
-          <h2>{ categories[0].name}</h2>
+          <h2>{categories[0].name}</h2>
         </div>
       );
     }
     return (
-      <div>
-        <h2>Categorias:</h2>
-        <ul>
-          {categories
-            .map((category) => (
-              <button
-                type="button"
-                key={ category.id }
-                id={ category.id }
-                data-testid="category"
-                onClick={ onClick }
-              >
-                { category.name }
-              </button>))}
-        </ul>
+      <div className="categories-container">
+        <div>
+          {categories.map((category) => (
+            <button
+              type="button"
+              key={ category.id }
+              id={ category.id }
+              data-testid="category"
+              onClick={ onClick }
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
       </div>
-
     );
   }
 }

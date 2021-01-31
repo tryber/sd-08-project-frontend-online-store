@@ -1,0 +1,25 @@
+.categories-container {
+  margin: 5px auto;
+  width: 80%;
+}
+.categories-container div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.categories-container button {
+  background-color: rgb(26, 25, 25);
+  border-radius: 30px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  margin: 5px 5px;
+  min-width: 250px;
+  max-width: 250px;
+  padding: 10px 5px;
+  text-transform: uppercase;
+}
+.categories-container button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}

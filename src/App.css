@@ -1,4 +1,4 @@
-.App-header {
+.app-header {
   background-color: #282c34;
   color: white;
   display: flex;
@@ -6,4 +6,9 @@
   justify-content: space-between;
   margin-bottom: 15px;
   padding: 10px 30px;
+}
+.app-header a {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  text-decoration: none;
 }

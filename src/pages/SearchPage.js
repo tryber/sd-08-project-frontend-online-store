@@ -15,7 +15,10 @@ class SearchPage extends Component {
 
   requestProducts(categoryId, query) {
     this.setState(async () => {
-      const results = await api.getProductsFromCategoryAndQuery(categoryId, query);
+      const results = await api.getProductsFromCategoryAndQuery(
+        categoryId,
+        query,
+      );
       this.setState({ products: results.results });
     });
   }
@@ -29,9 +32,11 @@ class SearchPage extends Component {
           {products.map((product) => (
             <ProductCard
               key={ product.id }
+              id={ product.id }
               title={ product.title }
               image={ product.thumbnail }
               price={ `R$ ${product.price}` }
+              attributes={ product.attributes }
             />
           ))}
           {!products.length && <p>Nenhum produto foi encontrado</p>}
