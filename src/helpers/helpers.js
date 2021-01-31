@@ -36,18 +36,17 @@ async function parseProductData(data) {
 
 const parseCart = (cart) => {
   if (!cart) return [];
-  return cart
-    .reduce((a, c) => {
-      const index = a.findIndex((i) => i.id === c.id);
-      if (index >= 0) {
-        a[index].quantity += 1;
-        a[index].total += parseFloat(c.price);
-      } else {
-        a.push({ ...c, quantity: 1, total: parseFloat(c.price) });
-      }
-      return a;
-    }, [])
-    .sort((a, b) => a.title.localeCompare(b.title));
+  return cart.reduce((a, c) => {
+    const index = a.findIndex((i) => i.id === c.id);
+    if (index >= 0) {
+      a[index].quantity += 1;
+      a[index].total += parseFloat(c.price);
+    } else {
+      a.push({ ...c, quantity: 1, total: parseFloat(c.price) });
+    }
+    return a;
+  }, []);
+  // .sort((a, b) => a.title.localeCompare(b.title));
 };
 
 module.exports = { shuffle, parsePrice, parseProductData, parseCart };

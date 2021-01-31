@@ -14,15 +14,19 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setList(parseCart(cart));
+    if (list.length === 0) {
+      setList(parseCart(cart));
+    }
   }, [cart]);
 
   const handleItemAdd = (product) => {
+    list[list.findIndex((i) => i.id === product.id)].quantity += 1;
     dispatch(actionAdd(product));
   };
 
-  const handleItemRemove = (id) => {
-    dispatch(actionRemove(id));
+  const handleItemRemove = (product) => {
+    list[list.findIndex((i) => i.id === product.id)].quantity -= 1;
+    dispatch(actionRemove(product.id));
   };
 
   const handleClearCart = () => {
@@ -41,9 +45,7 @@ export default function Cart() {
         ) : null}
         {list.map((i) => (
           <div className="shopping-cart-list-item" key={ i.id }>
-            <div className="item-id" data-testid="shopping-cart-product-name">
-              {i.id}
-            </div>
+            <div className="item-id">{i.id}</div>
             <div className="item-title" data-testid="shopping-cart-product-name">
               {i.title}
             </div>
@@ -54,11 +56,19 @@ export default function Cart() {
             <div className="item-count" data-testid="shopping-cart-product-quantity">
               {i.quantity}
             </div>
-            <div className="item-control" data-testid="shopping-cart-product-quantity">
-              <button type="button" onClick={ () => handleItemAdd({ ...i }) }>
+            <div className="item-control">
+              <button
+                data-testid="product-increase-quantity"
+                type="button"
+                onClick={ () => handleItemAdd({ ...i }) }
+              >
                 <i className="fas fa-plus" />
               </button>
-              <button type="button" onClick={ () => handleItemRemove(i.id) }>
+              <button
+                data-testid="product-decrease-quantity"
+                type="button"
+                onClick={ () => handleItemRemove(i) }
+              >
                 <i className="fas fa-minus" />
               </button>
             </div>
