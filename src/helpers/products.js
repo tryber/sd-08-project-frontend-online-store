@@ -17,7 +17,9 @@ async function getProductImages(productId) {
 }
 
 async function getCategoriesIds() {
-  const result = await fetch('https://api.mercadolibre.com/sites/MLB/categories')
+  const result = await fetch(
+    'https://api.mercadolibre.com/sites/MLB/categories',
+  )
     .then((res) => res.json())
     .then((data) => data.map((i) => i.id));
   return result;
@@ -51,9 +53,9 @@ async function parseProductData(data) {
       category_id: i.category_id,
       price: helpers.parsePrice(i.price),
       mercadopago: i.accepts_mercadopago,
-      thumbnail: i.thumbnail,
-      images: (await getProductImages(i.id)) || [],
-      attributes: (await getProductAttributes(i.id)) || [],
+      thumbnail: i.thumbnail.replace('-I.jpg', '-O.jpg'),
+      // images: (await getProductImages(i.id)) || [],
+      // attributes: (await getProductAttributes(i.id)) || [],
     })),
   );
   return result;
@@ -79,6 +81,21 @@ async function getProducts(query, limit = DEF_LIMIT) {
   return result;
 }
 
+async function getProduct(productId) {
+  const result = await fetch(`https://api.mercadolibre.com/items/${productId}`)
+    .then((res) => res.json())
+    .then(async (i) => ({
+      id: i.id,
+      title: i.title,
+      category_id: i.category_id,
+      price: helpers.parsePrice(i.price),
+      mercadopago: i.accepts_mercadopago,
+      thumbnail: i.thumbnail,
+      attributes: (await getProductAttributes(i.id)) || [],
+    }));
+  return result;
+}
+
 async function getRandomProducts() {
   const list = await getCategoriesIds();
   const result = Promise.all(
@@ -94,6 +111,7 @@ module.exports = {
   getProductAttributes,
   getProductImages,
   getProductsByCategory,
+  getProduct,
   getProducts,
   getCategoriesIds,
   getRandomProducts,

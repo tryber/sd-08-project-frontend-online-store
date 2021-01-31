@@ -1,31 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { actionSlideOpen } from '../store/control.reducer';
+
+import ButtonCart from './ButtonCart';
 
 export default function Header(props) {
   const { showLogo, showCheckout, showBack } = props;
   const history = useHistory();
-  const [count, setCount] = useState(0);
-
-  const handleClickCart = () => {
-    console.log('cart');
-    history.push('/cart');
-  };
-
-  const checkoutCounter = () => {
-    setCount(0);
-  };
-
-  useEffect(() => {
-    checkoutCounter();
-  });
 
   const handleClickBack = () => {
     history.push('/');
   };
 
   return (
-    <header>
+    <header className="header-main">
       <div className="header-wrap">
         <section className="header-left">
           {showBack ? (
@@ -34,17 +24,18 @@ export default function Header(props) {
               type="button"
               onClick={ handleClickBack }
             >
-              <img className="button-back-image" src="icon-back.png" alt="back" />
+              <img
+                className="button-back-image"
+                src="/icon-back.png"
+                alt="back"
+              />
             </button>
           ) : null}
-          {showLogo ? <img className="shopping-logo" src="logo.png" alt="logo" /> : null}
+          {showLogo ? (
+            <img className="shopping-logo" src="/logo.png" alt="logo" />
+          ) : null}
         </section>
-        {showCheckout ? (
-          <button type="button" className="cart-button" onClick={ handleClickCart }>
-            <img className="cart-image" src="icon-cart.png" alt="cart" />
-            <span className="cart-count">{count}</span>
-          </button>
-        ) : null}
+        {showCheckout ? <ButtonCart /> : null}
       </div>
     </header>
   );

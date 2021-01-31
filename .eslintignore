@@ -4,3 +4,5 @@ src/index.js
 src/__tests__/*.js
 src/__mocks__/*.js
 *.scss
+old
+debug.js

@@ -1,37 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import CardImage from './card/CardImage';
+import CardInfo from './card/CardInfo';
+
+import { actionAdd } from '../store/cart.reducer';
+import { actionAdd as actionAddDetail } from '../store/details.reducer';
+import { actionCartUpdate } from '../store/control.reducer';
 
 export default function ProductCard(props) {
   const {
-    product: { title, images, price },
+    product: { id, title, thumbnail, price },
   } = props;
+  const dispatch = useDispatch();
 
-  // const aprice = parsePrice(price);
-
-  const handleAddCart = () => {
-    const { product, handleAddCartClick } = props;
-    if (handleAddCartClick) {
-      handleAddCartClick(product);
-    }
+  const history = useHistory();
+  const handleClick = () => {
+    const { product } = props;
+    dispatch(actionAddDetail({ ...product }));
+    history.push(`/product/${id}`);
   };
-
+  const handleBuyClick = () => {
+    dispatch(actionAdd({ id, title, price }));
+    dispatch(actionCartUpdate());
+    // history.push('/');
+  };
   return (
-    <section className="product-card">
-      <section className="product-card-image">
-        <img src={ images } alt={ title } />
-      </section>
-
-      <section className="product-card-info">
-        <div className="product-card-info-price">
-          <span className="price-part-1">R$</span>
-          <span className="price-part-2">{price.split(',')[0]}</span>
-          <span className="price-part-3">{price.split(',')[1]}</span>
-        </div>
-        <span className="product-card-info-title">{title}</span>
-      </section>
-
-      <section className="product-card-buy">
-        <button className="buy-button" type="button" onClick={ handleAddCart }>
+    <section className="product-card-wraper">
+      <button
+        type="button"
+        className="product-card"
+        data-testid="product-detail-link"
+        onClick={ handleClick }
+      >
+        <CardImage url={ thumbnail } alt={ title } />
+        <CardInfo price={ price } title={ title } />
+      </button>
+      <section className="product-buy">
+        <button
+          className="product-buy-button"
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={ handleBuyClick }
+        >
           Adicionar ao Carrinho
         </button>
       </section>
@@ -47,13 +60,5 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     mercadopago: PropTypes.bool.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    attributes: PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.string,
-        value: PropTypes.string,
-      }),
-    ),
   }).isRequired,
-  handleAddCartClick: PropTypes.func.isRequired,
 };
