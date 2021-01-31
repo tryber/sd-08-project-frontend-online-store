@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as api from './services/api';
 
-import AddButtonCart from './AddButtonCart';
-
 class LandingPage extends React.Component {
   constructor() {
     super();
@@ -13,12 +11,14 @@ class LandingPage extends React.Component {
       categoryId: '',
       query: '',
       productList: [],
+      shoppingCart: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.getCategoriesList = this.getCategoriesList.bind(this);
     this.getProductsFromAPI = this.getProductsFromAPI.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.addItemToCart = this.addItemToCart.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +53,27 @@ class LandingPage extends React.Component {
     this.setState({
       productList,
     });
+  }
+
+  addItemToCart(product) {
+    const { shoppingCart } = this.state;
+    if (!shoppingCart.includes(product)) {
+      this.setState({
+        shoppingCart: [...shoppingCart, product],
+      });
+    }
+  }
+
+  renderAddButtonCart() {
+    return (
+      <button
+        type="button"
+        data-testid="product-add-to-cart"
+        onClick={ () => this.addItemToCart(this.product) }
+      >
+        Adicionar produto ao carrinho
+      </button>
+    );
   }
 
   renderCategoryList(categoriesList) {
@@ -100,7 +121,7 @@ class LandingPage extends React.Component {
             >
               <button type="button">Detalhes</button>
             </Link>
-            <AddButtonCart />
+            { this.renderAddButtonCart(this.product) }
           </section>
         ))}
       </div>

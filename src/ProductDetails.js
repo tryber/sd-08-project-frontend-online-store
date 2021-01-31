@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import AddButtonCart from './AddButtonCart';
-
 class ProductDetails extends React.Component {
   render() {
     const { location: { state: { product } } } = this.props;
@@ -32,9 +30,7 @@ class ProductDetails extends React.Component {
               state: { product },
             } }
             data-testid="product-detail-link"
-          >
-            <AddButtonCart />
-          </Link>
+          />
         </div>
       </div>
     );
