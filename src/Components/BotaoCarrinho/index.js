@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import style from './style.module.css';
 
 const BotaoCarrinho = () => {
   const [shouldRedirect, setShouldRedirect] = React.useState(false);
