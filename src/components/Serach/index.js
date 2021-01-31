@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaSearch } from 'react-icons/fa';
 import './Search.css';
 import PropTypes from 'prop-types';
 
@@ -11,21 +12,26 @@ class Search extends Component {
           <p>
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <input
-            data-testid="query-input"
-            className="search-input"
-            id="search"
-            name="search"
-            onChange={ buscaInput }
-            placeholder="Faça uma Busca Por Produtos"
-          />
-          <button
-            type="button"
-            data-testid="query-button"
-            onClick={ submitBotao }
-          >
-            Pesquisar
-          </button>
+          <div className="search-container">
+            <input
+              data-testid="query-input"
+              className="search-input"
+              id="search"
+              name="search"
+              onChange={ buscaInput }
+              placeholder="Faça uma Busca Por Produtos"
+            />
+            <button
+              type="button"
+              className="search-btn"
+              data-testid="query-button"
+              onClick={ submitBotao }
+            >
+              <FaSearch className="icon" />
+              {' '}
+              Pesquisar
+            </button>
+          </div>
         </label>
       </div>
     );
