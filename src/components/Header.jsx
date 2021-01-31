@@ -11,28 +11,22 @@ class Header extends React.Component {
     return (
       <div>
         <div className="banner">
-          <div className="logo">
-            <h1>Correios</h1>
-          </div>
-        </div>
-        <div className="search">
+          <h1>Loja 28</h1>
           <Search
             queryProduct={ queryProduct }
             handleChange={ handleChange }
             requestApi={ requestApi }
           />
-          <h1 data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma
-            categoria.
-          </h1>
+          <div className="cartItems">
+            <BtnShoppingCart />
+          </div>
         </div>
-
-        <div className="cartItems">
-          <BtnShoppingCart />
-        </div>
+        <h1 className="searchDescription" data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma
+          categoria.
+        </h1>
 
       </div>
-
     );
   }
 }
