@@ -151,8 +151,6 @@ header {
 
 // ------------------------------------------------------------
 
-
-
 // ------------------------------------------------------------
 
 .content {
@@ -218,7 +216,7 @@ header {
     flex-direction: row;
     justify-content: center;
     font-size: 0.9vw;
-  
+
     ul {
       list-style-type: none;
       margin: 0;
@@ -227,7 +225,7 @@ header {
       flex-wrap: wrap;
       justify-content: center;
       padding: 2px;
-  
+
       li {
         display: flex;
         justify-content: center;
@@ -241,7 +239,7 @@ header {
           font-size: 0.8vw;
           color: $card-primary-alt-color;
           font-weight: 300;
-  
+
           &:hover {
             color: rgba(0, 0, 0, 0.87);
             cursor: pointer;
@@ -278,10 +276,9 @@ header {
     transition: transform 1s;
     border: 1px solid rgba(0, 0, 0, 0.637);
   }
-  &:not:hover {     
+  &:not:hover {
     transition: transform 1s;
   }
-
 
   .product-card {
     // border: 1px solid black;
@@ -291,8 +288,6 @@ header {
     height: 260px;
     width: 220px;
     background-color: $card-bg-color;
-
-
 
     .product-card-image {
       width: 100%;
@@ -408,21 +403,108 @@ header {
 .shopping-cart-list {
   display: flex;
   flex-direction: column;
-  border: 1px solid green;
+  // border: 1px solid green;
   padding: 6px;
   .shopping-cart-list-item {
+    background-color: $secundary-bg-color;
+    font-size: 0.8em;
     padding: 2px;
-    border: 1px solid blue;
-    display: flex; 
-    .item-name {
-      width: 40%;
+    // border: 1px solid blue;
+    display: flex;
+    .item-id {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      width: 8%;
       padding: 5px;
+    }
+    .item-title {
+      display: flex;
+      align-items: center;
+      width: 30%;
+      padding: 5px;
+    }
+    .item-price {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-weight: 400;
+      width: 6%;
+      padding: 5px;
+      // border: 1px solid green;
+      margin-right: 6px;
     }
     .item-count {
-      color: red;
-      width: 5%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      color: black;
+      width: 2%;
+      font-size: 1.1em;
       font-weight: 600;
       padding: 5px;
+      margin-right: 6px;
     }
+
+    .item-control {
+      // border: 1px solid blueviolet;
+      width: 4%;
+      font-weight: 600;
+      padding: 5px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-right: 6px;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0;
+        border-radius: 6px;
+        padding: 4px;
+        align-self: center;
+        cursor: pointer;
+        margin-right: 2px;
+        background-color: $secundary-bg-color;
+        margin-right: 4px;
+      }
+    }
+    .item-total {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-weight: 500;
+      width: 5%;
+      padding: 5px;
+      // border: 1px solid green;
+      margin-right: 6px;
+    }
+  }
+}
+
+.cart-empty-message {
+  align-self: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.cart-clear-button {
+  padding: 4px;
+  align-self: center;
+  width: 15%;
+  border: 1px solid rgba(149, 149, 149, 0.876);
+  border-radius: 6px;
+  color: $card-primary-color;
+  font-weight: 600;
+  background-color: #ffffff26;
+  margin-top: 20px;
+  &:hover {
+    background-color: white;
+
+    color: rgb(26, 26, 26);
+    border: 1px solid rgba(58, 58, 58, 0.692);
+  }
+  &:focus {
+    outline: none;
   }
 }

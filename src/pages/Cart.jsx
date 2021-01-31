@@ -1,53 +1,77 @@
 import React, { useState, useEffect } from 'react';
 // import { useParams } from 'react-router-dom';
 // import PropTypes from 'prop-types';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { parseCart } from '../helpers/helpers';
+import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
 import Header from '../components/Header';
 
-const DEF_CART_KEY = 'CART_ITENS';
-
 export default function Cart() {
-  const [productList, setProductList] = useState(null);
-
-  // api.getCategories();
-  // api.getProductsFromCategoryAndQuery();
+  const cart = useSelector((state) => state.cart);
+  const [list, setList] = useState([]);
+  const [id, setId] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (productList === null) {
-      const cart = JSON.parse(localStorage.getItem(DEF_CART_KEY)) || [];
-      if (cart.length !== 0) {
-        setProductList(cart);
-      }
-    }
-  }, [productList]);
+    setList(parseCart(cart));
+  }, [cart]);
+
+  const handleItemAdd = (product) => {
+    dispatch(actionAdd(product));
+  };
+
+  const handleItemRemove = (id) => {
+    dispatch(actionRemove(id));
+  };
 
   const handleClearCart = () => {
-    localStorage.setItem(DEF_CART_KEY, []);
-    setProductList([]);
+    dispatch(actionClear());
   };
 
   return (
     <main>
       <Header showLogo={ false } showBack />
-      {productList === null ? (
-        <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>
-      ) : null}
+
       <div className="shopping-cart-list">
-        {productList !== null
-          ? productList.map((i, index) => (
-            <div className="shopping-cart-list-item" key={ index }>
-              <div className="item-name" data-testid="shopping-cart-product-name">
-                {i.title}
-              </div>
-              <div className="item-count" data-testid="shopping-cart-product-quantity">
-                {i.count}
-              </div>
+        {cart.length === 0 ? (
+          <div className="cart-empty-message" data-testid="shopping-cart-empty-message">
+            Seu carrinho está vazio
+          </div>
+        ) : null}
+        {list.map((i) => (
+          <div className="shopping-cart-list-item" key={ i.id }>
+            <div className="item-id" data-testid="shopping-cart-product-name">
+              {i.id}
             </div>
-          ))
-          : null}
+            <div className="item-title" data-testid="shopping-cart-product-name">
+              {i.title}
+            </div>
+            <div className="item-price">
+              R$
+              {parseFloat(i.price).toFixed(2).split('.').join(',')}
+            </div>
+            <div className="item-count" data-testid="shopping-cart-product-quantity">
+              {i.quantity}
+            </div>
+            <div className="item-control" data-testid="shopping-cart-product-quantity">
+              <button type="button" onClick={ () => handleItemAdd({ ...i }) }>
+                <i className="fas fa-plus" />
+              </button>
+              <button type="button" onClick={ () => handleItemRemove(i.id) }>
+                <i className="fas fa-minus" />
+              </button>
+            </div>
+            <div className="item-total">
+              R$
+              {i.total.toFixed(2).split('.').join(',')}
+            </div>
+          </div>
+        ))}
+        <button className="cart-clear-button" type="button" onClick={ handleClearCart }>
+          Limpar Carrinho
+        </button>
       </div>
-      <button type="button" onClick={ handleClearCart }>
-        Limpar
-      </button>
     </main>
   );
 }

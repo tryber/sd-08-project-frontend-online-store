@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { parseCart } from '../helpers/helpers';
 import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
 import Header from '../components/Header';
 
@@ -26,7 +27,7 @@ export default function Debug() {
     <main>
       <Header showLogo={ false } showBack />
       <div>
-        {cart.map((i, index) => (
+        {parseCart(cart).map((i, index) => (
           <div key={ index }>
             {JSON.stringify(i)}
             <br />

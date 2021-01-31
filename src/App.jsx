@@ -22,9 +22,7 @@ export default function App() {
           <Route path="/product/:id/:title/:price" exact component={ ProductDetails } />
           {/* <Route path="/cart" exact component={ Cart } /> */}
 
-          <Route path="/cart" exact component={ Debug } />
-
-          {/* <Route path="/cart/:id/:title" exact component={ Cart } /> */}
+          <Route path="/cart" exact component={ Cart } />
 
           <Redirect from="*" to="/" />
         </Switch>
