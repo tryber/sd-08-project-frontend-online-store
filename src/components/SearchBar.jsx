@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
-
 import ProductCard from './ProductCard';
 
 class SearchBar extends Component {
   constructor() {
     super();
     this.state = {
-      query: [],
-      text: '',
+      product: [],
+      query: '',
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   async handleSearch() {
-    const { text } = this.state;
-    const fetch = await api.getProductsFromCategoryAndQuery('', text);
-    this.setState({ query: fetch.results });
+    const { query } = this.state;
+    const fetch = await api.getProductsFromCategoryAndQuery('', query);
+    this.setState({ product: fetch.results });
   }
 
   handleChange({ target }) {
@@ -28,7 +27,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { text, query } = this.state;
+    const { query, product } = this.state;
     return (
       <section>
         <label htmlFor="input">
@@ -37,8 +36,8 @@ class SearchBar extends Component {
             onChange={ this.handleChange }
             data-testid="query-input"
             type="text"
-            name="text"
-            value={ text }
+            name="query"
+            value={ query }
           />
         </label>
         <button
@@ -48,7 +47,7 @@ class SearchBar extends Component {
         >
           Button
         </button>
-        { query.map((item) => <ProductCard key={ item.id } product={ item } />) }
+        { product.map((item) => <ProductCard key={ item.id } product={ item } />) }
       </section>
     );
   }

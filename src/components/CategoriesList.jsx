@@ -1,24 +1,50 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as api from '../services/api';
+import ProductCard from './ProductCard';
 
 class CategoriesList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      categories: [],
+      products: [],
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    api.getCategories()
+      .then((data) => this.setState({
+        categories: data,
+      }));
+  }
+
+  async handleClick({ target }) {
+    const data = await api.getProductsFromCategoryAndQuery(target.key, target.value);
+    this.setState({
+      products: data.results,
+    });
+  }
+
   render() {
-    const { list } = this.props;
+    const { categories, products } = this.state;
     return (
-      <ol>
+      <div>
         Categorias:
-        { list.map(({ id, name }) => (
-          <li data-testid="category" key={ id } value={ id }>
+        { categories.map(({ id, name }) => (
+          <button
+            type="button"
+            data-testid="category"
+            key={ id }
+            value={ name }
+            onClick={ this.handleClick }
+          >
             { name }
-          </li>))}
-        ;
-      </ol>
+          </button>))}
+        { products.map((item) => <ProductCard key={ item.id } product={ item } />) }
+      </div>
     );
   }
 }
-
-CategoriesList.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
 
 export default CategoriesList;
