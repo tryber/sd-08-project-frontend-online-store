@@ -6,6 +6,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
 import Header from '../components/Header';
 
+// input.reduce((total, value) => {
+//   total[value] = (total[value] || 0) + 1;
+//   return total;
+// }, {});
+
 export default function Debug() {
   const cart = useSelector((state) => state.cart);
   const [id, setId] = useState('');

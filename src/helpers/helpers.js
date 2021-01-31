@@ -34,4 +34,18 @@ async function parseProductData(data) {
   return result;
 }
 
-module.exports = { shuffle, parsePrice, parseProductData };
+const parseCart = (cart) => {
+  if (!cart) return [];
+  return cart.reduce((a, c) => {
+    const index = a.findIndex((i) => i.id === c.id);
+    if (index >= 0) {
+      a[index].quantity += 1;
+    } else {
+      a.push({ ...c, quantity: 1 });
+    }
+
+    return a;
+  }, []);
+};
+
+module.exports = { shuffle, parsePrice, parseProductData, parseCart };
