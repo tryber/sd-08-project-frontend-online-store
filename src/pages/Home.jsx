@@ -1,9 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import CartSlide from "../components/CartSlide";
-import Header from "../components/Header";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import CartSlide from '../components/CartSlide';
+import Header from '../components/Header';
 // import SeachBar from '../components/SearchBar';
-import ProductList from "../components/ProductList";
+import ProductList from '../components/ProductList';
 
 export default function Home() {
   const control = useSelector((state) => state.control);

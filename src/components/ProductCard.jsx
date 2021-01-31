@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
-import { useDispatch } from "react-redux";
-import CardImage from "./card/CardImage";
-import CardInfo from "./card/CardInfo";
+import { useDispatch } from 'react-redux';
+import CardImage from './card/CardImage';
+import CardInfo from './card/CardInfo';
 
-import { actionAdd } from "../store/cart.reducer";
-import { actionAdd as actionAddDetail } from "../store/details.reducer";
-import { actionCartUpdate } from "../store/control.reducer";
+import { actionAdd } from '../store/cart.reducer';
+import { actionAdd as actionAddDetail } from '../store/details.reducer';
+import { actionCartUpdate } from '../store/control.reducer';
 
 export default function ProductCard(props) {
   const {
@@ -33,17 +33,17 @@ export default function ProductCard(props) {
         type="button"
         className="product-card"
         data-testid="product-detail-link"
-        onClick={handleClick}
+        onClick={ handleClick }
       >
-        <CardImage url={thumbnail} alt={title} />
-        <CardInfo price={price} title={title} />
+        <CardImage url={ thumbnail } alt={ title } />
+        <CardInfo price={ price } title={ title } />
       </button>
       <section className="product-buy">
         <button
           className="product-buy-button"
           data-testid="product-add-to-cart"
           type="button"
-          onClick={handleBuyClick}
+          onClick={ handleBuyClick }
         >
           Adicionar ao Carrinho
         </button>
