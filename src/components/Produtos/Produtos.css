@@ -11,9 +11,13 @@
 }
 
 .produtos-card {
-  border: 1px red solid;
+  box-shadow: 3px 5px 15px #ccc;
   height: 270px;
   margin: 10px 15px;
   padding: 20px;
   width: 250px;
+}
+
+.produtos-card:hover {
+  background-color: #eee;
 }
