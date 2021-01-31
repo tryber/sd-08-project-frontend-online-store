@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import * as RequestAPI from '../services/api';
 import ProductCard from './ProductCard';
 import SearchBar from './SearchBar';
+import ListCategories from './ListCategories';
 
 class ProductList extends Component {
   constructor() {
     super();
     this.state = {
+      category: '',
+      listCategories: [],
       products: [],
       query: '',
     };
@@ -15,34 +18,44 @@ class ProductList extends Component {
     this.fetchProducts = this.fetchProducts.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.callApi = this.callApi.bind(this);
   }
 
   componentDidMount() {
-    const { query } = this.state;
-    this.fetchProducts(query);
+    const { category, query } = this.state;
+    this.fetchProducts(category, query);
+    this.callApi();
   }
 
   handleChange({ target }) {
-    const { value } = target;
-    this.setState({ query: value });
+    const { name, value } = target;
+    this.setState({ [name]: value });
   }
 
   handleClick() {
-    const { query } = this.state;
-    this.fetchProducts(query);
+    const { category, query } = this.state;
+    this.fetchProducts(category, query);
   }
 
-  async fetchProducts(query) {
+  async fetchProducts(categorie, query) {
     try {
-      const { results } = await RequestAPI.getProductsFromCategoryAndQuery('', query);
+      const { results } = await RequestAPI
+        .getProductsFromCategoryAndQuery(categorie, query);
       this.setState({ products: results });
     } catch (error) {
       console.log(error);
     }
   }
 
+  callApi() {
+    this.setState(async () => {
+      const categoryArray = await RequestAPI.getCategories();
+      this.setState({ listCategories: categoryArray });
+    });
+  }
+
   render() {
-    const { products } = this.state;
+    const { products, listCategories, query } = this.state;
     return (
       <div className="header">
         <SearchBar handleClick={ this.handleClick } handleChange={ this.handleChange } />

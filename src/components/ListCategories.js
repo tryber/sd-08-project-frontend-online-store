@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class ListCategories extends Component {
   render() {
-    const { categories } = this.props;
+    const { categories, onClick } = this.props;
     return (
       <aside className="category-id">
         <h3>Categorias:</h3>
@@ -15,6 +15,9 @@ class ListCategories extends Component {
                 <input
                   data-testid="category"
                   type="radio"
+                  name="category"
+                  onClick={ onClick }
+                  value={ category.id }
                 />
                 { category.name }
               </label>
@@ -28,6 +31,7 @@ class ListCategories extends Component {
 
 ListCategories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ListCategories;
