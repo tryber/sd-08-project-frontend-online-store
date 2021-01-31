@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ShowDetails from './ShowDetailsButton';
+import AddToCartButton from './AddToCartButton';
 
 class SearchResult extends React.Component {
   renderCard() {
-    const { productsList } = this.props;
+    const { productsList, handleAddItemToCart } = this.props;
     return (
       <ul className="product-card" key={ productsList.id }>
         {
@@ -21,12 +22,23 @@ class SearchResult extends React.Component {
                 thumbnail={ thumbnail }
                 price={ price }
                 attributes={ attributes }
+                address={ address }
+                condition={ condition }
                 // available_quantity={ available_quantity }
                 // sold_quantity={ sold_quantity }
                 // stop_time={ stop_time }
                 // accepts_mercadopago={ accepts_mercadopago }
                 // currency_id={ currency_id }
                 // shipping={ shipping }
+              />
+              <AddToCartButton
+                handleAddItemToCart={ handleAddItemToCart }
+                productsList={ productsList }
+                id={ id }
+                title={ title }
+                thumbnail={ thumbnail }
+                price={ price }
+                attributes={ attributes }
                 address={ address }
                 condition={ condition }
               />
@@ -60,8 +72,8 @@ class SearchResult extends React.Component {
 
 SearchResult.propTypes = {
   productsList: PropTypes.arrayOf(
-    PropTypes.shape().isRequired,
-  ).isRequired,
-};
+    PropTypes.shape(),
+  ),
+}.isRequired;
 
 export default SearchResult;

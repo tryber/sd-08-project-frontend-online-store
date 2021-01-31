@@ -19,14 +19,15 @@ class Home extends React.Component {
       productsList: [],
       categories: [],
       radioValue: '',
+      cartItems: [],
       // productDetail: [],
-      // cartItems: [],
       // showCart: false,
       // isLoading: true,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.handleInputRadio = this.handleInputRadio.bind(this);
+    this.handleAddItemToCart = this.handleAddItemToCart.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +37,16 @@ class Home extends React.Component {
   handleInputChange(event) {
     this.setState({
       searchField: event.target.value,
+    });
+  }
+
+  handleAddItemToCart(event) {
+    const { cartItems, productsList } = this.state;
+    cartItems.push(productsList.find((item) => item.id === event.target.value));
+    console.log(cartItems);
+    this.setState({
+      cartItems,
+      // .push(productsList.find((item) => item.id === event.target.value)),
     });
   }
 
@@ -73,19 +84,22 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories, productsList } = this.state;
+    const { categories, productsList, cartItems } = this.state;
     return (
       <>
         <SearchForm
           submitCallback={ this.handleInputSubmit }
           handleInputChange={ this.handleInputChange }
         />
-        <CartButton />
+        <CartButton cartItems={ cartItems } />
         <Categories
           categories={ categories }
           handleInputRadio={ this.handleInputRadio }
         />
-        <SearchResult productsList={ productsList } />
+        <SearchResult
+          productsList={ productsList }
+          handleAddItemToCart={ this.handleAddItemToCart }
+        />
         {/* {
           productsList.length < 1
             ? <InitialMessage />
