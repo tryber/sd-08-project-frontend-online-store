@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as RequestAPI from '../services/api';
 import ProductCard from './ProductCard';
 import SearchBar from './SearchBar';
@@ -57,16 +58,19 @@ class ProductList extends Component {
     const { products, listCategories, query } = this.state;
     return (
       <div className="header">
-        <SearchBar
-          handleClick={ this.handleClick }
-          handleChange={ this.handleChange }
-          value={ query }
-        />
-        <ListCategories categories={ listCategories } onClick={ this.handleChange } />
-        {products.map((product) => (<ProductCard
-          key={ product.id }
-          product={ product }
-        />))}
+        <SearchBar handleClick={ this.handleClick } handleChange={ this.handleChange } />
+        {products.map((product) => (
+          <Link
+            to={ {
+              pathname: `/product/${product.id}`,
+              state: { productObj: product } } }
+            data-testid="product-detail-link"
+            key={ product.id }
+          >
+            <ProductCard
+              product={ product }
+            />
+          </Link>))}
       </div>
     );
   }
