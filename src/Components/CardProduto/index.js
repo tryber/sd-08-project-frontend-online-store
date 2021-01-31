@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default class CardProduto extends React.Component {
+export default class CardProduto extends Component {
   render() {
-    const { produto } = this.props;
-    const { title, thumbnail, price, id } = produto;
+    const { product } = this.props;
+    const { title, thumbnail, price, id } = product;
+
     return (
       <div data-testid="product">
         <h4>{ title }</h4>
@@ -16,7 +17,7 @@ export default class CardProduto extends React.Component {
           to={ {
             pathname: `/details/${id}`,
             state: {
-              produto,
+              product,
             },
           } }
         >
@@ -30,7 +31,7 @@ export default class CardProduto extends React.Component {
 }
 
 CardProduto.propTypes = {
-  produto: PropTypes.shape({
+  product: PropTypes.shape({
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,

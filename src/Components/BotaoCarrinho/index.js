@@ -7,6 +7,7 @@ const BotaoCarrinho = () => {
   if (shouldRedirect) return <Redirect to="/cart" />;
   return (
     <button
+      className={ style.button }
       data-testid="shopping-cart-button"
       type="button"
       onClick={ () => setShouldRedirect(true) }
