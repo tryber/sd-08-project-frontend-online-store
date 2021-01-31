@@ -267,13 +267,13 @@ header .header-wrap .cart-button .cart-count {
 }
 
 .product-search .categories-list {
-  padding-top: 8px;
   min-height: 20px;
   max-height: 60px;
   width: 80%;
+  min-height: 50px;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 10px;
+  padding: 2px;
   font-weight: 300;
   color: #252525;
   display: -webkit-box;
@@ -287,6 +287,8 @@ header .header-wrap .cart-button .cart-count {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 0.9vw;
+  margin-top: 14px;
+  margin-bottom: 2px;
 }
 
 .product-search .categories-list ul {
