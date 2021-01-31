@@ -6,6 +6,14 @@ class ProductList extends Component {
     super();
 
     this.mapList = this.mapList.bind(this);
+    this.addToStorage = this.addToStorage.bind(this);
+  }
+
+  addToStorage({ target }) {
+    const { id } = target;
+    const { title } = id;
+    console.log(title);
+    localStorage.setItem([id], id);
   }
 
   mapList() {
@@ -17,6 +25,14 @@ class ProductList extends Component {
             <span>{ product.title }</span>
             <img src={ product.thumbnail } alt="" />
             <span>{ product.price }</span>
+            <button
+              type="button"
+              data-testid="product-add-to-cart"
+              id={ [{ id: product.id, title: product.title, thumbnail: product.thumbnail, price: product.price }] }
+              onClick={ this.addToStorage }
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
         ))}
       </div>
@@ -26,7 +42,11 @@ class ProductList extends Component {
   render() {
     const { clicked } = this.props;
     if (clicked) return (<div>{ this.mapList() }</div>);
-    return (<div>Nenhum produto foi encontrado</div>);
+    return (
+      <div>
+        Nenhum produto foi encontrado
+      </div>
+    );
   }
 }
 
