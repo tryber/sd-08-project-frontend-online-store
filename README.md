@@ -57,8 +57,12 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
     - [19. Coloque uma animação no carrinho para quando um produto for adicionado](#19-coloque-uma-animação-no-carrinho-para-quando-um-produto-for-adicionado)
     - [20. Crie um slider lateral para exibir o carrinho na tela principal](#20-crie-um-slider-lateral-para-exibir-o-carrinho-na-tela-principal)
     - [21. Destaque, na tela principal, os produtos já adicionados ao carrinho](#21-destaque-na-tela-principal-os-produtos-já-adicionados-ao-carrinho)
+<<<<<<< HEAD
     - [22. Crie um slider lateral para exibir o carrinho na tela principal](#22-crie-um-slider-lateral-para-exibir-o-carrinho-na-tela-principal)
 
+=======
+    - [22. Impeça que a quantidade do produto seja negativa](#22-impeça-que-a-quantidade-do-produto-seja-negativa)
+>>>>>>> f3a063ee045fe2376ba2e907d1401cb5926dc889
 - [Avisos finais](#avisos-finais)
 
 # Habilidades
@@ -278,6 +282,8 @@ O retorno desse endpoint será algo no formato:
 ```
 
 O retorno desse endpoint será algo como o exemplo que temos [neste arquivo](exemplo-motorola.json).
+
+⚠ **ATENÇÃO! Se der erro de CORS aperte `ctrl + shift + r` no seu navegador** ⚠
 
 ### Linter
 
@@ -701,7 +707,7 @@ O que será verificado:
 
 - [Tela - Listagem com destaque.png](https://github.com/tryber/sd-08-project-frontend-online-store/tree/master/wireframes/bonus_marked_product.png)
 
-#### 22. Crie um slider lateral para exibir o carrinho na tela principal
+#### 22. Impeça que a quantidade do produto seja negativa
 
 **PRIORIDADE 5** - Da tela de detalhamento de produto, permitir alterar a quantidade daquele produto no carrinho, se ele estiver lá, com botões (-) e (+). A quantidade não pode ser negativa (veja detalhes no card).
 
@@ -713,6 +719,6 @@ O que será verificado:
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/3oQUErg)
 
 O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
