@@ -1,5 +1,7 @@
 import React from 'react';
-import { Header, Main } from '../components';
+import { Header, Main, ButtonCategory } from '../components';
+import '../css/Main-content.css';
+
 import * as api from '../services/api';
 
 class Home extends React.Component {
@@ -35,7 +37,10 @@ class Home extends React.Component {
           handleChange={ this.handleChange }
           requestApi={ this.requestApi }
         />
-        <Main listProducts={ listProducts } />
+        <div className="main-content">
+          <ButtonCategory />
+          <Main listProducts={ listProducts } />
+        </div>
       </div>
     );
   }

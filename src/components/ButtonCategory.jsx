@@ -17,7 +17,7 @@ class ButtonCategory extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <div>
+      <div className="buttons">
         { categories.map((category) => (
           <button
             value={ category.id }
