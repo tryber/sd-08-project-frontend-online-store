@@ -14,10 +14,11 @@ class ProductDetails extends React.Component {
     const { match: { params: { title } } } = this.props;
     api.getProductsFromCategoryAndQuery('', title).then((product) => {
       this.setState({
-        product: product,
+        product,
       });
     });
   }
+
   render() {
     return (
       <div data-testid="product-detail-name">Funcionou</div>
