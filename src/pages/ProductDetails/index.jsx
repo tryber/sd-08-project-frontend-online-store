@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../components/Button';
-import * as api from '../../services/api';
+// import * as api from '../../services/api';
 import Loading from '../../components/Loading';
+
+const fetchAPI = 'https://api.mercadolibre.com/items/';
 
 class ProductDetails extends React.Component {
   constructor() {
     super();
     this.state = {
-      product: {},
-      loading: false,
+      loading: true,
+      product: [],
     };
     this.responseFromAPI = this.responseFromAPI.bind(this);
   }
@@ -20,33 +22,49 @@ class ProductDetails extends React.Component {
 
   async responseFromAPI() {
     const { match: { params: { id } } } = this.props;
-    const response = await api.getProductFromId(id);
-    this.setState({
-      product: response,
-      loading: false,
-    });
-    console.log(this.product);
+    const responseAPI = await fetch(`${fetchAPI}/${id}`);
+    const response = await responseAPI.json();
+    this.setState(
+      {
+        loading: false,
+        product: response,
+      },
+    );
+    // console.log(response);
   }
 
   render() {
-    const { product, loading } = this.state;
+    const { loading, product } = this.state;
     if (loading) {
       return <Loading />;
     }
     return (
       <div>
         <div>
-          <h4>Detalhamento do produto</h4>
-          <h5 data-testid="product-detail-name">{ product.title }</h5>
+          <h3>Detalhamento do produto</h3>
+          <h2 data-testid="product-detail-name">
+            {product.title}
+          </h2>
           <img
             src={ product.thumbnail }
             alt={ `imagem de ${product.title}` }
           />
-          <p>
+          <h4>
             R$
             {' '}
             { product.price }
-          </p>
+          </h4>
+          <ul>
+            <h2>Detalhes Técnicos</h2>
+            {product.attributes.map((attribute) => (
+              <p key={ attribute.id }>
+                {attribute.name}
+                :
+                {'  '}
+                {attribute.value_name}
+              </p>
+            ))}
+          </ul>
         </div>
         <Button />
       </div>
