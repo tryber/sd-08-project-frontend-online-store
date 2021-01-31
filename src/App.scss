@@ -182,24 +182,48 @@ header {
     margin-right: auto;
     margin-bottom: 6px;
   }
-  .product-search-input {
-    color: rgb(104, 104, 104);
-    font-size: 0.9em;
-    height: 24px;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    padding-left: 14px;
-    padding-right: 14px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    border-radius: 18px;
-    background-color: #ffffff;
-    &:focus {
-      color: rgb(56, 56, 56);
+  .query-box {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    justify-content: center;
+
+    .product-search-input {
+      color: rgb(83, 83, 83);
+      font-size: 0.9em;
+      height: 24px;
+      width: 40%;
+      text-align: center;
+      padding-left: 14px;
+      padding-right: 14px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      border-radius: 18px;
+      background-color: #ffffff;
+      &:focus {
+        color: rgb(56, 56, 56);
+      }
+    }
+    .product-search-button {
+      color: rgb(53, 53, 53);
+      border: 0;
+      border-left: 1px solid rgb(160, 160, 160);
+      font-size: 0.9em;
+      height: 26px;
+      width: 6%;
+      position: relative;
+      left: -85px;
+      background-color: #ffffff;
+      cursor: pointer;
+      &:focus {
+        color: rgb(56, 56, 56);
+      }
+      .find {
+        opacity: 0.9;
+      }
     }
   }
+ 
 
   .categories-list {
     padding-top: 8px;

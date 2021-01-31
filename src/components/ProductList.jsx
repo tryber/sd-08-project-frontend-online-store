@@ -12,10 +12,10 @@ import * as api from '../services/api';
 export default function ProductList() {
   const [productList, setProductList] = useState([]);
   const [search, setSearch] = useState([undefined, undefined]);
-  const getProductList = async () => {
+  const getProductList = async (category, query) => {
     setProductList([]);
     try {
-      const data = await api.getProductsFromCategoryAndQuery(search[0], search[1]);
+      const data = await api.getProductsFromCategoryAndQuery(category, query);
       const products = await parseProductData(data.results);
       setProductList(products);
     } catch (e) {
@@ -29,6 +29,9 @@ export default function ProductList() {
     setSearch([data, search[1]]);
     getProductList(data, search[1]);
   };
+  const handleQueryClick = () => {
+    getProductList(search[0], search[1]);
+  };
 
   /* useEffect(() => {
     getProductList();
@@ -39,11 +42,12 @@ export default function ProductList() {
       <SearchBar
         handleQueryChange={ handleQueryChange }
         handleCategoryChange={ handleCategoryChange }
+        handleQueryClick={ handleQueryClick }
       />
       <section className="product-list">
-        <button type="button" onClick={ getProductList } data-testid="query-button">
+        {/* <button type="button" onClick={ getProductList } data-testid="query-button">
           Pesquisa
-        </button>
+        </button> */}
         {/* <Loading show={ loading } /> */}
         {productList.length > 0
           ? productList.map((product) => (
