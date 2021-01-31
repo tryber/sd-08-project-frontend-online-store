@@ -1,19 +1,22 @@
 .details-container {
-  border: 1px solid rgb(0, 0, 0);
+  align-items: center;
+  border: 1px solid black;
   border-radius: 30px;
   display: flex;
-  width: 70%;
   justify-content: space-around;
-  align-items: center;
   margin: 10px auto;
+  width: 70%;
 }
+
 .details-container img {
   height: 150px;
 }
+
 .title-price {
   max-width: 400px;
   text-align: center;
 }
+
 .title-price span {
   font-size: 30px;
   font-weight: 600;

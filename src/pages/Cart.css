@@ -1,17 +1,19 @@
-.cart-container{
+.cart-container {
+  align-items: center;
+  border: 1px solid rgb(109, 109, 109);
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   margin: 50px auto;
-  border: 1px solid rgb(109, 109, 109);
-  border-radius: 30px;
   width: 70%;
 }
+
 .empty-box {
   color: rgb(2, 43, 43);
   font-size: 300px;
 }
+
 .message-cart {
   color: black;
   font-size: 30px;
