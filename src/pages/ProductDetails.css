@@ -21,3 +21,14 @@
   font-size: 30px;
   font-weight: 600;
 }
+
+.add-to-cart {
+  display: inline-block;
+  font-size: 30px;
+  text-align: center;
+}
+
+.add-to-cart:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}

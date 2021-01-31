@@ -18,3 +18,24 @@
   color: black;
   font-size: 30px;
 }
+
+.product-cart-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-cart-title {
+  font-size: 20px;
+  margin: 20px;
+  text-align: left;
+}
+
+.icon-cart {
+  font-size: 40px;
+  margin: 5px 10px;
+}
+
+.header-cart {
+  font-size: 40px;
+  margin: 5px 10px;
+}
