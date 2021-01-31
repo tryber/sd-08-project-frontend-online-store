@@ -1,28 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as mercadolibreAPI from '../services/api';
 
 class ListCategories extends React.Component {
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      categories: [],
+    };
+
+    this.fetchQuery = this.fetchQuery.bind(this);
   }
 
-  handleClick(event) {
-    const { name, value } = event.target;
+  componentDidMount() {
+    this.fetchCategories();
+  }
+
+  async fetchQuery({ target }) {
+    const { value, name } = target;
+    const { getProductsFromCategoryAndQuery } = mercadolibreAPI;
     const { onClick } = this.props;
-    onClick(name, value);
+    const query = value.replace(/\s/ig, '+');
+    const fetchQuery = await getProductsFromCategoryAndQuery(query, name);
+    onClick(fetchQuery.results);
+  }
+
+  async fetchCategories() {
+    const { getCategories } = mercadolibreAPI;
+    const fetchCategories = await getCategories();
+    this.setState((state) => ({
+      ...state, categories: fetchCategories,
+    }));
   }
 
   render() {
-    const { categoriesList } = this.props;
+    const { categories } = this.state;
     return (
       <div>
-        {categoriesList.map((cat) => (
+        {categories.map((cat) => (
           <input
             type="button"
             data-testid="category"
             key={ cat.name }
-            onClick={ this.handleClick }
+            onClick={ this.fetchQuery }
             value={ cat.name }
             name={ cat.id }
           />
@@ -34,9 +54,6 @@ class ListCategories extends React.Component {
 
 ListCategories.propTypes = {
   onClick: PropTypes.func.isRequired,
-  categoriesList: PropTypes.arrayOf({
-    name: PropTypes.string,
-  }).isRequired,
 };
 
 export default ListCategories;
