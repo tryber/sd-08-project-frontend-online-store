@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 class CardItem extends React.Component {
   render() {
     const { cardList } = this.props;
-    const { title, price, thumbnail, id, category_id } = cardList;
+    const { title, price, thumbnail, id, category_id: category } = cardList;
     return (
       <Link
-        to={ `/pages/specefication/${category_id}/${id}` }
+        to={ `/pages/specefication/${category}/${id}` }
         data-testid="product-detail-link"
       >
         <div data-testid="product">
