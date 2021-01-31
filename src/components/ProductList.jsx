@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Category from './Category';
 import ProductCard from './ProductCard';
 import * as api from '../services/api';
 
@@ -8,7 +9,7 @@ class ProductList extends React.Component {
     super();
 
     this.state = {
-      category: '',
+      category: undefined,
       loading: true,
       loadingMessage: '',
       products: undefined,
@@ -26,21 +27,19 @@ class ProductList extends React.Component {
     });
   }
 
-  // verificar função quando mais funcionalidades forem implementadas
   handleQueryClick() {
     const { category, query } = this.state;
+    console.log(query);
     this.fetchProducts(api.getProductsFromCategoryAndQuery(category, query));
   }
 
-  //  função temporária, vai depender de outros elementos
   handleCategoryClick(event) {
-    const { category, query } = this.state;
-    if (event.target.className === '') {
-      this.setState({
-        category: event.target.innerText,
-      });
-    }
-    this.fetchProducts(api.getProductsFromCategoryAndQuery(category, query));
+    this.setState({
+      category: event,
+    }, () => {
+      const { category, query } = this.state;
+      this.fetchProducts(api.getProductsFromCategoryAndQuery(category, query));
+    });
   }
 
   fetchProducts(result) {
@@ -57,12 +56,12 @@ class ProductList extends React.Component {
     );
   }
 
-  renderQueryResult(query) {
-    if (query.results.length === 0) return <h3>Nenhum produto foi encontrado</h3>;
+  renderQueryResult(search) {
+    if (search.results.length === 0) return <h3>Nenhum produto foi encontrado</h3>;
 
     return (
       <ul>
-        {query.results.map((product) => (<ProductCard
+        {search.results.map((product) => (<ProductCard
           key={ product.id }
           product={ product }
         />))}
@@ -110,6 +109,7 @@ class ProductList extends React.Component {
             loading ? loadingMessage : this.renderQueryResult(products)
           }
         </div>
+        <Category onClick={ this.handleCategoryClick } />
       </section>
     );
   }

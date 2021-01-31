@@ -24,5 +24,4 @@ ProductCard.propTypes = {
   }).isRequired,
 };
 
-
 export default ProductCard;
