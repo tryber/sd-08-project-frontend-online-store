@@ -9,7 +9,7 @@ import store from './store';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
-import Debug from './pages/Debug';
+// import Debug from './pages/Debug';
 // import HomeModelo from './pages/HomeModelo';
 
 export default function App() {

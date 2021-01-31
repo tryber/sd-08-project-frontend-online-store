@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Header from '../components/Header';
 import CartSlide from '../components/CartSlide';
-import * as api from '../services/api';
+// import * as api from '../services/api';
 
 import { actionAdd } from '../store/cart.reducer';
 import { actionCartUpdate } from '../store/control.reducer';

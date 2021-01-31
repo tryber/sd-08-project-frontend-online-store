@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { actionSlideOpen } from '../store/control.reducer';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { actionSlideOpen } from '../store/control.reducer';
 
 import ButtonCart from './ButtonCart';
 
