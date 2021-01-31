@@ -1,4 +1,4 @@
-.container-lists-categories {
+.container-list-categories {
   align-items: flex-start;
   border: 1px solid black;
   display: flex;
@@ -8,6 +8,6 @@
   width: fit-content;
 }
 
-.label-lists-categories {
+.label-list-categories {
   align-self: auto;
 }

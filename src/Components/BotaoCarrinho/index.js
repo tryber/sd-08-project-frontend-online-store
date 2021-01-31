@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import style from './style.module.css';
 
 const BotaoCarrinho = () => {
   const [shouldRedirect, setShouldRedirect] = React.useState(false);
@@ -7,6 +8,7 @@ const BotaoCarrinho = () => {
   if (shouldRedirect) return <Redirect to="/cart" />;
   return (
     <button
+      className={ style.button }
       data-testid="shopping-cart-button"
       type="button"
       onClick={ () => setShouldRedirect(true) }

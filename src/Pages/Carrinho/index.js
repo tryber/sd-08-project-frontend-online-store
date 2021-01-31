@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Carrinho extends React.Component {
+export default class Carrinho extends Component {
   constructor() {
     super();
 
