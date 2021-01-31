@@ -5,20 +5,15 @@ import { parseCart } from '../helpers/helpers';
 import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
 
 import CartMessage from './cart/CartMessage';
-import CartItemSum from './cart/CartItemSum';
-import CartItemControl from './cart/CartItemControl';
-import CartItemPrice from './cart/CartItemPrice';
-import CartItemQuantity from './cart/CartItemQuantity';
 import CartButtonClear from './cart/CartButtonClear';
-import CartItemDetail from './cart/CartItemDetail';
 import CartMenu from './cart/CartMenu';
+import CartListItem from './cart/CartListItem';
 
 export default function CartSlide() {
   const cart = useSelector((state) => state.cart);
   const control = useSelector((state) => state.control);
   const [list, setList] = useState(parseCart(cart));
   const [update, setUpdate] = useState(0);
-
   const dispatch = useDispatch();
   const handleItemAdd = (product) => {
     const item = list[list.findIndex((i) => i.id === product.id)];
@@ -38,13 +33,11 @@ export default function CartSlide() {
     dispatch(actionClear());
     setList([]);
   };
-
   useEffect(() => {
     if (update <= control.updatecart) {
       setList(parseCart(cart));
     }
     setUpdate(control.updatecart);
-    //
   }, [control]);
   return (
     <div id="cart-slide" className="cart-slide">
@@ -53,18 +46,12 @@ export default function CartSlide() {
         <div className="slide-shopping-cart-list">
           <CartMessage quantity={ list.length } />
           {list.map((i) => (
-            <div className="shopping-cart-list-item" key={ i.id }>
-              <div className="cart-slide-box">
-                <CartItemDetail id={ i.id } name={ i.title } />
-              </div>
-              <CartItemPrice value={ parseFloat(i.price) } />
-              <CartItemQuantity value={ parseInt(i.quantity) } />
-              <CartItemControl
-                handleAdd={ () => handleItemAdd({ ...i }) }
-                handleRemove={ () => handleItemRemove(i) }
-              />
-              <CartItemSum value={ i.total } />
-            </div>
+            <CartListItem
+              key={ i.id }
+              item={ i }
+              handleItemAdd={ () => handleItemAdd({ ...i }) }
+              handleItemRemove={ () => handleItemRemove(i) }
+            />
           ))}
           <CartButtonClear handleClick={ handleClearCart } />
         </div>
