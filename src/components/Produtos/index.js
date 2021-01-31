@@ -7,6 +7,12 @@ import Search from '../Serach';
 import './Produtos.css';
 
 export default class Produtos extends Component {
+  priceBr(price) {
+    price = price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+    price = price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+    return price;
+  }
+
   render() {
     const {
       produtos,
@@ -34,7 +40,9 @@ export default class Produtos extends Component {
               >
                 {item.title}
               </p>
-              <p className="produtos-price">{item.price}</p>
+              <p className="produtos-price">
+                { this.priceBr(item.price) }
+              </p>
               <Link
                 data-testid="product-detail-link"
                 to={ `/produto/${item.id}` }
@@ -42,7 +50,7 @@ export default class Produtos extends Component {
                 + detalhes...
               </Link>
               <FaCartPlus
-                className="prod-btn-add"
+                className="prod-btn-add-list"
                 data-testid="product-add-to-cart"
                 onClick={ () => addCart(item.id) }
               />

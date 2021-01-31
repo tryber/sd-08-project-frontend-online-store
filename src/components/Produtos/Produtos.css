@@ -16,8 +16,23 @@
   margin: 10px 15px;
   padding: 20px;
   width: 250px;
+  position: relative;
+}
+
+.produtos-card img {
+  margin: auto;
+  width: 100px;
 }
 
 .produtos-card:hover {
   background-color: #eee;
+}
+
+.prod-btn-add-list {
+  bottom: 10%;
+  color: rgb(33, 172, 15);
+  font-size: 30px;
+  float: right;
+  right: 10%;
+  position: absolute;
 }

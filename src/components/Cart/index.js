@@ -39,6 +39,12 @@ class Cart extends Component {
     });
   }
 
+  priceBr(price) {
+    price = price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+    price = price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+    return price;
+  }
+
   render() {
     const { history } = this.props;
     const { produtos } = this.state;
@@ -65,11 +71,15 @@ class Cart extends Component {
               </span>
               <p>
                 Preço Unitário:
-                { item.produto.price}
+                { this.priceBr(item.produto.price) }
               </p>
               <p>
                 Total:
-                <span className="cart-qtd">{ item.produto.price * item.qtd}</span>
+                <span
+                  className="cart-qtd"
+                >
+                  { this.priceBr(item.produto.price * item.qtd) }
+                </span>
               </p>
             </li>
           ))
