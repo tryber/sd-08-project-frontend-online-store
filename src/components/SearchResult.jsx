@@ -6,12 +6,12 @@ class SearchResult extends React.Component {
   renderCard() {
     const { productsList } = this.props;
     return (
-      <ul className="product-card" data-testid="product" key={ productsList.id }>
+      <ul className="product-card" key={ productsList.id }>
         {
           productsList.map(({ id, title, thumbnail, price, attributes, condition, address,
             // available_quantity, sold_quantity, stop_time, accepts_mercadopago, currency_id,
           }) => (
-            <li key={ id } className="product-by-query">
+            <li key={ id } data-testid="product" className="product-by-query">
               <h3 className="product-title">{ title }</h3>
               <img src={ thumbnail } alt={ title } />
               <p className="product-price">{ price }</p>
