@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FaCartPlus } from 'react-icons/fa';
+import { TiArrowBack } from 'react-icons/ti';
 import './ProdutoDetail.css';
 
 class ProdutoDetail extends Component {
@@ -27,6 +29,7 @@ class ProdutoDetail extends Component {
   }
 
   imprimeProduto(produto, foto, price) {
+    const { addCart } = this.props;
     return (
       <div
         data-testid="product-detail-name"
@@ -35,21 +38,27 @@ class ProdutoDetail extends Component {
       >
         <h2>{ produto.title }</h2>
         <img src={ foto } alt={ produto.title } />
-        <p>
+        <h2>
           Preço:
           { price }
-        </p>
+        </h2>
+
+        <FaCartPlus
+          className="prod-btn-add"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => addCart(produto.id) }
+        />
       </div>
     );
   }
 
   render() {
     const { produto } = this.state;
+    const { history } = this.props;
     let foto = '';
     let price = '';
     window.scrollTo(0, 0);
     if (produto) {
-      console.log(produto);
       foto = produto.pictures[0].url;
       price = produto.price;
       price = price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
@@ -57,6 +66,10 @@ class ProdutoDetail extends Component {
     }
     return (
       <div className="prod-container">
+        <button type="button" className="prod-goback" onClick={ history.goBack }>
+          <TiArrowBack className="cart-goback-icon" />
+          Voltar
+        </button>
         {produto
         && this.imprimeProduto(produto, foto, price)}
       </div>
@@ -65,11 +78,15 @@ class ProdutoDetail extends Component {
 }
 
 ProdutoDetail.propTypes = {
+  history: PropTypes.shape({
+    goBack: PropTypes.func,
+  }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.arrayOf(PropTypes.object).isRequired,
+      id: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  addCart: PropTypes.func.isRequired,
 };
 
 export default ProdutoDetail;

@@ -10,3 +10,22 @@
   text-align: center;
   width: 90%;
 }
+
+.prod-main img {
+  width: 250px;
+}
+
+.prod-btn-add {
+  color: rgb(80, 158, 3);
+  cursor: pointer;
+  font-size: 60px;
+}
+
+.prod-goback {
+  align-items: center;
+  display: flex;
+  font-size: 16px;
+  height: 50px;
+  margin-top: 10px;
+  padding: 2px 3px;
+}
