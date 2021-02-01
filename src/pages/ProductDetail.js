@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as api from '../services/api';
+import ProductForms from '../components/ProductForms';
 
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.fetchProduct = this.fetchProduct.bind(this);
     this.productDetail = this.productDetail.bind(this);
+    this.addCartItem = this.addCartItem.bind(this);
     this.state = {
       loading: true,
       product: [],
@@ -28,6 +31,31 @@ class ProductDetail extends React.Component {
     });
   }
 
+  async addCartItem() {
+    const { product } = this.state;
+    product[0].qtd = 1;
+    let itemsCart;
+
+    if (localStorage.getItem('itemsCart')) {
+      itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
+      Object.keys(itemsCart).forEach((key) => {
+        if (itemsCart[key].id === product[0].id) {
+          itemsCart[key].qtd += 1;
+        } else {
+          itemsCart = [
+            ...itemsCart,
+            product[0],
+          ];
+        }
+      });
+
+      localStorage.setItem('itemsCart', JSON.stringify(itemsCart));
+    } else {
+      itemsCart = product;
+      localStorage.setItem('itemsCart', JSON.stringify(itemsCart));
+    }
+  }
+
   productDetail() {
     const { product } = this.state;
     return (
@@ -45,6 +73,14 @@ class ProductDetail extends React.Component {
                     {`${attribute.name}: ${attribute.value_name}`}
                   </li>))}
             </ul>
+            <button
+              type="button"
+              value={ item }
+              onClick={ this.addCartItem }
+              data-testid="product-detail-add-to-cart"
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
         ))}
       </div>
@@ -58,6 +94,8 @@ class ProductDetail extends React.Component {
         {loading
           ? <h1>Loading...</h1>
           : this.productDetail()}
+        <ProductForms />
+        <Link to="/carrinho-compras"><img src="https://st2.depositphotos.com/3665639/7442/v/600/depositphotos_74424541-stock-illustration-pictograph-of-shopping-cart.jpg" alt="carrinho de compras" data-testid="shopping-cart-button" /></Link>
       </div>
     );
   }

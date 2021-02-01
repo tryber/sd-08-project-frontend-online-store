@@ -9,7 +9,11 @@ class CarrinhoCompras extends Component {
     this.decreaseItem = this.decreaseItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.state = {
+<<<<<<< HEAD
       productsTeste: [],
+=======
+      products: undefined,
+>>>>>>> c41d11372c9248dd2fe20db393f13daee211d83a
     };
   }
 
@@ -18,6 +22,7 @@ class CarrinhoCompras extends Component {
   }
 
   async restoreState() {
+<<<<<<< HEAD
     const products = await JSON.parse(localStorage.getItem('itemsCart'));
     this.setState({ productsTeste: products });
   }
@@ -70,6 +75,31 @@ class CarrinhoCompras extends Component {
     return (
       <div>
         {productsTeste ? productsTeste.map((item) => (
+=======
+    const itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
+    if (itemsCart) {
+      this.setState({ products: itemsCart });
+    }
+  }
+
+  removeItem(item) {
+    console.log(item);
+  }
+
+  increaseItem(item) {
+    console.log(item);
+  }
+
+  decreaseItem(item) {
+    console.log(item);
+  }
+
+  render() {
+    const { products } = this.state;
+    return (
+      <div>
+        {products ? products.map((item) => (
+>>>>>>> c41d11372c9248dd2fe20db393f13daee211d83a
           <div key={ item.title }>
             <button
               type="submit"
@@ -79,6 +109,7 @@ class CarrinhoCompras extends Component {
             </button>
             <p data-testid="shopping-cart-product-name">{ item.title }</p>
             <p>{ item.price }</p>
+<<<<<<< HEAD
             <p data-testid="shopping-cart-product-quantity">{ item.qtd }</p>
             <button
               type="submit"
@@ -105,6 +136,25 @@ class CarrinhoCompras extends Component {
         >
           Fechar Carrinho
         </Link>
+=======
+            <button
+              type="submit"
+              data-testid="product-decrease-quantity"
+              onClick={ () => this.decreaseItem(item) }
+            >
+              -
+            </button>
+            <p data-testid="shopping-cart-product-quantity">{ item.qtd }</p>
+            <button
+              type="submit"
+              data-testid="product-increase-quantity"
+              onClick={ () => this.increaseItem(item) }
+            >
+              +
+            </button>
+          </div>
+        )) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
+>>>>>>> c41d11372c9248dd2fe20db393f13daee211d83a
       </div>
     );
   }
