@@ -56,12 +56,28 @@ class LandingPage extends React.Component {
   }
 
   addItemToCart(product) {
+    // const cartList = JSON.parse(localStorage.getItem('shoppingCart'));
+    // console.log(cartList);
+    // const shoppingCart = cartList.includes(product) ? cartList : [...cartList, product];
+    // localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
     const { shoppingCart } = this.state;
     if (!shoppingCart.includes(product)) {
       this.setState({
         shoppingCart: [...shoppingCart, product],
       });
     }
+  }
+
+  renderAddButtonCart(product) {
+    return (
+      <button
+        type="button"
+        data-testid="product-add-to-cart"
+        onClick={ () => this.addItemToCart(product) }
+      >
+        Adicionar produto ao carrinho
+      </button>
+    );
   }
 
   renderCategoryList(categoriesList) {
@@ -80,6 +96,38 @@ class LandingPage extends React.Component {
                 { category.name}
               </button>))
         }
+      </div>
+    );
+  }
+
+  renderProductList(productList) {
+    return (
+      <div>
+        { productList.map((product) => (
+          <section
+            key={ product.id }
+            data-testid="product"
+          >
+            <p>{product.title}</p>
+            <p>
+              R$
+              {product.price}
+            </p>
+            <img src={ product.thumbnail } alt={ product.title } />
+            <Link
+              to={ {
+                pathname: '/product-details',
+                search: '?sort=name',
+                hash: '#the-hash',
+                state: { product },
+              } }
+              data-testid="product-detail-link"
+            >
+              <button type="button">Detalhes</button>
+            </Link>
+            { this.renderAddButtonCart(product) }
+          </section>
+        ))}
       </div>
     );
   }
@@ -110,26 +158,8 @@ class LandingPage extends React.Component {
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
-        { this.renderCategoryList(categoriesList)}
-        <div>
-          {productList.map((product) => (
-            <div key={ product.id } data-testid="product">
-              <p>{product.title}</p>
-              <p>
-                R$
-                {product.price}
-              </p>
-              <img src={ product.thumbnail } alt={ product.title } />
-              <button
-                type="button"
-                data-testid="product-add-to-cart"
-                onClick={ () => this.addItemToCart(product) }
-              >
-                Adicionar produto ao carrinho
-              </button>
-            </div>
-          ))}
-        </div>
+        { this.renderCategoryList(categoriesList) }
+        { this.renderProductList(productList) }
       </div>
     );
   }
