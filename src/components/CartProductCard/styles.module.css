@@ -1,0 +1,31 @@
+.cartProductCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.controls {
+  margin-left: 20px;
+}
+
+.controls button {
+  font-size: 1.1rem;
+  margin: 2px;
+  padding: 10px;
+  min-width: 50px;
+}
+
+.title {
+  max-width: 500px;
+  margin-right: 20px;
+}
+
+.infos {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
