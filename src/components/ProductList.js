@@ -12,11 +12,12 @@ class ProductList extends React.Component {
   }
 
   handleClickCart(title, price) {
-    const { productsCart } = this.state;
-    this.setState({
+    this.setState(({ productsCart }) => ({
       productsCart: [...productsCart, { title, price }],
+    }), () => {
+      const { productsCart } = this.state;
+      localStorage.setItem('productsCart', JSON.stringify(productsCart));
     });
-    localStorage.setItem('productsCart', JSON.stringify(productsCart));
   }
 
   render() {
