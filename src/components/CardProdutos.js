@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class CardProdutos extends React.Component {
   render() {
-    const { products: { title, thumbnail, price,
+    const { products: { id, title, thumbnail, price,
       shipping: { free_shipping: freeShipping }, installments } } = this.props;
     return (
-      <div data-testid="product" className="product">
-        <img src={ thumbnail } alt={ title } className="product-img" />
-        <div className="product-info-wraper">
-          <p className="product-price">{ `R$${price}` }</p>
-          {
-            installments
+      <Link to={ `/produto/${id}` } data-testid="product-detail-link">
+        <div data-testid="product" className="product">
+          <img src={ thumbnail } alt={ title } className="product-img" />
+          <div className="product-info-wraper">
+            <p className="product-price">{ `R$${price}` }</p>
+            {
+              installments
             && (
               <div>
                 em
@@ -21,18 +23,20 @@ class CardProdutos extends React.Component {
                 </span>
               </div>
             )
-          }
-          {freeShipping
+            }
+            {freeShipping
           && <p className="frete-gratis" data-testid="free-shipping">Frete grátis</p>}
-          <h2>{ title }</h2>
+            <h2>{ title }</h2>
+          </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }
 
 CardProdutos.propTypes = {
   products: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
