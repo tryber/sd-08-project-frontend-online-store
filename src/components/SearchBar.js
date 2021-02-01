@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import CardItem from './CardItem';
-import CategoryMenu from './CategoryMenu';
 import Button from './Button';
+import CategoryMenu from './CategoryMenu';
+import CardItem from './CardItem';
 
 class SearchBar extends Component {
   constructor() {

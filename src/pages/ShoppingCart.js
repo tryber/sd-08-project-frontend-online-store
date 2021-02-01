@@ -46,5 +46,4 @@ class PageShoppingCart extends Component {
     );
   }
 }
-
 export default PageShoppingCart;
