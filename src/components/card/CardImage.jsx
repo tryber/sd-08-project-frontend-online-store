@@ -6,8 +6,10 @@ export default function CardImage(props) {
   const { url, alt, freeshipping } = props;
   return (
     <section className="product-card-image">
-      {/* <CardFreeShipping show={ freeshipping } /> */}
-      <img className="cart-image" src={ url } alt={ alt } />
+      <div className="cart-image-box">
+        <CardFreeShipping show={ freeshipping } />
+        <img className="cart-image" src={ url } alt={ alt } />
+      </div>
     </section>
   );
 }
