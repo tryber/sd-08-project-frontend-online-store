@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CardProducts from './CardProducts';
+import Dropdown from './dropdown';
 
 class ListagemDeProdutos extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class ListagemDeProdutos extends React.Component {
 
     return (
       <div className="cardsDiv">
+        <Dropdown />
         { products.map((product) => (<CardProducts
           key={ product.id }
           product={ product }
