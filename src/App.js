@@ -20,6 +20,9 @@ class App extends React.Component {
     this.handleClickCategory = this.handleClickCategory.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.addCarQuantityProduct = this.addCarQuantityProduct.bind(this);
+    this.subCarQuantityProduct = this.subCarQuantityProduct.bind(this);
+    this.deleteCarProduct = this.deleteCarProduct.bind(this);
   }
 
   componentDidMount() {
@@ -79,6 +82,42 @@ class App extends React.Component {
     });
   }
 
+  addCarQuantityProduct(e) {
+    const { cartProducts } = this.state;
+    const title = e.target.name;
+    const product = cartProducts.find((prod) => prod.name === title);
+    const index = cartProducts.indexOf(product);
+    product.quantity += 1;
+    this.setState({
+      [cartProducts[index]]: product,
+    });
+  }
+
+  subCarQuantityProduct(e) {
+    const { cartProducts } = this.state;
+    const title = e.target.name;
+    const product = cartProducts.find((prod) => prod.name === title);
+    const index = cartProducts.indexOf(product);
+    if (product.quantity > 1) {
+      product.quantity -= 1;
+      this.setState({
+        [cartProducts[index]]: product,
+      });
+    }
+  }
+
+  deleteCarProduct(e) {
+    const { cartProducts } = this.state;
+    const title = e.target.name;
+    const product = cartProducts.find((prod) => prod.name === title);
+    const index = cartProducts.indexOf(product);
+    if (product.quantity > 1) {
+      this.setState({
+        [cartProducts[index]]: product,
+      });
+    }
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -88,6 +127,8 @@ class App extends React.Component {
             { ...this.state }
             fetchProducts={ this.fetchProducts }
             addToCart={ this.addToCart }
+            addCarQuantityProduct={ this.addCarQuantityProduct }
+            subCarQuantityProduct={ this.subCarQuantityProduct }
             handleClickCategory={ this.handleClickCategory }
           />
         </main>
