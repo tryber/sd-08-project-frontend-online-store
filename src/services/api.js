@@ -7,7 +7,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   let queryString = '';
 
   if (categoryId) {
-    queryString = `category=${categoryId}`;
+    queryString = `category=${categoryId}&`;
   }
 
   if (query) {

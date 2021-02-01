@@ -1,37 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
-import * as api from '../services/api';
 
 export default class ProductList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      search: '',
-      productList: [],
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  async handleClick() {
-    const { search } = this.state;
-    await api.getProductsFromCategoryAndQuery('', search)
-      .then((data) => {
-        this.setState({
-          productList: data.results,
-        });
-      });
-  }
 
   render() {
-    const { productList } = this.state;
+    const { productList, handleChange, handleClick } = this.props;
     return (
       <div>
         <h3 data-testid="home-initial-message">
@@ -41,13 +15,13 @@ export default class ProductList extends React.Component {
             type="text"
             name="search"
             placeholder="Encontre seu produto"
-            onChange={ this.handleChange }
+            onChange={ handleChange }
           />
         </h3>
         <button
           type="button"
           data-testid="query-button"
-          onClick={ this.handleClick }
+          onClick={ handleClick }
         >
           PESQUISAR
         </button>
@@ -57,3 +31,9 @@ export default class ProductList extends React.Component {
     );
   }
 }
+
+ProductList.propTypes = {
+  productList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
