@@ -50,7 +50,8 @@ class App extends React.Component {
       }));
   }
 
-  addCart(obj) {
+  addCart(obj, amount = 1) {
+    obj.amountToBuy = amount;
     this.setState((old) => {
       if (!old.productsOnCart.includes(obj)) {
         return { productsOnCart: [...old.productsOnCart, obj] };
