@@ -43,7 +43,7 @@ body {
   display: flex;
   justify-content: center;
   margin: auto;
-  max-width: 1215px;
+  width: 1215px;
 }
 
 .left-content {
