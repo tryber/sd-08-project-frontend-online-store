@@ -36,10 +36,10 @@ class PageShoppingCart extends Component {
     const keysList = this.getKeys();
     return (
       <>
-        <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
-        <span />
         <ReturnButoon />
-        {keysList.map((key) => this.getItems(key))}
+        { keysList.length === 0
+          ? <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
+          : keysList.map((key) => this.getItems(key)) }
       </>
     );
   }
