@@ -149,6 +149,11 @@ body {
   width: 32%;
 }
 
+.product img {
+  max-height: 240px;
+  max-width: 240px;
+}
+
 .product-info-wraper {
   padding: 20px;
 }
