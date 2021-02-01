@@ -17,12 +17,11 @@ class LandingProductDetails extends Component {
 }
 
 LandingProductDetails.propTypes = {
-  product: PropTypes.shape({
+  location: PropTypes.shape({ product: PropTypes.shape({
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
-    id: PropTypes.string,
-  }).isRequired,
+  }) }).isRequired,
 };
 
 export default LandingProductDetails;
