@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
   render() {
-    const { cartList, productList } = this.props;
+    const { cartList, productList, handleQuantityChange: change } = this.props;
 
     if (!cartList.length) {
       return (
@@ -31,6 +31,22 @@ class ShoppingCart extends React.Component {
               <p data-testid="shopping-cart-product-quantity">
                 {cartList.find((cartItem) => cartItem.id === item.id).quantity}
               </p>
+              <div>
+                <button
+                  type="button"
+                  onClick={ () => change('+', item.id) }
+                  data-testid="product-increase-quantity"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  onClick={ () => change('-', item.id) }
+                  data-testid="product-decrease-quantity"
+                >
+                  -
+                </button>
+              </div>
             </article>
           ))}
         <Link to="/">Voltar</Link>
@@ -42,6 +58,7 @@ class ShoppingCart extends React.Component {
 ShoppingCart.propTypes = {
   cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
   productList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleQuantityChange: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;
