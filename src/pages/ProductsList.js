@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { ListCard, CategoryList } from '.';
+import CategoryList from './CategoryList';
+import ListCard from './ListCard';
+
 import * as api from '../services/api';
 
 class ProductsList extends Component {
