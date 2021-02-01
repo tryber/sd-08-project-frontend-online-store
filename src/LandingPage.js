@@ -56,6 +56,10 @@ class LandingPage extends React.Component {
   }
 
   addItemToCart(product) {
+    // const cartList = JSON.parse(localStorage.getItem('shoppingCart'));
+    // console.log(cartList);
+    // const shoppingCart = cartList.includes(product) ? cartList : [...cartList, product];
+    // localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
     const { shoppingCart } = this.state;
     if (!shoppingCart.includes(product)) {
       this.setState({

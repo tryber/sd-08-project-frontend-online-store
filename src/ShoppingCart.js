@@ -6,28 +6,28 @@ class ShoppingCart extends React.Component {
   constructor() {
     super();
 
-    this.state = { quantities: {} };
-
+    this.state = { };
     this.addProduct = this.addProduct.bind(this);
     this.lessProduct = this.lessProduct.bind(this);
-    this.quantityItems = this.quantityItems.bind(this);
   }
 
-  quantityItems(quantity) {
-    return quantity;
+  componentDidMount() {
+    const { location: { state: { shoppingCart } } } = this.props;
+    shoppingCart.map((item) => this.setState({
+      [item.id]: 1,
+    }));
   }
 
-  addProduct(event, item) {
-    const { target: { previousSibling } } = event;
-    const { available_quantity } = item;
-    if (parseInt(previousSibling.innerText, 10) === available_quantity) return;
-    previousSibling.innerText = (parseInt(previousSibling.innerText, 10) + 1).toString();
+  addProduct(item) {
+    this.setState((prevState) => ({
+      [item.id]: prevState[item.id] + 1,
+    }));
   }
 
-  lessProduct(event) {
-    const { target: { nextSibling } } = event;
-    if (nextSibling.innerText === '1') return;
-    nextSibling.innerText = (parseInt(nextSibling.innerText, 10) - 1).toString();
+  lessProduct(item) {
+    this.setState((prevState) => ({
+      [item.id]: prevState[item.id] - 1,
+    }));
   }
 
   render() {
@@ -47,29 +47,32 @@ class ShoppingCart extends React.Component {
     return (
       <div>
         <Link to="/">Home</Link>
-        {shoppingCart.map((item) => (
-          <div key={ item.id }>
-            <p data-testid="shopping-cart-product-name">
-              { item.title }
-            </p>
-            <span>Quantidade</span>
-            <button
-              type="button"
-              data-testid="product-decrease-quantity"
-              onClick={ (event) => this.lessProduct(event) }
-            >
-              -
-            </button>
-            <span data-testid="shopping-cart-product-quantity">{ quantity }</span>
-            <button
-              type="button"
-              data-testid="product-increase-quantity"
-              onClick={ (event) => this.addProduct(/* event, item */) }
-            >
-              +
-            </button>
-          </div>
-        ))}
+        {shoppingCart.map((item) => {
+          const { [item.id]: quantity } = this.state;
+          return (
+            <div key={ item.id }>
+              <p data-testid="shopping-cart-product-name">
+                { item.title }
+              </p>
+              <span>Quantidade</span>
+              <button
+                type="button"
+                data-testid="product-decrease-quantity"
+                onClick={ () => this.lessProduct(item) }
+              >
+                -
+              </button>
+              <span data-testid="shopping-cart-product-quantity">{quantity}</span>
+              <button
+                type="button"
+                data-testid="product-increase-quantity"
+                onClick={ () => this.addProduct(item) }
+              >
+                +
+              </button>
+            </div>
+          );
+        })}
       </div>
     );
   }
