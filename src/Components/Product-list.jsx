@@ -17,6 +17,7 @@ class ProductList extends Component {
             <span>{ product.title }</span>
             <img src={ product.thumbnail } alt="" />
             <span>{ product.price }</span>
+            <button data-testid="product-add-to-cart" type="button">Adicionar ao Carrinho</button>
           </div>
         ))}
       </div>
