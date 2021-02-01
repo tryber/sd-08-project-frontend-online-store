@@ -82,6 +82,7 @@ class Home extends Component {
           <ShoppingCartIcon />
         </header>
         <div className="container">
+
           <ul className="categorylist">
             {categories.map((item) => (
               <button
@@ -98,6 +99,7 @@ class Home extends Component {
             {this.CardMount()}
           </section>
         </div>
+
       </div>
     );
   }
