@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Content from './components/Content';
 import NavBar from './components/NavBar';
 import * as api from './services/api';
+import Checkout from './pages/checkout';
 
 class App extends React.Component {
   constructor() {
@@ -140,6 +141,9 @@ class App extends React.Component {
             updateAvaliations={ this.updateAvaliations }
           />
         </main>
+        <Switch>
+          <Route exact path="/checkout" component={ Checkout } />
+        </Switch>
       </BrowserRouter>
     );
   }
