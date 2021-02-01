@@ -63,43 +63,44 @@ class Home extends React.Component {
         <Link to="/cartcheckout" data-testid="shopping-cart-button">
           <img src={ cartIcon } alt="cart icon" className="cartIcon" />
         </Link>
-
         <p htmlFor="inputText" data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma
           categoria.
-
           <input
             onChange={ this.handleChange }
             name="value"
             data-testid="query-input"
           />
-
           <button type="button" data-testid="query-button" onClick={ this.handleClik }>
             Pesquisar
           </button>
         </p>
-
-        <ul>
-          {categories.map((category) => (
-            <li key={ category.id }>
-              <Link
-                to="/details"
-                data-testid="category"
-                onClick={ () => this.handleProducts(category.id) }
-              >
-                { category.name }
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        {products.map((product) => (
-          <div key={ product.id } data-testid="product">
-            <p>{product.title}</p>
-            <img src={ `${product.thumbnail}` } alt={ product.title } />
-            <p>{product.price}</p>
+        <div className="homepage">
+          <div className="show-category">
+            <ul>
+              {categories.map((category) => (
+                <li key={ category.id }>
+                  <Link
+                    to="/details"
+                    data-testid="category"
+                    onClick={ () => this.handleProducts(category.id) }
+                  >
+                    { category.name }
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        ))}
+          <div className="show-products">
+            {products.map((product) => (
+              <div key={ product.id } data-testid="product">
+                <p>{product.title}</p>
+                <img src={ `${product.thumbnail}` } alt={ product.title } />
+                <p>{product.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
