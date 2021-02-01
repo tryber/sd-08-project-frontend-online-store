@@ -30,6 +30,15 @@ body {
   width: 100%;
 }
 
+.product-list button {
+  background-color: rgb(0, 177, 24);
+  border: rgb(0, 177, 24) solid 1px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  padding: 5px 10px;
+}
+
 .categories-list button:hover {
   background-color: #303030;
   color: white;
@@ -100,15 +109,6 @@ main {
   justify-content: center;
   margin: 10px 1%;
   width: 76%;
-}
-
-.product-list button {
-  background-color: rgb(0, 177, 24);
-  border: rgb(0, 177, 24) solid 1px;
-  border-radius: 5px;
-  color: white;
-  font-weight: 600;
-  padding: 5px 10px;
 }
 
 .search-bar {
