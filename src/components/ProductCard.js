@@ -7,10 +7,13 @@ import { Link } from 'react-router-dom';
 class ProductCard extends React.Component {
   render() {
     const { card, productToCart } = this.props;
-    const { title, thumbnail, price, id } = card;
+    const { title, thumbnail, price } = card;
     return (
       <section data-testid="product" className="product-card">
-        <Link to={ `/productDetails/${id}` } data-testid="product-detail-link">
+        <Link
+          to={ `/productDetails/${title}` }
+          data-testid="product-detail-link"
+        >
           <div>
             <p>{title}</p>
             <img src={ thumbnail } alt={ title } />

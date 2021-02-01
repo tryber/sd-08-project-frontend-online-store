@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as api from '../services/api';
@@ -16,13 +17,10 @@ class Home extends React.Component {
       categories: [],
       products: [],
       value: '',
-      productCart: [],
-      productNumber: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.productToCart = this.productToCart.bind(this);
   }
 
   componentDidMount() {
@@ -48,16 +46,9 @@ class Home extends React.Component {
     });
   }
 
-  productToCart(newProduct) {
-    const { productCart } = this.state;
-    this.setState(({ productNumber }) => ({
-      productCart: [...productCart, newProduct],
-      productNumber: productNumber + 1,
-    }));
-  }
-
   render() {
-    const { categories, products, productCart, productNumber } = this.state;
+    const { categories, products } = this.state;
+    const { productToCart, productCart, productNumber } = this.props;
     return (
       <div>
         <h1>Sales</h1>
@@ -93,10 +84,19 @@ class Home extends React.Component {
           filterProducts={ this.handleChange }
           onClick={ this.handleClick }
         />
-        <ProductsList list={ products } productToCart={ this.productToCart } />
+        <ProductsList
+          list={ products }
+          productToCart={ productToCart }
+        />
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  productToCart: PropTypes.func.isRequired,
+  productCart: PropTypes.arrayOf(String).isRequired,
+  productNumber: PropTypes.number.isRequired,
+};
 
 export default Home;
