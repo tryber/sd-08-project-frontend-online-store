@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class DetalhesDoProduto extends React.Component {
+
   render() {
     const { location: { state: { produto } } } = this.props;
     const { title, subtitle, price,
@@ -14,6 +15,13 @@ class DetalhesDoProduto extends React.Component {
         <p>{price}</p>
         <p>{condition}</p>
         <p>{warranty}</p>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ addProduct }
+        >
+          Adicionar ao Carrinho
+        </button>
       </>
     );
   }
