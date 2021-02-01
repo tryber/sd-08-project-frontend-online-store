@@ -11,14 +11,20 @@ class Content extends React.Component {
         <Route
           exact
           path="/"
-          render={ (routerProps) => <Listagem { ...routerProps } { ...this.props } /> }
+          render={ (routerProps) => (<Listagem
+            { ...routerProps }
+            { ...this.props }
+          />) }
         />
-        <Route exact path="/carrinho" component={ Carrinho } />
         <Route
-          exact
-          path="/produto/:id"
-          render={ (routerProps) => <Produto { ...routerProps } { ...this.props } /> }
+          exat
+          path="/carrinho"
+          render={ (routerProps) => (<Carrinho
+            { ...routerProps }
+            { ...this.props }
+          />) }
         />
+
       </Switch>
     );
   }
