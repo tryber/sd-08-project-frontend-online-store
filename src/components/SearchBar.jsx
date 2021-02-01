@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
+import Categories from './CategoriesList';
 
 class SearchBar extends Component {
   constructor() {
@@ -9,6 +10,7 @@ class SearchBar extends Component {
       product: [],
       query: '',
     };
+    this.handleClick = this.handleClick.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -24,6 +26,20 @@ class SearchBar extends Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  async handleClick({ target }) {
+    const data = await api.getProductsFromCategoryAndQuery(target.key, target.value);
+    this.setState({
+      product: data.results,
+    });
+  }
+
+  renderAviso() {
+    return (
+      <h3 data-testid="home-initial-message">
+        Digite algum termo de pesquisa ou escolha uma categoria.
+      </h3>);
   }
 
   render() {
@@ -47,7 +63,10 @@ class SearchBar extends Component {
         >
           Button
         </button>
-        { product.map((item) => <ProductCard key={ item.id } product={ item } />) }
+        <Categories onClick={ this.handleClick } />
+        {product.length < 1
+          ? this.renderAviso()
+          : product.map((item) => <ProductCard key={ item.id } product={ item } />)}
       </section>
     );
   }
