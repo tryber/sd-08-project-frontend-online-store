@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaTrashAlt } from 'react-icons/fa';
+import DisplayQuantity from '../components/DisplayQuantity';
 import EmptyCart from '../components/EmptyCart';
 import Header from '../components/Header';
 import './Cart.css';
@@ -30,18 +31,16 @@ class Cart extends Component {
           {products.length < 1 && <EmptyCart />}
           <section className="product-cart-container">
             {products.map((product) => (
-              <div key={ product.title }>
+              <div className="cart-list" key={ product.title }>
+                <FaTrashAlt className="cart-delete" />
                 <span
                   className="product-cart-title"
                   data-testid="shopping-cart-product-name"
                 >
                   {product.title}
                 </span>
-                <span
-                  className="product-cart-quantity"
-                  data-testid="shopping-cart-product-quantity"
-                >
-                  1
+                <span className="product-cart-quantity">
+                  <DisplayQuantity quantity={ 1 } />
                 </span>
               </div>
             ))}

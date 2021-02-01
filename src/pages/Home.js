@@ -8,7 +8,7 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <ButtonCart title={ false } />
+        <ButtonCart />
         <SearchPage />
       </div>
     );
