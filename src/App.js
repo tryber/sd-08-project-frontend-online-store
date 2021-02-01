@@ -51,7 +51,13 @@ class App extends React.Component {
             <Route path="/shopping-cart">
               <ShoppingCart cartList={ cartList } productList={ productList } />
             </Route>
-            <Route path="/details/:id" component={ ProductDetails } />
+            <Route path="/details/:id">
+              <ProductDetails
+                productList={ productList }
+                handleRequest={ this.handleRequest }
+                handleAddToCart={ this.handleAddToCart }
+              />
+            </Route>
           </Switch>
         </BrowserRouter>
       </main>
