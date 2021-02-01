@@ -10,6 +10,7 @@ class Home extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClik = this.handleClik.bind(this);
+    this.handleProducts = this.handleProducts.bind(this);
 
     this.state = {
       categories: [],
@@ -27,9 +28,16 @@ class Home extends React.Component {
     ));
   }
 
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
   async handleClik() {
     const { category, value } = this.state;
-    const product = await (await api.getProductsFromCategoryAndQuery(category, value))
+    const product = (await api.getProductsFromCategoryAndQuery(category, value))
       .results;
     this.setState({
       products: product,
@@ -37,18 +45,12 @@ class Home extends React.Component {
   }
 
   async handleProducts(id) {
-    const { category, value } = this.state;
-    const product = await (await api.getProductsFromCategoryAndQuery(id, value))
+    const { value } = this.state;
+    const category = (await api.getProductsFromCategoryAndQuery(id, value))
       .results;
+    console.log(id);
     this.setState({
-      products: product,
-    });
-  }
-
-  handleChange({ target }) {
-    const { name, value } = target;
-    this.setState({
-      [name]: value,
+      products: category,
     });
   }
 
@@ -69,33 +71,41 @@ class Home extends React.Component {
             name="value"
             data-testid="query-input"
           />
-          <button
-            type="button"
-            data-testid="query-button"
-            onClick={ this.handleClik }
-          >
+          <button type="button" data-testid="query-button" onClick={ this.handleClik }>
             Pesquisar
           </button>
         </p>
-        <ul>
-          {categories.map((category) => (
-            <li key={ category.id } data-testid="category">
-              <Link to="/details" onClick={ () => this.handleProducts(category.id) }>
-                { category.name }
-              </Link>
-            </li>
-          ))}
-        </ul>
-        {products.map((product) => (
-          <div key={ product.id } data-testid="product">
-            <p>{product.title}</p>
-            <img src={ `${product.thumbnail}` } alt={ product.title } />
-            <p>{product.price}</p>
+        <div className="homepage">
+          <div className="show-category">
+            <ul>
+              {categories.map((category) => (
+                <li key={ category.id }>
+                  <Link
+                    to="/details"
+                    data-testid="category"
+                    onClick={ () => this.handleProducts(category.id) }
+                  >
+                    { category.name }
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        ))}
+          <div className="show-products">
+            {products.map((product) => (
+              <div key={ product.id } data-testid="product">
+                <p>{product.title}</p>
+                <img src={ `${product.thumbnail}` } alt={ product.title } />
+                <p>{product.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
 }
+
+// comentário para criar uma pull request nova
 
 export default Home;

@@ -14,8 +14,8 @@ function App() {
         <Route
           path="/"
           render={ (props) => (
-          <Home { ...props } /> 
-          )}
+            <Home { ...props } />
+          ) }
         />
       </Switch>
     </BrowserRouter>
