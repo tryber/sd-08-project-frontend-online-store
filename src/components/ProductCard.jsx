@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   constructor() {
     super();
     this.sendToCart = this.sendToCart.bind(this);
+    this.goToDetails = this.goToDetails.bind(this);
+    this.state = {
+      moreDetails: false,
+    };
   }
 
   sendToCart() {
@@ -26,8 +31,15 @@ class ProductCard extends React.Component {
     }
   }
 
+  goToDetails() {
+    this.setState({
+      moreDetails: true,
+    });
+  }
+
   render() {
-    const { title, imagePath, price } = this.props;
+    const { title, imagePath, price, id } = this.props;
+    const { moreDetails } = this.state;
     return (
       <div data-testid="product">
         <p>{title}</p>
@@ -40,6 +52,16 @@ class ProductCard extends React.Component {
         >
           Adicionar ao carrinho
         </button>
+        <button
+          type="button"
+          data-testid="product-detail-link"
+          onClick={ this.goToDetails }
+        >
+          Mais detalhes
+        </button>
+        {moreDetails && <Redirect
+          to={ { pathname: `/product/${id}`, state: { id, price, imagePath, title } } }
+        />}
       </div>
     );
   }
@@ -51,4 +73,5 @@ ProductCard.propTypes = {
   title: PropTypes.string.isRequired,
   imagePath: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
