@@ -1,41 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import NavForm from './NavForm';
 
 class NavBar extends React.Component {
   render() {
-    const { handleChange, handleClick } = this.props;
     return (
-      <nav className="nav">
-        <form>
-          <label htmlFor="busca" data-testid="home-initial-message" className="s-bar">
-            <div>
-              <input
-                type="text"
-                name="query"
-                onChange={ handleChange }
-                id="busca"
-                data-testid="query-input"
-              />
-              <button
-                className="query-button"
-                data-testid="query-button"
-                type="submit"
-                onClick={ handleClick }
-              >
-                Pesquisar
-              </button>
-            </div>
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </label>
-        </form>
-      </nav>
+      <header className="header">
+        <nav className="nav">
+          <NavForm { ...this.props } />
+        </nav>
+        <Link to="/carrinho" data-testid="shopping-cart-button"><img alt="carrinho" src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png" width="50" height="50" /></Link>
+      </header>
     );
   }
 }
 
-NavBar.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  handleClick: PropTypes.func.isRequired,
-};
+// NavBar.propTypes = {
+//   handleChange: PropTypes.func.isRequired,
+//   handleClick: PropTypes.func.isRequired,
+// };
 
 export default NavBar;

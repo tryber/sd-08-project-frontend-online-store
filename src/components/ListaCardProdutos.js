@@ -15,15 +15,10 @@ class ListaCardProdutos extends React.Component {
     }
     return (
       <>
-        {listOfProducts.map((products) => (
+        {listOfProducts.map((product) => (
           <CardProdutos
-            key={ products.id }
-            id={ products.id }
-            title={ products.title }
-            thumbnail={ products.thumbnail }
-            price={ products.price }
-            shipping={ products.shipping }
-            installments={ products.installments }
+            key={ product.id }
+            products={ product }
           />))}
       </>
     );
