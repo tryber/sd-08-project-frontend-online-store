@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SearchBar from './components/SearchBar';
-import Button from './components/Button';
 import PageShoppingCart from './pages/ShoppingCart';
 import SpecsPage from './pages/SpecsPage';
 
@@ -20,7 +19,6 @@ function App() {
         />
         <Route exact path="/" component={ SearchBar } />
       </Switch>
-      <Button />
     </BrowserRouter>
 
   );
