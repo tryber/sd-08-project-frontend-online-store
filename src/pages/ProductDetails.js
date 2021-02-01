@@ -22,7 +22,7 @@ class ProductDetails extends Component {
             <h2 data-testid="product-detail-name">{title}</h2>
             <span>{price}</span>
           </div>
-          <AddItem title={ title } />
+          <AddItem title={ title } dataTestId="product-detail-add-to-cart" />
           <div className="atributes">
             <h3>Especificações Técnicas</h3>
             <ul>

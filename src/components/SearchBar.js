@@ -20,7 +20,6 @@ class SearchBar extends Component {
   }
 
   setCategory(event) {
-    // console.log(event.target.id);
     const { requestProducts } = this.props;
     this.setState({ categoryID: event.target.id }, () => {
       const { query, categoryID } = this.state;

@@ -19,10 +19,11 @@ class AddItem extends Component {
   }
 
   render() {
+    const { dataTestId } = this.props;
     return (
       <span>
         <FaPlusCircle
-          data-testid="product-detail-add-to-cart"
+          data-testid={ dataTestId }
           className="add-to-cart"
           onClick={ this.addToCart }
         />
@@ -34,6 +35,7 @@ AddItem.defaultProps = {
   products: {},
 };
 AddItem.propTypes = {
+  dataTestId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   products: PropTypes.shape({
     title: PropTypes.string,
