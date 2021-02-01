@@ -37,21 +37,19 @@ class Home extends React.Component {
     let itensFromLocalStorage = [];
     if (localStorage.length !== 0) {
       itensFromLocalStorage = JSON.parse(localStorage.products);
+      const productInCart = itensFromLocalStorage.filter(
+        (item) => item.id === product.id,
+      );
+      if (productInCart.length !== 0) {
+        alert('Este produto já consta no carrinho');
+      } else {
+        localStorage.setItem('products',
+          JSON.stringify([...itensFromLocalStorage, product]));
+      }
+    } else {
+      localStorage.setItem('products',
+        JSON.stringify([...itensFromLocalStorage, product]));
     }
-    localStorage.setItem('products',
-      JSON.stringify([...itensFromLocalStorage, product]));
-    // this.setState((state) => ({
-    //   cartProducts: [...state.cartProducts, product],
-    // }), () => {
-    //   const { cartProducts } = this.state;
-    //   let itensFromLocalStorage = [];
-    //   if (localStorage.length !== 0) {
-    //     itensFromLocalStorage = JSON.parse(localStorage.products);
-    //   }
-    //   console.log(itensFromLocalStorage);
-    //   localStorage.setItem('products',
-    //     JSON.stringify([...cartProducts, ...itensFromLocalStorage]));
-    // });
   } // só atualizar o localStorage e nao o estado fazer o estado receber o local storage
 
   changeCategorieState(name) {

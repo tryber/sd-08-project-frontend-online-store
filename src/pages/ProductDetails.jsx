@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../components/Loading';
 import * as api from '../services/api';
+import ShopCartButton from '../components/ShopCartButton';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -10,6 +11,7 @@ class ProductDetails extends React.Component {
       productInfo: {},
       isLoading: true,
     };
+    this.addProductCart = this.addProductCart.bind(this);
   }
 
   componentDidMount() {
@@ -41,10 +43,31 @@ class ProductDetails extends React.Component {
     });
   }
 
+  addProductCart() {
+    const { productInfo: product } = this.state;
+    let itensFromLocalStorage = [];
+    if (localStorage.length !== 0) {
+      itensFromLocalStorage = JSON.parse(localStorage.products);
+      const productInCart = itensFromLocalStorage.filter(
+        (item) => item.id === product[0].id,
+      );
+      if (productInCart.length !== 0) {
+        alert('Este produto já consta no carrinho');
+      } else {
+        localStorage.setItem('products',
+          JSON.stringify([...itensFromLocalStorage, product[0]]));
+      }
+    } else {
+      localStorage.setItem('products',
+        JSON.stringify([...itensFromLocalStorage, product[0]]));
+    }
+  }
+
   renderProductDetails(product) {
     const { title, thumbnail, price, attributes } = product[0];
     return (
       <div className="product-card" data-testid="product">
+        <ShopCartButton />
         <h3 data-testid="product-detail-name">{ title }</h3>
         <img src={ thumbnail } alt="product model" />
         <h4>{ price }</h4>
@@ -57,6 +80,13 @@ class ProductDetails extends React.Component {
             </li>
           ))}
         </ul>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.addProductCart }
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }
