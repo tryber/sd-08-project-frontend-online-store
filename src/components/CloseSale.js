@@ -10,6 +10,7 @@ class CloseSale extends React.Component {
     this.renderPhoneInput = this.renderPhoneInput.bind(this);
     this.renderCEPInput = this.renderCEPInput.bind(this);
     this.renderAddressInput = this.renderAddressInput.bind(this);
+    this.renderTotal = this.renderTotal.bind(this);
   }
 
   renderFullNameInput() {
@@ -93,10 +94,40 @@ class CloseSale extends React.Component {
     );
   }
 
+  renderSaleItems() {
+    let products = [];
+    if ({}.hasOwnProperty.call(sessionStorage, 'products'));
+    products = JSON.parse(sessionStorage.getItem('products'));
+    return (
+      products
+        .map((product, index) => (
+          <li key={ index }>{`${product.title}: ${product.price}`}</li>)));
+  }
+
+  renderTotal() {
+    let products = [];
+    if ({}.hasOwnProperty.call(sessionStorage, 'products'));
+    products = JSON.parse(sessionStorage.getItem('products'));
+    const total = products
+      .reduce((acc, curr) => {
+        acc += parseFloat(curr.price.split(' ')[1]);
+        return acc;
+      }, 0);
+    return (
+      `R$${total}`
+    );
+  }
+
   render() {
     return (
       <div>
         <form>
+          <h1>Resumo da compra:</h1>
+          { this.renderSaleItems() }
+          <span>
+            Total:
+            { this.renderTotal() }
+          </span>
           <div>
             { this.renderFullNameInput() }
             { this.renderEmailInput() }
@@ -117,5 +148,4 @@ class CloseSale extends React.Component {
     );
   }
 }
-
 export default CloseSale;
