@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-/* import { Link } from 'react-router-dom'; */
+import { Link } from 'react-router-dom';
+
 import * as api from '../services/api';
 
 class Categories extends React.Component {
@@ -11,12 +12,18 @@ class Categories extends React.Component {
       query: undefined,
       categoryId: '',
       products: undefined,
+      details: false,
     };
 
     this.showCategories = this.showCategories.bind(this);
 
     this.fetchSearchApi = this.fetchSearchApi.bind(this);
     this.renderSearchResults = this.renderSearchResults.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange() {
+    this.setState({ details: true });
   }
 
   async fetchSearchApi() {
@@ -55,16 +62,28 @@ class Categories extends React.Component {
             R$:
             { product.price }
           </p>
+          <Link
+            to={ {
+              pathname: `/${product.id}/detalhes`,
+              state: { product },
+            } }
+            onClick={ this.handleChange }
+            data-testid="product-detail-link"
+          >
+            Ver Detalhes
+          </Link>
         </div>
       ))
     );
   }
 
   render() {
+    const { details } = this.state;
+    const emptyDiv = <div />;
+
     return (
       <div>
-        { this.showCategories() }
-        { this.renderSearchResults() }
+        { details ? emptyDiv : [this.showCategories(), this.renderSearchResults()] }
       </div>
     );
   }

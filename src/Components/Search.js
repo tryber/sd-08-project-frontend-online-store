@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import * as api from '../services/api';
 
 class Search extends React.Component {
@@ -66,6 +68,16 @@ class Search extends React.Component {
             R$:
             { product.price }
           </p>
+          <Link
+            to={ {
+              pathname: `/${product.id}/detalhes`,
+              state: { product },
+            } }
+            onClick={ this.handleChange }
+            data-testid="product-detail-link"
+          >
+            Ver Detalhes
+          </Link>
         </div>
       ))
     );
