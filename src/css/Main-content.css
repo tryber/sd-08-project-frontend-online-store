@@ -1,0 +1,21 @@
+.main-content {
+  display: flex;
+}
+
+.buttons {
+  background-color: #232f3e;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons button {
+  background-color: #232f3e;
+  border: solid 0.01vh white;
+  color: white;
+  font-size: calc(0.9vh + 0.7vw);
+  font-weight: 300;
+  height: 5.4vh;
+  margin: 0;
+  padding: 1.4vh;
+  width: 40.4vh;
+}

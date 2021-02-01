@@ -16,17 +16,17 @@ class ButtonCategory extends React.Component {
 
   render() {
     const { categories } = this.state;
-    const { onClickRequest } = this.props;
+    const { handleChange } = this.props;
     return (
-      <div>
+      <div className="buttons">
         { categories.map((category) => (
           <button
             value={ category.id }
-            name="category"
+            name="categoryID"
             key={ category.id }
             type="button"
             data-testid="category"
-            onClick={ onClickRequest }
+            onClick={ handleChange }
           >
             {category.name}
           </button>
@@ -37,7 +37,7 @@ class ButtonCategory extends React.Component {
 }
 
 ButtonCategory.propTypes = {
-  onClickRequest: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default ButtonCategory;

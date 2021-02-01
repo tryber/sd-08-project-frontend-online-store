@@ -1,45 +1,55 @@
 import React from 'react';
-import { Header, Main } from '../components';
+import { Header, Main, ButtonCategory } from '../components';
+import '../css/Main-content.css';
+
 import * as api from '../services/api';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameProduct: '',
-      category: '',
-      products: [],
+      categoryID: '',
+      queryProduct: '',
+      listProducts: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.requestApi = this.requestApi.bind(this);
+  }
+
+  componentDidUpdate(previousProp, previousState) {
+    const { categoryID } = this.state;
+    if (previousState.categoryID !== categoryID) {
+      this.requestApi();
+    }
   }
 
   handleChange({ target }) {
     this.setState({ [target.name]: target.value });
   }
 
-  requestApi({ target }) {
-    this.setState({ [target.name]: target.value },
-      async () => {
-        const { category, nameProduct } = this.state;
-        this.setState({
-          products: await api.getProductsFromCategoryAndQuery(category, nameProduct),
-        });
-      });
+  requestApi() {
+    const { queryProduct, categoryID } = this.state;
+    api.getProductsFromCategoryAndQuery(categoryID, queryProduct)
+      .then((resolve) => this.setState(
+        { listProducts: resolve.results.length > 0 ? resolve.results : [],
+          queryProduct: '' },
+      ));
   }
 
   render() {
-    const { nameProduct, products } = this.state;
-    console.log(products);
+    const { queryProduct, listProducts } = this.state;
     return (
-      <>
+      <div>
         <Header
-          value={ nameProduct }
-          onQueryProduct={ this.handleChange }
-          onClickRequest={ this.requestApi }
+          queryProduct={ queryProduct }
+          handleChange={ this.handleChange }
+          requestApi={ this.requestApi }
         />
-        <Main itemsProducts={ products } />
-      </>
+        <div className="main-content">
+          <ButtonCategory handleChange={ this.handleChange } />
+          <Main listProducts={ listProducts } />
+        </div>
+      </div>
     );
   }
 }

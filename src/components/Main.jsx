@@ -1,21 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
+import '../css/Card.css';
 
 class Main extends React.Component {
   render() {
-    const { itemsProducts } = this.props;
+    const { listProducts } = this.props;
+    if (listProducts.length === 0) {
+      return (
+        <>
+          <h1 data-testid="product">Vázio</h1>
+          <h1 data-testid="product">{' '}</h1>
+        </>
+      );
+    }
     return (
-      <div>
-        {itemsProducts.map((product) => (
-          <Card dat key={ product.id } product={ product } />))}
+      <div className="cards-list" key="allProducts">
+        { listProducts.map((product, index) => (
+          <Card key={ index } product={ product } />
+        ))}
       </div>
     );
   }
 }
 
 Main.propTypes = {
-  itemsProducts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  listProducts: PropTypes.arrayOf(PropTypes.shape()),
+};
+
+Main.defaultProps = {
+  listProducts: [],
 };
 
 export default Main;

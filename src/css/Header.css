@@ -1,0 +1,67 @@
+.banner {
+  align-items: center;
+  background-color: #232f3e;
+  display: flex;
+  height: 6vw;
+  justify-content: center;
+  margin: 0;
+  padding: 2vh;
+  padding-bottom: 0%;
+  width: auto;
+}
+
+.banner h1 {
+  color: #ffb200;
+  font-size: calc(2.7vh + 2.7vw);
+  margin-right: 3vh;
+  padding-bottom: 1;
+  padding-top: 1vh;
+  text-align: center;
+}
+
+.banner form {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.banner input {
+  border: none;
+  border-radius: 5px;
+  color: #141d37;
+  font-size: calc(1.2vh + 1.2vw);
+  height: calc(2vh + 1vw);
+  margin-right: 2vh;
+  text-align: center;
+  width: calc(2vh + 30vw);
+
+}
+
+.banner button {
+  background-color: #ffb200;
+  border: none;
+  border-radius: 5px;
+  font-size: calc(1vh + 1.4vw);
+  height: calc(2vh + 1.6vw);
+  padding-left: 1%;
+  vertical-align: mid;
+  width: calc(4vh + 6vw);
+}
+
+.searchDescription {
+  background-color: #232f3e;
+  color: white;
+  font-size: calc(1vh + 1vw);
+  margin-bottom: 0%;
+  margin-top: 0%;
+  padding-bottom: 3vh;
+  text-decoration: none;
+  width: 100%;
+}
+
+.cartItems img {
+  margin-left: 35vh;
+  margin-top: 6vh;
+  width: calc(3vh + 4vw);
+}
+

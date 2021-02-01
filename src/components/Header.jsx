@@ -1,33 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import Search from './Search';
-import ButtonCategory from './ButtonCategory';
+import BtnShoppingCart from './BtnShoppingCart';
+import '../css/Header.css';
 
 class Header extends React.Component {
   render() {
-    const { onQueryProduct, value, onClickRequest } = this.props;
+    const { queryProduct, handleChange, requestApi } = this.props;
     return (
       <div>
-        <Search
-          onQueryProduct={ onQueryProduct }
-          nameProduct={ value }
-          onClickRequest={ onClickRequest }
-        />
-        <Link data-testid="shopping-cart-button" to="/caritems">CARRINHO DE COMPRAS</Link>
-        <ButtonCategory
-          onClickRequest={ onClickRequest }
-        />
+        <div className="banner">
+          <h1>Loja 28</h1>
+          <Search
+            queryProduct={ queryProduct }
+            handleChange={ handleChange }
+            requestApi={ requestApi }
+          />
+          <div className="cartItems">
+            <BtnShoppingCart />
+          </div>
+        </div>
+        <h1 className="searchDescription" data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma
+          categoria.
+        </h1>
+
       </div>
     );
   }
 }
 
 Header.propTypes = {
-  onQueryProduct: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  onClickRequest: PropTypes.func.isRequired,
+  queryProduct: PropTypes.string,
+  handleChange: PropTypes.func,
+  requestApi: PropTypes.func,
+};
+
+Header.defaultProps = {
+  queryProduct: '',
+  handleChange: () => {},
+  requestApi: () => {},
 };
 
 export default Header;
