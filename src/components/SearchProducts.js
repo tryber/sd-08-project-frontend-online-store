@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import FetchCategories from './FetchCategories';
 
@@ -74,7 +75,15 @@ class SearchProducts extends React.Component {
           <div key={ item.id } data-testid="product">
             <p>{ item.title }</p>
             <img src={ item.thumbnail } alt={ item.title } />
-            <span>{ item.price }</span>
+            <span>
+              { `${item.price} ${item.currency_id} ` }
+              <Link
+                data-testid="product-detail-link"
+                to={ `/${item.category_id}-${item.id}` }
+              >
+                Saiba Mais
+              </Link>
+            </span>
           </div>
         ))}
       </section>
