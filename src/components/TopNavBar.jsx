@@ -9,7 +9,7 @@ class TopNavBar extends React.Component {
     const { cartSize } = this.props;
     return (
       <div className="topNavBar">
-        <Link className="cartLogo" to="/">YUB.COM</Link>
+        <Link className="cartLogo" to="/">YUB.COM </Link>
         <Link className="cartIcon" to="/shoppingCart" data-testid="shopping-cart-button">
           <FiShoppingCart />
           (
