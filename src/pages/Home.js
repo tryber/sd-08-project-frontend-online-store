@@ -34,7 +34,6 @@ export default class Home extends React.Component {
   async fetchProducts() {
     const { category, search } = this.state;
     const products = await api.getProductsFromCategoryAndQuery(category, search);
-    console.log(await products.results);
     this.setState({
       productList: products.results,
     });
@@ -42,7 +41,6 @@ export default class Home extends React.Component {
 
   productByCategory(event) {
     const idByChoice = event.target.id;
-    console.log(idByChoice);
     this.setState({
       category: idByChoice,
     }, () => { this.fetchProducts(); });
@@ -50,7 +48,6 @@ export default class Home extends React.Component {
 
   render() {
     const { categoriesList, productList } = this.state;
-    console.log(productList);
     return (
       <main>
         <SearchBar />
