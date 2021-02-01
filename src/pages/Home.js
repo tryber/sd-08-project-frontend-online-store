@@ -9,7 +9,7 @@ export default class Home extends React.Component {
     super();
 
     this.state = {
-      categoriesList: [],
+      categoriesList: [0],
     };
   }
 
@@ -26,10 +26,11 @@ export default class Home extends React.Component {
 
   render() {
     const { categoriesList } = this.state;
+    console.log(categoriesList.length);
     return (
       <main>
         <SearchBar />
-        {categoriesList.length === 0
+        {categoriesList.length === 1
           ? <p>Carregando...</p>
           : <Categories categoriesList={ categoriesList } />}
       </main>
