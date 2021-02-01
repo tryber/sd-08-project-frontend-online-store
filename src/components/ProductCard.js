@@ -9,12 +9,17 @@ class ProductCard extends React.Component {
       shouldRedirect: false,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickCart = this.handleClickCart.bind(this);
   }
 
   handleClick() {
     this.setState({
       shouldRedirect: true,
     });
+  }
+
+  handleClickCart() {
+    
   }
 
   render() {
@@ -30,15 +35,23 @@ class ProductCard extends React.Component {
       );
     }
     return (
-      <div data-testid="product" onClick={ this.handleClick } aria-hidden="true">
-        <div data-testid="product-detail-link">
-          <h3>{title}</h3>
-          <img src={ thumbnail } alt="Imagem do produto" />
-          <span>
-            R$
-            {price}
-          </span>
+      <div data-testid="product">
+        <div onClick={ this.handleClick } aria-hidden="true">
+          <div data-testid="product-detail-link">
+            <h3>{title}</h3>
+            <img src={ thumbnail } alt="Imagem do produto" />
+            <span>
+              R$
+              {price}
+            </span>
+          </div>
         </div>
+        <button
+          type="button"
+          onClick={ this.handleClickCart }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
