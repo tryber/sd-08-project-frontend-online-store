@@ -13,8 +13,7 @@ body {
   border-radius: 5px;
   box-sizing: border-box;
   margin-top: 10px;
-  max-width: 20%;
-  min-width: 15%;
+  width: 20%;
 }
 
 .categories-list button {
@@ -74,6 +73,33 @@ main {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.product-card {
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 2px;
+  padding: 20px;
+  text-align: center;
+  width: 32%;
+}
+
+.product-card a {
+  color: #303030;
+  font-weight: 400;
+  height: 210px;
+  text-decoration: none;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 1%;
+  width: 76%;
 }
 
 .search-bar {
