@@ -1,7 +1,7 @@
 .categories {
-  background-color: #95b19691;  
-  padding: 10px;
+  background-color: #95b19691;
   height: 100%;
+  padding: 10px;
 }
 
 .categoriesWrapper {
@@ -10,18 +10,18 @@
 }
 
 .categoriesTitle {
-  text-align: center;
   margin-bottom: 15px;
   padding: 10px;
+  text-align: center;
 }
 
 .categoryItem {
-  padding: 10px;
   background-color: rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
-  font-weight: 400;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 400;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 .categoryItem:last-child {

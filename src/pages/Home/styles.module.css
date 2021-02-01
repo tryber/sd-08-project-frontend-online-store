@@ -1,18 +1,16 @@
 .leftSide {
-  width: 25%;
-  max-width: 300px;
   align-items: stretch;
+  max-width: 300px;
+  width: 25%;
 }
 
 .rightSide {
-  width: 75%;
   display: flex;
-  flex-direction: column;
   flex: 1;
+  flex-direction: column;
+  width: 75%;
 }
 
 .mainContent {
   display: flex;
-  /* flex-direction: column; */
-  /* height: auto; */
 }
