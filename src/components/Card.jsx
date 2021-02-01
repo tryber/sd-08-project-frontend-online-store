@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import '../css/Card.css';
 
 class Card extends React.Component {
   render() {
-    const { product: { id, title, thumbnail, price } } = this.props;
+    const { product } = this.props;
+    const { id, title, thumbnail, price } = product;
     return (
       <div key={ id } data-testid="product" className="item-card">
         <img
@@ -12,6 +14,15 @@ class Card extends React.Component {
           src={ thumbnail.replace('I', 'O') }
           alt={ title }
         />
+        <Link
+          data-testid="product-detail-link"
+          to={ {
+            pathname: `/product/details/${id}`,
+            state: { product },
+          } }
+        >
+          Detalhes
+        </Link>
         <span className="card-title">{title}</span>
         <span className="card-price">
           {' '}
@@ -28,6 +39,7 @@ Card.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    category_id: PropTypes.string,
   }),
 };
 

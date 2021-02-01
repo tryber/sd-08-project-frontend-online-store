@@ -38,6 +38,7 @@ class Home extends React.Component {
 
   render() {
     const { queryProduct, listProducts } = this.state;
+    console.log(listProducts);
     return (
       <div>
         <Header
