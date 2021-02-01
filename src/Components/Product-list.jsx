@@ -11,8 +11,7 @@ class ProductList extends Component {
 
   addToStorage({ target }) {
     const { id } = target;
-    const { title } = id;
-    console.log(title);
+    console.log(JSON.stringify(id));
     localStorage.setItem([id], id);
   }
 
@@ -28,7 +27,7 @@ class ProductList extends Component {
             <button
               type="button"
               data-testid="product-add-to-cart"
-              id={ [{ id: product.id, title: product.title, thumbnail: product.thumbnail, price: product.price }] }
+              id={ product.id }
               onClick={ this.addToStorage }
             >
               Adicionar ao carrinho
@@ -41,7 +40,7 @@ class ProductList extends Component {
 
   render() {
     const { clicked } = this.props;
-    if (clicked) return (<div>{ this.mapList() }</div>);
+    if (clicked) return (<div>{this.mapList()}</div>);
     return (
       <div>
         Nenhum produto foi encontrado
