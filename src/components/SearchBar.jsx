@@ -35,6 +35,13 @@ class SearchBar extends Component {
     });
   }
 
+  renderAviso() {
+    return (
+      <h3 data-testid="home-initial-message">
+        Digite algum termo de pesquisa ou escolha uma categoria.
+      </h3>);
+  }
+
   render() {
     const { query, product } = this.state;
     return (
@@ -57,10 +64,9 @@ class SearchBar extends Component {
           Button
         </button>
         <Categories onClick={ this.handleClick } />
-        <h3 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h3>
-        { product.map((item) => <ProductCard key={ item.id } product={ item } />) }
+        {product.length < 1
+          ? this.renderAviso()
+          : product.map((item) => <ProductCard key={ item.id } product={ item } />)}
       </section>
     );
   }
