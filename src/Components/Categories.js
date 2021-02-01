@@ -12,7 +12,6 @@ class Categories extends React.Component {
   componentDidMount() {
     api.getCategories().then((categories) => {
       this.setState({ categories });
-      console.log(categories);
     });
   }
 
