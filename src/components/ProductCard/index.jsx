@@ -19,7 +19,7 @@ class ProductCard extends React.Component {
     return (
       <div className="prodContainer" data-testid="product">
         <img src={ productInfo.thumbnail } alt="product img" />
-        <h3 data-testid="shopping-cart-product-name">{productInfo.title}</h3>
+        <h3>{productInfo.title}</h3>
         <h4>{productInfo.price}</h4>
         {this.buttonAddProduct(productInfo, addProductToCart)}
       </div>
