@@ -1,4 +1,5 @@
 import React from 'react';
+import CartButton from '../components/CartButton';
 import SearchBar from '../components/SearchBar';
 import SearchByTerms from '../components/SearchByTerms';
 import { getProductsFromCategoryAndQuery } from '../services/api';
@@ -23,7 +24,6 @@ class Home extends React.Component {
     const { searchText } = this.state;
     getProductsFromCategoryAndQuery('', searchText)
       .then(({ results }) => this.setState({ results }));
-    // .then(({ results: { 0: first } }) => console.log(first)); como acessar
   }
 
   render() {
@@ -32,6 +32,7 @@ class Home extends React.Component {
       <div>
         <SearchBar onClick={ this.handleClick } onChange={ this.handleChange } />
         <SearchByTerms results={ results } />
+        <CartButton />
       </div>
     );
   }
