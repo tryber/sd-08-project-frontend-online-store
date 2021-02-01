@@ -27,6 +27,7 @@ body {
 
 button {
   color: $card-primary-color;
+
   &:focus {
     outline: none;
   }
@@ -36,9 +37,11 @@ input {
   border: 1px solid rgba(149, 149, 149, 0.692);
   color: $card-primary-alt-color;
   background-color: white;
+
   &:hover {
     border: 1px solid rgb(149, 149, 149);
   }
+
   &:focus {
     outline: none;
     border: 1px solid rgba(149, 149, 149, 0.883);
@@ -79,6 +82,7 @@ input {
   padding-top: 6px;
   padding-bottom: 6px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.164);
+
   .header-wrap {
     // border: 1px solid green;
     display: flex;
@@ -86,12 +90,14 @@ input {
     margin-left: auto;
     margin-right: auto;
     justify-content: space-between;
+
     .header-left {
       width: auto;
       height: 100%;
       display: flex;
       justify-content: flex-start;
       align-items: center;
+
       // border: 1px solid blue;
       .shopping-logo {
         width: auto;
@@ -100,15 +106,18 @@ input {
         margin-left: 4px;
         margin-right: 4px;
       }
+
       .header-button-back {
         background-color: $primary-bg-color;
         border: 0;
         font-size: 1.2em;
         margin-left: 4px;
         margin-right: 4px;
+
         &:hover {
           cursor: pointer;
         }
+
         .button-back-image {
           width: 30px;
           height: 30px;
@@ -124,17 +133,21 @@ input {
       justify-content: flex-end;
       align-items: center;
       background-color: $primary-bg-color;
+
       &:hover {
         cursor: pointer;
       }
+
       //  border: 1px solid blue;
       padding-left: 12px;
       padding-right: 4px;
+
       .cart-image {
         width: 26px;
         height: 26px;
         display: block;
       }
+
       .cart-count {
         display: block;
         position: relative;
@@ -182,6 +195,7 @@ input {
     margin-right: auto;
     margin-bottom: 6px;
   }
+
   .query-box {
     display: flex;
     align-items: baseline;
@@ -200,13 +214,16 @@ input {
       padding-bottom: 2px;
       border-radius: 18px;
       background-color: #ffffff;
+
       &:focus {
         color: rgb(56, 56, 56);
       }
+
       &:hover {
         color: rgb(32, 32, 32);
       }
     }
+
     .product-search-button {
       color: rgb(53, 53, 53);
       border: 0;
@@ -218,11 +235,14 @@ input {
       left: -56px;
       background-color: #ffffff;
       cursor: pointer;
+
       &:focus {
         color: rgb(56, 56, 56);
       }
+
       .find {
         opacity: 0.8;
+
         &:hover {
           opacity: 1;
         }
@@ -247,6 +267,7 @@ input {
     font-size: 0.9vw;
     margin-top: 14px;
     margin-bottom: 2px;
+
     ul {
       list-style-type: none;
       margin: 0;
@@ -262,6 +283,7 @@ input {
         padding: 0;
         margin-left: 4px;
         margin-right: 4px;
+
         .nav-link {
           text-decoration: none;
           background-color: $secundary-bg-color;
@@ -306,6 +328,7 @@ input {
     transition: transform 1s;
     border: 1px solid rgba(0, 0, 0, 0.637);
   }
+
   &:not:hover {
     transition: transform 1s;
   }
@@ -325,28 +348,18 @@ input {
       height: 60%;
       display: flex;
       align-content: center;
+      border: 1px solid red;
 
-      .cart-image-box {
-        width: 100%;
-        
-        .free-shipping {
-          width: 100px;
-          height: 100px;
-          position: relative;
-          top:0px;
-          left: 0px;
-          z-index: 5;
-        }
-    
-        .cart-image {
-          width: 100%;
-          max-height: 100%;
-          z-index:1;
-          overflow:hidden;
-        }
+      .free-shipping {
+        width: 100px;
+        height: 100px;
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+        position: relative;
       }
-
     }
+
 
     .product-card-info {
       height: 30%;
@@ -364,18 +377,21 @@ input {
         color: $card-primary-color;
         font-size: 1.3em;
         margin-left: 6px;
+
         .price-part-1 {
           color: black;
           font-size: 1.4vw;
           // font-size: 1.1em;
           font-weight: 300;
         }
+
         .price-part-2 {
           color: $card-primary-color;
           margin-left: 2px;
           // font-size: 1.1em;
           font-size: 2vw;
         }
+
         .price-part-3 {
           color: $card-primary-alt-color;
           margin-left: 2px;
@@ -386,6 +402,7 @@ input {
           font-weight: 300;
         }
       }
+
       .product-card-info-title {
         color: $card-secundary-color;
         font-size: 0.9vw;
@@ -403,6 +420,7 @@ input {
     margin-right: auto;
     display: flex;
     justify-content: center;
+
     .product-buy-button {
       border: 0;
       align-self: center;
@@ -411,6 +429,7 @@ input {
       color: $card-primary-color;
       font-weight: 600;
       background-color: #ffea00e1;
+
       &:hover {
         background-color: #ffea00;
         color: rgb(14, 14, 14);
@@ -431,6 +450,7 @@ input {
   justify-content: center;
   align-items: center;
   padding: 10px;
+
   h1 {
     margin: 2px;
     padding: 2px;
@@ -438,6 +458,7 @@ input {
     font-weight: 400;
     margin-top: 10px;
   }
+
   h2 {
     margin: 2px;
     padding: 2px;
@@ -446,32 +467,38 @@ input {
     color: #141414f1;
     margin-bottom: 6px;
   }
+
   img {
     margin: 4px;
     width: 30%;
     border: 1px solid rgb(155, 155, 155);
     margin-bottom: 10px;
   }
+
   .product-detail-name {
     padding: 8px;
     margin-top: 10px;
     font-size: 1.2em;
   }
+
   .product-detail-price {
     padding: 8px;
     font-size: 1.2em;
     font-weight: 600;
     margin-bottom: 14px;
+
     span {
       margin: 1px;
       font-size: 1.2em;
     }
+
     .product-simbol {
       font-size: 1.1em;
       color: #000000fa;
       margin-right: 2px;
     }
   }
+
   .product-add-cart {
     width: 300px;
     border-radius: 10px;
@@ -486,6 +513,7 @@ input {
   margin-right: auto;
   display: flex;
   justify-content: center;
+
   .product-buy-button {
     align-self: center;
     width: 100%;
@@ -494,11 +522,13 @@ input {
     color: $card-primary-color;
     font-weight: 600;
     background-color: #ffee31;
+
     &:hover {
       background-color: #ffea00;
       color: rgb(26, 26, 26);
       border: 1px solid rgba(58, 58, 58, 0.692);
     }
+
     &:focus {
       outline: none;
     }
@@ -525,6 +555,7 @@ input {
 
     // border: 1px solid green;
     padding: 6px;
+
     .shopping-cart-list-item {
       background-color: $secundary-bg-color;
       font-size: 0.8em;
@@ -540,12 +571,14 @@ input {
         width: 12%;
         padding: 5px;
       }
+
       .item-title {
         display: flex;
         align-items: center;
         width: 40%;
         padding: 5px;
       }
+
       .item-price {
         display: flex;
         align-items: center;
@@ -556,6 +589,7 @@ input {
         // border: 1px solid green;
         margin-right: 6px;
       }
+
       .item-count {
         display: flex;
         align-items: center;
@@ -592,6 +626,7 @@ input {
           margin-right: 4px;
         }
       }
+
       .item-total {
         display: flex;
         align-items: center;
@@ -608,6 +643,7 @@ input {
 
 .cart-message {
   align-self: center;
+
   .cart-empty-message {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -624,12 +660,14 @@ input {
   font-weight: 600;
   background-color: #ffffff26;
   margin-top: 20px;
+
   &:hover {
     background-color: white;
 
     color: rgb(26, 26, 26);
     border: 1px solid rgba(58, 58, 58, 0.692);
   }
+
   &:focus {
     outline: none;
   }
@@ -672,6 +710,7 @@ input {
       width: auto;
       height: auto;
       cursor: pointer;
+
       .menu-close-icon {
         font-size: 1.5em;
         padding: 2px;
@@ -679,6 +718,7 @@ input {
       }
     }
   }
+
   .slide-shopping-cart {
     // border:1px solid red;
     display: flex;
@@ -689,6 +729,7 @@ input {
 
       display: flex;
       flex-direction: column;
+
       .shopping-cart-list-item {
         display: flex;
         font-size: 0.7em;
@@ -702,16 +743,19 @@ input {
           width: 54%;
           //  border: 1px solid red;
           padding: 2px;
+
           .item-id {
             font-weight: 600;
             margin-top: 1px;
             margin-left: 4px;
           }
+
           .item-title {
             font-size: 0.9em;
             margin-left: 6px;
           }
         }
+
         .item-price {
           width: 11%;
           font-size: 1em;
@@ -721,6 +765,7 @@ input {
           //  border: 1px solid red;
           margin-right: 4px;
         }
+
         .item-count {
           width: 5%;
           display: flex;
@@ -729,6 +774,7 @@ input {
           //  border: 1px solid red;
           margin-right: 4px;
         }
+
         .item-control {
           width: 8%;
           display: flex;
@@ -737,17 +783,20 @@ input {
           // border: 1px solid red;
           margin-right: 4px;
           padding: 1px;
+
           button {
             border: 0;
             background-color: rgba(255, 255, 255, 0);
             height: auto;
             width: auto;
             cursor: pointer;
+
             i {
               font-size: 1em;
             }
           }
         }
+
         .item-total {
           width: 15%;
           display: flex;
