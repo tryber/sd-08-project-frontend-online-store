@@ -12,8 +12,12 @@ class CartedProduct extends React.Component {
   }
 
   increase() {
+    const { product } = this.props;
+    console.log(product);
+    const { available_quantity: availableQuantity } = product;
     this.setState((state) => ({
-      quantity: state.quantity + 1,
+      quantity:
+        state.quantity + 1 > availableQuantity ? state.quantity : state.quantity + 1,
     }));
   }
 
@@ -59,5 +63,6 @@ CartedProduct.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    available_quantity: PropTypes.number,
   }).isRequired,
 };

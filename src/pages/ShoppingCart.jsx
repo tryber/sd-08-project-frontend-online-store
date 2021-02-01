@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import CartedProduct from '../components/CartedProduct';
 
 class ShoppingCart extends Component {
@@ -15,6 +16,7 @@ class ShoppingCart extends Component {
     const productsInCart = JSON.parse(localStorage.products);
     return (
       <div>
+        <Link to="/">HOME</Link>
         <p>
           Quantidade de itens no carrinho:
           { productsInCart.length }
