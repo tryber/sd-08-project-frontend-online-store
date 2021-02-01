@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProductCar from './ProductCar';
 import propTypes from 'prop-types';
-import ShoppingCart from '../shopping-cart.png';
+
 
 class InputSearch extends React.Component {
   render() {
@@ -24,20 +24,7 @@ class InputSearch extends React.Component {
         >
           Pesquisar
         </button>
-
-        <Link data-testid="shopping-cart-button" to="/shoppingcart">
-          <img
-            className="shopping-cart-icon"
-            src={ ShoppingCart }
-            alt="icon shopping cart"
-          />
-          <span
-            className="cart-quantity"
-            data-testid="shopping-cart-size"
-          >
-            { cartSize }
-          </span>
-        </Link>
+        <ProductCar />
       </header>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+
 class ProductCard extends React.Component {
   render() {
     const { productCard } = this.props;
@@ -9,7 +10,7 @@ class ProductCard extends React.Component {
       <div>
         { productCard.map(({ id, title, thumbnail, price }) => (
           <div key={ id }>
-            <Link to={ `/${id}` } data-testid="product-detail-link">
+            <Link to={ { pathname: `/productDetails/${id}`, state:{ id, title, thumbnail, price } } } data-testid="product-detail-link">
               <div className="card" data-testid="product">
                 <h4>
                   { title }
@@ -25,7 +26,7 @@ class ProductCard extends React.Component {
               data-testid="product-add-to-cart"
             >
               Add to Cart
-            </button>
+            </button>            
           </div>
         ))}
       </div>
