@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './ProductCard.css';
 import { Link } from 'react-router-dom';
+import AddItem from './AddItem';
 
 class ProductCard extends Component {
   render() {
@@ -21,6 +22,7 @@ class ProductCard extends Component {
         >
           Detalhes
         </Link>
+        <AddItem title={ title } dataTestId="product-add-to-cart" />
       </div>
     );
   }
