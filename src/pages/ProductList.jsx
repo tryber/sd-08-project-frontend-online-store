@@ -7,7 +7,9 @@ import ProductCard from '../components/ProductCard';
 class ProductList extends React.Component {
   constructor() {
     super();
-    localStorage.setItem('selectedProducts', JSON.stringify([]));
+    if (!localStorage.getItem('selectedProducts')) {
+      localStorage.setItem('selectedProducts', JSON.stringify([]));
+    }
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
