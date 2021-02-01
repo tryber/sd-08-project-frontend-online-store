@@ -3,15 +3,37 @@ import PropTypes from 'prop-types';
 import ShowDetails from './ShowDetailsButton';
 
 class SearchResult extends React.Component {
-  renderCard(productsList) {
+  renderCard() {
+    const { productsList } = this.props;
     return (
-      productsList.map(({ id, title, thumbnail, price }) => (
-        <section className="product-card" data-testid="product" key={ id }>
-          <h3 className="product-title">{ title }</h3>
-          <img src={ thumbnail } alt={ title } />
-          <p className="product-price">{ price }</p>
-          <ShowDetails />
-        </section>))
+      <ul className="product-card" key={ productsList.id }>
+        {
+          productsList.map(({ id, title, thumbnail, price, attributes, condition, address,
+            // available_quantity, sold_quantity, stop_time, accepts_mercadopago, currency_id,
+          }) => (
+            <li key={ id } data-testid="product" className="product-by-query">
+              <h3 className="product-title">{ title }</h3>
+              <img src={ thumbnail } alt={ title } />
+              <p className="product-price">{ price }</p>
+              <ShowDetails
+                id={ id }
+                title={ title }
+                thumbnail={ thumbnail }
+                price={ price }
+                attributes={ attributes }
+                // available_quantity={ available_quantity }
+                // sold_quantity={ sold_quantity }
+                // stop_time={ stop_time }
+                // accepts_mercadopago={ accepts_mercadopago }
+                // currency_id={ currency_id }
+                // shipping={ shipping }
+                address={ address }
+                condition={ condition }
+              />
+            </li>
+          ))
+        }
+      </ul>
     );
   }
 
