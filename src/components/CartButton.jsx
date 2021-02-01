@@ -7,12 +7,17 @@ class CartButton extends React.Component {
     console.log(this.props);
     const { cartItems } = this.props;
     return (
-      <Link
-        data-testid="shopping-cart-button"
-        to={ { pathname: '/pages/cart', cartItems } }
-      >
-        Cart
-      </Link>
+      <div>
+        <Link
+          data-testid="shopping-cart-button"
+          to={ { pathname: '/pages/cart', cartItems } }
+        >
+          Cart
+        </Link>
+        <div data-testid="shopping-cart-size">
+          {`(${cartItems.length})`}
+        </div>
+      </div>
     );
   }
 }

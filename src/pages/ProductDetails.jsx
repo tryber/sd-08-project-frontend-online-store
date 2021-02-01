@@ -52,6 +52,7 @@ class ProductDetails extends React.Component {
       // currency_id, shipping
     } } } = this.props;
     // console.log(this.props);
+    const { cartItems } = this.state;
     return (
       <section data-testid="product-detail-name">
         <Link to="/">Voltar</Link>
@@ -79,7 +80,7 @@ class ProductDetails extends React.Component {
           address={ address }
           condition={ condition }
         />
-        <CartButton />
+        <CartButton cartItems={ cartItems } />
       </section>
     );
   }
