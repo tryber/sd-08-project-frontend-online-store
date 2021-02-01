@@ -16,10 +16,13 @@ class Home extends React.Component {
       categories: [],
       products: [],
       value: '',
+      productCart: [],
+      productNumber: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.productToCart = this.productToCart.bind(this);
   }
 
   componentDidMount() {
@@ -45,8 +48,16 @@ class Home extends React.Component {
     });
   }
 
+  productToCart(newProduct) {
+    const { productCart } = this.state;
+    this.setState(({ productNumber }) => ({
+      productCart: [...productCart, newProduct],
+      productNumber: productNumber + 1,
+    }));
+  }
+
   render() {
-    const { categories, products } = this.state;
+    const { categories, products, productCart, productNumber } = this.state;
     return (
       <div>
         <h1>Sales</h1>
@@ -69,14 +80,20 @@ class Home extends React.Component {
 
         </button>
         <br />
-        <Link to="/cart" data-testid="shopping-cart-button">Ver carrinho</Link>
+        <Link
+          to={ { pathname: '/cart', state: { productCart, productNumber } } }
+          data-testid="shopping-cart-button"
+        >
+          Ver carrinho
+
+        </Link>
 
         <CategoryList
           list={ categories }
           filterProducts={ this.handleChange }
           onClick={ this.handleClick }
         />
-        <ProductsList list={ products } />
+        <ProductsList list={ products } productToCart={ this.productToCart } />
       </div>
     );
   }

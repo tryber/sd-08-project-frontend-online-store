@@ -16,7 +16,7 @@ class ProductDetails extends React.Component {
     api.getProductsFromCategoryAndQuery('', title).then((product) => {
       this.setState({
         product: product.results[0],
-      }, () => console.log(product.results[0]));
+      });
     });
   }
 
