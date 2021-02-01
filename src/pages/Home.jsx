@@ -11,9 +11,11 @@ class Home extends React.Component {
       categoryID: '',
       queryProduct: '',
       listProducts: [],
+      buyProductsId: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.requestApi = this.requestApi.bind(this);
+    this.handleChangeClickBuyProduct = this.handleChangeClickBuyProduct.bind(this);
   }
 
   componentDidUpdate(previousProp, previousState) {
@@ -22,6 +24,28 @@ class Home extends React.Component {
       this.requestApi();
     }
   }
+
+  handleChangeClickBuyProduct({ target }) {
+    const { buyProductsId } = this.state;
+    this.setState({ buyProductsId: [...buyProductsId, target.id] });
+  }
+
+  // handleChangeClickBuyProduct({ target }) {
+  //   const { buyProductsId } = this.state;
+  //   if (Object.keys(buyProductsId).includes(target.id)) {
+  //     this.setState((state) => (
+  //       {
+  //         buyProductsId: {
+  //         ...buyProductsId[target.id]: state.buyProductsId + 1
+  //       }
+  //     }
+  //     ));
+  //   } else {
+  //     this.setState(() => (
+  //       { buyProductsId: { [buyProductsId[target.id]]: 1 } }
+  //     ));
+  //   }
+  // }
 
   handleChange({ target }) {
     this.setState({ [target.name]: target.value });
@@ -37,7 +61,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { queryProduct, listProducts } = this.state;
+    const { queryProduct, listProducts, buyProductsId } = this.state;
     console.log(listProducts);
     return (
       <div>
@@ -45,10 +69,14 @@ class Home extends React.Component {
           queryProduct={ queryProduct }
           handleChange={ this.handleChange }
           requestApi={ this.requestApi }
+          buyProductsId={ buyProductsId }
         />
         <div className="main-content">
           <ButtonCategory handleChange={ this.handleChange } />
-          <Main listProducts={ listProducts } />
+          <Main
+            listProducts={ listProducts }
+            handleChangeClickBuyProduct={ this.handleChangeClickBuyProduct }
+          />
         </div>
       </div>
     );

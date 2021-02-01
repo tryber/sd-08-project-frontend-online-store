@@ -5,7 +5,7 @@ import '../css/Card.css';
 
 class Main extends React.Component {
   render() {
-    const { listProducts } = this.props;
+    const { listProducts, handleChangeClickBuyProduct } = this.props;
     if (listProducts.length === 0) {
       return (
         <>
@@ -17,7 +17,7 @@ class Main extends React.Component {
     return (
       <div className="cards-list" key="allProducts">
         { listProducts.map((product, index) => (
-          <Card key={ index } product={ product } />
+          <Card key={ index } product={ product } handleChangeClickBuyProduct={ handleChangeClickBuyProduct } />
         ))}
       </div>
     );
@@ -26,6 +26,7 @@ class Main extends React.Component {
 
 Main.propTypes = {
   listProducts: PropTypes.arrayOf(PropTypes.shape()),
+  handleChangeClickBuyProduct: PropTypes.func.isRequired,
 };
 
 Main.defaultProps = {
