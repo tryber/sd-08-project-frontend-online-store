@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Avaliacoes from '../components/Avaliacoes';
 
 class Produto extends React.Component {
   render() {
@@ -11,6 +12,7 @@ class Produto extends React.Component {
         <span data-testid="product-detail-name">
           { product && product.title }
         </span>
+        <Avaliacoes { ...this.props } />
       </div>
     );
   }

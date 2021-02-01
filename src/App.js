@@ -13,6 +13,7 @@ class App extends React.Component {
       query: undefined,
       category: undefined,
       cartProducts: [],
+      avaliations: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,6 +21,7 @@ class App extends React.Component {
     this.handleClickCategory = this.handleClickCategory.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.updateAvaliations = this.updateAvaliations.bind(this);
   }
 
   componentDidMount() {
@@ -79,6 +81,11 @@ class App extends React.Component {
     });
   }
 
+  updateAvaliations(newAvaliation) {
+    const { avaliations } = this.state;
+    this.setState({ avaliations: [...avaliations, newAvaliation] });
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -89,6 +96,7 @@ class App extends React.Component {
             fetchProducts={ this.fetchProducts }
             addToCart={ this.addToCart }
             handleClickCategory={ this.handleClickCategory }
+            updateAvaliations={ this.updateAvaliations }
           />
         </main>
       </BrowserRouter>
