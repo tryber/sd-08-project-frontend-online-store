@@ -26,10 +26,11 @@ class MainPage extends React.Component {
   handleChange({ target }) {
     this.setState({
       [target.name]: target.value,
+    }, () => {
+      if (target.name === 'categoryID') {
+        this.getProductsAPI();
+      }
     });
-    if (target.name === 'categoryID') {
-      this.getProductsAPI();
-    }
   }
 
   handleClick() {
@@ -38,7 +39,9 @@ class MainPage extends React.Component {
 
   async getProductsAPI() {
     const { query, categoryID } = this.state;
+    console.log(categoryID);
     const getProducts = await getProductsFromCategoryAndQuery(categoryID, query);
+    console.log(getProducts.results);
     this.setState({
       products: getProducts.results,
     });
