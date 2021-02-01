@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import FormularioAvaliaçao from '../../Components/FormularioAvaliaçao';
+
 export default class DetalhesDoProduto extends Component {
   render() {
     const { location: { state: { product } } } = this.props;
@@ -13,7 +15,8 @@ export default class DetalhesDoProduto extends Component {
         <p>{subtitle}</p>
         <p>{price}</p>
         <p>{condition}</p>
-        <p>{warranty}</p>
+        <p>{ warranty }</p>
+        <FormularioAvaliaçao />
       </>
     );
   }
