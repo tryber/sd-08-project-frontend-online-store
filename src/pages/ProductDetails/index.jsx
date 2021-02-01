@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../components/Button';
-// import * as api from '../../services/api';
+import Evaluation from '../../components/Evaluation';
 import Loading from '../../components/Loading';
 
 const fetchAPI = 'https://api.mercadolibre.com/items/';
@@ -65,6 +65,7 @@ class ProductDetails extends React.Component {
               </p>
             ))}
           </ul>
+          <Evaluation />
         </div>
         <Button />
       </div>
