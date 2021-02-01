@@ -78,6 +78,16 @@ class Search extends React.Component {
           >
             Ver Detalhes
           </Link>
+          <Link
+            to={ {
+              pathname: '/shoppingcart',
+              state: { product },
+            } }
+            onClick={ this.handleChange }
+            data-testid="product-add-to-cart"
+          >
+            Adcionar ao carrinho
+          </Link>
         </div>
       ))
     );
