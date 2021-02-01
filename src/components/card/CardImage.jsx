@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import CardFreeShipping from './CardFreeShipping';
 
 export default function CardImage(props) {
-  const { url, alt, freeshipping } = props;
+  const { url, freeshipping } = props;
   const mystyle = {
     backgroundImage: `url(${url})`,
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    backgroundSize: 'contain',
   };
   return (
     <section className="product-card-image" style={ mystyle }>
@@ -20,6 +20,5 @@ export default function CardImage(props) {
 
 CardImage.propTypes = {
   url: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
   freeshipping: PropTypes.bool.isRequired,
 };

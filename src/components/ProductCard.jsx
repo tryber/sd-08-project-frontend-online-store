@@ -35,7 +35,7 @@ export default function ProductCard(props) {
         data-testid="product-detail-link"
         onClick={ handleClick }
       >
-        <CardImage url={ thumbnail } alt={ title } freeshipping={ shipping } />
+        <CardImage url={ thumbnail } freeshipping={ shipping } />
         <CardInfo price={ price } title={ title } />
       </button>
       <section className="product-buy">
