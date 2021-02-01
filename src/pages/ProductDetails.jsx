@@ -51,9 +51,7 @@ class ProductDetails extends React.Component {
       const productInCart = itensFromLocalStorage.filter(
         (item) => item.id === product[0].id,
       );
-      if (productInCart.length !== 0) {
-        alert('Este produto já consta no carrinho');
-      } else {
+      if (productInCart.length === 0) {
         localStorage.setItem('products',
           JSON.stringify([...itensFromLocalStorage, product[0]]));
       }
