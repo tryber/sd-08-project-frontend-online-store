@@ -13,12 +13,14 @@ class App extends React.Component {
       listOfProducts: undefined,
       query: undefined,
       category: undefined,
+      cartProducts: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleClickCategory = this.handleClickCategory.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -70,6 +72,14 @@ class App extends React.Component {
     }
   }
 
+  addToCart(title) {
+    const newProduct = { name: title, quantity: 1 };
+    const { cartProducts } = this.state;
+    this.setState({
+      cartProducts: [...cartProducts, newProduct],
+    });
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -80,7 +90,11 @@ class App extends React.Component {
         <NavBar handleChange={ this.handleChange } handleClick={ this.handleClick } />
         <main className="main">
           <CategoriesList handleClickCategory={ this.handleClickCategory } />
-          <Content { ...this.state } fetchProducts={ this.fetchProducts } />
+          <Content
+            { ...this.state }
+            fetchProducts={ this.fetchProducts }
+            addToCart={ this.addToCart }
+          />
         </main>
       </BrowserRouter>
     );
