@@ -10,7 +10,10 @@ class Content extends React.Component {
         <Route
           exact
           path="/"
-          render={ (routerProps) => <Listagem { ...routerProps } { ...this.props } /> }
+          render={ (routerProps) => (<Listagem
+            { ...routerProps }
+            { ...this.props }
+          />) }
         />
         <Route exact path="/carrinho" component={ Carrinho } />
       </Switch>

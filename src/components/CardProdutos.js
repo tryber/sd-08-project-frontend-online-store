@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 class CardProdutos extends React.Component {
   render() {
     const { products: { title, thumbnail, price,
-      shipping: { free_shipping: freeShipping }, installments } } = this.props;
+      shipping: { free_shipping: freeShipping }, installments }, addToCart } = this.props;
+    console.log(this.props);
     return (
       <div data-testid="product" className="product">
         <img src={ thumbnail } alt={ title } className="product-img" />
@@ -25,6 +26,13 @@ class CardProdutos extends React.Component {
           {freeShipping
           && <p className="frete-gratis" data-testid="free-shipping">Frete grátis</p>}
           <h2>{ title }</h2>
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            onClick={ () => addToCart(title) }
+          >
+            Adicionar ao carrinho
+          </button>
         </div>
       </div>
     );
@@ -46,6 +54,7 @@ CardProdutos.propTypes = {
       rate: PropTypes.number,
     }),
   }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default CardProdutos;

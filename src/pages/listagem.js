@@ -93,7 +93,7 @@ class Listagem extends Component {
   // }
 
   render() {
-    const { listOfProducts } = this.props;
+    const { listOfProducts, addToCart } = this.props;
     return (
       <>
         {/* <div className="left-content">
@@ -103,7 +103,10 @@ class Listagem extends Component {
         </div> */}
         <div className="right-content">
           <div className="show-products">
-            <ListaCardProdutos listOfProducts={ listOfProducts } />
+            <ListaCardProdutos
+              listOfProducts={ listOfProducts }
+              addToCart={ addToCart }
+            />
           </div>
         </div>
       </>
@@ -113,6 +116,7 @@ class Listagem extends Component {
 
 Listagem.propTypes = {
   listOfProducts: PropTypes.arrayOf(PropTypes.object),
+  addToCart: PropTypes.func.isRequired,
 };
 
 Listagem.defaultProps = {

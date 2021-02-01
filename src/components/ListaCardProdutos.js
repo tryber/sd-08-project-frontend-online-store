@@ -4,7 +4,7 @@ import CardProdutos from './CardProdutos';
 
 class ListaCardProdutos extends React.Component {
   render() {
-    const { listOfProducts } = this.props;
+    const { listOfProducts, addToCart } = this.props;
     if (!listOfProducts) {
       return <> </>;
     }
@@ -19,6 +19,7 @@ class ListaCardProdutos extends React.Component {
           <CardProdutos
             key={ product.id }
             products={ product }
+            addToCart={ addToCart }
           />))}
       </>
     );
@@ -34,6 +35,7 @@ ListaCardProdutos.propTypes = {
       price: PropTypes.number,
     }),
   ),
+  addToCart: PropTypes.func.isRequired,
 };
 
 ListaCardProdutos.defaultProps = {
