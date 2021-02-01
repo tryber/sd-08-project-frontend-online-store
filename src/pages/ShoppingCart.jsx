@@ -14,7 +14,7 @@ class ShoppingCart extends Component {
     const productsInCart = JSON.parse(localStorage.products);
     return (
       <div>
-        <p data-testid="shopping-cart-product-quantity">
+        <p>
           Quantidade de itens no carrinho:
           { productsInCart.length }
         </p>
