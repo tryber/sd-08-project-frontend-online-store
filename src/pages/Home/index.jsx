@@ -16,13 +16,15 @@ class Home extends React.Component {
       searchInput: '',
       searchCategory: 'MLB1953',
       loading: true,
-      shoppingCart: [],
+      shoppingCart: {},
     };
 
     this.onSearchChange = this.onSearchChange.bind(this);
     this.findProducts = this.findProducts.bind(this);
     this.filterByCategory = this.filterByCategory.bind(this);
     this.addProductToCart = this.addProductToCart.bind(this);
+    this.getCartData = this.getCartData.bind(this);
+    this.saveCartData = this.saveCartData.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +32,7 @@ class Home extends React.Component {
       this.setState({ categories, loading: false });
     });
     this.findProducts();
+    this.getCartData();
   }
 
   onSearchChange(event) {
@@ -38,11 +41,29 @@ class Home extends React.Component {
     });
   }
 
+  getCartData() {
+    const cart = localStorage.getItem('currentCart');
+    if (cart) this.setState({ shoppingCart: JSON.parse(cart) });
+  }
+
+  saveCartData() {
+    const { shoppingCart } = this.state;
+    localStorage.setItem('currentCart', JSON.stringify(shoppingCart));
+  }
+
   addProductToCart(productInfo) {
     const { shoppingCart } = this.state;
+
+    const { id } = productInfo;
+    if (shoppingCart[id]) {
+      productInfo.amountInCart = shoppingCart[id].amountInCart + 1;
+    } else {
+      productInfo.amountInCart = 1;
+    }
+
     this.setState({
-      shoppingCart: [...shoppingCart, productInfo],
-    });
+      shoppingCart: { ...shoppingCart, [id]: productInfo },
+    }, () => { this.saveCartData(); });
   }
 
   findProducts() {
@@ -66,7 +87,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories, loading, products, searchInput, shoppingCart } = this.state;
+    const { categories, loading, products, searchInput } = this.state;
 
     return (
       <div>
@@ -75,7 +96,7 @@ class Home extends React.Component {
           value={ searchInput }
           handleSearch={ this.findProducts }
         />
-        <Button shoppingCart={ shoppingCart } />
+        <Button />
         <main>
           <div className="categoryContainer">
             { categories.map((category) => (
