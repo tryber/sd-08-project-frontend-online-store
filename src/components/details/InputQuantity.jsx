@@ -8,7 +8,7 @@ function InputQuantity(props) {
   const handleIncClick = () => {
     setQuantity(quantity + 1);
     if (onHandleChange) {
-      onHandleChange(value + 1);
+      onHandleChange(quantity + 1);
     }
   };
   const handleDecClick = () => {
@@ -19,10 +19,16 @@ function InputQuantity(props) {
       }
     }
   };
+  const handleInputChange = (e) => {
+    setQuantity(e.target.value);
+    if (onHandleChange) {
+      onHandleChange(e.target.value);
+    }
+  };
 
   return (
     <div className="input-quantity">
-      <input type="number" value={ quantity } value={ value } />
+      <input type="number" value={ quantity } onChange={ handleInputChange } />
       <button type="button" onClick={ handleIncClick }>
         <i className="fas fa-plus" />
       </button>

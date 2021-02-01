@@ -863,11 +863,12 @@ input {
     margin-right: auto;
     display: flex;
     align-items: center;
-    border: 1px solid rgb(77, 77, 77);
+    border: 1px solid rgb(95, 95, 95);
     padding: 4px;
+    margin-top: 8px;
     margin-bottom: 10px;
     background-color: #f5f5f5;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 
     .product-info-left {
       // border: 1px solid green;
@@ -991,19 +992,41 @@ input {
   }
 }
 
+.box-add-cart {
+  // border: 1px solid rgb(131, 131, 131);
+  padding: 4px;
+  display: flex;
+  align-items: center; 
+  padding-left: 10px;
+  padding-right: 10px;
+
+  .input-quantity {
+    margin: 4px;
+    align-self: center;
+    padding-right: 10px;
+  }
+  .button-add-cart {
+    margin: 4px;
+    height: 40px;
+    width: 200px;
+    align-self: center;
+    margin-left: 2px;
+  }
+}
+
 .button-add-cart {
   width: 260px;
   height: 34px;
   background-color: $primary-bg-color;
   border: 1px solid rgb(92, 92, 92);
   font-size: 0.9em;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .input-quantity {
   width: auto;
-  border: 1px solid red;
+  // border: 1px solid red;
   display: flex;
   justify-content: center;
   padding: 4px;
@@ -1029,15 +1052,15 @@ input {
     background-color: white;
     border: 1px solid rgb(153, 153, 153);
     margin: 2px;
-    margin-right: 6px;
+    margin-right: 10px;
   }
 
   button {
     border: 1px solid rgb(126, 126, 126);
     border-radius: 50%;
     margin: 2px;
-    width: 30px;
-    height: 30px;
+    width: 38px;
+    height: 38px;
     background-color: white;
     font-size: 0.9em;
     text-align: center;

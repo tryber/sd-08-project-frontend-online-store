@@ -44,9 +44,10 @@ export default function ProductDetails() {
       {control.visibility.slide ? <CartSlide /> : null}
       <section className="product-detail">
         {found ? <ProductInfo productId={ id } /> : null}
-        <h3>{qtd}</h3>
-        <InputQuantity onHandleChange={ handleChangeQuantity } value={ qtd } />
-        <ButtonAddCart handleClick={ handleBuyClick } />
+        <div className="box-add-cart">
+          <InputQuantity onHandleChange={ handleChangeQuantity } value={ qtd } />
+          <ButtonAddCart handleClick={ handleBuyClick } />
+        </div>
       </section>
     </main>
   );
