@@ -114,6 +114,7 @@ class SearchProducts extends React.Component {
               type="button"
               onClick={ this.addCartItem }
               value={ JSON.stringify(item) }
+              data-testid="product-add-to-cart"
             >
               Adicionar ao carrinho
             </button>
