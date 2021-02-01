@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 
 export default class ProductList extends React.Component {
-
   render() {
     const { productList, handleChange, handleClick } = this.props;
     return (
