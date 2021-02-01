@@ -11,7 +11,6 @@ class ShoppingCartIcon extends React.Component {
       >
         <img
           alt="carrinho de compras"
-          className="shop-cart-img"
           src={ shopCartImg }
         />
       </Link>

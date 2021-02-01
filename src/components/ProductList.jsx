@@ -56,19 +56,6 @@ class ProductList extends React.Component {
     );
   }
 
-  renderQueryResult(search) {
-    if (search.results.length === 0) return <h3>Nenhum produto foi encontrado</h3>;
-
-    return (
-      <ul>
-        {search.results.map((product) => (<ProductCard
-          key={ product.id }
-          product={ product }
-        />))}
-      </ul>
-    );
-  }
-
   renderQueryInput() {
     const { query } = this.state;
     return (
@@ -97,19 +84,37 @@ class ProductList extends React.Component {
     );
   }
 
+  renderQueryResult(search) {
+    if (search.results.length === 0) return <h3>Nenhum produto foi encontrado</h3>;
+
+    return (
+      <ul className="product-list">
+        {search.results.map((product) => (<ProductCard
+          key={ product.id }
+          product={ product }
+        />))}
+      </ul>
+    );
+  }
+
   render() {
     const { products, loading, loadingMessage } = this.state;
+    if (!loading) console.log(products.results[0]);
 
     return (
       <section>
-        {this.renderQueryInput()}
-        {this.renderQueryButton()}
-        <div>
-          {
-            loading ? loadingMessage : this.renderQueryResult(products)
-          }
+        <div className="search-container">
+          {this.renderQueryInput()}
+          {this.renderQueryButton()}
         </div>
-        <Category onClick={ this.handleCategoryClick } />
+        <section className="products-container">
+          <Category onClick={ this.handleCategoryClick } />
+          <div className="search-result">
+            {
+              loading ? <h3>{ loadingMessage }</h3> : this.renderQueryResult(products)
+            }
+          </div>
+        </section>
       </section>
     );
   }
