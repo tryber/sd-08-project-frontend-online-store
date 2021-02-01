@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import ListCard from './ListCard';
 import * as api from '../services/api';
@@ -34,6 +35,7 @@ class ProductsList extends Component {
     const { results } = this.state;
     return (
       <main>
+        <Link to="/shoppingcart" data-testid="shopping-cart-button">Cart</Link>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
           <br />
