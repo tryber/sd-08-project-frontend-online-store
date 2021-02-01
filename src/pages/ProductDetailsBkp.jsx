@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // , { useState, useEffect }
 import { useParams } from 'react-router-dom';
 
@@ -10,9 +10,6 @@ import CartSlide from '../components/CartSlide';
 
 import { actionAdd } from '../store/cart.reducer';
 import { actionCartUpdate } from '../store/control.reducer';
-import { getProductAttributes } from '../helpers/helpers';
-import DetailImage from '../components/details/DetailImage';
-import ProductAttr from '../components/details/ProductAttr';
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -33,7 +30,7 @@ export default function ProductDetails() {
       <section className="product-detail">
         <h1>Detalhe do Produto</h1>
         <h2>{product.id}</h2>
-        <DetailImage url={ product.thumbnail } freeshipping={ product.shipping } />
+        <img src={ product.thumbnail } alt={ product.title } />
         <span className="product-detail-name" data-testid="product-detail-name">
           {product.title}
         </span>
@@ -41,8 +38,6 @@ export default function ProductDetails() {
           <span className="product-simbol">R$</span>
           <span>{product.price}</span>
         </span>
-        <ProductAttr productId={ product.id } />
-
         <section className="product-add-cart">
           <button
             data-testid="product-detail-add-to-cart"

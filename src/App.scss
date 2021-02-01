@@ -450,6 +450,27 @@ input {
   align-items: center;
   padding: 10px;
 
+  .detail-image {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-content: center;
+    border: 1px solid rgb(122, 122, 122);
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0);
+
+    .free-shipping {
+      width: 100px;
+      height: 100px;
+      top: -4px;
+      left: -4px;
+      z-index: 1;
+      border: 0;
+      position: relative;
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+
   h1 {
     margin: 2px;
     padding: 2px;
@@ -496,6 +517,12 @@ input {
       color: #000000fa;
       margin-right: 2px;
     }
+  }
+  .product-attr {
+    min-width: 600px;
+    min-height: 400px;
+    border: 1px solid red;
+    display: flex;
   }
 
   .product-add-cart {
