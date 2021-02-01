@@ -16,17 +16,17 @@ export default class ShoppingCart extends Component {
     return (
       <div>
         <h1>Seu Carrinho de Compras</h1>
-        <span data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio
-        </span>
-
-        {cart.map(({ id, thumbnail, title, price, qtd }) => (<ShoppingCartList
+        {cart ? cart.map(({ id, thumbnail, title, price, qtd }) => (<ShoppingCartList
           key={ id }
           image={ thumbnail }
           price={ price }
           title={ title }
           qtd={ qtd }
-        />))}
+        />))
+          : (
+            <span data-testid="shopping-cart-empty-message">
+              Seu carrinho está vazio
+            </span>)}
       </div>
     );
   }
