@@ -12,7 +12,6 @@ function App() {
         <Route path="/shoppingcart" component={ ShoppingCart } />
       </Switch>
     </BrowserRouter>
-
   );
 }
 

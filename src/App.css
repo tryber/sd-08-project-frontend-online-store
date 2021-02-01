@@ -42,10 +42,6 @@
 }
 
 .shopping-cart-icon {
-  height: 10vmin;
-
-}
-
-header {
-  background-color: aqua;
+  height: 4vmin;
+  padding-left: 40px;
 }

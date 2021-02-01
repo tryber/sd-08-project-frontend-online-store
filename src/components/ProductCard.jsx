@@ -1,19 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-export default class ProductCard extends React.Component {
+class ProductCard extends React.Component {
   render() {
-    const { product: { title, price, thumbnail } } = this.props;
+    const { productCard } = this.props;
     return (
-      <span data-testid="product">
-        <h3>{ title }</h3>
-        <img alt={ title } src={ thumbnail } />
-        <h5>{ `R$ ${price}` }</h5>
-      </span>
+      <div>
+        { productCard.map(({ id, title, thumbnail, price }) => (
+          <div key={ id }>
+            <Link to={ `/${id}` } data-testid="product-detail-link">
+              <div className="card" data-testid="product">
+                <h4>
+                  { title }
+                </h4>
+                <img src={ thumbnail } alt={ title } />
+                <p>
+                  { `R$ ${price}` }
+                </p>
+              </div>
+            </Link>
+            <button
+              type="button"
+              data-testid="product-add-to-cart"
+            >
+              Add to Cart
+            </button>
+          </div>
+        ))}
+      </div>
     );
   }
 }
 
 ProductCard.propTypes = {
-  product: PropTypes.shape.isRequired,
+  productCard: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
+export default ProductCard;
