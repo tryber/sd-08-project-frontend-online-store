@@ -863,19 +863,26 @@ input {
     margin-right: auto;
     display: flex;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid rgb(100, 100, 100);
     padding: 1px;
     margin-bottom: 6px;
 
     .product-info-left {
       // border: 1px solid green;
       max-width: 60%;
-      align-self: flex-start;
+      align-self: center;
       margin: 5px;
       display: flex;
 
       .box-left {
-
+        padding: 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 5px;
+        align-self:flex-start;
+ 
         .detail-image {
           width: 200px;
           height: 200px;
@@ -900,12 +907,14 @@ input {
       }
       .box-right {
         padding: 2px;
-        
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: flex-start;
         margin: 5px;
+        margin-top: 15px;
+        margin-left: 15px;
+        margin-bottom: 30px;
+        max-width: 400px;
 
         .product-detail-id {
           align-self: flex-start;
@@ -937,38 +946,34 @@ input {
     }
     .product-info-right {
       // border: 1px solid green;
-      border-left: 1px solid rgb(192, 192, 192);
       max-width: 40%;
-      align-self: flex-start;
       margin: 5px;
+      align-self: flex-start;
+      margin-top: 20px;
 
       .product-attr-list {
         display: flex;
         flex-direction: column;
-        padding: 4px;
         width: auto;
+        margin-left: 10px;
   
         .product-attr-list-item {
           display: flex;          
-          // border: 1px solid blue;
-          padding: 4px;
-          
+          //border: 1px solid blue;
+          padding: 2px;
+          color: #444444;          
           .item-type {
             align-self: center;
-            font-size: 0.7em;
-            font-weight: 600;
-            max-width: 40%;
+            font-size: 0.9em;
             // border: 1px solid violet;
-            padding: 2px;
+            padding: 1px;
           }
           .item-value {
             align-self: center;
-            font-size: 0.8em;
-            max-width: 60%;
+            font-size: 0.9em;
             // border: 1px solid violet;
             margin-left: 5px;
             text-align: left;
-            color: rgb(46, 46, 46);
           }
   
         }

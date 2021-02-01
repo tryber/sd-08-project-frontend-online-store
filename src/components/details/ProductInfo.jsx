@@ -24,7 +24,7 @@ export default function ProductInfo(props) {
           <div className="product-detail-name" data-testid="product-detail-name">
             {product.title}
           </div>
-          <div className="product-detail-price">{`R$  ${product.price}`}</div>
+          <div className="product-detail-price">{`R$ ${product.price}`}</div>
         </div>
       </div>
       <div className="product-info-right">
