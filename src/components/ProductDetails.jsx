@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Rating from './Rating';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -22,18 +23,17 @@ class ProductDetails extends React.Component {
     this.setState({
       productInfo: array,
     });
-    console.log(array);
   }
 
   render() {
-    const { productInfo } = this.state;
-    console.log(productInfo.title);
+    const { productInfo, productId } = this.state;
     return (
       <main>
         <h1 data-testid="product-detail-name">{ productInfo.title }</h1>
         <img src={ productInfo.thumbnail } alt="Imagem do produto" />
         <p>{ productInfo.price }</p>
         <h3>Especificacoes Tecnicas</h3>
+        <Rating productId={ productId } />
       </main>
     );
   }
