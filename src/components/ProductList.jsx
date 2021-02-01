@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 import * as api from '../services/api';
+import './ProductList.css';
 
 class ProductList extends React.Component {
   constructor() {
@@ -40,7 +41,7 @@ class ProductList extends React.Component {
       return <p>Nenhum produto foi encontrado</p>;
     }
     return (
-      <div>
+      <div className="product-list-container">
         {isLoading
           ? this.renderLoadingMessage()
           : products.results.map((product) => (

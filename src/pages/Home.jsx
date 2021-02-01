@@ -2,6 +2,7 @@ import React from 'react';
 import MapCategories from '../components/MapCategories';
 import ProductList from '../components/ProductList';
 import ShopCartButton from '../components/ShopCartButton';
+import './Home.css';
 
 class Home extends React.Component {
   constructor() {
@@ -65,8 +66,8 @@ class Home extends React.Component {
   render() {
     const { filter, searchInput, categorie } = this.state;
     return (
-      <div>
-        <form>
+      <section>
+        <form className="form">
           <label htmlFor="searchInput" data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
             <input
@@ -85,14 +86,17 @@ class Home extends React.Component {
           </button>
         </form>
         <ShopCartButton />
-        <MapCategories callback={ this.changeCategorieState } />
-
-        {filter ? <ProductList
-          category={ categorie }
-          query={ searchInput }
-          callback={ this.addProductCart }
-        /> : ''}
-      </div>
+        <div className="mapCategories">
+          <MapCategories callback={ this.changeCategorieState } />
+        </div>
+        <div>
+          {filter ? <ProductList
+            category={ categorie }
+            query={ searchInput }
+            callback={ this.addProductCart }
+          /> : ''}
+        </div>
+      </section>
     );
   }
 }
