@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../App.css';
 import * as api from '../services/api';
 
@@ -24,6 +25,7 @@ class CategoriesFilter extends Component {
 
   render() {
     const { categories } = this.state;
+    const { handleClick } = this.props;
     return (
       <form>
         <div>
@@ -35,6 +37,7 @@ class CategoriesFilter extends Component {
                 name="categoryRadio"
                 value={ category.id }
                 id={ category.id }
+                onClick={ () => handleClick(category.id) }
               />
               { category.name }
               <br />
@@ -45,5 +48,9 @@ class CategoriesFilter extends Component {
     );
   }
 }
+
+CategoriesFilter.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default CategoriesFilter;
