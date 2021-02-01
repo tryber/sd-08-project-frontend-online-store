@@ -75,7 +75,12 @@ class SearchBar extends Component {
         <Categories onClick={ this.handleClick } />
         {product.length < 1
           ? this.renderAviso()
-          : product.map((item) => <ProductCard onClick={ this.addCart } key={ item.id } product={ item } />)}
+          : product.map((item) => (
+            <ProductCard
+              click={ this.addCart }
+              key={ item.id }
+              product={ item }
+            />))}
       </section>
     );
   }

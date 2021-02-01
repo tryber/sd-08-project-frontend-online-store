@@ -10,7 +10,6 @@ class LandingProductDetails extends Component {
         <h1 data-testid="product-detail-name">{title}</h1>
         <img src={ thumbnail } alt={ title } />
         <p>{price}</p>
-        {console.log(product)}
       </div>
     );
   }
