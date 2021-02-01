@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import EvaluationForm from '../components/EvaluationForm';
+import EvaluationList from '../components/EvaluationList';
+
 class ProductDetails extends React.Component {
   constructor() {
     super();
@@ -28,7 +31,8 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { location: { state: { title, imagePath, price } } } = this.props;
+    const { location: { state: { title, imagePath, price, id } } } = this.props;
+    const evaluations = JSON.parse(localStorage.getItem(`${id}_evaluations`)) || [];
     return (
       <div>
         <p data-testid="product-detail-name">{title}</p>
@@ -42,6 +46,8 @@ class ProductDetails extends React.Component {
           Adicionar ao carrinho
         </button>
         <Link data-testid="shopping-cart-button" to="/shoppingcart">Carrinho</Link>
+        <EvaluationForm id={ id } />
+        <EvaluationList evaluations={ evaluations } />
       </div>
     );
   }
@@ -55,6 +61,7 @@ ProductDetails.propTypes = {
       title: PropTypes.string,
       imagePath: PropTypes.string,
       price: PropTypes.number,
+      id: PropTypes.string,
     }),
   }).isRequired,
 };
