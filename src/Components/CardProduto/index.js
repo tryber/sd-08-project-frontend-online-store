@@ -9,9 +9,9 @@ export default class CardProduto extends Component {
 
     return (
       <div data-testid="product">
-        <h4>{ title }</h4>
+        <h4>{title}</h4>
         <img src={ thumbnail } alt="" />
-        <span>{ `Preço: ${price}` }</span>
+        <span>{`Preço: ${price}`}</span>
         <Link
           data-testid="product-detail-link"
           to={ {
@@ -22,10 +22,19 @@ export default class CardProduto extends Component {
           } }
         >
           VER DETALHES
-
+        </Link>
+        <Link
+          data-testid="product-detail-link"
+          to={ {
+            pathname: `/cart/${id}`,
+            state: {
+              product,
+            },
+          } }
+        >
+          <button type="button" data-testid="product-add-to-cart">Add to card</button>
         </Link>
       </div>
-
     );
   }
 }
