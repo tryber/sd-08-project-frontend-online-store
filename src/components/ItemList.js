@@ -14,6 +14,7 @@ class ItemList extends React.Component {
           title={ elem.title }
           img={ elem.thumbnail }
           price={ elem.price }
+          id={ elem.id }
         />)) }
 
       </div>

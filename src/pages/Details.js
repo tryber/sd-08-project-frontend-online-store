@@ -4,34 +4,33 @@ export default class Details extends React.Component {
   constructor() {
     super();
     this.getItem = this.getItem.bind(this);
+    this.state = {
+      product: {},
+    };
   }
 
   componentDidMount() {
-    this.getItem();
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+    this.getItem(id);
   }
 
-  getItem() {
-    const { id } = this.props.params.match;
-    fetch('https://api.mercadolibre.com/sites/MLB/search?')
-      .then((Response) => Response.json())
-      .then((data) => data.find((elem) => elem.id === id))
-      .then((product) => {
-        this.setState({
-          product,
-        });
-      });
+  async getItem(id) {
+    const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
+    const product = await response.json();
+    this.setState({
+      product,
+    });
   }
 
   render() {
+    const { product: { title, price, thumbnail } } = this.state;
     return (
+
       <div>
-        <h2>
-          `$
-          {title}
-          - R$ $
-          {price}
-          `
-        </h2>
+        <h2 data-testid="product-detail-name">{title}</h2>
+        <h3>{price}</h3>
         <img src={ thumbnail } alt={ title } />
 
       </div>
