@@ -7,23 +7,22 @@ class NavForm extends React.Component {
     return (
       <form>
         <label htmlFor="busca" data-testid="home-initial-message" className="s-bar">
-          <div className="search-container">
-            <button
-              className="query-button square-17px"
-              data-testid="query-button"
-              type="submit"
-              onClick={ handleClick }
-            >
-              <i className="material-icons md-32">search</i>
-            </button>
+          <div>
             <input
               type="text"
               name="query"
               onChange={ handleChange }
               id="busca"
               data-testid="query-input"
-              className="search-input"
             />
+            <button
+              className="query-button"
+              data-testid="query-button"
+              type="submit"
+              onClick={ handleClick }
+            >
+              Pesquisar
+            </button>
           </div>
           Digite algum termo de pesquisa ou escolha uma categoria.
         </label>
