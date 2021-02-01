@@ -6,30 +6,36 @@ class ShoppingCart extends React.Component {
   constructor() {
     super();
 
+    this.state = {
+      quantity: 1,
+    };
+
     this.addProduct = this.addProduct.bind(this);
     this.lessProduct = this.lessProduct.bind(this);
   }
 
-  addProduct(item) {
-    this.setState(() => ({
-      quantity: item.quantity += 1
-    }))
+  addProduct() {
+    this.setState((prevState) => ({
+      quantity: prevState.quantity + 1,
+    }));
   }
 
-  lessProduct(item) {
-    this.setState(() => ({
-      quantity: item.quantity -= 1
-    }))
+  lessProduct() {
+    this.setState((prevState) => ({
+      quantity: prevState.quantity - 1,
+    }));
   }
+
   render() {
     const { location: { state: { shoppingCart } } } = this.props;
+    const { quantity } = this.state;
 
     if (!shoppingCart) {
       return (
         <p data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
         </p>
-      )
+      );
     }
 
     return (
@@ -37,21 +43,25 @@ class ShoppingCart extends React.Component {
         <Link to="/">Home</Link>
         {shoppingCart.map((item) => (
           <div key={ item.id }>
-            <p data-testid="shopping-cart-product-name">{ item.title} </p>
+            <p data-testid="shopping-cart-product-name">
+              { item.title }
+            </p>
             <span>Quantidade</span>
             <button
+              type="button"
               data-testid="product-decrease-quantity"
-              onClick={ () => this.lessProduct(item)}
+              onClick={ () => this.lessProduct() }
             >
               -
-                </button>
-            <span data-testid="shopping-cart-product-quantity">{ item.quantity }</span>
+            </button>
+            <span data-testid="shopping-cart-product-quantity">{ quantity }</span>
             <button
+              type="button"
               data-testid="product-increase-quantity"
-              onClick={ () => this.addProduct(item)}
+              onClick={ () => this.addProduct() }
             >
               +
-                </button>
+            </button>
           </div>
         ))}
       </div>
