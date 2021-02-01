@@ -14,8 +14,8 @@ function App() {
         <Switch>
           <Route path="/ProductDetails/:id" component={ ProductDetails } />
           <Route path="/cart" component={ Cart } />
-          <Route path="/" component={ Home } />
           <Route path="/checkout" component={ Checkout } />
+          <Route path="/" component={ Home } />
         </Switch>
       </div>
     </BrowserRouter>

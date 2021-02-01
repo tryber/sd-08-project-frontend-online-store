@@ -1,7 +1,17 @@
 import React from 'react';
-import Redirect from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class CloseSale extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderFullNameInput = this.renderFullNameInput.bind(this);
+    this.renderEmailInput = this.renderEmailInput.bind(this);
+    this.renderCPFInput = this.renderCPFInput.bind(this);
+    this.renderPhoneInput = this.renderPhoneInput.bind(this);
+    this.renderCEPInput = this.renderCEPInput.bind(this);
+    this.renderAddressInput = this.renderAddressInput.bind(this);
+  }
+
   renderFullNameInput() {
     return (
       <div>
@@ -33,7 +43,7 @@ class CloseSale extends React.Component {
       <div>
         <input
           placeholder="CPF"
-          type="number"
+          type="text"
           maxLength="11"
           data-testid="checkout-cpf"
           required
@@ -47,7 +57,7 @@ class CloseSale extends React.Component {
       <div>
         <input
           placeholder="Telefone"
-          type="number"
+          type="text"
           minLength="10"
           data-testid="checkout-phone"
           required
@@ -61,7 +71,7 @@ class CloseSale extends React.Component {
       <div>
         <input
           placeholder="CEP"
-          type="number"
+          type="text"
           minLength="8"
           data-testid="checkout-cep"
           required
@@ -88,7 +98,7 @@ class CloseSale extends React.Component {
       <div>
         <form>
           <div>
-            { this.renderFullName() }
+            { this.renderFullNameInput() }
             { this.renderEmailInput() }
             { this.renderCPFInput() }
             { this.renderPhoneInput() }
