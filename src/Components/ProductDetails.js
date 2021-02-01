@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 class ProductDetails extends React.Component {
   render() {
     const { location: { state: { product } } } = this.props;
@@ -12,6 +14,15 @@ class ProductDetails extends React.Component {
           R$:
           { product.price }
         </p>
+        <Link
+          to={ {
+            pathname: '/shoppingcart',
+            state: { product },
+          } }
+          data-testid="product-detail-add-to-cart"
+        >
+          Adcionar ao carrinho
+        </Link>
       </div>
     );
   }
