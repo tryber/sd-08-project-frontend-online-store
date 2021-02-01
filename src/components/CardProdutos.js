@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom';
 
 class CardProdutos extends React.Component {
   render() {
-    const { products: { title, thumbnail, price,
+    const { products: { title, thumbnail, price, id,
       shipping: { free_shipping: freeShipping }, installments }, addToCart } = this.props;
 
     return (
-      <Link to={ `/produto/${id}` } data-testid="product-detail-link">
-        <div data-testid="product" className="product">
+      <div data-testid="product" className="product">
+        <Link to={ `/produto/${id}` } data-testid="product-detail-link">
           <img src={ thumbnail } alt={ title } className="product-img" />
-          <div className="product-info-wraper">
-            <p className="product-price">{ `R$${price}` }</p>
-            {
-              installments
+        </Link>
+        <div className="product-info-wraper">
+          <p className="product-price">{ `R$${price}` }</p>
+          {
+            installments
             && (
               <div>
                 em
@@ -24,8 +25,8 @@ class CardProdutos extends React.Component {
                 </span>
               </div>
             )
-            }
-            {freeShipping
+          }
+          {freeShipping
           && <p className="frete-gratis" data-testid="free-shipping">Frete grátis</p>}
           <h2>{ title }</h2>
           <button
@@ -35,9 +36,8 @@ class CardProdutos extends React.Component {
           >
             Adicionar ao carrinho
           </button>
-
         </div>
-      </Link>
+      </div>
     );
   }
 }
