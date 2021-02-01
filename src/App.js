@@ -20,6 +20,7 @@ class App extends React.Component {
     this.handleClickCategory = this.handleClickCategory.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.addCarQuantityProduct = this.addCarQuantityProduct.bind(this);
   }
 
   componentDidMount() {
@@ -72,12 +73,32 @@ class App extends React.Component {
   }
 
   addToCart(title) {
-    const newProduct = { name: title, quantity: 1 };
+    const newProduct = { name: title, alguma: { [title]: { quantity: 1 } } };
     const { cartProducts } = this.state;
     this.setState({
       cartProducts: [...cartProducts, newProduct],
     });
   }
+
+  addCarQuantityProduct(e) {
+    console.log(e.target.name);
+    const { cartProducts } = this.state;
+    const products = cartProducts.values();
+    products.indexOf(title);
+
+    const { cartProducts: { title: { quantity } } } = this.state;
+    this.setState({
+      [title]: { quantity: quantity + 1 },
+    });
+  }
+
+  // subCarQuantityProduct(title) {
+  //   const { cartProducts } = this.state;
+  //   if (cartProducts.entries)
+  //   this.setState({
+  //     cartProducts: { [title]: { quantity: [quantity] - 1 } },
+  //   });
+  // }
 
   render() {
     return (
@@ -88,6 +109,7 @@ class App extends React.Component {
             { ...this.state }
             fetchProducts={ this.fetchProducts }
             addToCart={ this.addToCart }
+            addCarQuantityProduct={ this.addCarQuantityProduct }
             handleClickCategory={ this.handleClickCategory }
           />
         </main>
