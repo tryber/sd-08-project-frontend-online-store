@@ -6,13 +6,12 @@ class ProductList extends Component {
     super();
 
     this.mapList = this.mapList.bind(this);
-    this.addToStorage = this.addToStorage.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
-  addToStorage({ target }) {
-    const { id } = target;
-    console.log(JSON.stringify(id));
-    localStorage.setItem([id], id);
+  addToCart({ target }) {
+    const { value } = target;
+    localStorage.setItem(JSON.parse(value).id, value);
   }
 
   mapList() {
@@ -27,8 +26,8 @@ class ProductList extends Component {
             <button
               type="button"
               data-testid="product-add-to-cart"
-              id={ product.id }
-              onClick={ this.addToStorage }
+              value={ JSON.stringify(product, ['id', 'thumbnail', 'title', 'price']) }
+              onClick={ this.addToCart }
             >
               Adicionar ao carrinho
             </button>
