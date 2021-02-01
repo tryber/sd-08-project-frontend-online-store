@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import './ProductOnCart.css';
 
 class ProductOnCart extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.decrement = this.decrement.bind(this);
     this.increment = this.increment.bind(this);
     this.state = {
-      quantity: 1,
+      quantity: props.product.amountToBuy,
     };
   }
 
@@ -29,7 +29,6 @@ class ProductOnCart extends React.Component {
     const { product } = this.props;
     const { quantity } = this.state;
     const { thumbnail, title } = product;
-
     return (
       <div className="productOnCart">
         <div className="cartImgDiv">
@@ -47,7 +46,7 @@ class ProductOnCart extends React.Component {
             -
           </button>
           <div data-testid="shopping-cart-product-quantity">
-            { quantity }
+            { +quantity }
           </div>
           <button
             type="button"
