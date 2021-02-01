@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import CategoriesList from './components/CategoriesList';
 import Content from './components/Content';
 import NavBar from './components/NavBar';
 import * as api from './services/api';
@@ -89,11 +88,11 @@ class App extends React.Component {
         />
         <NavBar handleChange={ this.handleChange } handleClick={ this.handleClick } />
         <main className="main">
-          <CategoriesList handleClickCategory={ this.handleClickCategory } />
           <Content
             { ...this.state }
             fetchProducts={ this.fetchProducts }
             addToCart={ this.addToCart }
+            handleClickCategory={ this.handleClickCategory }
           />
         </main>
       </BrowserRouter>
