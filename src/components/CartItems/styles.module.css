@@ -1,0 +1,13 @@
+.cartItems {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+.emptyCartIcon {
+  display: block;
+  font-size: 400px;
+  margin: 20px;
+}

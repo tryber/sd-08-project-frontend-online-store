@@ -1,0 +1,19 @@
+.cart {
+  background: unset;
+}
+
+.cartButton {
+  align-items: center;
+  display: flex;
+  padding: 10px 0;
+}
+
+.buttonMessage {
+  margin-left: 10px;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
