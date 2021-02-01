@@ -14,6 +14,7 @@ class App extends React.Component {
       query: undefined,
       category: undefined,
       cartProducts: [],
+      avaliations: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,6 +22,7 @@ class App extends React.Component {
     this.handleClickCategory = this.handleClickCategory.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.updateAvaliations = this.updateAvaliations.bind(this);
     this.addCarQuantityProduct = this.addCarQuantityProduct.bind(this);
     this.subCarQuantityProduct = this.subCarQuantityProduct.bind(this);
     this.deleteCarProduct = this.deleteCarProduct.bind(this);
@@ -83,6 +85,11 @@ class App extends React.Component {
     });
   }
 
+  updateAvaliations(newAvaliation) {
+    const { avaliations } = this.state;
+    this.setState({ avaliations: [...avaliations, newAvaliation] });
+  }
+
   addCarQuantityProduct(e) {
     const { cartProducts } = this.state;
     const title = e.target.name;
@@ -131,6 +138,7 @@ class App extends React.Component {
             addCarQuantityProduct={ this.addCarQuantityProduct }
             subCarQuantityProduct={ this.subCarQuantityProduct }
             handleClickCategory={ this.handleClickCategory }
+            updateAvaliations={ this.updateAvaliations }
           />
         </main>
         <Switch>
