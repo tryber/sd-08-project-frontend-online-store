@@ -1,22 +1,14 @@
 import React from 'react';
-import * as mercadolibreAPI from '../services/api';
-import ProductCard from './ProductCard';
-import Loading from './Loading';
+import PropTypes from 'prop-types';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchText: '',
-      query: [],
-      loading: true,
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleButton = this.handleButton.bind(this);
-  }
-
-  componentDidMount() {
-    document.addEventListener('click', (e) => this.api(e));
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange({ target }) {
@@ -26,28 +18,10 @@ class Search extends React.Component {
     }));
   }
 
-  async handleButton() {
+  handleClick() {
     const { searchText } = this.state;
-    const { getProductsFromCategoryAndQuery } = mercadolibreAPI;
-    const fetchQuery = await getProductsFromCategoryAndQuery(searchText);
-    this.setState({ query: fetchQuery.results, loading: false });
-  }
-
-  api(e) {
-    mercadolibreAPI.getProductsFromCategoryAndQuery(e.target.textContent)
-      .then((category) => (
-        this.setState({ query: category.results, loading: false })
-      ));
-  }
-
-  productCards(products) {
-    return (
-      <div>
-        {products.map(
-          (product) => <ProductCard key={ product.id } product={ product } />,
-        )}
-      </div>
-    );
+    const { onClick } = this.props;
+    onClick({ id: searchText, query: '' });
   }
 
   renderInputSearch() {
@@ -64,7 +38,7 @@ class Search extends React.Component {
         />
         <button
           type="button"
-          onClick={ this.handleButton }
+          onClick={ this.handleClick }
           data-testid="query-button"
         >
           Pesquisar!
@@ -74,14 +48,16 @@ class Search extends React.Component {
   }
 
   render() {
-    const { query, loading } = this.state;
     return (
       <div>
         {this.renderInputSearch()}
-        {loading ? <Loading /> : this.productCards(query)}
       </div>
     );
   }
 }
+
+Search.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Search;
