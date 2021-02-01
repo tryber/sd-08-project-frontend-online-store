@@ -64,12 +64,12 @@ class LandingPage extends React.Component {
     }
   }
 
-  renderAddButtonCart() {
+  renderAddButtonCart(product) {
     return (
       <button
         type="button"
         data-testid="product-add-to-cart"
-        onClick={ () => this.addItemToCart(this.product) }
+        onClick={ () => this.addItemToCart(product) }
       >
         Adicionar produto ao carrinho
       </button>
@@ -121,7 +121,7 @@ class LandingPage extends React.Component {
             >
               <button type="button">Detalhes</button>
             </Link>
-            { this.renderAddButtonCart(this.product) }
+            { this.renderAddButtonCart(product) }
           </section>
         ))}
       </div>
