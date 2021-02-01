@@ -39,6 +39,7 @@ export default class ProductList extends React.Component {
           <input
             data-testid="query-input"
             type="text"
+            name="search"
             placeholder="Encontre seu produto"
             onChange={ this.handleChange }
           />
