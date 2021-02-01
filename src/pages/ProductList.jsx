@@ -64,6 +64,7 @@ class ProductList extends React.Component {
             price={ product.price }
             imagePath={ product.thumbnail }
             key={ product.id }
+            id={ product.id }
           />),
         )}
         <Link data-testid="shopping-cart-button" to="/shoppingcart">Carrinho</Link>
