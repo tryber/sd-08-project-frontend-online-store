@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import ProductForms from '../components/ProductForms';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class ProductDetail extends React.Component {
         {loading
           ? <h1>Loading...</h1>
           : this.productDetail()}
+        <ProductForms />
       </div>
     );
   }
