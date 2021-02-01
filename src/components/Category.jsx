@@ -36,7 +36,7 @@ class Category extends React.Component {
       return <p>\o/</p>;
     }
     return (
-      <ul>
+      <nav className="category-list-navbar">
         {category.map((obj) => (
           <button
             type="button"
@@ -48,7 +48,7 @@ class Category extends React.Component {
             {obj.name}
           </button>
         ))}
-      </ul>
+      </nav>
 
     );
   }
