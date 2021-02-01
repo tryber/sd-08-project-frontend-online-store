@@ -143,6 +143,7 @@ class ProductDetails extends React.Component {
             placeholder="Avaliação"
             onChange={ this.handleChange }
             value={ textArea }
+            data-testid="product-detail-evaluation"
           />
           <button
             className="submitBtn"
