@@ -20,6 +20,7 @@ ItemCard.propTypes = {
   title: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default ItemCard;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Details extends React.Component {
   constructor() {
@@ -37,3 +38,11 @@ export default class Details extends React.Component {
     );
   }
 }
+
+Details.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
