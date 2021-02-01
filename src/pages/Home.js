@@ -10,7 +10,7 @@ export default class Home extends React.Component {
     super();
 
     this.state = {
-      categoriesList: [0],
+      categoriesList: [],
       category: '',
       productList: [],
       search: '',
@@ -51,7 +51,7 @@ export default class Home extends React.Component {
     return (
       <main>
         <SearchBar />
-        {categoriesList.length === 1
+        {categoriesList.length < 1
           ? <p>Carregando...</p>
           : (
             <Categories
