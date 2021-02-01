@@ -4,6 +4,20 @@ import { Link } from 'react-router-dom';
 
 class CardProducts extends React.Component {
   render() {
+    const readCart = () => JSON.parse(localStorage.getItem('cart'));
+    readCart() || localStorage.setItem('cart', JSON.stringify({}));
+    const saveCart = (cart) => { localStorage.setItem('cart', JSON.stringify(cart)); };
+    const addToCart = (id, title, thumbnail, price) => {
+      const cart = readCart();
+      cart[id] = {
+        thumbnail,
+        title,
+        price,
+        id,
+      };
+      saveCart(cart);
+    };
+
     const { products } = this.props;
     return (
       <div className="cards-container">
@@ -21,7 +35,8 @@ class CardProducts extends React.Component {
             <button
               type="button"
               className="add-to-cart-button"
-              data-testid="product-detail-add-to-cart"
+              data-testid="product-add-to-cart"
+              onClick={ () => addToCart(id, title, thumbnail, price) }
             >
               Adicionar ao carrinho
             </button>

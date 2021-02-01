@@ -3,6 +3,8 @@ export async function getCategories() {
     .then((response) => response.json());
 }
 
+export const readCart = () => JSON.parse(localStorage.getItem('cart'));
+
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   // console.log(categoryId, query);
   if (categoryId && query) {
