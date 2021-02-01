@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { query, categoryID } = this.props;
+    this.state = {
+      productInfo: {
+        querySearched: query,
+        category: categoryID,
+      }
+    }
 
     this.mapList = this.mapList.bind(this);
     this.addToStorage = this.addToStorage.bind(this);
@@ -24,6 +32,12 @@ class ProductList extends Component {
             <span>{ product.title }</span>
             <img src={ product.thumbnail } alt="" />
             <span>{ product.price }</span>
+            <Link
+              to={ `/details/${product.id}` }
+              data-testid="product-detail-link"
+            >
+              Detalhes
+            </Link>
             <button
               type="button"
               data-testid="product-add-to-cart"
@@ -40,6 +54,7 @@ class ProductList extends Component {
 
   render() {
     const { clicked } = this.props;
+    const { productInfo } = this.state;
     if (clicked) return (<div>{this.mapList()}</div>);
     return (
       <div>
