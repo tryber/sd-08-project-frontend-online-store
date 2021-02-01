@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import BotaoAdiciona from '../../Components/BotaoAdiciona';
+import BotaoCarrinho from '../../Components/BotaoCarrinho';
 
 export default class DetalhesDoProduto extends Component {
   render() {
@@ -14,6 +16,8 @@ export default class DetalhesDoProduto extends Component {
         <p>{price}</p>
         <p>{condition}</p>
         <p>{warranty}</p>
+        <BotaoAdiciona product={ product } testId="product-detail-add-to-cart" />
+        <BotaoCarrinho />
       </>
     );
   }
