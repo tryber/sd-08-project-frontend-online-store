@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import * as storageApi from '../services/apiLocalStorage';
 
@@ -11,7 +11,7 @@ class ItemList extends React.Component {
     return (
       <div>
         { products.map((elem) => (
-          <div>
+          <>
             <ItemCard
               key={ elem.id }
               title={ elem.title }
@@ -28,7 +28,7 @@ class ItemList extends React.Component {
             >
               Adicionar ao carrinho
             </button>
-          </div>
+          </>
         )) }
 
       </div>
