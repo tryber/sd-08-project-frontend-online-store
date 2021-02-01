@@ -20,15 +20,18 @@ class Avaliacoes extends React.Component {
   }
 
   sendAvaliations() {
-    const { updateAvaliations } = this.props;
+    const { listOfProducts, updateAvaliations, match: { params: { id } } } = this.props;
     const { value, message, email } = this.state;
-    const newAvaliation = { value, message, email };
+    const productId = listOfProducts.find((prod) => prod.id === id).id;
+    const newAvaliation = { value, message, email, productId };
     updateAvaliations(newAvaliation);
   }
 
   mountAvaliation(aval, index) {
-    return (
-      <>
+    const { listOfProducts, match: { params: { id } } } = this.props;
+    const productId = listOfProducts.find((prod) => prod.id === id).id;
+    if (aval.productId === productId) {
+      return (
         <div key={ index } className="comment-box">
           <div>
             <span>
@@ -38,10 +41,10 @@ class Avaliacoes extends React.Component {
             </span>
           </div>
           <span>{aval.message}</span>
+          <hr className="divider" />
         </div>
-        <hr className="divider" />
-      </>
-    );
+      );
+    }
   }
 
   render() {
@@ -88,6 +91,21 @@ class Avaliacoes extends React.Component {
 Avaliacoes.propTypes = {
   avaliations: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   updateAvaliations: PropTypes.func.isRequired,
+  listOfProducts: PropTypes.arrayOf(PropTypes.shape({})),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
+};
+
+Avaliacoes.defaultProps = {
+  listOfProducts: [{}],
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: '',
+    }),
+  }),
 };
 
 export default Avaliacoes;

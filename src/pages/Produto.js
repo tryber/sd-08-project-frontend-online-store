@@ -4,7 +4,7 @@ import Avaliacoes from '../components/Avaliacoes';
 
 class Produto extends React.Component {
   render() {
-    const { listOfProducts } = this.props;
+    const { listOfProducts, addToCart } = this.props;
     const { match: { params: { id } } } = this.props;
     const product = listOfProducts && listOfProducts.filter((prod) => prod.id === id)[0];
     return (
@@ -12,6 +12,13 @@ class Produto extends React.Component {
         <span data-testid="product-detail-name">
           { product && product.title }
         </span>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => addToCart(product.title) }
+        >
+          Adicionar ao carrinho
+        </button>
         <Avaliacoes { ...this.props } />
       </div>
     );
@@ -35,6 +42,10 @@ Produto.defaultProps = {
       id: '',
     }),
   }),
+};
+
+Produto.propTypes = {
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default Produto;
