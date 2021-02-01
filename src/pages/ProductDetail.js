@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
+import ProductForms from '../components/ProductForms';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -93,6 +94,7 @@ class ProductDetail extends React.Component {
         {loading
           ? <h1>Loading...</h1>
           : this.productDetail()}
+        <ProductForms />
         <Link to="/carrinho-compras"><img src="https://st2.depositphotos.com/3665639/7442/v/600/depositphotos_74424541-stock-illustration-pictograph-of-shopping-cart.jpg" alt="carrinho de compras" data-testid="shopping-cart-button" /></Link>
       </div>
     );
