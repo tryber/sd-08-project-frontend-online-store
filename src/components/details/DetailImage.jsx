@@ -7,7 +7,7 @@ export default function DetailImage(props) {
     backgroundImage: `url(${url})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
   };
   return (
     <section className="detail-image" style={ mystyle }>
