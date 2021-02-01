@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import * as Api from '../services/api';
 import './CategoryMenu.css';
 
@@ -31,7 +30,7 @@ class CategoryMenu extends Component {
     const { categories } = this.state;
     const { click } = this.props;
     return (
-      <navbar className="sideBar">
+      <nav className="sideBar">
         <h4 className="categoryTitle">Categorias</h4>
         <ul className="sideBarUl">
           {categories.map((categorie) => (
@@ -45,7 +44,7 @@ class CategoryMenu extends Component {
               {categorie.name}
             </button>))}
         </ul>
-      </navbar>
+      </nav>
     );
   }
 }

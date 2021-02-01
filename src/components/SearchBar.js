@@ -55,7 +55,6 @@ class SearchBar extends Component {
   render() {
     const { inputValue, apiReturn, teste } = this.state;
     const emptyReturnApi = <p>Nenhum produto foi encontraado</p>;
-    console.log(teste);
     return (
       <>
         <form>
@@ -84,6 +83,7 @@ class SearchBar extends Component {
           </ul>
         </section>
         <CategoryMenu click={ this.onClickHandlerCategory } />
+
       </>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReturnButoon from '../components/ReturnButton';
 
 class PageShoppingCart extends Component {
   render() {
@@ -6,6 +7,8 @@ class PageShoppingCart extends Component {
       <>
         <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
         <span />
+        <ReturnButoon />
+
       </>
     );
   }
