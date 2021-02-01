@@ -15,7 +15,14 @@ class Content extends React.Component {
             { ...this.props }
           />) }
         />
-        <Route exact path="/carrinho" component={ Carrinho } />
+        <Route
+          exat
+          path="/carrinho"
+          render={ (routerProps) => (<Carrinho
+            { ...routerProps }
+            { ...this.props }
+          />) }
+        />
       </Switch>
     );
   }
