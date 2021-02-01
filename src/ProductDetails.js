@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import Rating from './Rating';
+
 class ProductDetails extends React.Component {
   render() {
     const { location: { state: { product } } } = this.props;
@@ -22,6 +24,7 @@ class ProductDetails extends React.Component {
           <ul>
             <li>{product.attributes[0].value_name}</li>
           </ul>
+          <Rating />
           <Link
             to={ {
               pathname: '/',

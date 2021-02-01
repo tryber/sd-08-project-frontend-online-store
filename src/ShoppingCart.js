@@ -6,18 +6,19 @@ class ShoppingCart extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      quantity: 1,
-    };
-
     this.addProduct = this.addProduct.bind(this);
     this.lessProduct = this.lessProduct.bind(this);
+    this.quantityItems = this.quantityItems.bind(this);
   }
 
-  addProduct() {
-    this.setState((prevState) => ({
-      quantity: prevState.quantity + 1,
-    }));
+
+  quantityItems(item) {
+    const quantity = item.quantity = 1;
+    return <span data-testid="shopping-cart-product-quantity">{ quantity }</span>
+  }
+
+  addProduct(item) {
+    console.log(item)
   }
 
   lessProduct() {
@@ -28,13 +29,16 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { location: { state: { shoppingCart } } } = this.props;
-    const { quantity } = this.state;
+    
 
-    if (!shoppingCart) {
+    if (!shoppingCart.length) {
       return (
-        <p data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio
+        <div>
+          <Link to="/">Home</Link>
+          <p data-testid="shopping-cart-empty-message">
+            Seu carrinho está vazio
         </p>
+        </div>
       );
     }
 
@@ -54,11 +58,11 @@ class ShoppingCart extends React.Component {
             >
               -
             </button>
-            <span data-testid="shopping-cart-product-quantity">{ quantity }</span>
+            { this.quantityItems(item) }
             <button
               type="button"
               data-testid="product-increase-quantity"
-              onClick={ () => this.addProduct() }
+              onClick={ () => this.addProduct(item) }
             >
               +
             </button>
