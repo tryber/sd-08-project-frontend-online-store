@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import BotaoAdiciona from '../../Components/BotaoAdiciona';
 import BotaoCarrinho from '../../Components/BotaoCarrinho';
 
+import FormularioAvaliaçao from '../../Components/FormularioAvaliaçao';
+
 export default class DetalhesDoProduto extends Component {
   render() {
     const { location: { state: { product } } } = this.props;
@@ -18,6 +20,7 @@ export default class DetalhesDoProduto extends Component {
         <p>{warranty}</p>
         <BotaoAdiciona product={ product } testId="product-detail-add-to-cart" />
         <BotaoCarrinho />
+        <FormularioAvaliaçao />
       </>
     );
   }

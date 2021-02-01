@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import BotaoCarrinho from '../../Components/BotaoCarrinho';
 
 export default class Carrinho extends Component {
   render() {
