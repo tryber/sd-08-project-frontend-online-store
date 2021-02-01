@@ -22,9 +22,9 @@ class SearchBar extends Component {
             type="button"
             onClick={ onClick }
             data-testid="query-button"
-            className="search-button" 
+            className="search-button"
           >
-            <img className="search-icon" src={ SearchIcon } alt="Icone de pesquisa"/>
+            <img className="search-icon" src={ SearchIcon } alt="Icone de pesquisa" />
           </button>
         </div>
         <p data-testid="home-initial-message">
