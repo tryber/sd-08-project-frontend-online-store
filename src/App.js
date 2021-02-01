@@ -10,7 +10,13 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/cartcheckout" component={ CartCheckout } />
-        <Route exact path="/details/:product" component={ Details } />
+        <Route
+          exact
+          path="/details/:product"
+          render={ (props) => (
+            <Details { ... props } />
+          ) }
+        />
         <Route
           path="/"
           render={ (props) => (

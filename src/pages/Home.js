@@ -11,6 +11,7 @@ class Home extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClik = this.handleClik.bind(this);
     this.handleProducts = this.handleProducts.bind(this);
+    this.returnProducts = this.returnProducts.bind(this);
 
     this.state = {
       categories: [],
@@ -54,8 +55,32 @@ class Home extends React.Component {
     });
   }
 
+  returnProducts() {
+    const { products } = this.state;
+    return (
+      <div className="show-products">
+        {products.map((product) => (
+          <Link
+            key={ product.id }
+            to={ {
+              pathname: `/details/${product.id}`,
+              state: { product },
+            } }
+            data-testid="product-detail-link"
+          >
+            <div key={ product.id } data-testid="product">
+              <p>{product.title}</p>
+              <img src={ `${product.thumbnail}` } alt={ product.title } />
+              <p>{product.price}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    );
+  }
+
   render() {
-    const { categories, products } = this.state;
+    const { categories } = this.state;
 
     return (
       <div>
@@ -81,7 +106,7 @@ class Home extends React.Component {
               {categories.map((category) => (
                 <li key={ category.id }>
                   <Link
-                    to="/details"
+                    to="/"
                     data-testid="category"
                     onClick={ () => this.handleProducts(category.id) }
                   >
@@ -90,15 +115,7 @@ class Home extends React.Component {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="show-products">
-            {products.map((product) => (
-              <div key={ product.id } data-testid="product">
-                <p>{product.title}</p>
-                <img src={ `${product.thumbnail}` } alt={ product.title } />
-                <p>{product.price}</p>
-              </div>
-            ))}
+            {this.returnProducts()}
           </div>
         </div>
       </div>
