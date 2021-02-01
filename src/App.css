@@ -401,9 +401,20 @@ input:focus {
       align-content: center;
 }
 
-.product-card-wraper .product-card .product-card-image img {
+.product-card-wraper .product-card .product-card-image .free-shipping {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  z-index: 5;
+}
+
+.product-card-wraper .product-card .product-card-image .cart-image {
   width: 100%;
   max-height: 100%;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .product-card-wraper .product-card .product-card-info {

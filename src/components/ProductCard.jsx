@@ -12,7 +12,7 @@ import { actionCartUpdate } from '../store/control.reducer';
 
 export default function ProductCard(props) {
   const {
-    product: { id, title, thumbnail, price },
+    product: { id, title, thumbnail, price, shipping },
   } = props;
   const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ export default function ProductCard(props) {
         data-testid="product-detail-link"
         onClick={ handleClick }
       >
-        <CardImage url={ thumbnail } alt={ title } />
+        <CardImage url={ thumbnail } alt={ title } freeshipping={ shipping } />
         <CardInfo price={ price } title={ title } />
       </button>
       <section className="product-buy">
@@ -60,5 +60,6 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     mercadopago: PropTypes.bool.isRequired,
+    shipping: PropTypes.bool.isRequired,
   }).isRequired,
 };

@@ -27,6 +27,7 @@ async function parseProductData(data) {
       price: parsePrice(i.price),
       mercadopago: i.accepts_mercadopago,
       thumbnail: i.thumbnail.replace('-I.jpg', '-O.jpg'),
+      shipping: i.shipping.free_shipping,
       // images: (await getProductImages(i.id)) || [],
       // attributes: (await getProductAttributes(i.id)) || [],
     })),

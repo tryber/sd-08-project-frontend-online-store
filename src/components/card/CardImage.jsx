@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CardFreeShipping from './CardFreeShipping';
 
 export default function CardImage(props) {
-  const { url, alt } = props;
+  const { url, alt, freeshipping } = props;
   return (
     <section className="product-card-image">
-      <img src={ url } alt={ alt } />
+      {/* <CardFreeShipping show={ freeshipping } /> */}
+      <img className="cart-image" src={ url } alt={ alt } />
     </section>
   );
 }
@@ -13,4 +15,5 @@ export default function CardImage(props) {
 CardImage.propTypes = {
   url: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
+  freeshipping: PropTypes.bool.isRequired,
 };
