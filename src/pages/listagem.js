@@ -6,6 +6,7 @@ import CategoriesList from '../components/CategoriesList';
 class Listagem extends Component {
   render() {
     const { listOfProducts, addToCart, handleClickCategory } = this.props;
+    // console.log(this.props);
     return (
       <>
         <div className="left-content">
