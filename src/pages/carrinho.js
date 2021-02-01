@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Carrinho extends Component {
   render() {
-    const { cartProducts, addCarQuantityProduct } = this.props;
+    const { cartProducts, subCarQuantityProduct, addCarQuantityProduct } = this.props;
     if (cartProducts.length < 1) {
       return <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     }
@@ -11,17 +11,25 @@ class Carrinho extends Component {
       <div className="right-content">
         {cartProducts.map((product) => (
           <div key={ product.name }>
-            {console.log(product)}
             <p data-testid="shopping-cart-product-name">{ product.name }</p>
-            {/* <button type="button" onClick={ subCarQuantityProduct }>-</button> */}
+            <button
+              type="button"
+              data-testid="product-decrease-quantity"
+              name={ product.name }
+              onClick={ subCarQuantityProduct }
+            >
+              -
+            </button>
             <span data-testid="shopping-cart-product-quantity">{product.quantity}</span>
             <button
               type="button"
+              data-testid="product-increase-quantity"
               name={ product.name }
               onClick={ addCarQuantityProduct }
             >
               +
             </button>
+            <button type="button">X</button>
           </div>
         ))}
       </div>
@@ -37,7 +45,7 @@ Carrinho.propTypes = {
     }),
   ).isRequired,
   addCarQuantityProduct: PropTypes.func.isRequired,
-  // subCarQuantityProduct: PropTypes.func.isRequired,
+  subCarQuantityProduct: PropTypes.func.isRequired,
 };
 
 export default Carrinho;

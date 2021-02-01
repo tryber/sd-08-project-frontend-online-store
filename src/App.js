@@ -21,6 +21,8 @@ class App extends React.Component {
     this.fetchProducts = this.fetchProducts.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.addCarQuantityProduct = this.addCarQuantityProduct.bind(this);
+    this.subCarQuantityProduct = this.subCarQuantityProduct.bind(this);
+    this.deleteCarProduct = this.deleteCarProduct.bind(this);
   }
 
   componentDidMount() {
@@ -73,7 +75,7 @@ class App extends React.Component {
   }
 
   addToCart(title) {
-    const newProduct = { name: title, alguma: { [title]: { quantity: 1 } } };
+    const newProduct = { name: title, quantity: 1 };
     const { cartProducts } = this.state;
     this.setState({
       cartProducts: [...cartProducts, newProduct],
@@ -81,24 +83,40 @@ class App extends React.Component {
   }
 
   addCarQuantityProduct(e) {
-    console.log(e.target.name);
     const { cartProducts } = this.state;
-    const products = cartProducts.values();
-    products.indexOf(title);
-
-    const { cartProducts: { title: { quantity } } } = this.state;
+    const title = e.target.name;
+    const product = cartProducts.find((prod) => prod.name === title);
+    const index = cartProducts.indexOf(product);
+    product.quantity += 1;
     this.setState({
-      [title]: { quantity: quantity + 1 },
+      [cartProducts[index]]: product,
     });
   }
 
-  // subCarQuantityProduct(title) {
-  //   const { cartProducts } = this.state;
-  //   if (cartProducts.entries)
-  //   this.setState({
-  //     cartProducts: { [title]: { quantity: [quantity] - 1 } },
-  //   });
-  // }
+  subCarQuantityProduct(e) {
+    const { cartProducts } = this.state;
+    const title = e.target.name;
+    const product = cartProducts.find((prod) => prod.name === title);
+    const index = cartProducts.indexOf(product);
+    if (product.quantity > 1) {
+      product.quantity -= 1;
+      this.setState({
+        [cartProducts[index]]: product,
+      });
+    }
+  }
+
+  deleteCarProduct(e) {
+    const { cartProducts } = this.state;
+    const title = e.target.name;
+    const product = cartProducts.find((prod) => prod.name === title);
+    const index = cartProducts.indexOf(product);
+    if (product.quantity > 1) {
+      this.setState({
+        [cartProducts[index]]: product,
+      });
+    }
+  }
 
   render() {
     return (
@@ -110,6 +128,7 @@ class App extends React.Component {
             fetchProducts={ this.fetchProducts }
             addToCart={ this.addToCart }
             addCarQuantityProduct={ this.addCarQuantityProduct }
+            subCarQuantityProduct={ this.subCarQuantityProduct }
             handleClickCategory={ this.handleClickCategory }
           />
         </main>
