@@ -84,34 +84,40 @@ class ProductDetails extends React.Component {
   renderProductSession() {
     const { location: { state: { product } } } = this.props;
     const { addCart } = this.props;
-    const { title, thumbnail, price, attributes, shipping: { free_shipping },
+    const { title, thumbnail, price, attributes,
+      shipping: { free_shipping: freeShipping },
       available_quantity: availableQtd } = product;
     const { value_name: condicao } = attributes[1];
     const { quantidade, disable } = this.state;
     return (
-        </div>
-        <div className="detailText">
-          <h3>Informações</h3>
-          {free_shipping === true && <h1 data-testid="free-shipping">Free Shipping</h1>}
-          <p className="detailPrice">{`R$ ${price}`}</p>
-          <h1 data-testid="product-detail-name">{title}</h1>
-          <p className="detailInfo">{`Quantidade disponivel: ${availableQtd}`}</p>
-          <p className="detailInfo">{`Condição do Produto: ${condicao}`}</p>
-          <div className="addAndSub">
-            <button type="button" onClick={ this.sub }>-</button>
-            <div>{quantidade}</div>
-            <button type="button" onClick={ this.add }>+</button>
+      <div className="detailDiv">
+        <div className="detailProduct">
+          <div className="detailImg">
+            <img src={ thumbnail } alt="item" />
           </div>
-          <p className="detailInfo">Quantidade</p>
-          <button
-            onClick={ () => addCart(product, quantidade) }
-            disabled={ disable }
-            className="addToCartButton"
-            type="button"
-            data-testid="product-detail-add-to-cart"
-          >
-            Adicionar ao carrinho
-          </button>
+          <div className="detailText">
+            <h3>Informações</h3>
+            {freeShipping === true && <h1 data-testid="free-shipping">Free Shipping</h1>}
+            <p className="detailPrice">{`R$ ${price}`}</p>
+            <h1 data-testid="product-detail-name">{title}</h1>
+            <p className="detailInfo">{`Quantidade disponivel: ${availableQtd}`}</p>
+            <p className="detailInfo">{`Condição do Produto: ${condicao}`}</p>
+            <div className="addAndSub">
+              <button type="button" onClick={ this.sub }>-</button>
+              <div>{quantidade}</div>
+              <button type="button" onClick={ this.add }>+</button>
+            </div>
+            <p className="detailInfo">Quantidade</p>
+            <button
+              onClick={ () => addCart(product, quantidade) }
+              disabled={ disable }
+              className="addToCartButton"
+              type="button"
+              data-testid="product-detail-add-to-cart"
+            >
+              Adicionar ao carrinho
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -188,6 +194,9 @@ ProductDetails.propTypes = {
         attributes: PropTypes.arrayOf(PropTypes.any).isRequired,
         available_quantity: PropTypes.number.isRequired,
         value_name: PropTypes.string,
+        shipping: PropTypes.shape({
+          free_shipping: PropTypes.bool.isRequired,
+        }),
       }).isRequired,
     }).isRequired,
   }).isRequired,
