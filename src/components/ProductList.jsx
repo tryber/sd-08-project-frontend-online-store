@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Categories from './Categories';
+import ButtonAddToCart from './ButtonAddToCart';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -52,8 +53,7 @@ class ProductList extends React.Component {
   }
 
   renderProductList() {
-    const { productList } = this.props;
-    const { handleAddToCart } = this.props;
+    const { productList, handleAddToCart } = this.props;
 
     if (!productList.length) {
       return (
@@ -80,15 +80,12 @@ class ProductList extends React.Component {
             >
               Ver detalhes...
             </Link>
-            <button
-              type="button"
+            <ButtonAddToCart
               onClick={ handleAddToCart }
               id={ item.id }
               list={ productList }
-              data-testid="product-add-to-cart"
-            >
-              Adicionar ao carrinho
-            </button>
+              dataTestId="product-add-to-cart"
+            />
           </article>
         ))}
       </section>
