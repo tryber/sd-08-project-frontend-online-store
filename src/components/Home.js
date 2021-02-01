@@ -48,7 +48,7 @@ class Home extends Component {
     const categoriesFromApi = await api.getCategories();
     this.setState({
       categories: categoriesFromApi,
-    }, () => console.log(this.state.categories));
+    });
   }
 
   async searchCategories(categorie) {
