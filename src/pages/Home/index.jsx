@@ -16,11 +16,13 @@ class Home extends React.Component {
       searchInput: '',
       searchCategory: 'MLB1953',
       loading: true,
+      shoppingCart: [],
     };
 
     this.onSearchChange = this.onSearchChange.bind(this);
     this.findProducts = this.findProducts.bind(this);
     this.filterByCategory = this.filterByCategory.bind(this);
+    this.addProductToCart = this.addProductToCart.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +35,13 @@ class Home extends React.Component {
   onSearchChange(event) {
     this.setState({
       searchInput: event.target.value,
+    });
+  }
+
+  addProductToCart(productInfo) {
+    const { shoppingCart } = this.state;
+    this.setState({
+      shoppingCart: [...shoppingCart, productInfo],
     });
   }
 
@@ -57,7 +66,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories, loading, products, searchInput } = this.state;
+    const { categories, loading, products, searchInput, shoppingCart } = this.state;
 
     return (
       <div>
@@ -66,7 +75,7 @@ class Home extends React.Component {
           value={ searchInput }
           handleSearch={ this.findProducts }
         />
-        <Button />
+        <Button shoppingCart={ shoppingCart } />
         <main>
           <div className="categoryContainer">
             { categories.map((category) => (
@@ -84,7 +93,11 @@ class Home extends React.Component {
           <div>
             { products.length
               ? products.map((product) => (
-                <ProductCard key={ product.id } productInfo={ product } />
+                <ProductCard
+                  key={ product.id }
+                  productInfo={ product }
+                  addProductToCart={ this.addProductToCart }
+                />
               ))
               : <h3>Nenhum produto foi encontrado</h3>}
           </div>
