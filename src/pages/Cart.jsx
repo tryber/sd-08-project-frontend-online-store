@@ -12,6 +12,8 @@ class Cart extends React.Component {
       radioValue: '',
       cartItems: [],
     };
+    this.setLocalStorageState = this.setLocalStorageState.bind(this);
+    this.getLocalStorage = this.getLocalStorage.bind(this);
   }
 
   componentDidMount() {
@@ -29,13 +31,13 @@ class Cart extends React.Component {
 
   setLocalStorageState() {
     const myState = JSON.stringify(this.state);
-    console.log(myState);
+    // console.log(myState);
     localStorage.setItem('myState', myState);
   }
 
   render() {
     console.log(this.props);
-    // const { location: { state: { cartItems } } } = this.props;
+    // const { location: { cartItems } } = this.props;
     const { cartItems } = this.state;
     return (
       <div>

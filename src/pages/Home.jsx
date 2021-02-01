@@ -66,6 +66,7 @@ class Home extends React.Component {
     this.setState({
       cartItems,
     });
+    this.setLocalStorageState();
   }
 
   async getQueryList() {
@@ -85,7 +86,7 @@ class Home extends React.Component {
 
   setLocalStorageState() {
     const myState = JSON.stringify(this.state);
-    console.log(myState);
+    // console.log(myState);
     localStorage.setItem('myState', myState);
   }
 

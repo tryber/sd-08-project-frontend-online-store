@@ -8,7 +8,7 @@ class CartItem extends React.Component {
     const { cartItems } = this.props;
     return (
       <div>
-        <Link exact to="/">Voltar</Link>
+        <Link to="/">Voltar</Link>
         <ul>
           {
             cartItems.length > 0

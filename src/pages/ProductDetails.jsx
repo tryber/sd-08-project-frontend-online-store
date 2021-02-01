@@ -41,7 +41,7 @@ class ProductDetails extends React.Component {
 
   setLocalStorageState() {
     const myState = JSON.stringify(this.state);
-    console.log(myState);
+    // console.log(myState);
     localStorage.setItem('myState', myState);
   }
 
@@ -51,22 +51,22 @@ class ProductDetails extends React.Component {
       // available_quantity, sold_quantity, stop_time, accepts_mercadopago,
       // currency_id, shipping
     } } } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <section data-testid="product-detail-name">
-        <Link exact to="/">Voltar</Link>
+        <Link to="/">Voltar</Link>
         <img src={ thumbnail } alt={ title } />
         <h3>{price}</h3>
-        <p>
+        <ul>
           {
             attributes.map((att) => (
-              <li key={ id }>
-                <span key={ id }>{title}</span>
-                <span key={ id }>{att.id}</span>
-                <span key={ id }>{att.name}</span>
+              <li key={ att.id }>
+                <span>{title}</span>
+                <span>{att.id}</span>
+                <span>{att.name}</span>
               </li>))
           }
-        </p>
+        </ul>
         <AddToCartButton
           // data-testid="product-detail-add-to-cart"
           handleAddItemToCart={ this.handleAddItemToCart }

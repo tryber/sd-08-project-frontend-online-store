@@ -9,7 +9,7 @@ class CartButton extends React.Component {
     return (
       <Link
         data-testid="shopping-cart-button"
-        to={ { pathname: '/pages/cart', state: { cartItems } } }
+        to={ { pathname: '/pages/cart', cartItems } }
       >
         Cart
       </Link>
