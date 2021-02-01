@@ -45,11 +45,23 @@ export default class Details extends React.Component {
         <form>
           <label htmlFor="rating">
             Rating:
-            <input onChange={ this.updateState } name="rating" value={ rating } type="number" min={ 1 } max={ 5 } />
+            <input
+              onChange={ this.updateState }
+              name="rating"
+              value={ rating }
+              type="number"
+              min={ 1 }
+              max={ 5 }
+            />
           </label>
           <label htmlFor="comment">
             Comments:
-            <textarea onChange={ this.updateState } data-testid="product-detail-evaluation" value={ comment } name="comment" value={ comment } />
+            <textarea
+              onChange={ this.updateState }
+              data-testid="product-detail-evaluation"
+              value={ comment }
+              name="comment"
+            />
           </label>
           <button type="button" onClick={ this.addRating }>Submit</button>
         </form>
