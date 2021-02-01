@@ -2,13 +2,16 @@ import React from 'react';
 
 import * as api from '../services/api';
 import SearchBar from '../components/SearchBar';
+import Categories from './Categories';
+import ProductCardsList from '../components/ProductCardsList';
 
 export default class Home extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      categoriesList: [],
+      categoriesList: [0],
+      productList: [],
     };
   }
 
@@ -17,28 +20,33 @@ export default class Home extends React.Component {
   }
 
   async fetchCategories() {
-    const list = await api.getCategories();
+    const allCategories = await api.getCategories();
     this.setState({
-      categoriesList: list,
+      categoriesList: allCategories,
+    });
+  }
+
+  async fetchProducts(category, search) {
+    const products = await api.getProductsFromCategoryAndQuery(category, search);
+    this.setState({
+      productList: products,
     });
   }
 
   render() {
-    const { categoriesList } = this.state;
+    const { categoriesList, productList } = this.state;
     return (
       <main>
         <SearchBar />
         {typeof (categoriesList) !== 'undefined'
           && (
             <aside>
-              {categoriesList
-                .map((item) => (
-                  <button type="button" key={ item.id } data-testid="category">
-                    {item.name}
-                  </button>
-                ))}
+              {categoriesList.length === 1
+                ? <p>Carregando...</p>
+                : <Categories categoriesList={ categoriesList } />}
             </aside>
           )}
+        <ProductCardsList productList={ productList } />
       </main>
     );
   }
