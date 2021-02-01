@@ -3,9 +3,40 @@ import PropTypes from 'prop-types';
 import CartItem from '../components/CartItem';
 
 class Cart extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      searchField: '',
+      productsList: [],
+      categories: [],
+      radioValue: '',
+      cartItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.getLocalStorage();
+  }
+
+  componentWillUnmount() {
+    this.setLocalStorageState();
+  }
+
+  getLocalStorage() {
+    const myState = JSON.parse(localStorage.getItem('myState'));
+    this.setState(myState);
+  }
+
+  setLocalStorageState() {
+    const myState = JSON.stringify(this.state);
+    console.log(myState);
+    localStorage.setItem('myState', myState);
+  }
+
   render() {
     console.log(this.props);
-    const { location: { state: { cartItems } } } = this.props;
+    // const { location: { state: { cartItems } } } = this.props;
+    const { cartItems } = this.state;
     return (
       <div>
         {

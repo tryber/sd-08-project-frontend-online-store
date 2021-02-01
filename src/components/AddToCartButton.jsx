@@ -8,14 +8,19 @@ class AddToCartButton extends React.Component {
     } = this.props;
     // console.log(productsList);
     return (
-      <button
-        data-testid="product-add-to-cart"
-        type="submit"
-        value={ id }
-        onClick={ handleAddItemToCart }
-      >
-        Adicionar ao Carrinho
-      </button>
+      <div data-testid="product-detail-add-to-cart">
+        <button
+          // type="submit"
+          name="add-product"
+          id="add-product"
+          data-testid="product-add-to-cart"
+          type="submit"
+          value={ id }
+          onClick={ handleAddItemToCart }
+        >
+          Adicionar ao carrinho
+        </button>
+      </div>
     );
   }
 }

@@ -22,24 +22,22 @@ class Home extends React.Component {
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.handleInputRadio = this.handleInputRadio.bind(this);
     this.handleAddItemToCart = this.handleAddItemToCart.bind(this);
+    this.setLocalStorageState = this.setLocalStorageState.bind(this);
+    this.getLocalStorage = this.getLocalStorage.bind(this);
   }
 
   componentDidMount() {
     this.getCategoriesList();
+    this.getLocalStorage();
+  }
+
+  componentWillUnmount() {
+    this.setLocalStorageState();
   }
 
   handleInputChange(event) {
     this.setState({
       searchField: event.target.value,
-    });
-  }
-
-  handleAddItemToCart(event) {
-    const { cartItems, productsList } = this.state;
-    cartItems.push(productsList.find((item) => item.id === event.target.value));
-    console.log(cartItems);
-    this.setState({
-      cartItems,
     });
   }
 
@@ -61,6 +59,15 @@ class Home extends React.Component {
     await this.getQueryList();
   }
 
+  handleAddItemToCart(event) {
+    const { cartItems, productsList } = this.state;
+    cartItems.push(productsList.find((item) => item.id === event.target.value));
+    console.log(cartItems);
+    this.setState({
+      cartItems,
+    });
+  }
+
   async getQueryList() {
     const { radioValue } = this.state;
     const response = await getProductsFromCategoryAndQuery(radioValue);
@@ -74,6 +81,17 @@ class Home extends React.Component {
     this.setState({
       categories: categoriesList,
     });
+  }
+
+  setLocalStorageState() {
+    const myState = JSON.stringify(this.state);
+    console.log(myState);
+    localStorage.setItem('myState', myState);
+  }
+
+  getLocalStorage() {
+    const myState = JSON.parse(localStorage.getItem('myState'));
+    this.setState(myState);
   }
 
   render() {
