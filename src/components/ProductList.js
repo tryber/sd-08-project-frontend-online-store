@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as RequestAPI from '../services/api';
 import ProductCard from './ProductCard';
 import SearchBar from './SearchBar';
@@ -56,6 +57,7 @@ class ProductList extends Component {
 
   render() {
     const { products, listCategories, query } = this.state;
+    const { addCart } = this.props;
     return (
       <div className="header">
         <SearchBar
@@ -65,20 +67,32 @@ class ProductList extends Component {
         />
         <ListCategories categories={ listCategories } onClick={ this.handleChange } />
         {products.map((product) => (
-          <Link
-            to={ {
-              pathname: `/product/${product.id}`,
-              state: { productObj: product } } }
-            data-testid="product-detail-link"
-            key={ product.id }
-          >
-            <ProductCard
-              product={ product }
-            />
-          </Link>))}
+          <div key={ product.id }>
+            <Link
+              to={ {
+                pathname: `/product/${product.id}`,
+                state: { productObj: product } } }
+              data-testid="product-detail-link"
+            >
+              <ProductCard
+                product={ product }
+              />
+            </Link>
+            <button
+              type="button"
+              onClick={ () => addCart(product) }
+              data-testid="product-add-to-cart"
+            >
+              Adicionar ao carrinho
+            </button>
+          </div>
+        ))}
       </div>
     );
   }
 }
 
+ProductList.propTypes = {
+  addCart: PropTypes.func.isRequired,
+};
 export default ProductList;
