@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from './Categories';
 import ProductList from './ProductList';
@@ -57,7 +58,7 @@ class Home extends React.Component {
   render() {
     const { loadingCategory, categories, searchText,
       products, loadingProducts, renderProducts } = this.state;
-
+    const { addToCart } = this.props;
     return (
       <div>
         <div>
@@ -81,10 +82,12 @@ class Home extends React.Component {
         </button>
         { renderProducts
         && (loadingProducts ? <p>Carregando produtos</p>
-          : <ProductList products={ products } />) }
+          : <ProductList addToCart={ addToCart } products={ products } />) }
       </div>
     );
   }
 }
-
+Home.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};
 export default Home;
