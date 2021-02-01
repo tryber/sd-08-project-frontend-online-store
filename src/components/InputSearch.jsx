@@ -2,10 +2,9 @@ import React from 'react';
 import ProductCar from './ProductCar';
 import propTypes from 'prop-types';
 
-
 class InputSearch extends React.Component {
   render() {
-    const { query, onChange, onClick, cartSize } = this.props;
+    const { query, onChange, onClick } = this.props;
     return (
       <header>
         <input
@@ -35,6 +34,5 @@ export default InputSearch;
 InputSearch.propTypes = {
   query: propTypes.string.isRequired,
   onChange: propTypes.func.isRequired,
-  onClick: propTypes.func.isRequired,
-  cartSize: propTypes.number.isRequired,
+  onClick: propTypes.func.isRequired,  
 };

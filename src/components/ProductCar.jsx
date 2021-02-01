@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ShoppingCart from '../shopping-cart.png';
+import propTypes from 'prop-types';
 
 class ProductCar extends Component {
   render() {
@@ -23,6 +24,10 @@ class ProductCar extends Component {
       </div>
     );
   }
+}
+
+ProductCar.propTypes = {
+  cartSize: propTypes.number.isRequired,
 }
 
 export default ProductCar;

@@ -12,24 +12,21 @@ class ProductDetail extends Component {
   }
 
   async componentDidMount() {
-    const { match: { params: { title } } } = this.props;   
-    
-    const result = await api.getProductsFromCategoryAndQuery('', title);
-    console.log(result)
-    
+    const { match: { params: { title } } } = this.props;
+    const result = await api.getProductsFromCategoryAndQuery('', title);      
     this.setState({
       product: result,
-    });      
+    });
   }
 
   render() {   
-    const { location: { state } } = this.props;  
-     
+    const { location: { state } } = this.props;
+
     return (
       <div data-testid="product-detail-name">
-        <p>{state.title}</p>
+        <p>{ state.title }</p>
         <img src={ state.thumbnail } alt={ state.title } />
-        <p>{state.price}</p>       
+        <p>{ state.price }</p>
         <ProductCar />
       </div>
     );
