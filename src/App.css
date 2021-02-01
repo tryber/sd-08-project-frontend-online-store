@@ -20,6 +20,15 @@
   flex-flow: row wrap;
 }
 
+.DetailContainer {
+  align-content: space-between;
+  background-color: burlywood;
+  display: flex;
+  flex-flow: row wrap;
+  height: 500px;
+  width: auto;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

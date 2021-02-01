@@ -2,17 +2,23 @@ import React, { Component } from 'react';
 import ListCards from './ListCards';
 import ShoppingCartIcon from './ShoppingCartIcon';
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import CategoryList from './CategoryList';
+import * as api from '../services/api';
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
       object: [1],
+      categories: [],
     };
-
+    this.findCategories = this.findCategories.bind(this);
+    this.searchCategories = this.searchCategories.bind(this);
     this.listUpdate = this.listUpdate.bind(this);
     this.CardMount = this.CardMount.bind(this);
+  }
+
+  componentDidMount() {
+    this.findCategories();
   }
 
   async listUpdate(newValue) {
@@ -38,7 +44,20 @@ class Home extends Component {
     />));
   }
 
+  async findCategories() {
+    const categoriesFromApi = await api.getCategories();
+    this.setState({
+      categories: categoriesFromApi,
+    });
+  }
+
+  async searchCategories(categorie) {
+    const listCatego = await api.getProductsFromCategoryAndQuery('', categorie);
+    await this.setState({ object: listCatego.results });
+  }
+
   render() {
+    const { categories } = this.state;
     return (
       <div>
         <header className="header">
@@ -62,14 +81,25 @@ class Home extends Component {
           </div>
           <ShoppingCartIcon />
         </header>
-        <section className="container">
+        <div className="container">
+
           <ul className="categorylist">
-            <CategoryList />
+            {categories.map((item) => (
+              <button
+                type="submit"
+                data-testid="category"
+                key={ item.id }
+                onClick={ () => this.searchCategories(item.id) }
+              >
+                {item.name}
+              </button>
+            ))}
           </ul>
           <section className="CardListContainer">
             {this.CardMount()}
           </section>
-        </section>
+        </div>
+
       </div>
     );
   }
