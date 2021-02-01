@@ -14,7 +14,6 @@ class NavBar extends React.Component {
         </nav>
         <Link to="/carrinho" data-testid="shopping-cart-button"><img alt="carrinho" src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png" width="50" height="50" /></Link>
       </header>
-
     );
   }
 }
