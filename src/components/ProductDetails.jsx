@@ -84,17 +84,15 @@ class ProductDetails extends React.Component {
   renderProductSession() {
     const { location: { state: { product } } } = this.props;
     const { addCart } = this.props;
-    const { title, thumbnail, price, attributes,
+    const { title, thumbnail, price, attributes, shipping: { free_shipping },
       available_quantity: availableQtd } = product;
     const { value_name: condicao } = attributes[1];
     const { quantidade, disable } = this.state;
     return (
-      <div className="detailProduct">
-        <div className="detailImg">
-          <img src={ thumbnail } alt="item" />
         </div>
         <div className="detailText">
           <h3>Informações</h3>
+          {free_shipping === true && <h1 data-testid="free-shipping">Free Shipping</h1>}
           <p className="detailPrice">{`R$ ${price}`}</p>
           <h1 data-testid="product-detail-name">{title}</h1>
           <p className="detailInfo">{`Quantidade disponivel: ${availableQtd}`}</p>

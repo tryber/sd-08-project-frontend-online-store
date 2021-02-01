@@ -6,7 +6,7 @@ import './CardProducts.css';
 class CardProducts extends React.Component {
   render() {
     const { product, addCart } = this.props;
-    const { thumbnail, price, title, id } = product;
+    const { thumbnail, price, title, id, shipping: { free_shipping } } = product;
 
     return (
       <div className="productCard" data-testid="product">
@@ -19,6 +19,7 @@ class CardProducts extends React.Component {
             { price }
           </p>
           <h4 data-testid="product-detail-name">{ title }</h4>
+          {free_shipping === true && <p data-testid="free-shipping">Frete Grátis</p>}
           <Link
             to={ {
               pathname: `/${id}`,
