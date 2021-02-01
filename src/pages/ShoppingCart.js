@@ -37,10 +37,7 @@ class PageShoppingCart extends Component {
     const keysList = this.getKeys();
     return (
       <>
-        <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
-        <span />
         <ReturnButoon />
-
         <Button />
         { keysList.length === 0
           ? <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
