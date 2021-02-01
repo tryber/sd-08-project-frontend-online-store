@@ -12,8 +12,7 @@ class ListCards extends Component {
         <p>{ title }</p>
         <img src={ thumbnail } alt={ title } />
         <p>
-          R$
-          { price }
+          { `R$ ${price.toFixed(2)}` }
         </p>
         <Link
           data-testid="product-detail-link"

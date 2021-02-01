@@ -84,13 +84,14 @@ class Home extends Component {
         <div className="container">
           <ul className="categorylist">
             {categories.map((item) => (
-              <li
+              <button
+                type="submit"
                 data-testid="category"
                 key={ item.id }
                 onClick={ () => this.searchCategories(item.id) }
               >
                 {item.name}
-              </li>
+              </button>
             ))}
           </ul>
           <section className="CardListContainer">
