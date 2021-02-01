@@ -1,4 +1,6 @@
+import ProductsList from './ProductsList';
+import ShoppingCart from './ShoppingCart';
 import CategoryList from './CategoryList';
 import ListCard from './ListCard';
 
-export { CategoryList, ListCard };
+export { ProductsList, ShoppingCart, CategoryList, ListCard };
