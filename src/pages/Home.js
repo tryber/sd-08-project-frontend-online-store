@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
-import Categories from '../components/Categories';
+import CategoriesList from '../components/CategoriesList';
 
 import * as api from '../services/api';
 
@@ -20,27 +20,35 @@ class Home extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleSearchSelect = this.handleSearchSelect.bind(this);
+    this.updateResults = this.updateResults.bind(this);
   }
 
   componentDidMount() {
     api.getCategories().then((categories) => this.setState({ categories }));
   }
 
-  handleChange({ target }) {
+  handleChange({ target }, callback) {
     const { name, value } = target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, callback);
   }
 
   handleSearch() {
-    const {
-      'selected-category': selectedCategory,
-      'query-input': queryInput,
-    } = this.state;
+    const { 'query-input': queryInput } = this.state;
+    api.getProductsFromCategoryAndQuery(null, queryInput)
+      .then(this.updateResults);
+  }
 
-    api.getProductsFromCategoryAndQuery(selectedCategory, queryInput)
-      .then(({ results }) => this.setState({
-        results,
-      }));
+  handleSearchSelect(event) {
+    this.handleChange(event, () => {
+      const { 'selected-category': selectedCategory } = this.state;
+      api.getProductsFromCategoryAndQuery(selectedCategory)
+        .then(this.updateResults);
+    });
+  }
+
+  updateResults({ results }) {
+    this.setState({ results });
   }
 
   render() {
@@ -51,7 +59,10 @@ class Home extends Component {
           onChange={ this.handleChange }
           onClick={ this.handleSearch }
         />
-        <Categories onChange={ this.handleChange } categories={ categories } />
+        <CategoriesList
+          handleChange={ this.handleSearchSelect }
+          categories={ categories }
+        />
         <Link
           style={ { display: 'block' } }
           to="/shoppingcart"
