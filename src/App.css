@@ -946,16 +946,18 @@ input:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid #646464;
-  padding: 1px;
-  margin-bottom: 6px;
+  border: 1px solid #4d4d4d;
+  padding: 4px;
+  margin-bottom: 10px;
+  background-color: #f5f5f5;
+  padding-bottom: 12px;
 }
 
 .product-detail .product-info .product-info-left {
   max-width: 60%;
   -ms-flex-item-align: center;
       align-self: center;
-  margin: 5px;
+  margin: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1018,7 +1020,7 @@ input:focus {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  margin: 5px;
+  margin: 2px;
   margin-top: 15px;
   margin-left: 15px;
   margin-bottom: 30px;
@@ -1058,7 +1060,7 @@ input:focus {
   margin: 5px;
   -ms-flex-item-align: start;
       align-self: flex-start;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .product-detail .product-info .product-info-right .product-attr-list {
@@ -1106,5 +1108,57 @@ input:focus {
   font-size: 0.9em;
   font-weight: 500;
   cursor: pointer;
+}
+
+.input-quantity {
+  width: auto;
+  border: 1px solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 4px;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
+}
+
+.input-quantity input::-webkit-outer-spin-button,
+.input-quantity input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-quantity input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.input-quantity input {
+  width: 50px;
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: 600;
+  color: black;
+  background-color: white;
+  border: 1px solid #999999;
+  margin: 2px;
+  margin-right: 6px;
+}
+
+.input-quantity button {
+  border: 1px solid #7e7e7e;
+  border-radius: 50%;
+  margin: 2px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.input-quantity button i {
+  text-align: center;
 }
 /*# sourceMappingURL=App.css.map */
