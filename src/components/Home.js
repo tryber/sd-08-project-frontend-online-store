@@ -48,7 +48,7 @@ class Home extends Component {
     const categoriesFromApi = await api.getCategories();
     this.setState({
       categories: categoriesFromApi,
-    });
+    }, () => console.log(this.state.categories));
   }
 
   async searchCategories(categorie) {
@@ -82,9 +82,8 @@ class Home extends Component {
           <ShoppingCartIcon />
         </header>
         <div className="container">
-
           <ul className="categorylist">
-            {categories.map((item) => (
+            {categories && categories.length && categories.map((item) => (
               <button
                 type="submit"
                 data-testid="category"
