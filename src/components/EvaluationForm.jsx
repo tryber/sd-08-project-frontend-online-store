@@ -10,6 +10,7 @@ class EvaluationForm extends React.Component {
     };
     this.textAreaInputUpdate = this.textAreaInputUpdate.bind(this);
     this.submitEvaluation = this.submitEvaluation.bind(this);
+    this.ratingUpdate = this.ratingUpdate.bind(this);
   }
 
   textAreaInputUpdate(event) {
