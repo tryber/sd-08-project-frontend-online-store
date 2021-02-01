@@ -11,7 +11,7 @@ class SearchProducts extends React.Component {
     this.inputTest = this.inputTest.bind(this);
     this.buttonTest = this.buttonTest.bind(this);
     this.getProducts = this.getProducts.bind(this);
-
+    this.addCartItem = this.addCartItem.bind(this);
     this.state = {
       input: '',
       products: [],
@@ -63,6 +63,32 @@ class SearchProducts extends React.Component {
     );
   }
 
+  async addCartItem(e) {
+    const product = JSON.parse(e.target.value);
+    console.log(product);
+    product.qtd = 1;
+    let itemsCart;
+
+    if (localStorage.getItem('itemsCart')) {
+      itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
+      Object.keys(itemsCart).forEach((key) => {
+        if (itemsCart[key].id === product.id) {
+          itemsCart[key].qtd += 1;
+        } else {
+          itemsCart = [
+            ...itemsCart,
+            product,
+          ];
+        }
+      });
+
+      localStorage.setItem('itemsCart', JSON.stringify(itemsCart));
+    } else {
+      itemsCart = [product];
+      localStorage.setItem('itemsCart', JSON.stringify(itemsCart));
+    }
+  }
+
   render() {
     const { products } = this.state;
 
@@ -71,12 +97,12 @@ class SearchProducts extends React.Component {
         { this.inputTest() }
         { this.buttonTest() }
         <FetchCategories callback={ this.getProducts } />
-        {products.map((item) => (
+        { products.map((item) => (
           <div key={ item.id } data-testid="product">
-            <p>{ item.title }</p>
+            <p>{item.title}</p>
             <img src={ item.thumbnail } alt={ item.title } />
             <span>
-              { `${item.price} ${item.currency_id} ` }
+              {`${item.price} ${item.currency_id} `}
               <Link
                 data-testid="product-detail-link"
                 to={ `/${item.category_id}-${item.id}` }
@@ -84,7 +110,13 @@ class SearchProducts extends React.Component {
                 Saiba Mais
               </Link>
             </span>
-            <button type="button">Adicionar ao carrinho</button>
+            <button
+              type="button"
+              onClick={ this.addCartItem }
+              value={ JSON.stringify(item) }
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
         ))}
       </section>
