@@ -43,7 +43,12 @@ class ShoppingCart extends Component {
             >
               { title }
             </p>
-            <p className="product-qtd" data-testid="shopping-cart-product-quantity">{ amount }</p>
+            <p
+              className="product-qtd"
+              data-testid="shopping-cart-product-quantity"
+            >
+              { amount }
+            </p>
           </div>
         ))}
       </div>

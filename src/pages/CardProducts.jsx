@@ -9,7 +9,7 @@ class CardProducts extends React.Component {
     return (
       <div className="cards-container">
         { products.map((product) => (
-          <div key={ product.id }>            
+          <div key={ product.id }>
             <div className="card" data-testid="product">
               <Link to={ `/${product.id}` } data-testid="product-detail-link">
                 <img src={ product.thumbnail } alt={ product.title } />
