@@ -11,7 +11,7 @@ class ProductCard extends React.Component {
     const path = `/product/${categoryID}&${id}`;
     return (
       <div className="product-card" data-testid="product">
-        <h3>
+        <h3 data-testid="shopping-cart-product-name">
           { title }
         </h3>
         <img src={ thumbnail } alt="product model" />
