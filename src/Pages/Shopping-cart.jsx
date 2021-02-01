@@ -8,11 +8,11 @@ class ShoppingCart extends React.Component {
   }
 
   renderProducts() {
-    const productsLocalStorage = [JSON.parse(Object.values(localStorage))];
-    console.log(productsLocalStorage);
+    const productsLocalStorage = Object.values(localStorage);
+    const products = productsLocalStorage.map((element) => JSON.parse(element));
     return (
       <div>
-        { productsLocalStorage.map((element) => (
+        { products.map((element) => (
           <div key={ element.id }>
             <img src={ element.thumbnail } alt="Product" />
             <span data-testid="shopping-cart-product-name">{element.title}</span>
