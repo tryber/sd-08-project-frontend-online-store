@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -40,6 +41,7 @@ class ProductDetails extends React.Component {
         >
           Adicionar ao carrinho
         </button>
+        <Link data-testid="shopping-cart-button" to="/shoppingcart">Carrinho</Link>
       </div>
     );
   }
