@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 class LandingProductDetails extends Component {
   render() {
     const { location: { product } } = this.props;
-    const { title, thumbnail, attributes, price } = product;
+    const { title, thumbnail, price } = product;
     return (
       <div>
-        <h1>{title}</h1>
+        <h1 data-testid="product-detail-name">{title}</h1>
         <img src={ thumbnail } alt={ title } />
         <p>{price}</p>
         {console.log(product)}
