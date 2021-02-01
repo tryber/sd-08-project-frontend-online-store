@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 class SpecsTemplate extends Component {
   addCart(item) {
     const productID = `Product${item.id}`;
-    console.log('xablau');
     localStorage.setItem(productID, JSON.stringify(item));
-    // JSON.parse(localStorage.getItem('product'));
   }
 
   render() {

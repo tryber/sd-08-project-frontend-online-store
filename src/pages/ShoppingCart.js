@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReturnButoon from '../components/ReturnButton';
+import Button from '../components/Button';
 
 class PageShoppingCart extends Component {
   componentDidMount() {
@@ -37,6 +38,7 @@ class PageShoppingCart extends Component {
     return (
       <>
         <ReturnButoon />
+        <Button />
         { keysList.length === 0
           ? <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
           : keysList.map((key) => this.getItems(key)) }

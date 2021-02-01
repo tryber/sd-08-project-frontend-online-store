@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReturnButoon from '../components/ReturnButton';
 import SpecsTemplate from '../components/SpecsTemplate';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import Button from '../components/Button';
 
 class SpecsPage extends Component {
   constructor() {
@@ -35,6 +36,7 @@ class SpecsPage extends Component {
     return (
       <>
         <ReturnButoon />
+        <Button />
         {loading ? <SpecsTemplate itemInfo={ specsApiReturn } /> : loadingTemplate }
       </>
     );
