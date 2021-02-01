@@ -12,10 +12,27 @@ class App extends React.Component {
     super(props);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleRequest = this.handleRequest.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.state = {
       productList: [],
       cartList: [],
     };
+  }
+
+  handleQuantityChange(opType, id) {
+    this.setState((state) => ({
+      cartList: state.cartList.map((object) => {
+        if (object.id === id) {
+          return {
+            id,
+            quantity: (opType === '+' && (object.quantity + 1))
+              || (opType === '-' && (object.quantity >= 1) && (object.quantity - 1))
+              || 0,
+          };
+        }
+        return object;
+      }),
+    }));
   }
 
   handleAddToCart(event) {
@@ -49,9 +66,19 @@ class App extends React.Component {
               />
             </Route>
             <Route path="/shopping-cart">
-              <ShoppingCart cartList={ cartList } productList={ productList } />
+              <ShoppingCart
+                cartList={ cartList }
+                productList={ productList }
+                handleQuantityChange={ this.handleQuantityChange }
+              />
             </Route>
-            <Route path="/details/:id" component={ ProductDetails } />
+            <Route path="/details/:id">
+              <ProductDetails
+                productList={ productList }
+                handleRequest={ this.handleRequest }
+                handleAddToCart={ this.handleAddToCart }
+              />
+            </Route>
           </Switch>
         </BrowserRouter>
       </main>
