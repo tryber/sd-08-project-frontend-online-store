@@ -84,6 +84,7 @@ class SearchProducts extends React.Component {
                 Saiba Mais
               </Link>
             </span>
+            <button type="button">Adicionar ao carrinho</button>
           </div>
         ))}
       </section>
