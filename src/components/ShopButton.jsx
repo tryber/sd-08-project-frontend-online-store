@@ -4,11 +4,11 @@ import ShopButtonImage from './download.png';
 
 class ShopButton extends Component {
   render() {
+    const { cartProduct } = this.props;
     return (
-      <Link data-testid="shopping-cart-button" to="/shopping-cart">
+      <Link data-testid="shopping-cart-button" to={ { pathname: '/shopping-cart/', state: cartProduct } }>
         <img
           src={ ShopButtonImage }
-          to="/shopping-cart"
           alt="Logo"
         />
       </Link>
