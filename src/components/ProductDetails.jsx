@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as api from '../services/api';
-
 class ProductDetails extends React.Component {
   constructor() {
     super();
@@ -15,7 +13,10 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
-    this.fetchProduct(api.getProductFromId(id));
+    this.fetchProduct(
+      JSON.parse(localStorage.getItem('products')).results
+        .find((result) => result.id === id),
+    );
   }
 
   fetchProduct(result) {
@@ -35,7 +36,7 @@ class ProductDetails extends React.Component {
       <section>
         <h4 data-testid="product-detail-name">{ product.title }</h4>
         <img alt="Product" src={ product.thumbnail } />
-        <p>{`R$ ${(product.base_price).toFixed(2)}`}</p>
+        <p>{`R$ ${(product.price).toFixed(2)}`}</p>
         <div className="technical-info-container">
           <h6>Especificação Técnica</h6>
           {product.attributes
@@ -52,6 +53,7 @@ class ProductDetails extends React.Component {
 
   render() {
     const { product, loading } = this.state;
+    if (!loading)console.log(product);
 
     return (
       loading ? 'Carregando...' : this.renderProduct(product)

@@ -99,6 +99,7 @@ class ProductList extends React.Component {
 
   render() {
     const { products, loading, loadingMessage } = this.state;
+    if (!loading) console.log(products.results[0]);
 
     return (
       <section>
