@@ -66,6 +66,12 @@ a {
   text-decoration: none;
 }
 
+.product-detail {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .technical-info-container p {
   font-size: 8px;
 }

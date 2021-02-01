@@ -33,7 +33,7 @@ class ProductDetails extends React.Component {
 
   renderProduct(product) {
     return (
-      <section>
+      <section className="product-detail">
         <h4 data-testid="product-detail-name">{ product.title }</h4>
         <img alt="Product" src={ product.thumbnail } />
         <p>{`R$ ${(product.price).toFixed(2)}`}</p>
