@@ -5,23 +5,27 @@ import './ProductOnCart.css';
 class ProductOnCart extends React.Component {
   constructor(props) {
     super(props);
-    this.decrement = this.decrement.bind(this);
-    this.increment = this.increment.bind(this);
+    this.add = this.add.bind(this);
+    this.sub = this.sub.bind(this);
     this.state = {
       quantity: props.product.amountToBuy,
     };
   }
 
-  decrement() {
+  add() {
     const { quantity } = this.state;
+    const { product } = this.props;
     let newQtd = quantity - 1;
     if (newQtd < 0) newQtd = 0;
+    product.amountToBuy = newQtd;
     this.setState(() => ({ quantity: newQtd }));
   }
 
-  increment() {
+  sub() {
     const { quantity } = this.state;
+    const { product } = this.props;
     const newQtd = quantity + 1;
+    product.amountToBuy = newQtd;
     this.setState(() => ({ quantity: newQtd }));
   }
 
@@ -40,7 +44,7 @@ class ProductOnCart extends React.Component {
         <div className="quantidadeDiv">
           <button
             type="button"
-            onClick={ this.decrement }
+            onClick={ this.add }
             data-testid="product-decrease-quantity"
           >
             -
@@ -50,7 +54,7 @@ class ProductOnCart extends React.Component {
           </div>
           <button
             type="button"
-            onClick={ this.increment }
+            onClick={ this.sub }
             data-testid="product-increase-quantity"
           >
             +

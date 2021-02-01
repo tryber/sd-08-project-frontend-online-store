@@ -14,12 +14,12 @@ class App extends React.Component {
     this.buscaDeProdutos = this.buscaDeProdutos.bind(this);
     this.buscaProdutosInput = this.buscaProdutosInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
     this.addCart = this.addCart.bind(this);
     this.state = {
       categories: [],
       products: [],
       productsOnCart: [],
+      totalItems: 0,
     };
   }
 
@@ -33,6 +33,18 @@ class App extends React.Component {
     envet.preventDefault();
     const { name, value } = envet.target;
     this.setState({ [name]: value });
+  }
+
+  getCartItems() {
+    let cartItems = window.localStorage.getItem('cartItems');
+    if (cartItems === null) {
+      cartItems = '[]';
+    }
+    return JSON.parse(cartItems);
+  }
+
+  saveCartItems(array = []) {
+    window.localStorage.setItem('cartItems', JSON.stringify(array));
   }
 
   buscaDeProdutos(id) {
@@ -54,17 +66,20 @@ class App extends React.Component {
     obj.amountToBuy = amount;
     this.setState((old) => {
       if (!old.productsOnCart.includes(obj)) {
-        return { productsOnCart: [...old.productsOnCart, obj] };
+        return {
+          productsOnCart: [...old.productsOnCart, obj],
+          totalItems: (old.totalItems + amount),
+        };
       }
     });
   }
 
   render() {
-    const { categories, products, productsOnCart } = this.state;
+    const { categories, products, productsOnCart, totalItems } = this.state;
 
     return (
       <BrowserRouter>
-        <TopNavBar cartSize={ productsOnCart.length } />
+        <TopNavBar cartSize={ totalItems } />
         <Switch>
           <Route
             path="/shoppingCart"
