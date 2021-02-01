@@ -39,9 +39,9 @@ class ListCategories extends React.Component {
             type="button"
             data-testid="category"
             key={ cat.name }
-            onClick={ this.handleClick }
             value={ cat.name }
             name={ cat.id }
+            onClick={ this.handleClick }
           />
         ))}
       </div>

@@ -6,7 +6,6 @@ class Search extends React.Component {
     super(props);
     this.state = {
       searchText: '',
-      loading: true,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
