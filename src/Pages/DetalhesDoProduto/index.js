@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import BotaoAdiciona from '../../Components/BotaoAdiciona';
+import BotaoCarrinho from '../../Components/BotaoCarrinho';
 
 import FormularioAvaliaçao from '../../Components/FormularioAvaliaçao';
 
@@ -15,7 +17,9 @@ export default class DetalhesDoProduto extends Component {
         <p>{subtitle}</p>
         <p>{price}</p>
         <p>{condition}</p>
-        <p>{ warranty }</p>
+        <p>{warranty}</p>
+        <BotaoAdiciona product={ product } testId="product-detail-add-to-cart" />
+        <BotaoCarrinho />
         <FormularioAvaliaçao />
       </>
     );
