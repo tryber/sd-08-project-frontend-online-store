@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import CardItem from './CardItem';
 import CategoryMenu from './CategoryMenu';
+import Button from './Button';
 
 class SearchBar extends Component {
   constructor() {
@@ -57,6 +58,7 @@ class SearchBar extends Component {
     const emptyReturnApi = <p>Nenhum produto foi encontraado</p>;
     return (
       <>
+        <Button />
         <form>
           <input
             name="inputValue"
