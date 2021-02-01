@@ -6,6 +6,7 @@ import * as api from './services/api';
 import Search from './Components/Search';
 import ShoppingCart from './Components/ShoppingCart';
 import Categories from './Components/Categories';
+import ProductDetails from './Components/ProductDetails';
 import './App.css';
 
 class App extends React.Component {
@@ -32,6 +33,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={ Search } />
           <Route exact path="/shoppingcart" component={ ShoppingCart } />
+          <Route exact path="/:id/detalhes" component={ ProductDetails } />
         </Switch>
       </Router>
     );
