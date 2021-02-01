@@ -1,5 +1,5 @@
 header {
-  background-color: rgb(180, 110, 240);
+  background-color: rgb(210, 170, 255);
   color: white;
   display: flex;
   padding: 30px;
@@ -12,13 +12,24 @@ header {
 }
 
 .search-bar-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   width: 90%;
+}
+
+.search-bar-button-content {
+  background-color: white;
+  border-radius: 10px;
+  height: 35px;
+  padding-top: 5px;
+  width: 680px;
 }
 
 .search-bar {
   border: none;
   border-radius: 10px;
-  height: 20px;
+  height: 10px;
   margin-bottom: 20px;
   padding: 10px;
   text-align: center;
@@ -31,9 +42,28 @@ textarea:focus, input:focus, select:focus {
   outline: none;
 }
 
+.search-button {
+  background-color: rgb(210, 170, 250);
+  border: 2px solid rgb(253, 227, 247);
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.search-button:hover {
+  background-color: rgb(230, 180, 250);
+}
+
+.search-icon {
+  width: 20px;
+}
+
 .cart-icon {
-  background-color: rgb(210, 160, 245);
-  border: 2px solid white;
+  background-color: rgb(210, 170, 250);
+  border: 2px solid rgb(253, 227, 247);
   border-radius: 10px;
   width: 40px;
+}
+
+.cart-icon:hover {
+  background-color: rgb(230, 180, 250);
 }

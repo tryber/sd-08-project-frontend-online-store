@@ -30,8 +30,8 @@ class Categories extends Component {
     const { list } = this.state;
     const { handleInputRadio } = this.props;
     return (
-      <div>
-        <p>Categorias</p>
+      <div className="categories-content">
+        <h3>Categorias</h3>
         {
           list.map(({ id, name }) => (
             <div key={ id }>
