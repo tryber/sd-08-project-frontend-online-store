@@ -17,8 +17,10 @@ body {
   min-width: 15%;
 }
 
-.categories-list div {
+.categories-list button {
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
   display: flex;
   flex-grow: 1;
   font-size: 18px;
@@ -26,9 +28,10 @@ body {
   height: 30px;
   justify-content: center;
   padding: 0 10px;
+  width: 100%;
 }
 
-.categories-list div:hover {
+.categories-list button:hover {
   background-color: #303030;
   color: white;
   transition: all 0.5s;

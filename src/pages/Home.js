@@ -2,6 +2,7 @@ import React from 'react';
 
 import * as api from '../services/api';
 import SearchBar from '../components/SearchBar';
+import Categories from './Categories';
 
 export default class Home extends React.Component {
   constructor() {
@@ -17,9 +18,9 @@ export default class Home extends React.Component {
   }
 
   async fetchCategories() {
-    const list = await api.getCategories();
+    const allCategories = await api.getCategories();
     this.setState({
-      categoriesList: list,
+      categoriesList: allCategories,
     });
   }
 
@@ -28,17 +29,9 @@ export default class Home extends React.Component {
     return (
       <main>
         <SearchBar />
-        {typeof (categoriesList) !== 'undefined'
-          && (
-            <aside>
-              {categoriesList
-                .map((item) => (
-                  <button type="button" key={ item.id } data-testid="category">
-                    {item.name}
-                  </button>
-                ))}
-            </aside>
-          )}
+        {categoriesList.length === 0
+          ? <p>Carregando...</p>
+          : <Categories categoriesList={ categoriesList } />}
       </main>
     );
   }
