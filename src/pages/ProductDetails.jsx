@@ -9,6 +9,7 @@ class ProductDetails extends React.Component {
   constructor() {
     super();
     this.sendToCart = this.sendToCart.bind(this);
+    this.updateEvaluationList = this.updateEvaluationList.bind(this);
   }
 
   sendToCart() {
@@ -30,6 +31,10 @@ class ProductDetails extends React.Component {
     }
   }
 
+  updateEvaluationList() {
+    this.setState({});
+  }
+
   render() {
     const { location: { state: { title, imagePath, price, id } } } = this.props;
     const evaluations = JSON.parse(localStorage.getItem(`${id}_evaluations`)) || [];
@@ -46,7 +51,7 @@ class ProductDetails extends React.Component {
           Adicionar ao carrinho
         </button>
         <Link data-testid="shopping-cart-button" to="/shoppingcart">Carrinho</Link>
-        <EvaluationForm id={ id } />
+        <EvaluationForm id={ id } triggerUpdate={ this.updateEvaluationList } />
         <EvaluationList evaluations={ evaluations } />
       </div>
     );

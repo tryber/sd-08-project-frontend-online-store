@@ -25,28 +25,32 @@ class EvaluationForm extends React.Component {
     });
   }
 
-  submitEvaluation() {
-    const { id } = this.props;
-    const { textAreaInput, rating } = this.state;
-    const evaluation = {
-      text: textAreaInput,
-      rating,
+  submitEvaluation(updatingCallback) {
+    return () => {
+      const { id } = this.props;
+      const { textAreaInput, rating } = this.state;
+      const evaluation = {
+        text: textAreaInput,
+        rating,
+      };
+      if (!localStorage.getItem(`${id}_evaluations`)) {
+        localStorage.setItem(`${id}_evaluations`, JSON.stringify([evaluation]));
+      } else {
+        const previousEvaluations = JSON.parse(localStorage.getItem(`${id}_evaluations`));
+        previousEvaluations.push(evaluation);
+        localStorage.setItem(`${id}_evaluations`, JSON.stringify(previousEvaluations));
+      }
+      this.setState({
+        textAreaInput: '',
+        rating: '',
+      });
+      updatingCallback();
     };
-    if (!localStorage.getItem(`${id}_evaluations`)) {
-      localStorage.setItem(`${id}_evaluations`, JSON.stringify([evaluation]));
-    } else {
-      const previousEvaluations = JSON.parse(localStorage.getItem(`${id}_evaluations`));
-      previousEvaluations.push(evaluation);
-      localStorage.setItem(`${id}_evaluations`, JSON.stringify(previousEvaluations));
-    }
-    this.setState({
-      textAreaInput: '',
-      rating: '',
-    });
   }
 
   render() {
     const { textAreaInput } = this.state;
+    const { triggerUpdate } = this.props;
     return (
       <form>
         <p>Escolha aqui a sua avaliação:</p>
@@ -78,7 +82,7 @@ class EvaluationForm extends React.Component {
             onChange={ this.textAreaInputUpdate }
           />
         </label>
-        <button type="button" onClick={ this.submitEvaluation }>
+        <button type="button" onClick={ this.submitEvaluation(triggerUpdate) }>
           Enviar Avaliação
         </button>
       </form>
@@ -90,4 +94,5 @@ export default EvaluationForm;
 
 EvaluationForm.propTypes = {
   id: PropTypes.string.isRequired,
+  triggerUpdate: PropTypes.func.isRequired,
 };
