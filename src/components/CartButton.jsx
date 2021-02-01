@@ -11,7 +11,6 @@ class CartButton extends React.Component {
         >
           CARRINHO
         </Link>
-        <h4>Seu carrinho está vazio</h4>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import CartButton from '../components/CartButton';
+import Categories from '../components/Categories';
 import SearchBar from '../components/SearchBar';
 import SearchByTerms from '../components/SearchByTerms';
 import { getProductsFromCategoryAndQuery } from '../services/api';
@@ -30,9 +31,10 @@ class Home extends React.Component {
     const { results } = this.state;
     return (
       <div>
+        <CartButton />
         <SearchBar onClick={ this.handleClick } onChange={ this.handleChange } />
         <SearchByTerms results={ results } />
-        <CartButton />
+        <Categories />
       </div>
     );
   }
