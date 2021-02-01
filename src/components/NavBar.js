@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 import NavForm from './NavForm';
 
 class NavBar extends React.Component {
-  mobileShowFilterOptions() {
-    console.log('teste');
-  }
-
   render() {
     return (
       <>
@@ -24,6 +20,7 @@ class NavBar extends React.Component {
           teste
         </button>
       </>
+
     );
   }
 }

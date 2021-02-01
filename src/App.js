@@ -82,10 +82,6 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
         <NavBar handleChange={ this.handleChange } handleClick={ this.handleClick } />
         <main className="main">
           <Content
