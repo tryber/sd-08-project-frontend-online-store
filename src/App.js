@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Home, ShoppingCart, DetailsProject } from './pages';
+import { Home, DetailsProduct, ShoppingCart } from './pages';
 
 function App() {
   return (
@@ -10,7 +10,9 @@ function App() {
         <Switch>
           <Route
             path="/product/details/:id"
-            render={ (props) => <DetailsProject { ...props } /> }
+            render={ (props) => (
+              <DetailsProduct { ...props } />
+            ) }
           />
           <Route path="/shoppingcart" component={ ShoppingCart } />
           <Route exact path="/" component={ Home } />

@@ -25,7 +25,6 @@ class Header extends React.Component {
           Digite algum termo de pesquisa ou escolha uma
           categoria.
         </h1>
-
       </div>
     );
   }

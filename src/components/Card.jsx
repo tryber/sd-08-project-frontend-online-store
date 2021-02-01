@@ -5,22 +5,30 @@ import '../css/Card.css';
 
 class Card extends React.Component {
   render() {
-    const { product: { id, title, thumbnail, price } } = this.props;
+    const { product } = this.props;
+    const { id, title, thumbnail, price } = product;
     return (
-      <Link data-testid="product-detail-link" to={ `/product/details/${id}` }>
-        <div key={ id } data-testid="product" className="item-card">
-          <img
-            className="card-image"
-            src={ thumbnail.replace('I', 'O') }
-            alt={ title }
-          />
-          <span className="card-title">{title}</span>
-          <span className="card-price">
-            {' '}
-            {`R$${price}`}
-          </span>
-        </div>
-      </Link>
+      <div key={ id } data-testid="product" className="item-card">
+        <img
+          className="card-image"
+          src={ thumbnail.replace('I', 'O') }
+          alt={ title }
+        />
+        <Link
+          data-testid="product-detail-link"
+          to={ {
+            pathname: `/product/details/${id}`,
+            state: { product },
+          } }
+        >
+          Detalhes
+        </Link>
+        <span className="card-title">{title}</span>
+        <span className="card-price">
+          {' '}
+          {`R$${price}`}
+        </span>
+      </div>
     );
   }
 }
@@ -31,6 +39,7 @@ Card.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    category_id: PropTypes.string,
   }),
 };
 
