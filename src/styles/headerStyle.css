@@ -1,5 +1,5 @@
 header {
-  background-color: rgb(180, 110, 240);
+  background-color: rgb(210, 170, 255);
   color: white;
   display: flex;
   padding: 30px;
@@ -43,7 +43,7 @@ textarea:focus, input:focus, select:focus {
 }
 
 .search-button {
-  background-color: rgb(210, 160, 245);
+  background-color: rgb(210, 170, 250);
   border: 2px solid rgb(253, 227, 247);
   border-radius: 10px;
   margin-left: 10px;
@@ -58,8 +58,12 @@ textarea:focus, input:focus, select:focus {
 }
 
 .cart-icon {
-  background-color: rgb(210, 160, 245);
+  background-color: rgb(210, 170, 250);
   border: 2px solid rgb(253, 227, 247);
   border-radius: 10px;
   width: 40px;
+}
+
+.cart-icon:hover {
+  background-color: rgb(230, 180, 250);
 }
