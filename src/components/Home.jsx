@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import ShopButton from './ShopButton';
-
 import SearchBar from './SearchBar';
 
 class Home extends Component {
@@ -9,7 +7,7 @@ class Home extends Component {
     return (
       <section>
         <SearchBar />
-        <ShopButton />
+
       </section>
     );
   }
