@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CartedProduct from '../components/CartedProduct';
 
 class ShoppingCart extends Component {
   render() {
@@ -20,14 +21,9 @@ class ShoppingCart extends Component {
         </p>
         <ul>
           {productsInCart.map((product, index) => (
-            <li key={ index }>
-              <h3 data-testid="shopping-cart-product-name">{ product.title }</h3>
-              <p data-testid="shopping-cart-product-quantity">1</p>
-              <img src={ product.thumbnail } alt="product model" />
-              <h4>{ product.price }</h4>
-            </li>
-          ))}
+            <CartedProduct key={ index } product={ product } />))}
         </ul>
+        <button type="button">Finalizar Compra</button>
       </div>
     );
   }
