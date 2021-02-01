@@ -4,6 +4,7 @@ import './ProductDetails.css';
 import ButtonCart from '../components/ButtonCart';
 import Header from '../components/Header';
 import AddItem from '../components/AddItem';
+import ProductEvaluation from '../components/ProductEvaluation';
 
 class ProductDetails extends Component {
   render() {
@@ -32,6 +33,9 @@ class ProductDetails extends Component {
                 </li>
               ))}
             </ul>
+          </div>
+          <div>
+            <ProductEvaluation />
           </div>
         </div>
       </section>
