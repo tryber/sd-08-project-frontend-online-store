@@ -32,10 +32,10 @@ class ProductCard extends React.Component {
 
 ProductCard.propTypes = {
   card: PropTypes.shape({
-    title: String,
-    thumbnail: String,
-    price: String,
-    id: String,
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.string,
+    id: PropTypes.string,
   }).isRequired,
   productToCart: PropTypes.func.isRequired,
 };

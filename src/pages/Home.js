@@ -17,6 +17,7 @@ class Home extends React.Component {
       products: [],
       value: '',
       productCart: [],
+      productNumber: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -49,13 +50,14 @@ class Home extends React.Component {
 
   productToCart(newProduct) {
     const { productCart } = this.state;
-    this.setState({
+    this.setState(({ productNumber }) => ({
       productCart: [...productCart, newProduct],
-    });
+      productNumber: productNumber + 1,
+    }));
   }
 
   render() {
-    const { categories, products, productCart } = this.state;
+    const { categories, products, productCart, productNumber } = this.state;
     return (
       <div>
         <h1>Sales</h1>
@@ -79,7 +81,7 @@ class Home extends React.Component {
         </button>
         <br />
         <Link
-          to={ { pathname: '/cart', state: { productCart } } }
+          to={ { pathname: '/cart', state: { productCart, productNumber } } }
           data-testid="shopping-cart-button"
         >
           Ver carrinho
