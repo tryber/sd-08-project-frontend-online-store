@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './components/Home';
 import LandingPageCart from './components/LandingPageCart';
+
+import SearchBar from './components/SearchBar';
+import LandingProductDetails from './components/LandingProductDetails';
 
 function App() {
   return (
     <BrowserRouter>
-      <Route exact path="/" component={ Home } />
+      <Route exact path="/" component={ SearchBar } />
       <Route path="/shopping-cart" component={ LandingPageCart } />
+      <Route path="/product-details/:id" component={ LandingProductDetails } />
     </BrowserRouter>
   );
 }

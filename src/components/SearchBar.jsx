@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
 import Categories from './CategoriesList';
+import ShopButton from './ShopButton';
 
 class SearchBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       product: [],
       query: '',
@@ -63,6 +64,7 @@ class SearchBar extends Component {
         >
           Button
         </button>
+        <ShopButton />
         <Categories onClick={ this.handleClick } />
         {product.length < 1
           ? this.renderAviso()
