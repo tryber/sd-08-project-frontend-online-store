@@ -34,10 +34,8 @@ class ProductDetails extends Component {
               ))}
             </ul>
           </div>
-          <div>
-            <ProductEvaluation />
-          </div>
         </div>
+        <ProductEvaluation />
       </section>
     );
   }

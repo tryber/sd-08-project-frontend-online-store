@@ -1,0 +1,20 @@
+.diplay-container {
+  display: flex;
+}
+
+.diplay-container span {
+  border: 1px solid black;
+  border-radius: 20px;
+  font-size: 20px;
+  text-align: center;
+  width: 80px;
+}
+
+.controller {
+  font-size: 30px;
+}
+
+.controller:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
