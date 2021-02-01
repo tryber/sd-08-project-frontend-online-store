@@ -1,12 +1,14 @@
 import React from 'react';
-import { Header, Main } from '../components';
+import { Header, Main, ButtonCategory } from '../components';
+import '../css/Main-content.css';
+
 import * as api from '../services/api';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // categoryID: '',
+      categoryID: '',
       queryProduct: '',
       listProducts: [],
     };
@@ -14,13 +16,20 @@ class Home extends React.Component {
     this.requestApi = this.requestApi.bind(this);
   }
 
+  componentDidUpdate(previousProp, previousState) {
+    const { categoryID } = this.state;
+    if (previousState.categoryID !== categoryID) {
+      this.requestApi();
+    }
+  }
+
   handleChange({ target }) {
     this.setState({ [target.name]: target.value });
   }
 
   requestApi() {
-    const { queryProduct } = this.state;
-    api.getProductsFromCategoryAndQuery('', queryProduct)
+    const { queryProduct, categoryID } = this.state;
+    api.getProductsFromCategoryAndQuery(categoryID, queryProduct)
       .then((resolve) => this.setState(
         { listProducts: resolve.results.length > 0 ? resolve.results : [],
           queryProduct: '' },
@@ -36,7 +45,10 @@ class Home extends React.Component {
           handleChange={ this.handleChange }
           requestApi={ this.requestApi }
         />
-        <Main listProducts={ listProducts } />
+        <div className="main-content">
+          <ButtonCategory handleChange={ this.handleChange } />
+          <Main listProducts={ listProducts } />
+        </div>
       </div>
     );
   }
