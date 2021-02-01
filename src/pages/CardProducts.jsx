@@ -6,7 +6,7 @@ class CardProducts extends React.Component {
   render() {
     const { products } = this.props;
     return (
-      <div>
+      <div className="cards-container">
         {products.map(({ id, title, thumbnail, price }) => (
           <div className="card" key={ id } data-testid="product">
             <h4>{ title }</h4>

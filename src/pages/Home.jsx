@@ -37,10 +37,12 @@ class Home extends Component {
           radioValue={ radioValue }
           products={ (Produtos) => { this.setState({ products: Produtos }); } }
         />
-        <Categories
-          handleInputRadio={ this.handleInputRadio }
-        />
-        <CardProducts products={ products } />
+        <main className="main-container">
+          <Categories
+            handleInputRadio={ this.handleInputRadio }
+          />
+          <CardProducts products={ products } />
+        </main>
       </div>
     );
   }

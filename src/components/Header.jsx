@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
-import '../styles/headerStyle.css';
 import Logo from '../images/Cat.png';
 import * as api from '../services/api';
 

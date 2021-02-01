@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import './styles/headerStyle.css';
+import './styles/homeStyle.css';
+import './styles/categoriesStyle.css';
+import './styles/cardStyles.css';
 import Home from './pages/Home';
 import ShoppingCart from './pages/shoppingCart';
 import CardProductsDetails from './pages/CardProductsDetails';
