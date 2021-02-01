@@ -9,20 +9,17 @@ class ListCategories extends React.Component {
       categories: [],
     };
 
-    this.fetchQuery = this.fetchQuery.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.fetchCategories();
   }
 
-  async fetchQuery({ target }) {
+  handleClick({ target }) {
     const { value, name } = target;
-    const { getProductsFromCategoryAndQuery } = mercadolibreAPI;
     const { onClick } = this.props;
-    const query = value.replace(/\s/ig, '+');
-    const fetchQuery = await getProductsFromCategoryAndQuery(query, name);
-    onClick(fetchQuery.results);
+    onClick({ id: value, query: name });
   }
 
   async fetchCategories() {
@@ -42,7 +39,7 @@ class ListCategories extends React.Component {
             type="button"
             data-testid="category"
             key={ cat.name }
-            onClick={ this.fetchQuery }
+            onClick={ this.handleClick }
             value={ cat.name }
             name={ cat.id }
           />

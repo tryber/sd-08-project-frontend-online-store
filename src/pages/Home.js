@@ -13,7 +13,7 @@ class Home extends React.Component {
       query: [],
     };
     this.handleClickCategory = this.handleClickCategory.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.fetchQuery = this.fetchQuery.bind(this);
   }
 
   handleClickCategory(name, value) {
@@ -23,8 +23,11 @@ class Home extends React.Component {
     getProductsFromCategoryAndQuery(...category).then((data) => console.log(data));
   }
 
-  handleClick(query) {
-    this.setState((state) => ({ ...state, query }));
+  async fetchQuery({ id, query }) {
+    const { getProductsFromCategoryAndQuery } = mercadolibreAPI;
+    const queryValue = query.replace(/\s/ig, '+');
+    const fetchQuery = await getProductsFromCategoryAndQuery(id, queryValue);
+    this.setState((state) => ({ ...state, query: fetchQuery.results }));
   }
 
   render() {
@@ -32,10 +35,10 @@ class Home extends React.Component {
     return (
       <div>
         <ListCategories
-          onClick={ this.handleClick }
+          onClick={ this.fetchQuery }
         />
         <Search
-          onClick={ this.handleClick }
+          onClick={ this.fetchQuery }
         />
         <Link
           to="/Cart"

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as mercadolibreAPI from '../services/api';
 
 class Search extends React.Component {
   constructor(props) {
@@ -10,7 +9,7 @@ class Search extends React.Component {
       loading: true,
     };
     this.handleChange = this.handleChange.bind(this);
-    this.fetchQuery = this.fetchQuery.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange({ target }) {
@@ -20,13 +19,10 @@ class Search extends React.Component {
     }));
   }
 
-  async fetchQuery() {
+  handleClick() {
     const { searchText } = this.state;
-    const query = searchText.replace(/\s/ig, '+');
-    const { getProductsFromCategoryAndQuery } = mercadolibreAPI;
-    const fetchQuery = await getProductsFromCategoryAndQuery(query, '');
     const { onClick } = this.props;
-    onClick(fetchQuery.results);
+    onClick({ id: searchText, query: '' });
   }
 
   renderInputSearch() {
@@ -43,7 +39,7 @@ class Search extends React.Component {
         />
         <button
           type="button"
-          onClick={ this.fetchQuery }
+          onClick={ this.handleClick }
           data-testid="query-button"
         >
           Pesquisar!
