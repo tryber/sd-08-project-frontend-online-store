@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
+import '../css/Card.css';
 
 class Main extends React.Component {
   render() {
@@ -14,7 +15,7 @@ class Main extends React.Component {
       );
     }
     return (
-      <div key="allProducts">
+      <div className="cards-list" key="allProducts">
         { listProducts.map((product, index) => (
           <Card key={ index } product={ product } />
         ))}
