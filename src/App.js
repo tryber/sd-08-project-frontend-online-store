@@ -75,6 +75,7 @@ class App extends React.Component {
   addToCart(title) {
     const newProduct = { name: title, quantity: 1 };
     const { cartProducts } = this.state;
+    console.log('.');
     this.setState({
       cartProducts: [...cartProducts, newProduct],
     });
