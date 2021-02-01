@@ -6,30 +6,32 @@ class ShoppingCart extends React.Component {
   constructor() {
     super();
 
+    this.state = { quantities: {} };
+
     this.addProduct = this.addProduct.bind(this);
     this.lessProduct = this.lessProduct.bind(this);
     this.quantityItems = this.quantityItems.bind(this);
   }
 
-
-  quantityItems(item) {
-    const quantity = item.quantity = 1;
-    return <span data-testid="shopping-cart-product-quantity">{ quantity }</span>
+  quantityItems(quantity) {
+    return quantity;
   }
 
-  addProduct(item) {
-    console.log(item)
+  addProduct(event, item) {
+    const { target: { previousSibling } } = event;
+    const { available_quantity } = item;
+    if (parseInt(previousSibling.innerText, 10) === available_quantity) return;
+    previousSibling.innerText = (parseInt(previousSibling.innerText, 10) + 1).toString();
   }
 
-  lessProduct() {
-    this.setState((prevState) => ({
-      quantity: prevState.quantity - 1,
-    }));
+  lessProduct(event) {
+    const { target: { nextSibling } } = event;
+    if (nextSibling.innerText === '1') return;
+    nextSibling.innerText = (parseInt(nextSibling.innerText, 10) - 1).toString();
   }
 
   render() {
     const { location: { state: { shoppingCart } } } = this.props;
-    
 
     if (!shoppingCart.length) {
       return (
@@ -37,7 +39,7 @@ class ShoppingCart extends React.Component {
           <Link to="/">Home</Link>
           <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
-        </p>
+          </p>
         </div>
       );
     }
@@ -54,15 +56,15 @@ class ShoppingCart extends React.Component {
             <button
               type="button"
               data-testid="product-decrease-quantity"
-              onClick={ () => this.lessProduct() }
+              onClick={ (event) => this.lessProduct(event) }
             >
               -
             </button>
-            { this.quantityItems(item) }
+            <span data-testid="shopping-cart-product-quantity">{ quantity }</span>
             <button
               type="button"
               data-testid="product-increase-quantity"
-              onClick={ () => this.addProduct(item) }
+              onClick={ (event) => this.addProduct(/* event, item */) }
             >
               +
             </button>
