@@ -8,7 +8,7 @@ export default function CardFreeShipping(props) {
       {show ? (
         <img className="free-shipping" src="/free-shipping.png" alt="free-shipping" />
       ) : null}
-      ;
+      <div />
     </>
   );
 }

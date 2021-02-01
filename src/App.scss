@@ -229,7 +229,7 @@ input {
       border: 0;
       border-left: 1px solid rgb(160, 160, 160);
       font-size: 0.9em;
-      height: 22px;
+      height: 20px;
       width: 4%;
       position: relative;
       left: -56px;
@@ -873,7 +873,7 @@ input {
     .product-info-left {
       // border: 1px solid green;
       max-width: 60%;
-      align-self: center;
+      align-self: flex-start;
       margin: 2px;
       display: flex;
 

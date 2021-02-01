@@ -246,7 +246,7 @@ input:focus {
   border: 0;
   border-left: 1px solid #a0a0a0;
   font-size: 0.9em;
-  height: 22px;
+  height: 20px;
   width: 4%;
   position: relative;
   left: -56px;
@@ -956,8 +956,8 @@ input:focus {
 
 .product-detail .product-info .product-info-left {
   max-width: 60%;
-  -ms-flex-item-align: center;
-      align-self: center;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
   margin: 2px;
   display: -webkit-box;
   display: -ms-flexbox;

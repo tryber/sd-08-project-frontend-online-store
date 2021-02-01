@@ -60,7 +60,10 @@ async function getProductAttributes(productId) {
       }))
       .filter(
         (i) => i.value !== null
+            && i.value !== undefined
+            && i.value !== 'UNDEFINED'
             && i.type !== 'SKU'
+            && i.type !== undefined
             && i.type !== 'Condição do item'
             && i.type !== 'É kit'
             && i.type !== 'Características do produto',
