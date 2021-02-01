@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FaShoppingCart, FaTrashAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import DisplayQuantity from '../components/DisplayQuantity';
 import EmptyCart from '../components/EmptyCart';
 import Header from '../components/Header';
@@ -26,6 +27,7 @@ class Cart extends Component {
       <div>
         <Header />
         <div>
+          {console.log(products)}
           <FaShoppingCart className="icon-cart" />
           <span className="header-cart">Carrinho de Compras</span>
           {products.length < 1 && <EmptyCart />}
@@ -46,6 +48,9 @@ class Cart extends Component {
             ))}
           </section>
         </div>
+        <Link to="/checkout">
+          <button type="button" data-testid="checkout-products"> Finalizar compra</button>
+        </Link>
       </div>
     );
   }
