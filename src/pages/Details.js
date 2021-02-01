@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
+import * as localStorage from '../services/apiLocalStorage';
 
 export default class Details extends React.Component {
   constructor() {
@@ -37,11 +40,25 @@ export default class Details extends React.Component {
 
   render() {
     const { product: { title, price, thumbnail }, rating, comment } = this.state;
+    const { product } = this.state;
     return (
       <div>
+        <Link
+          to="/shoppingcart"
+          data-testid="shopping-cart-button"
+        >
+          Seu Carrinho de Compras
+        </Link>
         <h2 data-testid="product-detail-name">{title}</h2>
         <h3>{price}</h3>
         <img src={ thumbnail } alt={ title } />
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => localStorage.addToCart(product) }
+        >
+          Adiciona ao Carrinho
+        </button>
         <form>
           <label htmlFor="rating">
             Rating:
