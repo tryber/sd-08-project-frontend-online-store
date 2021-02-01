@@ -10,7 +10,7 @@ export default class ProductCard extends React.Component {
         <Link to={ `/details/${id}` } data-testid="product-detail-link">
           <p>{title}</p>
           <img src={ thumbnail } alt={ title } />
-          <p>{`R$${price}`}</p>
+          <p>{`R$${price.toFixed(2)}`}</p>
         </Link>
         <button
           type="button"
