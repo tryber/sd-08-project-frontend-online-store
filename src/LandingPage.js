@@ -11,12 +11,14 @@ class LandingPage extends React.Component {
       categoryId: '',
       query: '',
       productList: [],
+      shoppingCart: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.getCategoriesList = this.getCategoriesList.bind(this);
     this.getProductsFromAPI = this.getProductsFromAPI.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.addItemToCart = this.addItemToCart.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +55,31 @@ class LandingPage extends React.Component {
     });
   }
 
+  addItemToCart(product) {
+    // const cartList = JSON.parse(localStorage.getItem('shoppingCart'));
+    // console.log(cartList);
+    // const shoppingCart = cartList.includes(product) ? cartList : [...cartList, product];
+    // localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+    const { shoppingCart } = this.state;
+    if (!shoppingCart.includes(product)) {
+      this.setState({
+        shoppingCart: [...shoppingCart, product],
+      });
+    }
+  }
+
+  renderAddButtonCart(product) {
+    return (
+      <button
+        type="button"
+        data-testid="product-add-to-cart"
+        onClick={ () => this.addItemToCart(product) }
+      >
+        Adicionar produto ao carrinho
+      </button>
+    );
+  }
+
   renderCategoryList(categoriesList) {
     return (
       <div>
@@ -66,15 +93,47 @@ class LandingPage extends React.Component {
                 data-testid="category"
                 onClick={ this.handleClick }
               >
-                { category.name }
+                { category.name}
               </button>))
         }
       </div>
     );
   }
 
+  renderProductList(productList) {
+    return (
+      <div>
+        { productList.map((product) => (
+          <section
+            key={ product.id }
+            data-testid="product"
+          >
+            <p>{product.title}</p>
+            <p>
+              R$
+              {product.price}
+            </p>
+            <img src={ product.thumbnail } alt={ product.title } />
+            <Link
+              to={ {
+                pathname: '/product-details',
+                search: '?sort=name',
+                hash: '#the-hash',
+                state: { product },
+              } }
+              data-testid="product-detail-link"
+            >
+              <button type="button">Detalhes</button>
+            </Link>
+            { this.renderAddButtonCart(product) }
+          </section>
+        ))}
+      </div>
+    );
+  }
+
   render() {
-    const { categoriesList, categoryId, query, productList } = this.state;
+    const { categoriesList, categoryId, query, productList, shoppingCart } = this.state;
     return (
       <div>
         <button
@@ -90,27 +149,17 @@ class LandingPage extends React.Component {
           value={ query }
           onChange={ this.handleChange }
         />
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+        <Link
+          to={ { pathname: '/shopping-cart', state: { shoppingCart } } }
+          data-testid="shopping-cart-button"
+        >
           Carrinho de Compras
         </Link>
-        <h1
-          data-testid="home-initial-message"
-        >
+        <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
-        { this.renderCategoryList(categoriesList)}
-        <div>
-          { productList.map((product) => (
-            <div key={ product.id } data-testid="product">
-              <p>{ product.title }</p>
-              <p>
-                R$
-                { product.price }
-              </p>
-              <img src={ product.thumbnail } alt={ product.title } />
-            </div>
-          )) }
-        </div>
+        { this.renderCategoryList(categoriesList) }
+        { this.renderProductList(productList) }
       </div>
     );
   }
