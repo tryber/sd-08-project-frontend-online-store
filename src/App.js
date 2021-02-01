@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import CarrinhoCompras from './pages/CarrinhoCompras';
@@ -9,9 +9,11 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Route path="/carrinho-compras" component={ CarrinhoCompras } />
-        <Route exact path="/:id" component={ ProductDetail } />
-        <Route exact path="/" component={ Home } />
+        <Switch>
+          <Route path="/carrinho-compras" component={ CarrinhoCompras } />
+          <Route exact path="/:id" component={ ProductDetail } />
+          <Route exact path="/" component={ Home } />
+        </Switch>
       </Router>
     );
   }
