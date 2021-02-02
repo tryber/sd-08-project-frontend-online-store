@@ -108,10 +108,15 @@ class Checkout extends Component {
   }
 
   render() {
-    const { cart } = this.props;
+    const { cart, handleIncrease, handleDecrease, handleRemove } = this.props;
     return (
       <div className={ styles.checkout }>
-        <ProductsReview cart={ cart } />
+        <ProductsReview
+          cart={ cart }
+          handleIncrease={ handleIncrease }
+          handleDecrease={ handleDecrease }
+          handleRemove={ handleRemove }
+        />
         <form
           className={ styles.checkoutForm }
           onSubmit={ (event) => event.preventDefault() }
@@ -134,6 +139,9 @@ Checkout.propTypes = {
     }),
     quantity: PropTypes.number,
   }).isRequired,
+  handleIncrease: PropTypes.func.isRequired,
+  handleDecrease: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
 };
 
 export default Checkout;

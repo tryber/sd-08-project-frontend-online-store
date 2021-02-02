@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 class ProductsReview extends Component {
   render() {
-    const { cart } = this.props;
+    const { cart, handleIncrease, handleDecrease, handleRemove } = this.props;
     const total = Object.values(cart)
       .map(({ item: { price }, quantity }) => price * quantity)
       .reduce((acc, cur) => acc + cur, 0);
@@ -15,11 +15,15 @@ class ProductsReview extends Component {
     return (
       <div className={ styles.productsReview }>
         <h2 className={ styles.title }>Revise seus produtos</h2>
-        { Object.values(cart).map(({ item }) => item)
-          .map((item, index) => (
+        { Object.values(cart)
+          .sort(({ order: orderA }, { order: orderB }) => orderA - orderB)
+          .map((cartItem, index) => (
             <ProductsReviewItem
               key={ index }
-              product={ item }
+              cartItem={ cartItem }
+              handleIncrease={ handleIncrease }
+              handleDecrease={ handleDecrease }
+              handleRemove={ handleRemove }
             />)) }
         <div className={ styles.total }>
           <b>Total:</b>
@@ -41,6 +45,9 @@ ProductsReview.propTypes = {
     }),
     quantity: PropTypes.number,
   }).isRequired,
+  handleIncrease: PropTypes.func.isRequired,
+  handleDecrease: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
 };
 
 export default ProductsReview;

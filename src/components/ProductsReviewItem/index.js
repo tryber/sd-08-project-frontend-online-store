@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import ProductControls from '../ProductControls';
+
 import styles from './styles.module.css';
 
 class ProductsReview extends Component {
   render() {
-    const { product } = this.props;
+    const { cartItem, handleRemove, handleIncrease, handleDecrease } = this.props;
+    const { item: product, quantity } = cartItem;
     const { title, price, thumbnail, id } = product;
     return (
       <div className={ styles.productReviewItem }>
@@ -16,9 +19,15 @@ class ProductsReview extends Component {
           alt={ title }
         />
         <p className={ styles.title }>{ title }</p>
+        <ProductControls
+          handleIncrease={ handleIncrease }
+          handleDecrease={ handleDecrease }
+          handleRemove={ handleRemove }
+          product={ product }
+        />
         <p className={ styles.price }>
           R$
-          { price }
+          { (price * quantity).toFixed(2) }
         </p>
         <Link
           data-testid="product-detail-link"
@@ -36,11 +45,19 @@ class ProductsReview extends Component {
 }
 
 ProductsReview.propTypes = {
-  product: PropTypes.shape({
-    title: PropTypes.string,
-    price: PropTypes.number,
-    thumbnail: PropTypes.string,
+  cartItem: PropTypes.shape({
+    item: PropTypes.shape({
+      title: PropTypes.string,
+      price: PropTypes.number,
+      id: PropTypes.string,
+      thumbnail: PropTypes.string,
+    }),
+    quantity: PropTypes.number.isRequired,
+    order: PropTypes.number.isRequired,
   }).isRequired,
+  handleIncrease: PropTypes.func.isRequired,
+  handleDecrease: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
 };
 
 export default ProductsReview;

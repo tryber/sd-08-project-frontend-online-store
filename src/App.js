@@ -117,6 +117,9 @@ class App extends Component {
               <Checkout
                 { ...props }
                 cart={ cart }
+                handleIncrease={ this.handleIncrease }
+                handleDecrease={ this.handleDecrease }
+                handleRemove={ this.handleRemove }
               />
             ) }
           />
