@@ -6,7 +6,7 @@ import AddItem from './AddItem';
 
 class ProductCard extends Component {
   render() {
-    const { id, title, image, price, attributes } = this.props;
+    const { id, title, image, price, attributes, availableQuantity } = this.props;
     return (
       <div data-testid="product" className="card-container">
         <span className="product-title">{title}</span>
@@ -22,7 +22,7 @@ class ProductCard extends Component {
         >
           Detalhes
         </Link>
-        <AddItem title={ title } price={ price } dataTestId="product-add-to-cart" />
+        <AddItem title={ title } price={ price } availableQuantity={ availableQuantity } dataTestId="product-add-to-cart" />
       </div>
     );
   }
@@ -32,6 +32,7 @@ ProductCard.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  availableQuantity: PropTypes.number.isRequired,
   price: PropTypes.string.isRequired,
   attributes: PropTypes.arrayOf(Object).isRequired,
 };

@@ -25,6 +25,7 @@ class SearchPage extends Component {
 
   render() {
     const { products } = this.state;
+    console.log(products);
     return (
       <div>
         <SearchBar requestProducts={ this.requestProducts } />
@@ -35,6 +36,7 @@ class SearchPage extends Component {
               id={ product.id }
               title={ product.title }
               image={ product.thumbnail }
+              available={ product.available_quantity }
               price={ `R$ ${product.price}` }
               attributes={ product.attributes }
             />
