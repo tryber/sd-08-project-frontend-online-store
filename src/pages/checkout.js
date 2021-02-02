@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Checkout extends Component {
   constructor(props) {
@@ -26,112 +27,124 @@ class Checkout extends Component {
   inputName() {
     const { name } = this.state;
     return (
-      <label htmlFor="titleInput">
-        Nome completo
-        <input
-          type="text"
-          value={ name }
-          data-testid="checkout-fullname"
-          onChange={ this.handleChange }
-          id="inputName"
-          name="name"
-        />
-      </label>
+      <FormGroup>
+        <Label htmlFor="titleInput">
+          Nome completo
+          <Input
+            type="text"
+            value={ name }
+            data-testid="checkout-fullname"
+            onChange={ this.handleChange }
+            id="inputName"
+            name="name"
+          />
+        </Label>
+      </FormGroup>
     );
   }
 
   inputEmail() {
     const { email } = this.state;
     return (
-      <label htmlFor="e-mail">
-        Email
-        <input
-          type="text"
-          value={ email }
-          data-testid="checkout-email"
-          onChange={ this.handleChange }
-          id="email"
-          name="email"
-        />
-      </label>
+      <FormGroup>
+        <Label htmlFor="e-mail">
+          Email
+          <Input
+            type="text"
+            value={ email }
+            data-testid="checkout-email"
+            onChange={ this.handleChange }
+            id="email"
+            name="email"
+          />
+        </Label>
+      </FormGroup>
     );
   }
 
   inputCPF() {
     const { CPF } = this.state;
     return (
-      <label htmlFor="CPF">
-        CPF
-        <input
-          type="text"
-          value={ CPF }
-          data-testid="checkout-cpf"
-          onChange={ this.handleChange }
-          id="cpf"
-          name="cpf"
-        />
-      </label>
+      <FormGroup>
+        <Label htmlFor="CPF">
+          CPF
+          <Input
+            type="number"
+            value={ CPF }
+            data-testid="checkout-cpf"
+            onChange={ this.handleChange }
+            id="cpf"
+            name="cpf"
+          />
+        </Label>
+      </FormGroup>
     );
   }
 
   inputNumber() {
     const { telefone } = this.state;
     return (
-      <label htmlFor="checkout-phone">
-        Telefone
-        <input
-          type="text"
-          data-testid="checkout-phone"
-          name="telefone"
-          value={ telefone }
-          onChange={ this.handleChange }
-        />
-      </label>
+      <FormGroup>
+        <Label htmlFor="checkout-phone">
+          Telefone
+          <Input
+            type="number"
+            data-testid="checkout-phone"
+            name="telefone"
+            value={ telefone }
+            onChange={ this.handleChange }
+          />
+        </Label>
+      </FormGroup>
     );
   }
 
   inputCEP() {
     const { CEP } = this.state;
     return (
-      <label htmlFor="CEP">
-        CEP
-        <input
-          type="text"
-          data-testid="checkout-cep"
-          name="telefone"
-          value={ CEP }
-          onChange={ this.handleChange }
-        />
-      </label>
+      <FormGroup>
+        <Label htmlFor="CEP">
+          CEP
+          <Input
+            type="number"
+            data-testid="checkout-cep"
+            name="cep"
+            value={ CEP }
+            onChange={ this.handleChange }
+          />
+        </Label>
+      </FormGroup>
     );
   }
 
   inputAddress() {
     const { address } = this.state;
     return (
-      <label htmlFor="CEP">
-        Endereço
-        <input
-          type="text"
-          data-testid="checkout-address"
-          name="endereço"
-          value={ address }
-          onChange={ this.handleChange }
-        />
-      </label>
+      <FormGroup>
+        <Label htmlFor="CEP">
+          Endereço
+          <Input
+            type="text"
+            data-testid="checkout-address"
+            name="endereço"
+            value={ address }
+            onChange={ this.handleChange }
+          />
+        </Label>
+      </FormGroup>
     );
   }
 
   render() {
     return (
-      <form>
+      <Form>
         { this.inputName() }
         { this.inputEmail() }
         { this.inputCPF() }
         { this.inputNumber() }
         { this.inputCEP() }
         { this.inputAddress() }
-      </form>
+      </Form>
     );
   }
 }
