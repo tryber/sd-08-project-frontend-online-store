@@ -9,8 +9,10 @@ class ProductCard extends React.Component {
       <div>
         { productCard.map(({ id, title, thumbnail, price }) => (
           <div key={ id }>
-            <Link to={ { pathname: `/productDetails/${id}`, 
-              state: { id, title, thumbnail, price } } } data-testid="product-detail-link"
+            <Link 
+              to={ { pathname: `/productDetails/${id}`,
+              state: { id, title, thumbnail, price } } }
+              data-testid="product-detail-link"
             >
               <div className="card" data-testid="product">
                 <h4>

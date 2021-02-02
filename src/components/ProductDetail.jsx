@@ -23,7 +23,7 @@ ProductDetail.propTypes = {
       title: PropTypes.string,
       thumbnail: PropTypes.string,
       price: PropTypes.number,
-    })
+    }),
   }).isRequired,
 };
 
