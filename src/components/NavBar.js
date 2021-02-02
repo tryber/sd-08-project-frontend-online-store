@@ -23,7 +23,6 @@ class NavBar extends React.Component {
           </Link>
           <div data-testid="shopping-cart-size" className="cart-counter">
             { cartProducts.length }
-            {console.log(cartProducts.length)}
           </div>
         </div>
       </header>
