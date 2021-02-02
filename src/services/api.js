@@ -4,6 +4,7 @@ export async function getCategories() {
     .then((response) => {
       if (!response.ok) return new Error('Servidor não encontrado');
       if (response.status === noResult) return new Error('Erro 404');
+      response.json();
       return categorie;
     });
 }
