@@ -7,7 +7,6 @@ import { getCategories } from '../services/api';
 class Home extends React.Component {
   constructor() {
     super();
-
     this.state = {
       busca: '',
       categories: [],
@@ -56,7 +55,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories, busca } = this.state;
+    const { categories, busca  } = this.state;
     return (
       <form>
         {/* cria uma label e um input  e o botao */}
