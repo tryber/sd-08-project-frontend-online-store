@@ -1,4 +1,5 @@
 import React from 'react';
+import CartProduct from './CartProduct';
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -20,13 +21,13 @@ class ShoppingCart extends React.Component {
           Seu carrinho está vazio
         </p>);
     }
-    return (<p>
-      {cart.map((cartelement) => (
-        <h2>
-          {cartelement.title}
-        </h2>
-      ))}
-            </p>);
+    return (
+      <p>
+        {cart.map((cartelement) => (<CartProduct
+          Key={ `${cartelement.id}` }
+          prop={ cartelement }
+        />))}
+      </p>);
   }
 }
 export default ShoppingCart;
