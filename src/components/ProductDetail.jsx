@@ -25,6 +25,7 @@ class ProductDetail extends Component {
 
     return (
       <div data-testid="product-detail-name">
+        
         <p>{ state.title }</p>
         <img src={ state.thumbnail } alt={ state.title } />
         <p>{ `R$ ${state.price.toFixed(2)}` }</p>
