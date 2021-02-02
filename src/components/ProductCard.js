@@ -6,8 +6,10 @@ import FreeShipping from '../img/free-shipping-icon.png';
 import AddItem from './AddItem';
 
 class ProductCard extends Component {
-  render() {    
-    const { id, title, image, price, attributes, availableQuantity, freeShipping } = this.props;
+  render() {
+    const {
+      id, title, image, price, attributes, availableQuantity, freeShipping
+    } = this.props;
     return (
       <div data-testid="product" className="card-container">
         <span className="product-title">{title}</span>
