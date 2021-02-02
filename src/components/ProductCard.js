@@ -37,7 +37,7 @@ ProductCard.propTypes = {
   card: PropTypes.shape({
     title: PropTypes.string,
     thumbnail: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     id: PropTypes.string,
   }).isRequired,
   productToCart: PropTypes.func.isRequired,
