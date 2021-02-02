@@ -69,7 +69,6 @@ class SearchProducts extends React.Component {
     let itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
 
     if (itemsCart && itemsCart.length !== 0) {
-      console.log(itemsCart);
       itemsCart.forEach((item) => {
         if (item.id === product.id) {
           item.qtd += 1;
