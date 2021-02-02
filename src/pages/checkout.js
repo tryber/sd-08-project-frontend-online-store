@@ -26,10 +26,10 @@ class Checkout extends Component {
   inputName() {
     const { name } = this.state;
     return (
-      <FormGroup>
-        <Label htmlFor="titleInput">
+      <div className="mb-3">
+        <label htmlFor="titleInput" className="form-label">
           Nome completo
-          <Input
+          <input
             type="text"
             value={ name }
             data-testid="checkout-fullname"
@@ -37,37 +37,39 @@ class Checkout extends Component {
             id="inputName"
             name="name"
           />
-        </Label>
-      </FormGroup>
+        </label>
+      </div>
     );
   }
 
   inputEmail() {
     const { email } = this.state;
     return (
-      <FormGroup>
-        <Label htmlFor="e-mail">
-          Email
-          <Input
-            type="text"
-            value={ email }
-            data-testid="checkout-email"
-            onChange={ this.handleChange }
-            id="email"
-            name="email"
-          />
-        </Label>
-      </FormGroup>
+      <div className="mb-3">
+        <div className="mb-3">
+          <label htmlFor="e-mail" className="form-label">
+            Email
+            <input
+              type="text"
+              value={ email }
+              data-testid="checkout-email"
+              onChange={ this.handleChange }
+              id="email"
+              name="email"
+            />
+          </label>
+        </div>
+      </div>
     );
   }
 
   inputCPF() {
     const { CPF } = this.state;
     return (
-      <FormGroup>
-        <Label htmlFor="CPF">
+      <div className="mb-3">
+        <label htmlFor="CPF" className="form-label">
           CPF
-          <Input
+          <input
             type="text"
             value={ CPF }
             data-testid="checkout-cpf"
@@ -75,44 +77,44 @@ class Checkout extends Component {
             id="cpf"
             name="cpf"
           />
-        </Label>
-      </FormGroup>
+        </label>
+      </div>
     );
   }
 
   inputNumber() {
     const { telefone } = this.state;
     return (
-      <FormGroup>
-        <Label htmlFor="checkout-phone">
+      <div className="mb-3">
+        <label htmlFor="checkout-phone" className="form-label">
           Telefone
-          <Input
+          <input
             type="text"
             data-testid="checkout-phone"
             name="telefone"
             value={ telefone }
             onChange={ this.handleChange }
           />
-        </Label>
-      </FormGroup>
+        </label>
+      </div>
     );
   }
 
   inputCEP() {
     const { CEP } = this.state;
     return (
-      <FormGroup>
-        <Label htmlFor="CEP">
+      <div className="mb-3">
+        <label htmlFor="CEP" className="form-label">
           CEP
-          <Input
+          <input
             type="text"
             data-testid="checkout-cep"
             name="cep"
             value={ CEP }
             onChange={ this.handleChange }
           />
-        </Label>
-      </FormGroup>
+        </label>
+      </div>
     );
   }
 
@@ -120,32 +122,32 @@ class Checkout extends Component {
     const { address } = this.state;
 
     return (
-      <FormGroup>
-        <Label htmlFor="CEP">
+      <form>
+        <label htmlFor="CEP" className="form-label">
           Endereço
-          <Input
+          <input
             type="text"
             data-testid="checkout-address"
             name="endereço"
             value={ address }
             onChange={ this.handleChange }
           />
-        </Label>
-      </FormGroup>
+        </label>
+      </form>
     );
   }
 
   render() {
     return (
-      <Form>
+      <form>
         { this.inputName() }
         { this.inputEmail() }
         { this.inputCPF() }
         { this.inputNumber() }
         { this.inputCEP() }
         { this.inputAddress() }
-        <Button href="https://www.youtube.com/watch?v=3e14skRuVk0">Finalizar a Compra</Button>
-      </Form>
+        <button type="button" href="https://www.youtube.com/watch?v=3e14skRuVk0">Finalizar a Compra</button>
+      </form>
 
     );
   }
