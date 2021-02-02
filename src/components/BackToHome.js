@@ -9,7 +9,7 @@ class HomeButton extends React.Component {
       >
         <img
           alt="home"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvBJgq9VyJ3OzUEsJW0lSRaukc0M9A_eoqJw&usqp=CAU"
+          src="https://www.freepnglogos.com/uploads/logo-home-png/chimney-home-icon-transparent-1.png"
           width="50"
           height="50"
         />
