@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import addStorage from '../services/storage';
 
 class ProductCard extends React.Component {
   render() {
@@ -17,6 +18,13 @@ class ProductCard extends React.Component {
         >
           <img src={ thumbnail } alt="products" data-testid="product-detail-link" />
         </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => addStorage(product) }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
