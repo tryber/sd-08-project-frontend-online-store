@@ -13,6 +13,7 @@ class ProductsList extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -31,8 +32,14 @@ class ProductsList extends Component {
     });
   }
 
+  handleEnter(event) {
+    if (event.key === 'Enter') {
+      this.handleClick();
+    }
+  }
+
   render() {
-    const { results } = this.state;
+    const { results, search } = this.state;
     return (
       <main>
         <Link to="/shoppingcart" data-testid="shopping-cart-button">Cart</Link>
@@ -43,6 +50,7 @@ class ProductsList extends Component {
             data-testid="query-input"
             name="search"
             onChange={ this.handleChange }
+            onKeyDown={ this.handleEnter }
             type="text"
           />
           <button
@@ -54,7 +62,7 @@ class ProductsList extends Component {
           </button>
           {results
             .map((item) => (
-              <ListCard key={ item.id } item={ item } />))}
+              <ListCard search={ search } key={ item.id } item={ item } />))}
         </p>
       </main>
     );
