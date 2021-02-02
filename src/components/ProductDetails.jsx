@@ -142,6 +142,7 @@ class ProductDetails extends React.Component {
             name="textArea"
             placeholder="Avaliação"
             onChange={ this.handleChange }
+            data-testid="product-detail-evaluation"
             value={ textArea }
           />
           <button

@@ -6,7 +6,8 @@ import './CardProducts.css';
 class CardProducts extends React.Component {
   render() {
     const { product, addCart } = this.props;
-    const { thumbnail, price, title, id, shipping: { free_shipping } } = product;
+    const { thumbnail, price, title, id, shipping } = product;
+    const { free_shipping: freeShipping } = shipping;
 
     return (
       <div className="productCard" data-testid="product">
@@ -19,7 +20,7 @@ class CardProducts extends React.Component {
             { price }
           </p>
           <h4 data-testid="product-detail-name">{ title }</h4>
-          {free_shipping === true && <p data-testid="free-shipping">Frete Grátis</p>}
+          {freeShipping === true && <p data-testid="free-shipping">Frete Grátis</p>}
           <Link
             to={ {
               pathname: `/${id}`,
@@ -47,6 +48,9 @@ CardProducts.propTypes = {
     price: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }).isRequired,
   }).isRequired,
   addCart: PropTypes.func.isRequired,
 };
