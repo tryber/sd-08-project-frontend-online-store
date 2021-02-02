@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 export default class FreteGratis extends Component {
   render() {
     const { product } = this.props;
-    const { shipping: { free_shipping } } = product;
+    const { shipping } = product;
+    const freeShipping = shipping.free_shipping;
 
-    if (free_shipping === true) {
+    if (freeShipping === true) {
       return (
         <p data-testid="free-shipping">Frete Grátis</p>
       );
