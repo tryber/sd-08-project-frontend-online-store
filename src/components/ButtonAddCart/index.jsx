@@ -7,12 +7,12 @@ class ButtonAddCart extends React.Component {
     this.buttonAddProduct = this.buttonAddProduct.bind(this);
   }
 
-  buttonAddProduct(addProductToCart) {
+  buttonAddProduct(productInfo, addProductToCart) {
     return (
       <button
         type="button"
         data-testid="product-detail-add-to-cart"
-        onClick={ () => { addProductToCart(addProductToCart); } }
+        onClick={ () => { addProductToCart(productInfo); } }
       >
         Adicionar Produto
       </button>

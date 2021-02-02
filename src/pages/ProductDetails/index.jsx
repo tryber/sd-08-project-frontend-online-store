@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../components/Button';
-// import * as api from '../../services/api';
+import Evaluation from '../../components/Evaluation';
 import Loading from '../../components/Loading';
 import ButtonAddCart from '../../components/ButtonAddCart';
 
@@ -13,12 +13,42 @@ class ProductDetails extends React.Component {
     this.state = {
       loading: true,
       product: {},
+      shoppingCart: {},
     };
     this.responseFromAPI = this.responseFromAPI.bind(this);
+    this.getCartData = this.getCartData.bind(this);
+    this.addProductToCart = this.addProductToCart.bind(this);
+    this.saveCartData = this.saveCartData.bind(this);
   }
 
   componentDidMount() {
     this.responseFromAPI();
+    this.getCartData();
+  }
+
+  getCartData() {
+    const cart = localStorage.getItem('currentCart');
+    if (cart) this.setState({ shoppingCart: JSON.parse(cart) });
+  }
+
+  saveCartData() {
+    const { shoppingCart } = this.state;
+    localStorage.setItem('currentCart', JSON.stringify(shoppingCart));
+  }
+
+  addProductToCart(productInfo) {
+    const { shoppingCart } = this.state;
+
+    const { id } = productInfo;
+    if (shoppingCart[id]) {
+      productInfo.amountInCart = shoppingCart[id].amountInCart + 1;
+    } else {
+      productInfo.amountInCart = 1;
+    }
+
+    this.setState({
+      shoppingCart: { ...shoppingCart, [id]: productInfo },
+    }, () => { this.saveCartData(); });
   }
 
   async responseFromAPI() {
@@ -34,9 +64,14 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { loading, product } = this.state;
+    const { loading, product, shoppingCart } = this.state;
     if (loading) {
-      return <Loading />;
+      return (
+        <>
+          <Button shoppingCart={ shoppingCart } />
+          <Loading />
+        </>
+      );
     }
     return (
       <div>
@@ -65,9 +100,13 @@ class ProductDetails extends React.Component {
               </p>
             ))}
           </ul>
+          <Evaluation />
         </div>
-        <ButtonAddCart productInfo={ product } addProductToCart={  }/>
-        <Button />
+        <ButtonAddCart
+          productInfo={ product }
+          addProductToCart={ this.addProductToCart }
+        />
+        <Button shoppingCart={ shoppingCart } />
       </div>
     );
   }
