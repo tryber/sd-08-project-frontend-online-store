@@ -2,6 +2,15 @@ function checkingProduct(storageProducts, title) {
   return storageProducts.some((productSome) => productSome.title === title);
 }
 
+export function getTotalValue() {
+  const storageProducts = JSON.parse(localStorage.getItem('cart'));
+  function totalCoin(acc, crr) {
+    acc += crr.price * crr.count;
+    return acc;
+  }
+  return storageProducts.reduce(totalCoin, 0);
+}
+
 export function addAnotherProduct(title) {
   let storageProducts = JSON.parse(localStorage.getItem('cart'));
   const newStorageProducts = [];
