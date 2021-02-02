@@ -30,9 +30,9 @@ CartListItem.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    total: PropTypes.string.isRequired,
-    quantity: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
   }).isRequired,
   handleItemAdd: PropTypes.func.isRequired,
   handleItemRemove: PropTypes.func.isRequired,

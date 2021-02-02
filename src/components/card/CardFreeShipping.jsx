@@ -6,7 +6,12 @@ export default function CardFreeShipping(props) {
   return (
     <>
       {show ? (
-        <img className="free-shipping" src="/free-shipping.png" alt="free-shipping" />
+        <img
+          className="free-shipping"
+          src="/free-shipping.png"
+          alt="free-shipping"
+          data-testid="free-shipping"
+        />
       ) : null}
       <div />
     </>

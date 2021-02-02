@@ -39,6 +39,7 @@ const parseCart = (cart) => {
   if (!cart) return [];
   return cart.reduce((a, c) => {
     const index = a.findIndex((i) => i.id === c.id);
+    c.price = parseFloat(c.price);
     if (index >= 0) {
       a[index].quantity += 1;
       a[index].total += parseFloat(c.price);
