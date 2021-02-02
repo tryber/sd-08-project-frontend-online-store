@@ -18,7 +18,7 @@ class ShoppingCart extends Component {
             </h4>
             <img src={ product.thumbnail } alt={ product.title } />
             <p>
-              { `R$ ${product.price}` }
+              { `R$ ${product.price.toFixed(2)}` }
             </p>
             <p data-testid="shopping-cart-product-quantity">
               { 1 }

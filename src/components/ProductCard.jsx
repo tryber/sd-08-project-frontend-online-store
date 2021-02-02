@@ -26,10 +26,11 @@ class ProductCard extends React.Component {
                 </h4>
                 <img src={ product.thumbnail } alt={ product.title } />
                 <p>
-                  { `R$ ${product.price}` }
+                  { `R$ ${product.price.toFixed(2)}` }
                 </p>
               </div>
             </Link>
+            {console.log(addToCar)}
             <button
               type="button"
               data-testid="product-add-to-cart"
