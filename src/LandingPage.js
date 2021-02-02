@@ -109,6 +109,8 @@ class LandingPage extends React.Component {
             data-testid="product"
           >
             <p>{product.title}</p>
+            {(product.shipping.free_shipping)
+              ? <p data-testid="free-shipping"> Frete Grátis </p> : ''}
             <p>
               R$
               {product.price}

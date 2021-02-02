@@ -51,6 +51,8 @@ class ProductDetails extends React.Component {
           <h1 data-testid="product-detail-name">
             {product.title}
           </h1>
+          {(product.shipping.free_shipping)
+            ? <p data-testid="free-shipping"> Frete Grátis </p> : ''}
           <span>R$</span>
           <span>{product.price}</span>
           <span>Quantidade</span>
