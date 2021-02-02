@@ -19,9 +19,7 @@ export default function DetailsProject() {
       </div>
       <div className="product-img">
         <img
-          className=""
-          src={ thumbnail.replace('I', 'O') }
-          alt="foto"
+          className="" src={ thumbnail.replace('I', 'O') } alt="foto"
         />
       </div>
       <div className="detail-name">
@@ -42,18 +40,16 @@ export default function DetailsProject() {
           Adicionar ao carrinho
         </button>
       </div>
-      <div>
-        <table>
-          <tbody>
-            {data.map((attribute, index) => (
-              <tr key={ index }>
-                <td>{attribute.name}</td>
-                <td>{Object.values({ ...attribute.values }).map((e) => e.name)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <table>
+        <tbody>
+          {data.map((attribute, index) => (
+            <tr key={ index }>
+              <td>{attribute.name}</td>
+              <td>{Object.values({ ...attribute.values }).map((e) => e.name)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </section>
   );
 }
