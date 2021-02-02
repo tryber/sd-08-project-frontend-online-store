@@ -35,20 +35,19 @@ class ShoppingCart extends Component {
     const { cart } = this.state;
     return (
       <div className="cart-products">
-        { cart.map(({ amount, title, id }) => (
-          <div className="product" key={ id }>
-            <p
-              className="product-title"
-              data-testid="shopping-cart-product-name"
-            >
-              { title }
-            </p>
-            <p
-              className="product-qtd"
-              data-testid="shopping-cart-product-quantity"
-            >
-              { amount }
-            </p>
+        { cart.map(({ price, amount, title, id, thumbnail }) => (
+          <div className="product" key={ id } data-testid="shopping-cart-product-name">
+            <h1>{ title }</h1>
+            <h2 className="product-qtd" data-testid="shopping-cart-product-quantity">
+              { `Quantidade: ${amount}` }
+              <p>
+                { `Preço unitário: R$ ${price}` }
+              </p>
+              <p>
+                { `Total: R$ ${price * amount}` }
+              </p>
+            </h2>
+            <img src={ thumbnail } alt={ title } />
           </div>
         ))}
       </div>
