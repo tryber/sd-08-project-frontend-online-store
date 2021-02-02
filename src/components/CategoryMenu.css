@@ -1,0 +1,17 @@
+.sideBar {
+  margin-left: 10px;
+  position: fixed;
+  width: 18vw;
+}
+
+.sideBarUl {
+  height: 80vh;
+  line-height: 23px;
+  list-style: none;
+  overflow-y: scroll;
+  padding-left: 5px;
+}
+
+.categoryTitle {
+  text-align: center;
+}

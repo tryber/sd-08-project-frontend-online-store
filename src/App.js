@@ -1,23 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import SearchBar from './components/SearchBar';
+import PageShoppingCart from './pages/ShoppingCart';
+import SpecsPage from './pages/SpecsPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <BrowserRouter>
+      <Switch>
+        <Route path="/pages/shoppingcart" component={ PageShoppingCart } />
+        <Route
+          path="/pages/specefication/:categoryID/:specID"
+          render={ (props) => (<SpecsPage
+            { ...props }
+          />) }
+        />
+        <Route exact path="/" component={ SearchBar } />
+      </Switch>
+    </BrowserRouter>
+
   );
 }
 
