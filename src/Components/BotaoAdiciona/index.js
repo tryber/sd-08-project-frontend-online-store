@@ -27,11 +27,14 @@ export default class BotaoAdiciona extends Component {
   }
 
   render() {
-    const { testId, product } = this.props;
+    const { testId, product, addProductToCart } = this.props;
     return (
       <button
         type="button"
-        onClick={ () => this.addToLocalStorage(product) }
+        onClick={ () => {
+          this.addToLocalStorage(product);
+          addProductToCart(product);
+        } }
         data-testid={ testId }
       >
         ADICIONAR
@@ -44,9 +47,9 @@ BotaoAdiciona.propTypes = {
   testId: PropTypes.string.isRequired,
   product: PropTypes.shape({
     title: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     thumbnail: PropTypes.string,
     id: PropTypes.string,
   }).isRequired,
-
+  addProductToCart: PropTypes.func.isRequired,
 };

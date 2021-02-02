@@ -1,45 +1,30 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import ListaCategorias from '../../Components/ListaCategorias';
 import BotaoCarrinho from '../../Components/BotaoCarrinho';
 import ListaProdutos from '../../Components/ListaProdutos';
 
 export default class PaginaInicial extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      inputStatus: '',
-      categoryId: '',
-    };
-
-    this.changeInputStatus = this.changeInputStatus.bind(this);
-    this.changeCategoryId = this.changeCategoryId.bind(this);
-  }
-
-  changeCategoryId({ target }) {
-    const { value } = target;
-    this.setState({
-      categoryId: value,
-    });
-  }
-
-  changeInputStatus({ target }) {
-    const { value } = target;
-    this.setState({
-      inputStatus: value,
-    });
-  }
-
   renderStatusInput() {
-    const { inputStatus } = this.state;
+    const { queryStatus, changeQueryStatus, fetchProducts } = this.props;
     return (
-      <input
-        type="text"
-        id="buscador"
-        value={ inputStatus }
-        onChange={ this.changeInputStatus }
-        data-testid="query-input"
-      />
+      <div>
+        <input
+          type="text"
+          id="buscador"
+          value={ queryStatus }
+          onChange={ changeQueryStatus }
+          data-testid="query-input"
+        />
+        <button
+          type="button"
+          data-testid="query-button"
+          onClick={ fetchProducts }
+        >
+          BUSCAR
+        </button>
+      </div>
     );
   }
 
@@ -52,15 +37,40 @@ export default class PaginaInicial extends Component {
   }
 
   render() {
-    const { inputStatus, categoryId } = this.state;
+    const {
+      products,
+      queryStatus,
+      categoryId,
+      fetchProducts,
+      changeCategoryId,
+      addProductToCart,
+      cartSize,
+    } = this.props;
     return (
       <div>
         {this.renderStatusInput()}
-        <ListaProdutos inputStatus={ inputStatus } categoryId={ categoryId } />
-        <BotaoCarrinho />
-        {(inputStatus === '' && categoryId === '') && this.renderInitialMessage()}
-        <ListaCategorias onChangeCategoryId={ this.changeCategoryId } />
+        <ListaProdutos
+          products={ products }
+          categoryId={ categoryId }
+          onFetchProducts={ fetchProducts }
+          addProductToCart={ addProductToCart }
+        />
+        <BotaoCarrinho cartSize={ cartSize } />
+        {(queryStatus === '' && categoryId === '') && this.renderInitialMessage()}
+        <ListaCategorias onChangeCategoryId={ changeCategoryId } />
       </div>
     );
   }
 }
+
+PaginaInicial.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  queryStatus: PropTypes.string.isRequired,
+  categoryId: PropTypes.string.isRequired,
+  fetchProducts: PropTypes.func.isRequired,
+  changeQueryStatus: PropTypes.func.isRequired,
+  changeCategoryId: PropTypes.func.isRequired,
+  addProductToCart: PropTypes.func.isRequired,
+  cartSize: PropTypes.number.isRequired,
+
+};
