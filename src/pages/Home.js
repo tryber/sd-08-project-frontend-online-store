@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import cartIcon from '../cart-icon.png';
 import * as api from '../services/api';
 import '../Home.css';
+import IndexInputs from '../components.js/IndexInputs';
+import ShowCategory from '../components.js/ShowCategory';
+import ShowProducts from '../components.js/ShowProducts';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleClik = this.handleClik.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.handleProducts = this.handleProducts.bind(this);
-    this.returnProducts = this.returnProducts.bind(this);
 
     this.state = {
       categories: [],
@@ -36,7 +36,7 @@ class Home extends React.Component {
     });
   }
 
-  async handleClik() {
+  async handleClick() {
     const { category, value } = this.state;
     const product = (await api.getProductsFromCategoryAndQuery(category, value))
       .results;
@@ -55,80 +55,22 @@ class Home extends React.Component {
     });
   }
 
-  handleClikBtn() {
-    console.log('Clicou');
-  }
-
-  returnProducts() {
-    const { products } = this.state;
-    return (
-      <div className="show-products">
-        {products.map((product) => (
-          <div key={ product.id } data-testid="product">
-            <Link
-              key={ product.id }
-              to={ {
-                pathname: `/details/${product.id}`,
-                state: { product },
-              } }
-              data-testid="product-detail-link"
-            >
-              <div>
-                <p>{product.title}</p>
-                <img src={ `${product.thumbnail}` } alt={ product.title } />
-                <p>{product.price}</p>
-              </div>
-            </Link>
-            <button
-              type="submit"
-              onClick={ this.handleClikBtn }
-            >
-              Adicionar ao Carrinho
-            </button>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
   render() {
-    const { categories } = this.state;
+    const { categories, products } = this.state;
+    const { handleProducts, handleChange, handleClick } = this;
 
     return (
       <div>
-        <input id="inputText" type="text" />
-        <Link to="/cartcheckout" data-testid="shopping-cart-button">
-          <img src={ cartIcon } alt="cart icon" className="cartIcon" />
-        </Link>
-        <p htmlFor="inputText" data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma
-          categoria.
-          <input
-            onChange={ this.handleChange }
-            name="value"
-            data-testid="query-input"
-          />
-          <button type="button" data-testid="query-button" onClick={ this.handleClik }>
-            Pesquisar
-          </button>
-        </p>
+        <IndexInputs
+          handleChange={ handleChange }
+          handleClick={ handleClick }
+        />
         <div className="homepage">
-          <div className="show-category">
-            <ul>
-              {categories.map((category) => (
-                <li key={ category.id }>
-                  <Link
-                    to="/"
-                    data-testid="category"
-                    onClick={ () => this.handleProducts(category.id) }
-                  >
-                    { category.name }
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            {this.returnProducts()}
-          </div>
+          <ShowCategory
+            categories={ categories }
+            handleProducts={ handleProducts }
+          />
+          <ShowProducts products={ products } />
         </div>
       </div>
     );
