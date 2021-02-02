@@ -25,6 +25,10 @@ h2 {
   width: 180px;
 }
 
+.card:hover {
+  box-shadow: 0px 2px 5px rgba(12, 6, 12, 0.507);
+}
+
 .add-to-cart-button {
   background-color: rgb(210, 170, 250);
   border: 2px solid rgb(253, 227, 247);

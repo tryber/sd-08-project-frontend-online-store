@@ -4,11 +4,19 @@ header {
   display: flex;
   padding: 30px;
   text-align: center;
-  width: 100%;
+  max-width: 100%;
+}
+
+.logo-container {
+  align-items: center;
+  display: flex;
+  margin-top: -20px;
+  flex-direction: row;
 }
 
 .logo {
   height: 60px;
+  margin-right: -30px;
   width: 70px;
 }
 
