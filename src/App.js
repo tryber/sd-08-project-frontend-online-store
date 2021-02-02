@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import ProductDetails from './pages/ProductDetails';
-import ProductEvaluations from './components/ProductEvaluations';
 import ProductEvaluationForm from './components/ProductEvaluationForm';
 
 class App extends Component {
