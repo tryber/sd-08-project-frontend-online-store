@@ -36,6 +36,14 @@ class ProductDetails extends React.Component {
     );
   }
 
+  renderFreeShipping() {
+    return (
+      <div>
+        <p style={ { color: 'red' } } data-testid="free-shipping">Frete Grátis</p>
+      </div>
+    );
+  }
+
   render() {
     const { location: { state: { product } } } = this.props;
     const { shoppingCart } = this.state;
@@ -47,6 +55,7 @@ class ProductDetails extends React.Component {
           <h1 data-testid="product-detail-name">
             {product.title}
           </h1>
+          {(product.shipping.free_shipping) ? this.renderFreeShipping() : ''}
           <span>R$</span>
           <span>{product.price}</span>
           <span>Quantidade</span>
