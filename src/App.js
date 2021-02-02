@@ -1,24 +1,112 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import * as api from './services/api';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ProductList from './components/ProductList';
+import ProductDetails from './components/ProductDetails';
+import ShoppingCart from './components/ShoppingCart';
+import CheckoutCart from './components/CheckoutCart';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleRequest = this.handleRequest.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.state = {
+      productList: [],
+      cartList: [],
+    };
+  }
+
+  handleQuantityChange(opType, id) {
+    const { cartList } = this.state;
+    const items = [...cartList];
+    const i = items.findIndex((item) => item.id === id);
+
+    items[i].quantity = (opType === '+' && (items[i].quantity + 1))
+    || (opType === '-' && (items[i].quantity - 1));
+
+    if (opType === '+') {
+      sessionStorage.setItem('total', Number(sessionStorage.getItem('total')) + 1);
+    } else if (opType === '-') {
+      sessionStorage.setItem('total', Number(sessionStorage.getItem('total')) - 1);
+    }
+
+    this.setState({
+      cartList: items,
+    });
+  }
+
+  handleAddToCart(event) {
+    const { id } = event.target;
+    const { cartList, productList } = this.state;
+    const { price, title } = productList.find((item) => item.id === id);
+
+    sessionStorage.setItem('total', Number(sessionStorage.getItem('total')) + 1 || 1);
+
+    this.setState({
+      cartList: [...cartList, { id, price, title, quantity: 1 }],
+    });
+  }
+
+  handleRequest(selectedCategory, inputText) {
+    api.getProductsFromCategoryAndQuery(selectedCategory, inputText)
+      .then((data) => {
+        this.setState({
+          productList: data.results,
+        });
+      });
+  }
+
+  renderShipping(free) {
+    if (free === true) {
+      return (
+        <span style={ { color: 'red' } } data-testid="free-shipping">Frete Gratis</span>
+      );
+    }
+  }
+
+  render() {
+    const { cartList, productList } = this.state;
+    return (
+      <main className="App main-container">
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" exact>
+              <ProductList
+                productList={ productList }
+                handleRequest={ this.handleRequest }
+                handleAddToCart={ this.handleAddToCart }
+                cartList={ cartList }
+                renderShipping={ this.renderShipping }
+              />
+            </Route>
+            <Route path="/shopping-cart">
+              <ShoppingCart
+                cartList={ cartList }
+                productList={ productList }
+                handleQuantityChange={ this.handleQuantityChange }
+              />
+            </Route>
+            <Route path="/details/:id">
+              <ProductDetails
+                productList={ productList }
+                handleRequest={ this.handleRequest }
+                handleAddToCart={ this.handleAddToCart }
+                cartList={ cartList }
+                renderShipping={ this.renderShipping }
+              />
+            </Route>
+            <Route path="/checkout">
+              <CheckoutCart cartList={ cartList } />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </main>
+    );
+  }
 }
 
 export default App;
