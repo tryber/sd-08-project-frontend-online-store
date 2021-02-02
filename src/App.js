@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import ShoppingCart from './components/ShoppingCart';
 import ProductDetails from './components/ProductDetails';
+import Checkout from './components/Checkout';
 
 class App extends React.Component {
   constructor() {
@@ -15,6 +16,7 @@ class App extends React.Component {
     this.removeFromCart = this.removeFromCart.bind(this);
     this.removeAllFromCart = this.removeAllFromCart.bind(this);
     this.addRating = this.addRating.bind(this);
+    this.cleanCart = this.cleanCart.bind(this);
   }
 
   addRating(rating) {
@@ -28,6 +30,12 @@ class App extends React.Component {
     const { cart } = this.state;
     this.setState({
       cart: [...cart, product],
+    });
+  }
+
+  cleanCart() {
+    this.setState({
+      cart: [],
     });
   }
 
@@ -59,6 +67,10 @@ class App extends React.Component {
         <main>
           <Switch>
             <Route
+              path="/checkout"
+              render={ () => <Checkout cleanCart={ this.cleanCart } cart={ cart } /> }
+            />
+            <Route
               path="/product-details"
               render={ (props) => (
                 <ProductDetails
@@ -77,7 +89,10 @@ class App extends React.Component {
                 removeFromCart={ this.removeFromCart }
               />) }
             />
-            <Route path="/" render={ () => <Home addToCart={ this.addToCart } /> } />
+            <Route
+              path="/"
+              render={ () => <Home addToCart={ this.addToCart } cart={ cart } /> }
+            />
           </Switch>
         </main>
       </Router>
