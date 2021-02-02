@@ -69,7 +69,7 @@ class Checkout extends Component {
         <Label htmlFor="CPF">
           CPF
           <Input
-            type="number"
+            type="text"
             value={ CPF }
             data-testid="checkout-cpf"
             onChange={ this.handleChange }
@@ -88,7 +88,7 @@ class Checkout extends Component {
         <Label htmlFor="checkout-phone">
           Telefone
           <Input
-            type="number"
+            type="text"
             data-testid="checkout-phone"
             name="telefone"
             value={ telefone }
@@ -106,7 +106,7 @@ class Checkout extends Component {
         <Label htmlFor="CEP">
           CEP
           <Input
-            type="number"
+            type="text"
             data-testid="checkout-cep"
             name="cep"
             value={ CEP }
