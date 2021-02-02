@@ -4,13 +4,11 @@ class Checkout extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-
     this.state = {
       name: '',
       email: '',
       cpf: '',
       telefone: '',
-
     };
   }
 
@@ -120,7 +118,6 @@ class Checkout extends Component {
 
   inputAddress() {
     const { address } = this.state;
-
     return (
       <form>
         <label htmlFor="CEP" className="form-label">
@@ -146,9 +143,12 @@ class Checkout extends Component {
         { this.inputNumber() }
         { this.inputCEP() }
         { this.inputAddress() }
-        <button type="submit"><a href="https://www.youtube.com/watch?v=3e14skRuVk0">enviar</a></button>
+        <button type="submit">
+          <a href="https://www.youtube.com/watch?v=3e14skRuVk0">
+            enviar
+          </a>
+        </button>
       </form>
-
     );
   }
 }
