@@ -43,10 +43,10 @@ class CartItem extends Component {
     const { item: { title, thumbnail, price } } = this.props;
     const { quantity } = this.state;
     return (
-      <section data-testid="shopping-cart-product-name">
+      <section>
         <img src={ thumbnail } alt={ title } />
         <section className="cart-item-name-container">
-          <p>{ title }</p>
+          <p data-testid="shopping-cart-product-name">{ title }</p>
         </section>
         <section>
           <button

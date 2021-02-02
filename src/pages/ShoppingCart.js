@@ -24,7 +24,6 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { items } = this.state;
-    console.log(items.length);
     return items.length > 0 ? (
       <CartItems
         items={ items }

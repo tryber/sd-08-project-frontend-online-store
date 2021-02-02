@@ -14,7 +14,6 @@ class AddProduct extends Component {
     const { item } = this.props;
     if (localStorage.cartItems) {
       updateStorageItem(item);
-      console.log('first if');
     } else {
       const quantifiedItem = { ...item, quantity: 1 };
       localStorage.cartItems = JSON.stringify([quantifiedItem]);
