@@ -5,6 +5,7 @@ export const saveCart = (cart) => { localStorage.setItem('cart', JSON.stringify(
 export const addToCart = (product) => {
   const { id, title, price, thumbnail } = product;
   let cart = readCart();
+
   if (!cart) cart = [];
   const item = {
     id,
@@ -24,4 +25,14 @@ export const addToCart = (product) => {
 
   if (!unique) cart.push(item);
   saveCart(cart);
+};
+
+export const showQuantInCart = () => {
+  const cart = readCart();
+  const zero = 0;
+  if (cart) {
+    return (cart
+      .reduce((previous, { amount }) => previous + amount, zero));
+  }
+  return zero;
 };

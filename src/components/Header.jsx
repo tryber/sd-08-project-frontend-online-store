@@ -55,8 +55,13 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  products: PropTypes.func.isRequired,
-  radioValue: PropTypes.string.isRequired,
+  products: PropTypes.func,
+  radioValue: PropTypes.string,
+};
+
+Header.defaultProps = {
+  radioValue: '',
+  products: () => {},
 };
 
 export default Header;
