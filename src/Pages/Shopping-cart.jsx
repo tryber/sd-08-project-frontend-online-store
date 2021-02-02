@@ -64,8 +64,9 @@ class ShoppingCart extends React.Component {
 
   renderProducts() {
     const productsLocalStorage = Object.values(localStorage);
-    const products = productsLocalStorage.map((element) => JSON.parse(element));
     const stateLocal = this.state;
+    console.log(stateLocal);
+    const products = productsLocalStorage.map((element) => JSON.parse(element));
     if (stateLocal !== null) {
       return (
         <div>
