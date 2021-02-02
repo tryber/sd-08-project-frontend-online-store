@@ -1,0 +1,27 @@
+.form-avaliacoes {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.new-avaliation-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.comments {
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
+
+.comment-box {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.divider {
+  height: 1px;
+  width: 90%;
+}
