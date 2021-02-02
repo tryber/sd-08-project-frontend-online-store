@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import AttributesList from '../components/AtttibutesList';
+import ShoppingCartButton from '../components/ShoppingCartButton';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -15,18 +16,17 @@ class ProductDetails extends React.Component {
 
     this.getProductDetails = this.getProductDetails.bind(this);
     this.sendToCart = this.sendToCart.bind(this);
-    this.handleClickButton = this.handleClickButton.bind(this);
   }
 
   componentDidMount() {
     this.getProductDetails();
-  }
-
-  handleClickButton() {
     const productsCart = JSON.parse(localStorage.getItem('productsCart'));
-    this.setState({
-      productsInCart: productsCart,
-    }, () => { this.sendToCart(); });
+
+    if (productsCart !== null) {
+      this.setState({
+        productsInCart: productsCart,
+      });
+    }
   }
 
   async getProductDetails() {
@@ -45,23 +45,14 @@ class ProductDetails extends React.Component {
   }
 
   sendToCart() {
-    const { productDetail } = this.state;
-    const { match: { params: { id } } } = this.props;
+    const { productDetail, productsInCart } = this.state;
     const { title, price } = productDetail;
-    const { productsInCart } = this.state;
-    if (productsInCart === null) {
-      this.setState(() => ({
-        productsInCart: [{ title, price, id }],
-      }), () => {
-        localStorage.setItem('productsCart', JSON.stringify(productsInCart));
-      });
-    } else {
-      this.setState(() => ({
-        productsInCart: [...productsInCart, { title, price, id }],
-      }), () => {
-        localStorage.setItem('productsCart', JSON.stringify(productsInCart));
-      });
-    }
+    const { match: { params: { id } } } = this.props;
+    this.setState(() => ({
+      productsInCart: [...productsInCart, { title, price, id }],
+    }), () => {
+      localStorage.setItem('productsCart', JSON.stringify(productsInCart));
+    });
   }
 
   render() {
@@ -70,15 +61,16 @@ class ProductDetails extends React.Component {
     if (loading) return <span>Carregando</span>;
     return (
       <div>
+        <ShoppingCartButton />
         <h1 data-testid="product-detail-name">{title}</h1>
         <img src={ thumbnail } alt={ title } />
         <AttributesList attributes={ attributes } />
         <span>{`R$${price}`}</span>
-        <div data-testid="product-detail-add-to-cart">
+        <div>
           <button
             type="button"
-            data-testid="shopping-cart-button"
-            onClick={ this.handleClickButton }
+            data-testid="product-detail-add-to-cart"
+            onClick={ this.sendToCart }
           >
             Adicionar ao carrinho
           </button>
