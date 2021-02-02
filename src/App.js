@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import './App.css';
 import ShoppingCart from './pages/ShoppingCart';
+import ProductDetails from './components/ProductDetail';
 
 function App() {
   return (
@@ -10,6 +11,10 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Home } />
         <Route path="/shoppingcart" component={ ShoppingCart } />
+        <Route
+          path="/productDetails/:title"
+          render={ (props) => <ProductDetails { ...props } /> }
+        />
       </Switch>
     </BrowserRouter>
   );
