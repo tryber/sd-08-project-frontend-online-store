@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class Checkout extends Component {
   constructor(props) {
@@ -119,6 +119,7 @@ class Checkout extends Component {
 
   inputAddress() {
     const { address } = this.state;
+
     return (
       <FormGroup>
         <Label htmlFor="CEP">
@@ -144,7 +145,9 @@ class Checkout extends Component {
         { this.inputNumber() }
         { this.inputCEP() }
         { this.inputAddress() }
+        <Button href="https://www.youtube.com/watch?v=3e14skRuVk0">Finalizar a Compra</Button>
       </Form>
+
     );
   }
 }
