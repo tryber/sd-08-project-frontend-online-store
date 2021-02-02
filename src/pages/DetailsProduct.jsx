@@ -11,49 +11,49 @@ export default function DetailsProject() {
   const data = Object.values({ ...attributes });
   return (
     <section className="product-details">
-    <div className="header-content">      
-      <img className="logo" src={ Img } alt="logo"/>     
-      <div className="cartItems">
-        <BtnShoppingCart />
+      <div className="header-content">
+        <img className="logo" src={ Img } alt="logo" />
+        <div className="cartItems">
+          <BtnShoppingCart />
+        </div>
       </div>
-    </div>
-    <div className="product-img">
-      <img
-        className=""
-        src={ thumbnail.replace('I', 'O') }
-        alt="foto"
-      />
-    </div>
-    <div className="detail-name">
-      <h3 data-testid="product-detail-name">{title}</h3>
-    </div>
-    <div className="price-label">
-      <span>{`R$ ${price.toFixed(2)}`}</span>
-      <div className="cartItems">
-        <BtnShoppingCart />
+      <div className="product-img">
+        <img
+          className=""
+          src={ thumbnail.replace('I', 'O') }
+          alt="foto"
+        />
       </div>
-    </div>
-    <div>
-      <button
-        type="button"
-        data-testid="product-detail-add-to-cart"
-        onClick={ () => localStorageSave('shoppingCart', product, product.id) }
-      >
-        Adicionar ao carrinho
-      </button>
-    </div>
-    <div>
-      <table>
-        <tbody>
-          {data.map((attribute, index) => (
-            <tr key={ index }>
-              <td>{attribute.name}</td>
-              <td>{Object.values({ ...attribute.values }).map((e) => e.name)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </section>
+      <div className="detail-name">
+        <h3 data-testid="product-detail-name">{title}</h3>
+      </div>
+      <div className="price-label">
+        <span>{`R$ ${price.toFixed(2)}`}</span>
+        <div className="cartItems">
+          <BtnShoppingCart />
+        </div>
+      </div>
+      <div>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => localStorageSave('shoppingCart', product, product.id) }
+        >
+          Adicionar ao carrinho
+        </button>
+      </div>
+      <div>
+        <table>
+          <tbody>
+            {data.map((attribute, index) => (
+              <tr key={ index }>
+                <td>{attribute.name}</td>
+                <td>{Object.values({ ...attribute.values }).map((e) => e.name)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }
