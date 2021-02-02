@@ -661,6 +661,7 @@ input {
         // border: 1px solid green;
         margin-right: 6px;
       }
+    
     }
   }
 }
@@ -674,16 +675,50 @@ input {
   }
 }
 
+.box-button-cart {
+  display: flex;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4px;
+  // border: 1px solid red;
+  justify-content: center;
+  button {
+    margin: 4px;
+  }
+}
+
 .cart-clear-button {
   padding: 4px;
-  align-self: center;
-  width: 15%;
+  width: 180px;
   border: 1px solid rgba(149, 149, 149, 0.876);
   border-radius: 6px;
   color: $card-primary-color;
   font-weight: 600;
   background-color: #ffffff26;
-  margin-top: 20px;
+  height: 28px;
+
+  &:hover {
+    background-color: white;
+
+    color: rgb(26, 26, 26);
+    border: 1px solid rgba(58, 58, 58, 0.692);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.cart-checkout-button {
+  padding: 4px;
+  width: 180px;
+  border: 1px solid rgba(149, 149, 149, 0.876);
+  border-radius: 6px;
+  color: $card-primary-color;
+  font-weight: 600;
+  background-color: #ffffff26;
+  height: 26px;
 
   &:hover {
     background-color: white;
@@ -831,11 +866,7 @@ input {
         }
       }
 
-      .cart-clear-button {
-        width: 200px;
-        height: 30px;
-        margin-bottom: 10px;
-      }
+
     }
   }
 }
@@ -999,6 +1030,7 @@ input {
   align-items: center; 
   padding-left: 10px;
   padding-right: 10px;
+  
 
   .input-quantity {
     margin: 4px;
@@ -1017,11 +1049,12 @@ input {
 .button-add-cart {
   width: 260px;
   height: 34px;
-  background-color: $primary-bg-color;
+  background-color: white;
   border: 1px solid rgb(92, 92, 92);
   font-size: 0.9em;
   font-weight: 600;
   cursor: pointer;
+  border-radius: 6px;
 }
 
 .input-quantity {

@@ -8,7 +8,7 @@ import CardInfo from './card/CardInfo';
 
 import { actionAdd } from '../store/cart.reducer';
 import { actionAdd as actionAddDetail } from '../store/details.reducer';
-import { actionCartUpdate } from '../store/control.reducer';
+import { actionCartUpdate, actionSlideClose } from '../store/control.reducer';
 
 export default function ProductCard(props) {
   const {
@@ -19,6 +19,7 @@ export default function ProductCard(props) {
   const history = useHistory();
   const handleClick = () => {
     const { product } = props;
+    dispatch(dispatch(actionSlideClose()));
     dispatch(actionAddDetail({ ...product }));
     history.push(`/product/${id}`);
   };

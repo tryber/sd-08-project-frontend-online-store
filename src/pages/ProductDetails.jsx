@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 // , { useState, useEffect }
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 import Header from '../components/Header';
 import CartSlide from '../components/CartSlide';
@@ -36,7 +35,6 @@ export default function ProductDetails() {
   const handleChangeQuantity = (value) => {
     setQtd(value);
   };
-
   productExists();
   return (
     <main>
