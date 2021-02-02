@@ -28,7 +28,7 @@ export default class ProdutosCarrinho extends Component {
   increment(item, index) {
     const { products } = this.state;
     const items = products;
-    item.quantity += 1;
+    if (item.availableQuantity > item.quantity) item.quantity += 1;
     items.splice(index, 1, item);
     this.setState({
       products: items,
