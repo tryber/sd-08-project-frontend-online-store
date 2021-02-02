@@ -28,6 +28,12 @@ class App extends React.Component {
     items[i].quantity = (opType === '+' && (items[i].quantity + 1))
     || (opType === '-' && (items[i].quantity - 1));
 
+    if (opType === '+') {
+      sessionStorage.setItem('total', Number(sessionStorage.getItem('total')) + 1);
+    } else if (opType === '-') {
+      sessionStorage.setItem('total', Number(sessionStorage.getItem('total')) - 1);
+    }
+
     this.setState({
       cartList: items,
     });
@@ -37,6 +43,8 @@ class App extends React.Component {
     const { id } = event.target;
     const { cartList, productList } = this.state;
     const { price, title } = productList.find((item) => item.id === id);
+
+    sessionStorage.setItem('total', Number(sessionStorage.getItem('total')) + 1 || 1);
 
     this.setState({
       cartList: [...cartList, { id, price, title, quantity: 1 }],
