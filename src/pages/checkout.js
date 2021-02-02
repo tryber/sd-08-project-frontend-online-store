@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class Checkout extends Component {
   constructor(props) {

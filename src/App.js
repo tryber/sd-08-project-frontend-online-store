@@ -77,11 +77,26 @@ class App extends React.Component {
     }
   }
 
-  addToCart(title) {
-    const newProduct = { name: title, quantity: 1 };
+  addToCart(product) {
     const { cartProducts } = this.state;
-    this.setState({
-      cartProducts: [...cartProducts, newProduct],
+
+    const isOnCart = cartProducts.find((e) => e.id === product.id);
+    if (!isOnCart) {
+      const newProduct = { ...product, quantitity: 0 };
+      console.log(newProduct);
+      return this.setState({
+        cartProducts: [...cartProducts, newProduct],
+      });
+    }
+
+    const allProducts = [...cartProducts];
+    allProducts.forEach((prod) => {
+      if (prod.id === product.id) {
+        prod.quantitity += 1;
+      }
+    });
+    return this.setState({
+      cartProducts: [...cartProducts, allProducts],
     });
   }
 
