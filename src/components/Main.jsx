@@ -17,7 +17,11 @@ class Main extends React.Component {
     return (
       <div className="cards-list" key="allProducts">
         { listProducts.map((product, index) => (
-          <Card key={ index } product={ product } handleChangeClickBuyProduct={ handleChangeClickBuyProduct } />
+          <Card
+            key={ index }
+            product={ product }
+            handleChangeClickBuyProduct={ handleChangeClickBuyProduct }
+          />
         ))}
       </div>
     );
