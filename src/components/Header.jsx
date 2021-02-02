@@ -7,7 +7,7 @@ import '../css/Header.css';
 
 class Header extends React.Component {
   render() {
-    const { queryProduct, handleChange, requestApi, buyProductsId } = this.props;
+    const { queryProduct, handleChange, requestApi } = this.props;
     return (
       <div>
         <div className="banner">
@@ -18,7 +18,7 @@ class Header extends React.Component {
             requestApi={ requestApi }
           />
           <div className="cartItems">
-            <BtnShoppingCart buyProductsId={ buyProductsId } />
+            <BtnShoppingCart />
           </div>
         </div>
         <h1 className="searchDescription" data-testid="home-initial-message">
@@ -34,14 +34,12 @@ Header.propTypes = {
   queryProduct: PropTypes.string,
   handleChange: PropTypes.func,
   requestApi: PropTypes.func,
-  buyProductsId: PropTypes.arrayOf(PropTypes.string),
 };
 
 Header.defaultProps = {
   queryProduct: '',
   handleChange: () => {},
   requestApi: () => {},
-  buyProductsId: [],
 };
 
 export default Header;

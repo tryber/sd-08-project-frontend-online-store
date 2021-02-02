@@ -34,6 +34,7 @@ class Card extends React.Component {
             name="buyProductsId"
             type="button"
             onClick={ handleChangeClickBuyProduct }
+            data-testid="product-add-to-cart"
           >
             Comprar
           </button>

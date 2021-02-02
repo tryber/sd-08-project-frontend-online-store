@@ -1,42 +1,51 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import * as api from '../services/api';
+import { localStorageLoad } from '../localStorage';
 
 class ShoppingCart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [],
-    };
-  }
-
-  componentDidMount() {
-    const { location: { state: { buyProductsId } } } = this.props;
+  reduceObject() {
+    const products = localStorageLoad('shoppingCart');
+    if (!products) {
+      return null;
+    }
+    const result = products.reduce((current, value) => {
+      value.prod.amount = value.amount;
+      current = [...current, value.prod];
+      return current;
+    }, []);
+    return result;
   }
 
   render() {
-    const { location: { state: { buyProductsId } } } = this.props;
-    console.log(buyProductsId);
+    const products = this.reduceObject();
+    if (!products) {
+      return <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>;
+    }
     return (
-      <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
+      <section style={ { display: 'flex' } }>
+        {products.map((el, index) => (
+          <div key={ index }>
+            <div>
+              <img
+                src={ el.thumbnail }
+                style={ { width: '100px' } }
+                alt={ el.title }
+              />
+            </div>
+            <div>
+              <span data-testid="shopping-cart-product-name">{el.title}</span>
+            </div>
+            <div>
+              <span
+                data-testid="shopping-cart-product-quantity"
+              >
+                {el.amount}
+              </span>
+            </div>
+          </div>
+        ))}
+      </section>
     );
   }
 }
-
-ShoppingCart.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.shape({
-      buyProductsId: PropTypes.arrayOf(PropTypes.string),
-    }),
-  }),
-};
-
-ShoppingCart.defaultProps = {
-  location: {
-    state: {
-      buyProductsId: [],
-    },
-  },
-};
 
 export default ShoppingCart;

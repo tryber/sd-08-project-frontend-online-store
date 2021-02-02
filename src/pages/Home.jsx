@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header, Main, ButtonCategory } from '../components';
+import { localStorageSave } from '../localStorage';
 import '../css/Main-content.css';
 
 import * as api from '../services/api';
@@ -11,7 +12,6 @@ class Home extends React.Component {
       categoryID: '',
       queryProduct: '',
       listProducts: [],
-      buyProductsId: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.requestApi = this.requestApi.bind(this);
@@ -26,26 +26,10 @@ class Home extends React.Component {
   }
 
   handleChangeClickBuyProduct({ target }) {
-    const { buyProductsId } = this.state;
-    this.setState({ buyProductsId: [...buyProductsId, target.id] });
+    const { listProducts } = this.state;
+    const product = listProducts.find((el) => el.id === target.id);
+    localStorageSave('shoppingCart', product, target.id);
   }
-
-  // handleChangeClickBuyProduct({ target }) {
-  //   const { buyProductsId } = this.state;
-  //   if (Object.keys(buyProductsId).includes(target.id)) {
-  //     this.setState((state) => (
-  //       {
-  //         buyProductsId: {
-  //         ...buyProductsId[target.id]: state.buyProductsId + 1
-  //       }
-  //     }
-  //     ));
-  //   } else {
-  //     this.setState(() => (
-  //       { buyProductsId: { [buyProductsId[target.id]]: 1 } }
-  //     ));
-  //   }
-  // }
 
   handleChange({ target }) {
     this.setState({ [target.name]: target.value });
@@ -61,15 +45,13 @@ class Home extends React.Component {
   }
 
   render() {
-    const { queryProduct, listProducts, buyProductsId } = this.state;
-    console.log(listProducts);
+    const { queryProduct, listProducts } = this.state;
     return (
       <div>
         <Header
           queryProduct={ queryProduct }
           handleChange={ this.handleChange }
           requestApi={ this.requestApi }
-          buyProductsId={ buyProductsId }
         />
         <div className="main-content">
           <ButtonCategory handleChange={ this.handleChange } />
