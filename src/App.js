@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import ProductDetails from './pages/ProductDetails';
-import ProductEvaluationForm from './components/ProductEvaluationForm';
+import Checkout from './pages/Checkout';
 
 class App extends Component {
   constructor() {
@@ -106,37 +106,26 @@ class App extends Component {
     return evaluations[id] || [];
   }
 
-  // <Route
-  //   path="/evaluations"
-  //   render={ (props) => (<ProductEvaluations
-  //     { ...props }
-  //     evaluations={ [
-  //       { message: 'blablabla', stars: 5, email: 'email@email.com ' },
-  //       { message: 'blablsadsaabla', stars: 5, email: 'iuyituy@email.com ' },
-  //       { message: 'blabldsadasabla', stars: 5, email: 'fdsafs@email.com ' },
-  //     ] }
-  //   />) }
-  // />
-
   render() {
     const { cart } = this.state;
     return (
       <Router>
         <Switch>
           <Route
-            path="/form"
+            path="/checkout"
             render={ (props) => (
-              <ProductEvaluationForm
+              <Checkout
                 { ...props }
-                handleChangeEvaluation={ null }
-                product={ { id: 'qualquercoisa ' } }
-              />) }
+                cart={ cart }
+              />
+            ) }
           />
           <Route
             path="/product/:id"
             render={ (props) => (
               <ProductDetails
                 { ...props }
+                handleAddToCart={ this.handleAddToCart }
                 handleChangeEvaluation={ this.handleChangeEvaluation }
                 getEvaluations={ this.getEvaluations }
               />) }
