@@ -20,7 +20,7 @@ class ProductCard extends React.Component {
                 </h4>
                 <img src={ thumbnail } alt={ title } />
                 <p>
-                  { `R$ ${price}` }
+                  { `R$ ${price.toFixed(2)}` }
                 </p>
               </div>
             </Link>
