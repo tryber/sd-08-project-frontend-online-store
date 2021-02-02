@@ -34,26 +34,24 @@ export default class ProductDetails extends Component {
         <main className="product-details-main-content">
           <div className="product-details" data-testid="product-detail-name">
             <div className="img-container">
-              <img className="product-details-img" src={thumbnail} alt={title} />
+              <img className="product-details-img" src={ thumbnail } alt={ title } />
             </div>
             <div className="details-container">
-              <h3>{title}</h3>
-              <div>
-                <h3>Especificações</h3>
-                <ul>
-                  <li>Especificação 1</li>
-                  <li>Especificação 2</li>
-                  <li>Especificação 3</li>
-                </ul>
-              </div>
+              <h3>{ title }</h3>
+              <h3>Especificações</h3>
+              <ul>
+                <li>Especificação 1</li>
+                <li>Especificação 2</li>
+                <li>Especificação 3</li>
+              </ul>
               <h3>
-                {`Preço unitário: R$ ${price}`}
+                { `Preço unitário: R$ ${price}` }
               </h3>
               <button
                 type="button"
                 className="add-to-cart-button"
                 data-testid="product-detail-add-to-cart"
-                onClick={() => cartApi.addToCart(product)}
+                onClick={ () => cartApi.addToCart(product) }
               >
                 Adicionar ao carrinho
               </button>
