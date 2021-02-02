@@ -20,12 +20,17 @@ class ShoppingCart extends React.Component {
   }
 
   addProduct(item) {
+    const { available_quantity: avaibleQuantity } = item;
+    const { [item.id]: quantity } = this.state;
+    if (quantity >= avaibleQuantity) return;
     this.setState((prevState) => ({
       [item.id]: prevState[item.id] + 1,
     }));
   }
 
   lessProduct(item) {
+    const { [item.id]: quantity } = this.state;
+    if (quantity === 1) return;
     this.setState((prevState) => ({
       [item.id]: prevState[item.id] - 1,
     }));
@@ -45,7 +50,6 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { location: { state: { shoppingCart } } } = this.props;
-
     if (!shoppingCart.length) {
       return (
         <div>
