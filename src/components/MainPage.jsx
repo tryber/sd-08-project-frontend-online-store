@@ -22,7 +22,7 @@ class MainPage extends React.Component {
             </button>
           ))}
         </div>
-        <ListagemDeProdutos products={ products } addCart={ addCart } />
+        <ListagemDeProdutos products={ products } addCart={ addCart } onChange={ onChange } />
       </div>
     );
   }
