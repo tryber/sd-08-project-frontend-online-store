@@ -22,6 +22,13 @@ class ProductDetails extends React.Component {
     this.getProductDetails();
   }
 
+  handleClickButton() {
+    const productsCart = JSON.parse(localStorage.getItem('productsCart'));
+    this.setState({
+      productsInCart: productsCart,
+    }, () => { this.sendToCart(); });
+  }
+
   async getProductDetails() {
     const { match: { params: { id } } } = this.props;
     const { location: { state: { queryAPI, categoryAPI } } } = this.props;
@@ -37,13 +44,6 @@ class ProductDetails extends React.Component {
     });
   }
 
-  handleClickButton() {
-    const productsCart = JSON.parse(localStorage.getItem('productsCart'));
-      this.setState({
-        productsInCart: productsCart,
-      }, () => { this.sendToCart(); })
-  }
-
   sendToCart() {
     const { productDetail } = this.state;
     const { match: { params: { id } } } = this.props;
@@ -53,18 +53,15 @@ class ProductDetails extends React.Component {
       this.setState(() => ({
         productsInCart: [{ title, price, id }],
       }), () => {
-        const { productsInCart } = this.state;
         localStorage.setItem('productsCart', JSON.stringify(productsInCart));
       });
     } else {
       this.setState(() => ({
-        productsInCart: [ ...productsInCart, { title, price, id }],
+        productsInCart: [...productsInCart, { title, price, id }],
       }), () => {
-        const { productsInCart } = this.state;
         localStorage.setItem('productsCart', JSON.stringify(productsInCart));
       });
     }
-
   }
 
   render() {
