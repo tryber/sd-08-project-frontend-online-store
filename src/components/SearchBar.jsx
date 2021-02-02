@@ -14,7 +14,7 @@ export default function SearchBar(props) {
   const handleCategoryClick = (value) => {
     handleCategoryChange(value);
   };
-  // data-testid=query-button
+
   return (
     <section className="product-search">
       <div className="home-message" data-testid="home-initial-message">

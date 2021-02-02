@@ -53,25 +53,29 @@ const parseCart = (cart) => {
 };
 
 async function getProductAttributes(productId) {
-  const result = await fetch(`https://api.mercadolibre.com/items/${productId}`)
-    .then((res) => res.json())
-    .then((p) => p.attributes
-      .map((i) => ({
-        type: i.name,
-        value: i.value_name,
-      }))
-      .filter(
-        (i) => i.value !== null
-            && i.value !== undefined
-            && i.value !== 'UNDEFINED'
-            && i.type !== 'SKU'
-            && i.type !== undefined
-            && i.type !== 'Condição do item'
-            && i.type !== 'É kit'
-            && i.type !== 'Características do produto',
-      ));
+  try {
+    const result = await fetch(`https://api.mercadolibre.com/items/${productId}`)
+      .then((res) => res.json())
+      .then((p) => p.attributes
+        .map((i) => ({
+          type: i.name,
+          value: i.value_name,
+        }))
+        .filter(
+          (i) => i.value !== null
+              && i.value !== undefined
+              && i.value !== 'UNDEFINED'
+              && i.type !== 'SKU'
+              && i.type !== undefined
+              && i.type !== 'Condição do item'
+              && i.type !== 'É kit'
+              && i.type !== 'Características do produto',
+        ));
 
-  return result;
+    return result;
+  } catch (e) {
+    return [];
+  }
 }
 
 module.exports = {

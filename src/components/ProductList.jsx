@@ -8,7 +8,7 @@ import ProductCard from './ProductCard';
 // import { getRandomProducts } from '../helpers/products';
 import { parseProductData } from '../helpers/helpers';
 import * as api from '../services/api';
-import { actionUpdate } from '../store/products.reducer';
+import { actionUpdate, actionClear } from '../store/products.reducer';
 import { actionUpdate as actionUpdateDetails } from '../store/details.reducer';
 
 //  const [error, setError] = useState(false);
@@ -17,9 +17,32 @@ export default function ProductList() {
   const productList = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const [search, setSearch] = useState([undefined, undefined]);
+  const easterEgg = (value) => {
+    if (value === 'icaro' || value === 'icaro harry') {
+      const icaro = {
+        id: 'PROFESSOR',
+        title: 'Icaro Harry',
+        price: 1000000,
+        category_id: 'professor',
+        mercadopago: true,
+        shipping: true,
+        thumbnail: '/icaro.jpeg',
+        stock: 1,
+      };
+      console.log(value);
+      dispatch(actionClear());
+      dispatch(actionUpdate([icaro]));
+      dispatch(actionUpdateDetails([icaro]));
+      return true;
+    }
+    return false;
+  };
   const getProductList = async (category, query) => {
     // setProductList([]);
     dispatch(actionUpdate([]));
+    if (easterEgg(search[1])) {
+      return;
+    }
     try {
       const data = await api.getProductsFromCategoryAndQuery(category, query);
       const products = await parseProductData(data.results);
