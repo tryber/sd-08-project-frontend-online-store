@@ -1,0 +1,10 @@
+.controls {
+  margin-left: 20px;
+}
+
+.controls button {
+  font-size: 1.1rem;
+  margin: 2px;
+  min-width: 50px;
+  padding: 10px;
+}

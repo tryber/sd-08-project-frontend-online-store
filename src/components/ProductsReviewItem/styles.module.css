@@ -1,0 +1,25 @@
+.productReviewItem {
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.thumbnail {
+  border-radius: 50%;
+  width: 50px;
+}
+
+.title {
+  flex: 1;
+  overflow: hidden;
+  padding-left: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price {
+  padding: 10px;
+}

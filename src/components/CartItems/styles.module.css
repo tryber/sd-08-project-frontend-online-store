@@ -11,3 +11,8 @@
   font-size: 400px;
   margin: 20px;
 }
+
+.emptyCartMessage {
+  font-size: 1.4rem;
+  margin-bottom: 50px;
+}
