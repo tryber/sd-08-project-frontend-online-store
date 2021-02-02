@@ -3,36 +3,11 @@ import PropTypes from 'prop-types';
 import './ProductOnCart.css';
 
 class ProductOnCart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.add = this.add.bind(this);
-    this.sub = this.sub.bind(this);
-    this.state = {
-      quantity: props.product.amountToBuy,
-    };
-  }
-
-  add() {
-    const { quantity } = this.state;
-    const { product } = this.props;
-    let newQtd = quantity - 1;
-    if (newQtd < 0) newQtd = 0;
-    product.amountToBuy = newQtd;
-    this.setState(() => ({ quantity: newQtd }));
-  }
-
-  sub() {
-    const { quantity } = this.state;
-    const { product } = this.props;
-    const newQtd = quantity + 1;
-    product.amountToBuy = newQtd;
-    this.setState(() => ({ quantity: newQtd }));
-  }
-
   render() {
-    const { product } = this.props;
-    const { quantity } = this.state;
-    const { thumbnail, title } = product;
+    const { product, changeQtd } = this.props;
+    const { thumbnail, title, amountToBuy, id, price } = product;
+    const ONE = 1;
+    const NEG = -1;
     return (
       <div className="productOnCart">
         <div className="cartImgDiv">
@@ -41,20 +16,21 @@ class ProductOnCart extends React.Component {
         <h4 data-testid="shopping-cart-product-name">
           { title }
         </h4>
+        <p className="cartPrice">{ `R$ ${price}`}</p>
         <div className="quantidadeDiv">
           <button
             type="button"
-            onClick={ this.add }
+            onClick={ () => changeQtd(NEG, id) }
             data-testid="product-decrease-quantity"
           >
             -
           </button>
           <div data-testid="shopping-cart-product-quantity">
-            { +quantity }
+            { +amountToBuy }
           </div>
           <button
             type="button"
-            onClick={ this.sub }
+            onClick={ () => changeQtd(ONE, id) }
             data-testid="product-increase-quantity"
           >
             +
@@ -67,6 +43,7 @@ class ProductOnCart extends React.Component {
 
 ProductOnCart.propTypes = {
   product: PropTypes.objectOf(PropTypes.any).isRequired,
+  changeQtd: PropTypes.func.isRequired,
 };
 
 export default ProductOnCart;
