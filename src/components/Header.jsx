@@ -34,7 +34,10 @@ class Header extends Component {
     return (
       <header>
         <Link to="/">
-          <img className="logo" src={ Logo } alt="" />
+          <div className="logo-container">
+            <img className="logo" src={ Logo } alt="" />
+            <h2>Black Cat</h2>
+          </div>
         </Link>
         <SearchBar
           query={ query }
