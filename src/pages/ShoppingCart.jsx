@@ -13,31 +13,31 @@ class ShoppingCart extends React.Component {
       isEmpty,
     };
   }
-  
-  increaseItem(item){
+
+  increaseItem(item) {
     const { selectedProducts } = this.state;
     const items = JSON.parse(localStorage.getItem('selectedProducts'));
     const productFound = items
-        .findIndex((product) => product.title === item.title);
-      if (productFound >= 0) {
-        selectedProducts[productFound].quantity += 1;
-      }
-        localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
-        this.setState({ selectedProducts });
+    .findIndex((product) => product.title === item.title);
+    if (productFound >= 0) {
+      selectedProducts[productFound].quantity += 1;
+    }
+    localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+    this.setState({ selectedProducts });
   }
 
-  decreaseItem(item){
+  decreaseItem(item) {
     const { selectedProducts } = this.state;
     const items = JSON.parse(localStorage.getItem('selectedProducts'));
     const productFound = items
-        .findIndex((product) => product.title === item.title);
-      if (productFound >= 0) {
-        if (item.quantity >0){
+     .findIndex((product) => product.title === item.title);
+    if (productFound >= 0) {
+      if (item.quantity > 0){
         selectedProducts[productFound].quantity += -1;
-        }
       }
-        localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
-        this.setState({ selectedProducts });
+    }
+    localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+    this.setState({ selectedProducts });
   }
 
   render() {
@@ -59,8 +59,8 @@ class ShoppingCart extends React.Component {
               Quantidade:
               {product.quantity}
             </p>
-        <button onClick={ () => this.increaseItem(product) }>+</button >
-        <button onClick={ () => this.decreaseItem(product)}>-</button>
+            <button  type="submit"  data-testid="product-increase-quantity" onClick={ () => this.increaseItem(product) }>+</button >
+            <button  type="submit" data-testid="product-decrease-quantity" onClick={ () => this.decreaseItem(product) }>-</button>
           </div>
         ))}
       </div>
