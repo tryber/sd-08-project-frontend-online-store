@@ -2,16 +2,16 @@ header {
   background-color: rgb(210, 170, 255);
   color: white;
   display: flex;
+  max-width: 100%;
   padding: 30px;
   text-align: center;
-  max-width: 100%;
 }
 
 .logo-container {
   align-items: center;
   display: flex;
-  margin-top: -20px;
   flex-direction: row;
+  margin-top: -20px;
 }
 
 .logo {
