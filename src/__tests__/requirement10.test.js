@@ -14,7 +14,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
 );
 
 describe(`10 - Visualize a lista de produtos adicionados ao carrinho em sua página e permita a manipulação da sua quantidade`, () => {
-  it.skip('Adiciona produtos ao carrinho e manipula suas quantidades', async () => {
+  it('Adiciona produtos ao carrinho e manipula suas quantidades', async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);

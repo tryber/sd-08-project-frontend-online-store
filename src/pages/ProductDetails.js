@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard';
 import ShoppingCartLink from '../components/ShoppingCartLink';
 import EvaluationForm from '../components/EvaluationForm';
 import EvaluationList from '../components/EvaluationList';
+import ButtonAddToCart from '../components/ButtonAddToCart';
 
 class ProductDetails extends Component {
   constructor() {
@@ -13,10 +14,7 @@ class ProductDetails extends Component {
       comment: '',
       rating: undefined,
       evaluation: this.loadEvaluation(),
-      onCart: [], // Minha add
     };
-
-    this.addCart = this.addCart.bind(this); // Minha add
   }
 
   updateField = (field, newValue) => {
@@ -42,18 +40,12 @@ class ProductDetails extends Component {
     localStorage.setItem('evaluation', JSON.stringify(evaluation));
   }
 
-  addCart(product) {
-    const { onCart } = this.state;
-    this.setState({ onCart: [...onCart, product] });
-  }
-
   render() {
-    const { onCart } = this.state;
-    const { location: { state: { productObj } } } = this.props;
+    const { location: { state: { productObj } }, addCart } = this.props;
     const { attributes } = productObj;
     return (
       <div>
-        <ShoppingCartLink onCart={ onCart } />
+        <ShoppingCartLink />
         <div data-testid="product-detail-name">
           <ProductCard product={ productObj } />
         </div>
@@ -67,13 +59,11 @@ class ProductDetails extends Component {
                 {`${attribute.name}: ${attribute.value_name}`}
               </li>))}
           </ul>
-          <button
-            type="button"
-            onClick={ () => this.addCart(productObj) }
-            data-testid="product-detail-add-to-cart"
-          >
-            Adicionar ao carrinho
-          </button>
+          <ButtonAddToCart
+            dataTestId="product-detail-add-to-cart"
+            addCart={ addCart }
+            product={ productObj }
+          />
         </div>
         <EvaluationForm
           updateField={ this.updateField }
@@ -94,7 +84,7 @@ ProductDetails.propTypes = {
       }).isRequired,
     }).isRequired,
   }).isRequired,
-
+  addCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;

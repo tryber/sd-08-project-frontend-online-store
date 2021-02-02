@@ -2,17 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ShoppingCart extends React.Component {
-  constructor(props) {
-    super(props);
-    const { location: { state: { onCart } } } = this.props;
-    this.state = {
-      onCart,
-    };
-  }
-
   render() {
-    const { onCart } = this.state;
-    const { increaseQuantity, decreaseQuantity, deleteProduct } = this.props.location;
+    const { increaseQuantity, decreaseQuantity, deleteProduct, onCart } = this.props;
     return (
       <div>
         {
@@ -62,11 +53,10 @@ class ShoppingCart extends React.Component {
 }
 
 ShoppingCart.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.shape({
-      onCart: PropTypes.arrayOf(PropTypes.object),
-    }).isRequired,
-  }).isRequired,
+  increaseQuantity: PropTypes.func.isRequired,
+  decreaseQuantity: PropTypes.func.isRequired,
+  deleteProduct: PropTypes.func.isRequired,
+  onCart: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ShoppingCart;

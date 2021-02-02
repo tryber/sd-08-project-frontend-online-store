@@ -5,6 +5,7 @@ import * as RequestAPI from '../services/api';
 import ProductCard from './ProductCard';
 import SearchBar from './SearchBar';
 import ListCategories from './ListCategories';
+import ButtonAddToCart from './ButtonAddToCart';
 
 class ProductList extends Component {
   constructor() {
@@ -55,10 +56,6 @@ class ProductList extends Component {
     });
   }
 
-  addAmount = (product) => {
-    product.amount = 1;
-  }
-
   render() {
     const { products, listCategories, query } = this.state;
     const { addCart } = this.props;
@@ -70,32 +67,36 @@ class ProductList extends Component {
           value={ query }
         />
         <ListCategories categories={ listCategories } onClick={ this.handleChange } />
-        {products.map((product) => (
-          <div key={ product.id }>
-            <Link
-              to={ {
-                pathname: `/product/${product.id}`,
-                state: { productObj: product } } }
-              data-testid="product-detail-link"
-            >
-              <ProductCard
+        {products.map((product) => {
+          product.amount = 1;
+          return (
+            <div key={ product.id }>
+              <Link
+                to={ {
+                  pathname: `/product/${product.id}`,
+                  state: { productObj: product } } }
+                data-testid="product-detail-link"
+              >
+                <ProductCard
+                  product={ product }
+                />
+              </Link>
+              <ButtonAddToCart
+                dataTestId="product-add-to-cart"
+                addCart={ addCart }
                 product={ product }
               />
-            </Link>
-            {/* <ButtonAddToCart
-              data-testid={ "product-add-to-cart" }
-              onClick={ () => addCart(product) }
-            /> */}
-            <button
-              type="button"
-              onClick={ () => addCart(product) }
-              data-testid="product-add-to-cart"
-            >
-              {/* <Link /> */}
-              Adicionar ao carrinho
-            </button>
-          </div>
-        ))}
+              {/* <button
+                type="button"
+                onClick={ () => addCart(product) }
+                data-testid="product-add-to-cart"
+              >
+                <Link />
+                Adicionar ao carrinho
+              </button> */}
+            </div>
+          );
+        })}
       </div>
     );
   }
