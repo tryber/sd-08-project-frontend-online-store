@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AiFillPlusCircle,
   AiOutlinePlusCircle,
   AiFillMinusCircle,
@@ -98,6 +99,7 @@ class ShoppingCart extends React.Component {
           );
         }) }
         <button type="button" onClick={ this.clearCart }>Limpar Carrinho</button>
+        <Link data-testid="checkout-products" to="/checkout">Finalizar Carrinho</Link>
       </div>
     );
   }
