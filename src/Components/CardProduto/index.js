@@ -5,7 +5,7 @@ import BotaoAdiciona from '../BotaoAdiciona';
 
 export default class CardProduto extends Component {
   render() {
-    const { product } = this.props;
+    const { product, onAddProductToCart } = this.props;
     const { title, thumbnail, price, id } = product;
 
     return (
@@ -33,7 +33,11 @@ export default class CardProduto extends Component {
             },
           } }
         />
-        <BotaoAdiciona product={ product } testId="product-add-to-cart" />
+        <BotaoAdiciona
+          product={ product }
+          onAddProductToCart={ onAddProductToCart }
+          testId="product-add-to-cart"
+        />
       </div>
     );
   }
@@ -46,4 +50,5 @@ CardProduto.propTypes = {
     price: PropTypes.number,
     id: PropTypes.string,
   }).isRequired,
+  onAddProductToCart: PropTypes.func.isRequired,
 };

@@ -1,56 +1,60 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as api from '../../services/api';
+// import * as api from '../../services/api';
 import CardProduto from '../CardProduto';
 
 export default class ListaProdutos extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      products: [],
-    };
+  //   // this.state = {
+  //   //   products: [],
+  //   // };
 
-    this.fetchProducts = this.fetchProducts.bind(this);
-  }
+  //   // this.fetchProducts = this.fetchProducts.bind(this);
+  // }
 
   componentDidUpdate(prevProps) {
-    const { categoryId } = this.props;
+    const { categoryId, onFetchProducts } = this.props;
     if (prevProps.categoryId !== categoryId) {
-      this.fetchProducts();
+      onFetchProducts();
     }
   }
 
-  fetchProducts() {
-    const { inputStatus, categoryId } = this.props;
-    const { getProductsFromCategoryAndQuery } = api;
+  // fetchProducts() {
+  //   const { inputStatus, categoryId } = this.props;
+  //   const { getProductsFromCategoryAndQuery } = api;
 
-    getProductsFromCategoryAndQuery(categoryId, inputStatus)
-      .then((data) => {
-        this.setState({
-          products: data.results,
-        });
-      });
-  }
+  //   getProductsFromCategoryAndQuery(categoryId, inputStatus)
+  //     .then((data) => {
+  //       this.setState({
+  //         products: data.results,
+  //       });
+  //     });
+  // }
 
   render() {
-    const { products } = this.state;
+    const { products, onAddProductToCart } = this.props;
+    const prod = products;
 
     return (
       <div>
-        <button
+        {/* <button
           type="button"
           data-testid="query-button"
-          onClick={ this.fetchProducts }
+          onClick={ onFetchProducts }
         >
           Buscar
-        </button>
+        </button> */}
         <div className="container-product-list">
-          { products.map((product) => (
-            <CardProduto
-              key={ product.id }
-              product={ product }
-            />))}
+          {
+            prod.map((product) => (
+              <CardProduto
+                key={ product.id }
+                product={ product }
+                onAddProductToCart={ onAddProductToCart }
+              />))
+          }
         </div>
       </div>
     );
@@ -58,6 +62,9 @@ export default class ListaProdutos extends Component {
 }
 
 ListaProdutos.propTypes = {
-  inputStatus: PropTypes.string.isRequired,
+  // inputStatus: PropTypes.string.isRequired,
   categoryId: PropTypes.string.isRequired,
+  onFetchProducts: PropTypes.func.isRequired,
+  onAddProductToCart: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

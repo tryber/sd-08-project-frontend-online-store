@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import * as api from '../../services/api';
+
 import ListaDeCategorias from '../../Components/ListaDeCategorias';
 import BotaoCarrinho from '../../Components/BotaoCarrinho';
 import ListaProdutos from '../../Components/ListaProdutos';
@@ -8,12 +10,28 @@ export default class PaginaInicial extends Component {
     super();
 
     this.state = {
+      products: [],
       inputStatus: '',
       categoryId: '',
+      cartProducts: [],
     };
 
+    this.fetchProducts = this.fetchProducts.bind(this);
     this.changeInputStatus = this.changeInputStatus.bind(this);
     this.changeCategoryId = this.changeCategoryId.bind(this);
+    this.addProductToCart = this.addProductToCart.bind(this);
+  }
+
+  fetchProducts() {
+    const { inputStatus, categoryId } = this.state;
+    const { getProductsFromCategoryAndQuery } = api;
+
+    getProductsFromCategoryAndQuery(categoryId, inputStatus)
+      .then((data) => {
+        this.setState({
+          products: data.results,
+        });
+      });
   }
 
   changeCategoryId({ target }) {
@@ -30,16 +48,34 @@ export default class PaginaInicial extends Component {
     });
   }
 
+  addProductToCart(product) {
+    this.setState((prevState) => {
+      if (prevState.cartProducts.length !== 0) {
+        return { cartProducts: [...prevState.cartProducts, product] };
+      }
+      return { cartProducts: [product] };
+    });
+  }
+
   renderStatusInput() {
     const { inputStatus } = this.state;
     return (
-      <input
-        type="text"
-        id="buscador"
-        value={ inputStatus }
-        onChange={ this.changeInputStatus }
-        data-testid="query-input"
-      />
+      <div>
+        <input
+          type="text"
+          id="buscador"
+          value={ inputStatus }
+          onChange={ this.changeInputStatus }
+          data-testid="query-input"
+        />
+        <button
+          type="button"
+          data-testid="query-button"
+          onClick={ this.fetchProducts }
+        >
+          Buscar
+        </button>
+      </div>
     );
   }
 
@@ -52,11 +88,17 @@ export default class PaginaInicial extends Component {
   }
 
   render() {
-    const { inputStatus, categoryId } = this.state;
+    const { products, inputStatus, categoryId } = this.state;
     return (
       <div>
         {this.renderStatusInput()}
-        <ListaProdutos inputStatus={ inputStatus } categoryId={ categoryId } />
+        <ListaProdutos
+          products={ products }
+          // inputStatus={ inputStatus }
+          categoryId={ categoryId }
+          onFetchProducts={ this.fetchProducts }
+          onAddProductToCart={ this.addProductToCart }
+        />
         <BotaoCarrinho />
         {(inputStatus === '' && categoryId === '') && this.renderInitialMessage()}
         <ListaDeCategorias onChangeCategoryId={ this.changeCategoryId } />
