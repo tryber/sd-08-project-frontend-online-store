@@ -1,12 +1,7 @@
 export async function getCategories() {
-  const noResult = 404;
   const categorie = await fetch('https://api.mercadolibre.com/sites/MLB/categories')
-    .then((response) => {
-      if (!response.ok) return new Error('Servidor não encontrado');
-      if (response.status === noResult) return new Error('Erro 404');
-      if (response) return response.json();
-      return categorie;
-    });
+    .then((response) => response.json());
+  return categorie;
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
