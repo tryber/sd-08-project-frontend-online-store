@@ -1,3 +1,5 @@
 import ListCard from './ListCard';
+import ProductsList from './ProductsList';
+import ShoppingCart from './ShoppingCart';
 
-export default ListCard;
+export { ListCard, ProductsList, ShoppingCart };
