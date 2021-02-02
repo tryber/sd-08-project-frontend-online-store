@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import ProductControls from '../ProductControls';
+
 import styles from './styles.module.css';
 
 class CartProductCard extends Component {
@@ -19,28 +21,12 @@ class CartProductCard extends Component {
           </p>
           <p data-testid="shopping-cart-product-quantity">{ quantity }</p>
         </div>
-        <div className={ styles.controls }>
-          <button
-            onClick={ () => handleIncrease(product) }
-            type="button"
-            data-testid="product-increase-quantity"
-          >
-            +
-          </button>
-          <button
-            onClick={ () => handleDecrease(product) }
-            type="button"
-            data-testid="product-decrease-quantity"
-          >
-            -
-          </button>
-          <button
-            onClick={ () => handleRemove(product) }
-            type="button"
-          >
-            Remover
-          </button>
-        </div>
+        <ProductControls
+          handleIncrease={ handleIncrease }
+          handleDecrease={ handleDecrease }
+          handleRemove={ handleRemove }
+          product={ product }
+        />
       </div>
     );
   }
