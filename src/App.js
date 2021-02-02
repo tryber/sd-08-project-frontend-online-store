@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import ProductDetails from './pages/ProductDetails';
+import ProductEvaluationForm from './components/ProductEvaluationForm';
 
 class App extends Component {
   constructor() {
@@ -11,12 +12,15 @@ class App extends Component {
 
     this.state = {
       cart: {},
+      evaluations: {},
     };
 
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleIncrease = this.handleIncrease.bind(this);
     this.handleDecrease = this.handleDecrease.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.handleChangeEvaluation = this.handleChangeEvaluation.bind(this);
+    this.getEvaluations = this.getEvaluations.bind(this);
   }
 
   handleAddToCart(product) {
@@ -85,16 +89,57 @@ class App extends Component {
     });
   }
 
+  handleChangeEvaluation(id, newEvaluation) {
+    this.setState(({ evaluations }) => {
+      const { [id]: itemEvaluations, ...rest } = evaluations;
+      return {
+        evaluations: {
+          ...rest,
+          [id]: [...(itemEvaluations || []), newEvaluation],
+        },
+      };
+    });
+  }
+
+  getEvaluations(id) {
+    const { evaluations } = this.state;
+    return evaluations[id] || [];
+  }
+
+  // <Route
+  //   path="/evaluations"
+  //   render={ (props) => (<ProductEvaluations
+  //     { ...props }
+  //     evaluations={ [
+  //       { message: 'blablabla', stars: 5, email: 'email@email.com ' },
+  //       { message: 'blablsadsaabla', stars: 5, email: 'iuyituy@email.com ' },
+  //       { message: 'blabldsadasabla', stars: 5, email: 'fdsafs@email.com ' },
+  //     ] }
+  //   />) }
+  // />
+
   render() {
     const { cart } = this.state;
     return (
       <Router>
         <Switch>
           <Route
+            path="/form"
+            render={ (props) => (
+              <ProductEvaluationForm
+                { ...props }
+                handleChangeEvaluation={ null }
+                product={ { id: 'qualquercoisa ' } }
+              />) }
+          />
+          <Route
             path="/product/:id"
             render={ (props) => (
-              <ProductDetails { ...props } />) }
-            handleAddToCart={ this.handleAddToCart }
+              <ProductDetails
+                { ...props }
+                handleChangeEvaluation={ this.handleChangeEvaluation }
+                getEvaluations={ this.getEvaluations }
+              />) }
           />
           <Route
             path="/cart"
