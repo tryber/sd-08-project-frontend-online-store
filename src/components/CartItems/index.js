@@ -35,7 +35,10 @@ class CartItems extends Component {
         <IconContext.Provider value={ { className: styles.emptyCartIcon } }>
           <FaBoxOpen />
         </IconContext.Provider>
-        <p data-testid="shopping-cart-empty-message">
+        <p
+          className={ styles.emptyCartMessage }
+          data-testid="shopping-cart-empty-message"
+        >
           Seu carrinho está vazio
         </p>
       </>

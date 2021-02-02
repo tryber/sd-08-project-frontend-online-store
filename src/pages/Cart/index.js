@@ -24,7 +24,13 @@ class Cart extends Component {
           handleDecrease={ handleDecrease }
           handleRemove={ handleRemove }
         />
-        <Link data-testid="checkout-products" to="/checkout">Finalizar compra</Link>
+        <Link
+          className={ styles.buy }
+          data-testid="checkout-products"
+          to="/checkout"
+        >
+          Finalizar compra
+        </Link>
       </div>
     );
   }

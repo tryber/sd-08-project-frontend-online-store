@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ProductsReview from '../../components/ProductsReview';
 
 import styles from './styles.module.css';
+import { BackButton } from '../../components';
 
 class Checkout extends Component {
   constructor(props) {
@@ -111,6 +112,7 @@ class Checkout extends Component {
     const { cart, handleIncrease, handleDecrease, handleRemove } = this.props;
     return (
       <div className={ styles.checkout }>
+        <BackButton />
         <ProductsReview
           cart={ cart }
           handleIncrease={ handleIncrease }
