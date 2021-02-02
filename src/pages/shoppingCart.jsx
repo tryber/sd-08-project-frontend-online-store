@@ -9,9 +9,10 @@ class ShoppingCart extends Component {
     super();
     this.productsList = this.productsList.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.addSubButton = this.addSubButton.bind(this);
 
     this.state = {
-      cart: [],
+      cart: localStorage.readCart(),
     };
   }
 
@@ -32,6 +33,14 @@ class ShoppingCart extends Component {
     );
   }
 
+  addSubButton(productId, operationName) {
+    const { cart } = this.state;
+    const index = cart.findIndex(({ id }) => id === productId);
+    if (operationName === 'add') cart[index].amount += 1;
+    if (operationName === 'sub' && cart[index].amount > 0) cart[index].amount -= 1;
+    this.setState({ cart }, () => localStorage.saveCart(cart));
+  }
+
   productsList() {
     const { cart } = this.state;
     return (
@@ -46,10 +55,28 @@ class ShoppingCart extends Component {
                   <h1>{ title }</h1>
                 </Link>
                 <h2 className="product-qtd" data-testid="shopping-cart-product-quantity">
-                  { `Quantidade: ${amount}` }
-                  <p>
-                    { `Preço unitário: R$ ${price}` }
-                  </p>
+                  <div className="add-and-decrease">
+                    <p>
+                      { `Preço unitário: R$ ${price}` }
+                    </p>
+                    <button
+                      type="button"
+                      data-testid="product-decrease-quantity"
+                      onClick={ (e) => this.addSubButton(id, e.target.name) }
+                      name="sub"
+                    >
+                      -
+                    </button>
+                    { amount }
+                    <button
+                      type="button"
+                      data-testid="product-increase-quantity"
+                      onClick={ (e) => this.addSubButton(id, e.target.name) }
+                      name="add"
+                    >
+                      +
+                    </button>
+                  </div>
                   <p>
                     { `Total: R$ ${price * amount}` }
                   </p>
