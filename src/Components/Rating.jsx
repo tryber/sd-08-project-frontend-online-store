@@ -4,8 +4,8 @@ class Rating extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      textarea: "",
+      email: '',
+      textarea: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,7 +15,7 @@ class Rating extends Component {
     const { name } = target;
     // console.log(target.value);
     // console.log(this.state);
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
   }
 
@@ -28,8 +28,8 @@ class Rating extends Component {
           type="email"
           name="email"
           placeholder="Email"
-          value={email}
-          onChange={onEmailChange}
+          value={ email }
+          onChange={ onEmailChange }
         />
       </label>
     );
@@ -44,8 +44,8 @@ class Rating extends Component {
           type="textarea"
           name="textarea"
           placeholder="Mensagem(opcional)"
-          value={text}
-          onChange={ontextChange}
+          value={ text }
+          onChange={ ontextChange }
         />
       </label>
     );
@@ -61,7 +61,7 @@ class Rating extends Component {
         <form>
           {this.fillEmailText(email, handleChange)}
           {this.fillTextArea(textarea, handleChange)}
-          <button type="button" onClick={this.submitRatig}>
+          <button type="button" onClick={ this.submitRatig }>
             Avaliar
           </button>
         </form>
