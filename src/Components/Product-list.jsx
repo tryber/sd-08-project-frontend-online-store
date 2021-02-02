@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class ProductList extends Component {
-  constructor(props) {
-    super(props);
-    const { query, categoryID } = this.props;
-    this.state = {
-      productInfo: {
-        querySearched: query,
-        category: categoryID,
-      }
-    }
+  constructor() {
+    super();
 
     this.mapList = this.mapList.bind(this);
     this.addToStorage = this.addToStorage.bind(this);
@@ -36,7 +29,7 @@ class ProductList extends Component {
               to={ `/details/${product.id}` }
               data-testid="product-detail-link"
             >
-              Detalhes
+              Ver detalhes...
             </Link>
             <button
               type="button"
@@ -54,7 +47,6 @@ class ProductList extends Component {
 
   render() {
     const { clicked } = this.props;
-    const { productInfo } = this.state;
     if (clicked) return (<div>{this.mapList()}</div>);
     return (
       <div>
