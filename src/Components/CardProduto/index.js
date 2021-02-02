@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BotaoAdiciona from '../BotaoAdiciona';
+import FreteGratis from '../FreteGratis';
 
 export default class CardProduto extends Component {
   render() {
@@ -10,6 +11,7 @@ export default class CardProduto extends Component {
     return (
       <div data-testid="product">
         <h4>{title}</h4>
+        <FreteGratis product={ product } />
         <img src={ thumbnail } alt="" />
         <span>{`Preço: ${price}`}</span>
         <Link

@@ -4,6 +4,7 @@ import BotaoAdiciona from '../../Components/BotaoAdiciona';
 import BotaoCarrinho from '../../Components/BotaoCarrinho';
 
 import FormularioAvaliaçao from '../../Components/FormularioAvaliaçao';
+import FreteGratis from '../../Components/FreteGratis';
 
 export default class DetalhesDoProduto extends Component {
   render() {
@@ -11,10 +12,12 @@ export default class DetalhesDoProduto extends Component {
     const { title, subtitle, price,
       condition, warranty, thumbnail } = product;
     const { addProductToCart, cartSize } = this.props;
+    
     return (
       <>
         <img src={ `${thumbnail}` } alt="product" />
         <p data-testid="product-detail-name">{title}</p>
+        <FreteGratis product={ product } />
         <p>{subtitle}</p>
         <p>{price}</p>
         <p>{condition}</p>
