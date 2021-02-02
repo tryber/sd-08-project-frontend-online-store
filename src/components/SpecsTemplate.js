@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Review from './Review';
 
 class SpecsTemplate extends Component {
   addCart(item) {
@@ -22,6 +23,7 @@ class SpecsTemplate extends Component {
         >
           Adicionar ao Carrinho
         </button>
+        <Review itemId={ itemInfo.id } />
       </div>
     );
   }
