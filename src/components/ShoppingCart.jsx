@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
+  negative() {
+    return (
+      <section>
+        <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+        <Link to="/">Voltar</Link>
+      </section>
+    );
+  }
+
   render() {
     const { cartList, productList, handleQuantityChange: change } = this.props;
 
-    if (!cartList.length) {
-      return (
-        <section>
-          <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-          <Link to="/">Voltar</Link>
-        </section>
-      );
-    }
+    if (!cartList.length) { return this.negative(); }
 
     return (
       <section>
@@ -49,6 +51,7 @@ class ShoppingCart extends React.Component {
               </div>
             </article>
           ))}
+        <Link to="/checkout" data-testid="checkout-products">Finalizar compra</Link>
         <Link to="/">Voltar</Link>
       </section>
     );

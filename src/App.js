@@ -6,6 +6,7 @@ import * as api from './services/api';
 import ProductList from './components/ProductList';
 import ProductDetails from './components/ProductDetails';
 import ShoppingCart from './components/ShoppingCart';
+import CheckoutCart from './components/CheckoutCart';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,26 +21,25 @@ class App extends React.Component {
   }
 
   handleQuantityChange(opType, id) {
-    this.setState((state) => ({
-      cartList: state.cartList.map((object) => {
-        if (object.id === id) {
-          return {
-            id,
-            quantity: (opType === '+' && (object.quantity + 1))
-              || (opType === '-' && (object.quantity >= 1) && (object.quantity - 1))
-              || 0,
-          };
-        }
-        return object;
-      }),
-    }));
+    const { cartList } = this.state;
+    const items = [...cartList];
+    const i = items.findIndex((item) => item.id === id);
+
+    items[i].quantity = (opType === '+' && (items[i].quantity + 1))
+    || (opType === '-' && (items[i].quantity >= 1) && (items[i].quantity - 1))
+    || 0;
+
+    this.setState({
+      cartList: items,
+    });
   }
 
   handleAddToCart(event) {
     const { id } = event.target;
-    const { cartList } = this.state;
+    const { cartList, productList } = this.state;
+    const { price, title } = productList.find((item) => item.id === id);
     this.setState({
-      cartList: [...cartList, { id, quantity: 1 }],
+      cartList: [...cartList, { id, price, title, quantity: 1 }],
     });
   }
 
@@ -78,6 +78,9 @@ class App extends React.Component {
                 handleRequest={ this.handleRequest }
                 handleAddToCart={ this.handleAddToCart }
               />
+            </Route>
+            <Route path="/checkout">
+              <CheckoutCart cartList={ cartList } />
             </Route>
           </Switch>
         </BrowserRouter>
