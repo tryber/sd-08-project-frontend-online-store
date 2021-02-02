@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Review.css';
 
 class Review extends React.Component {
   render() {
     const { review } = this.props;
     return (
-      <div>
+      <div className="reviewItem">
         <p>{review.email}</p>
+        <p>{ review.stars}</p>
         <p>{review.textArea}</p>
-        <p>{ `Rating: ${review.stars}` }</p>
       </div>
     );
   }

@@ -163,7 +163,7 @@ class ProductDetails extends React.Component {
     const filteredReviews = reviews.filter(({ id }) => id === currentId);
 
     return (
-      <div>
+      <div className="reviewList">
         { filteredReviews.map((review, index) => (<Review
           key={ index }
           review={ review }
