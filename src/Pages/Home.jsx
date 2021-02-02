@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
-
 import CategoriesList from '../Components/Categories-list';
 import ProductList from '../Components/Product-list';
 
@@ -48,7 +47,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories, listProduct, clicked } = this.state;
+    const { categories, listProduct, clicked, categoryID } = this.state;
     return (
       <div>
         <Link to="/shopping-cart" data-testid="shopping-cart-button">carrinho</Link>
@@ -80,6 +79,7 @@ class Home extends React.Component {
           <ProductList
             listProduct={ listProduct }
             clicked={ clicked }
+            categoryID={ categoryID }
           />
         </main>
       </div>

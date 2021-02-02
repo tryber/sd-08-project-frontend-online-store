@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ProductList extends Component {
@@ -23,6 +24,12 @@ class ProductList extends Component {
             <span>{ product.title }</span>
             <img src={ product.thumbnail } alt="" />
             <span>{ product.price }</span>
+            <Link
+              to={ `/details/${product.id}` }
+              data-testid="product-detail-link"
+            >
+              Ver detalhes...
+            </Link>
             <button
               type="button"
               data-testid="product-add-to-cart"
