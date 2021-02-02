@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ListAllCategories from './ListAllCategories';
 import { getCategories } from '../services/api';
-import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor() {
@@ -17,8 +17,8 @@ class Home extends React.Component {
   async fetchCategories() {
     const categories = await getCategories();
     this.setState({ categories });
+  }
 
-class Home extends React.Component {
   busca() {
     return (
       <label htmlFor="busca" data-testid="home-initial-message">
