@@ -127,9 +127,14 @@ class App extends React.Component {
   }
 
   render() {
+    const { cartProducts } = this.state;
     return (
       <BrowserRouter>
-        <NavBar handleChange={ this.handleChange } handleClick={ this.handleClick } />
+        <NavBar
+          handleChange={ this.handleChange }
+          handleClick={ this.handleClick }
+          cartProducts={ cartProducts }
+        />
         <main className="main">
           <Content
             { ...this.state }
