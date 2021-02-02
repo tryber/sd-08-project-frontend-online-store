@@ -8,7 +8,7 @@ class CarrinhoCompras extends Component {
     this.decreaseItem = this.decreaseItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.state = {
-      products: undefined,
+      products: [],
     };
   }
 
@@ -17,29 +17,60 @@ class CarrinhoCompras extends Component {
   }
 
   async restoreState() {
-    const itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
-    if (itemsCart) {
-      this.setState({ products: itemsCart });
+    const products = await JSON.parse(localStorage.getItem('itemsCart'));
+    if (products) {
+      this.setState({ products });
     }
   }
 
   removeItem(item) {
-    console.log(item);
+    const { products } = this.state;
+    const newProducts = products.filter((element) => element.id !== item.id);
+    localStorage.setItem('itemsCart', JSON.stringify(newProducts));
+    this.setState({ products: newProducts });
   }
 
   increaseItem(item) {
-    console.log(item);
+    const { products } = this.state;
+    const newProduct = products.map((element) => {
+      if (element.id === item.id) {
+        element.qtd += 1;
+      }
+      return element;
+    });
+    localStorage.setItem('itemsCart', JSON.stringify(newProduct));
+    this.setState({ products: newProduct });
   }
 
   decreaseItem(item) {
-    console.log(item);
+    const { products } = this.state;
+    const quantity = products.find((element) => element.id === item.id);
+    const flagZero = 1;
+    if (quantity.qtd > flagZero) {
+      const newProduct = products.map((element) => {
+        if (element.id === item.id) {
+          element.qtd -= 1;
+        }
+        return element;
+      });
+      localStorage.setItem('itemsCart', JSON.stringify(newProduct));
+      this.setState({ products: newProduct });
+    }
+  }
+
+  total() {
+    const { products } = this.state;
+    const totalPrice = products.reduce((acc, item) => acc + (item.price * item.qtd), 0);
+    return (
+      <p>{totalPrice}</p>
+    );
   }
 
   render() {
     const { products } = this.state;
     return (
       <div>
-        {products ? products.map((item) => (
+        {(products.length !== 0) ? products.map((item) => (
           <div key={ item.title }>
             <button
               type="submit"
@@ -49,13 +80,6 @@ class CarrinhoCompras extends Component {
             </button>
             <p data-testid="shopping-cart-product-name">{ item.title }</p>
             <p>{ item.price }</p>
-            <button
-              type="submit"
-              data-testid="product-decrease-quantity"
-              onClick={ () => this.decreaseItem(item) }
-            >
-              -
-            </button>
             <p data-testid="shopping-cart-product-quantity">{ item.qtd }</p>
             <button
               type="submit"
@@ -64,8 +88,18 @@ class CarrinhoCompras extends Component {
             >
               +
             </button>
+            <button
+              type="submit"
+              data-testid="product-decrease-quantity"
+              onClick={ () => this.decreaseItem(item) }
+            >
+              -
+            </button>
           </div>
         )) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
+        {
+          (products.length !== 0) ? this.total() : ''
+        }
       </div>
     );
   }

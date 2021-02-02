@@ -65,15 +65,13 @@ class SearchProducts extends React.Component {
 
   async addCartItem(e) {
     const product = JSON.parse(e.target.value);
-    console.log(product);
     product.qtd = 1;
-    let itemsCart;
+    let itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
 
-    if (localStorage.getItem('itemsCart')) {
-      itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
-      Object.keys(itemsCart).forEach((key) => {
-        if (itemsCart[key].id === product.id) {
-          itemsCart[key].qtd += 1;
+    if (itemsCart && itemsCart.length !== 0) {
+      itemsCart.forEach((item) => {
+        if (item.id === product.id) {
+          item.qtd += 1;
         } else {
           itemsCart = [
             ...itemsCart,

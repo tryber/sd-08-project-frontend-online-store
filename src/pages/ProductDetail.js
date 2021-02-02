@@ -12,7 +12,7 @@ class ProductDetail extends React.Component {
     this.addCartItem = this.addCartItem.bind(this);
     this.state = {
       loading: true,
-      product: [],
+      product: null,
     };
   }
 
@@ -24,7 +24,7 @@ class ProductDetail extends React.Component {
     const { match: { params: { id } } } = this.props;
     const ids = id.split('-');
     const fetch = await api.getProductsFromCategoryAndQuery(ids[0], '');
-    const result = fetch.results.filter((product) => product.id === ids[1]);
+    const result = fetch.results.find((product) => product.id === ids[1]);
     this.setState({
       loading: false,
       product: result,
@@ -33,56 +33,58 @@ class ProductDetail extends React.Component {
 
   async addCartItem() {
     const { product } = this.state;
-    product[0].qtd = 1;
-    let itemsCart;
+    product.qtd = 1;
+    let itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
 
-    if (localStorage.getItem('itemsCart')) {
-      itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
-      Object.keys(itemsCart).forEach((key) => {
-        if (itemsCart[key].id === product[0].id) {
-          itemsCart[key].qtd += 1;
+    if (itemsCart && itemsCart.length !== 0) {
+      itemsCart.forEach((item) => {
+        if (item.id === product.id) {
+          item.qtd += 1;
         } else {
           itemsCart = [
             ...itemsCart,
-            product[0],
+            product,
           ];
         }
       });
 
       localStorage.setItem('itemsCart', JSON.stringify(itemsCart));
     } else {
-      itemsCart = product;
+      itemsCart = [product];
       localStorage.setItem('itemsCart', JSON.stringify(itemsCart));
     }
   }
 
   productDetail() {
     const { product } = this.state;
+    if (!product) {
+      return <p>Loading...</p>;
+    }
     return (
       <div>
-        {product.map((item) => (
-          <div key={ item.id } data-testid="product">
-            <p data-testid="product-detail-name">{ item.title }</p>
-            <img src={ item.thumbnail } alt={ item.title } />
-            <span>{ `${item.price} ${item.currency_id} ` }</span>
-            <p>especificação técnica</p>
-            <ul>
-              {item.attributes
-                .map((attribute) => (
-                  <li key={ attribute.value_id }>
-                    {`${attribute.name}: ${attribute.value_name}`}
-                  </li>))}
-            </ul>
-            <button
-              type="button"
-              value={ item }
-              onClick={ this.addCartItem }
-              data-testid="product-detail-add-to-cart"
-            >
-              Adicionar ao carrinho
-            </button>
-          </div>
-        ))}
+
+        <div data-testid="product">
+          <p data-testid="product-detail-name">{ product.title }</p>
+          <img src={ product.thumbnail } alt={ product.title } />
+          <span>{ `${product.price} ${product.currency_id} ` }</span>
+          <p>especificação técnica</p>
+          <ul>
+            {product.attributes
+              .map((attribute) => (
+                <li key={ attribute.value_name }>
+                  {`${attribute.name}: ${attribute.value_name}`}
+                </li>))}
+          </ul>
+          <button
+            type="button"
+            value={ product }
+            onClick={ this.addCartItem }
+            data-testid="product-detail-add-to-cart"
+          >
+            Adicionar ao carrinho
+          </button>
+        </div>
+
       </div>
     );
   }
