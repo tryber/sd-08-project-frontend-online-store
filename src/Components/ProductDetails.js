@@ -4,8 +4,25 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class ProductDetails extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      value: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+  }
+
   render() {
     const { location: { state: { product } } } = this.props;
+    const { value } = this.state;
     return (
       <div key={ product.id } data-testid="product">
         <p data-testid="product-detail-name">{ product.title }</p>
@@ -23,6 +40,19 @@ class ProductDetails extends React.Component {
         >
           Adcionar ao carrinho
         </Link>
+        <forms onSubmit={ this.handleSubmit }>
+          <br />
+          <label htmlFor="product-detail-evaluation">
+            Avaliação
+            <input type="number" min="1" max="5" />
+            <textarea
+              value={ value }
+              onChange={ this.handleChange }
+              data-testid="product-detail-evaluation"
+            />
+            <button type="submit">Enviar</button>
+          </label>
+        </forms>
       </div>
     );
   }
