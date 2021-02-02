@@ -1,0 +1,39 @@
+.produtos-main {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.produtos-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+.produtos-card {
+  box-shadow: 3px 5px 15px #ccc;
+  height: 270px;
+  margin: 10px 15px;
+  padding: 20px;
+  position: relative;
+  width: 250px;
+}
+
+.produtos-card img {
+  margin: auto;
+  width: 100px;
+}
+
+.produtos-card:hover {
+  background-color: #eee;
+}
+
+.prod-btn-add-list {
+  bottom: 10%;
+  color: rgb(33, 172, 15);
+  cursor: pointer;
+  float: right;
+  font-size: 30px;
+  position: absolute;
+  right: 10%;
+}

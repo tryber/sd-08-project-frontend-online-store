@@ -1,0 +1,34 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  margin: 3% 2%;
+  width: 80%;
+}
+
+.search p {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.search-input {
+  padding: 10px;
+  width: 100%;
+}
+
+.search-btn {
+  align-items: center;
+  background-color: royalblue;
+  color: white;
+  display: flex;
+  font-weight: 600;
+  padding: 3px 7px;
+}
+
+.search-btn .icon {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.search-container {
+  display: flex;
+}

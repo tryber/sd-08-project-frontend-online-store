@@ -1,0 +1,38 @@
+.cat-container {
+  align-items: center;
+  border-right: 3px solid #aaa;
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+  width: 20%;
+}
+
+.cat-container h1 {
+  display: hidden;
+  font-size: 1px;
+}
+
+.cat-item {
+  background-color: rgb(1, 32, 100);
+  border-radius: 10px;
+  color: white;
+  font-size: 1.3vw;
+  margin: 5px;
+  padding: 5%;
+  text-align: center;
+  width: 95%;
+}
+
+.cat-item:hover {
+  background-color: rgb(8, 47, 131);
+}
+
+.cat-btn {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  height: 100%;
+  width: 100%;
+}

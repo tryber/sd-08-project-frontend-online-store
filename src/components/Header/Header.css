@@ -1,0 +1,21 @@
+.header-container {
+  align-items: center;
+  background-color: #222;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.header-logo {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.header-cart {
+  color: white;
+  font-size: 40px;
+  margin-right: 20px;
+}
