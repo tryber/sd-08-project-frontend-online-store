@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Rating from '../Components/Rating';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class ProductDetail extends React.Component {
         <img src={ productInfo.thumbnail } alt="Imagem do produto" />
         <p>{ productInfo.price }</p>
         <h3>Especificacoes Técnicas</h3>
+        <Rating />
       </main>
     );
   }

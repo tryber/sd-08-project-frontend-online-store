@@ -5,14 +5,10 @@ class ShoppingCart extends React.Component {
     super();
 
     this.renderProducts = this.renderProducts.bind(this);
-<<<<<<< HEAD
-    this.increaseQuantity = this.increaseQuantity.bind(this);
-=======
     this.getKeys = this.getKeys.bind(this);
     this.addProduct = this.addProduct.bind(this);
     this.lessProduct = this.lessProduct.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
->>>>>>> 5cfcd5d0636f931053fc06f92e7cba0885458be9
   }
 
   componentDidMount() {
@@ -21,32 +17,16 @@ class ShoppingCart extends React.Component {
 
   getKeys() {
     const keysLS = Object.keys(localStorage);
-<<<<<<< HEAD
-    keysLS.map((element) => this.setState({
-      [element]:1,
-    }))
-  }
-
-  increaseQuantity({ target }) {
-    const { id } = target;
-    console.log(id);
-=======
     keysLS.map((element) => this.setState({ [element]: 1 }));
   }
 
   addProduct({ target }) {
     const { id } = target;
->>>>>>> 5cfcd5d0636f931053fc06f92e7cba0885458be9
     this.setState((anterior) => ({
       [id]: anterior[id] + 1,
     }));
   }
 
-<<<<<<< HEAD
-  decreaseQuantity({ target }) {
-    const { id } = target;
-    console.log(id);
-=======
   lessProduct({ target }) {
     const { id } = target;
     this.setState((anterior) => {
@@ -66,7 +46,6 @@ class ShoppingCart extends React.Component {
 
     this.setState(stateLocal);
     localStorage.removeItem(id);
->>>>>>> 5cfcd5d0636f931053fc06f92e7cba0885458be9
   }
 
   renderProducts() {
@@ -74,38 +53,6 @@ class ShoppingCart extends React.Component {
     const stateLocal = this.state;
     console.log(stateLocal);
     const products = productsLocalStorage.map((element) => JSON.parse(element));
-<<<<<<< HEAD
-    if(stateLocal!==null)
-    return (
-      <div>
-        {products.map((element) => (
-          <div key={element.id}>
-            <img src={element.thumbnail} alt="Product" />
-            <span data-testid="shopping-cart-product-name">
-              {element.title}
-            </span>
-            <button
-              type="button"
-              id={element.id}
-              onClick={this.decreaseQuantity}
-            >
-              -
-            </button>
-            <span data-testid="shopping-cart-product-quantity">{stateLocal[element.id]}</span>
-            <button
-              type="button"
-              id={element.id}
-              onClick={this.increaseQuantity}
-            >
-              +
-            </button>
-            <span>{element.price}</span>
-          </div>
-        ))}
-      </div>
-    );
-=======
-    const stateLocal = this.state;
     if (stateLocal !== null) {
       return (
         <div>
@@ -144,7 +91,6 @@ class ShoppingCart extends React.Component {
         </div>
       );
     }
->>>>>>> 5cfcd5d0636f931053fc06f92e7cba0885458be9
   }
 
   render() {
@@ -154,10 +100,6 @@ class ShoppingCart extends React.Component {
       );
     }
     if (localStorage.length > 0) {
-<<<<<<< HEAD
-      console.log("entrei no render");
-=======
->>>>>>> 5cfcd5d0636f931053fc06f92e7cba0885458be9
       return (
         <div>
           Shopping Cart
