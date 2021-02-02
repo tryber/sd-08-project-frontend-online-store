@@ -1,14 +1,18 @@
 import React from 'react';
 import Search from './Search';
+import ListAllCategories from './ListAllCategories';
+import { getCategories } from '../services/api';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor() {
     super();
+    
     this.state = {
       busca: '',
-
+      categories: [],
     };
-
+    this.fetchCategories = this.fetchCategories.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -17,7 +21,16 @@ class Home extends React.Component {
     this.setState({ [name]: value });
   }
 
-  produto(busca) {
+  componentDidMount() {
+    this.fetchCategories();
+  }
+
+  async fetchCategories() {
+    const categories = await getCategories();
+    this.setState({ categories });
+  }
+    
+  busca(busca) {
     return (
       <div>
         <label htmlFor="busca" data-testid="home-initial-message">
@@ -25,9 +38,6 @@ class Home extends React.Component {
           <input
             type="text"
             id="busca"
-            name="busca"
-            onChange={ this.handleChange }
-            data-testid="query-input"
           />
         </label>
         <Search valor={ busca } />
@@ -35,11 +45,24 @@ class Home extends React.Component {
     );
   }
 
+  botao() {
+    return (
+      <button
+        type="button"
+      >
+        <Link data-testid="shopping-cart-button" to="/shoplist">Carrinho</Link>
+      </button>
+    );
+  }
+
   render() {
-    const { busca } = this.state;
+    const { categories, busca  } = this.state;
     return (
       <form>
-        { this.produto(busca) }
+        {/* cria uma label e um input  e o botao */}
+        { this.busca(busca) }
+        { this.botao() }
+        <ListAllCategories categories={ categories } />
       </form>
     );
   }
