@@ -9,38 +9,30 @@ class NavBar extends React.Component {
   render() {
     const { cartProducts } = this.props;
     return (
-      <>
-        <header className="header">
-          <HomeButton />
-          <nav className="nav">
-            <NavForm { ...this.props } />
-          </nav>
-          cartProducts
+      <header className="header">
+        <HomeButton />
+        <nav className="nav">
+          <NavForm { ...this.props } />
+        </nav>
+        <div>
           <Link to="/carrinho" data-testid="shopping-cart-button">
-            <div>
-              <img
-                alt="carrinho"
-                src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png"
-              />
-              <span>{ console.log(cartProducts) }</span>
-            </div>
+            <img
+              alt="carrinho"
+              src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png"
+            />
           </Link>
-        </header>
-        <button
-          type="button"
-          className="filter-options"
-          onClick={ this.mobileShowFilterOptions }
-        >
-          teste
-        </button>
-      </>
-
+          <div data-testid="shopping-cart-size" className="cart-counter">
+            { cartProducts.length }
+            {console.log(cartProducts.length)}
+          </div>
+        </div>
+      </header>
     );
   }
 }
 
 NavBar.propTypes = {
-  cartProducts: PropTypes.func.isRequired,
+  cartProducts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default NavBar;
