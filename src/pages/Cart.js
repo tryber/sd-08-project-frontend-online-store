@@ -1,39 +1,55 @@
 import React, { Component } from 'react';
+import { addAnotherProduct, removeAnotherProduct } from '../services/storage';
 
 class Cart extends Component {
   constructor() {
     super();
-    this.loadingItems = this.loadingItems.bind(this);
     this.state = {
-      products: [],
-      loading: true,
+      products: JSON.parse(localStorage.getItem('cart')),
     };
+    this.handleAddAnotherProduct = this.handleAddAnotherProduct.bind(this);
+    this.handleRemoveAnotherProduct = this.handleRemoveAnotherProduct.bind(this);
   }
 
-  componentDidMount() {
-    this.loadingItems();
+  handleAddAnotherProduct({ target }) {
+    const { name } = target;
+    addAnotherProduct(name);
+    const storage = JSON.parse(localStorage.getItem('cart'));
+    this.setState({ products: storage });
   }
 
-  countProducts(products) {
-    const counts = {};
-    for (let i = 0; i < products.length; i += 1) {
-      const objKey = products[i].title;
-      counts[objKey] = counts[objKey] ? counts[objKey] + 1 : 1;
-    }
-    return counts;
+  handleRemoveAnotherProduct({ target }) {
+    const { name } = target;
+    removeAnotherProduct(name);
+    const storage = JSON.parse(localStorage.getItem('cart'));
+    this.setState({ products: storage });
   }
 
-  loadingList(products) {
+  renderListShoppingCart(products) {
     if (localStorage.getItem('cart')) {
-      return products.map((product) => (
-        <div key={ product[0] }>
+      return products.map(({ title, count }) => (
+        <div key={ title }>
           <div data-testid="shopping-cart-product-name">
             Title:
-            {product[0]}
+            {title}
           </div>
           <div data-testid="shopping-cart-product-quantity">
             Quantity:
-            {product[1]}
+            {count}
+            <input
+              name={ title }
+              type="button"
+              value="+"
+              data-testid="product-increase-quantity"
+              onClick={ this.handleAddAnotherProduct }
+            />
+            <input
+              name={ title }
+              type="button"
+              value="-"
+              data-testid="product-decrease-quantity"
+              onClick={ this.handleRemoveAnotherProduct }
+            />
           </div>
         </div>
       ));
@@ -45,25 +61,11 @@ class Cart extends Component {
     );
   }
 
-  loadingItems() {
-    const items = JSON.parse(localStorage.getItem('cart'));
-    if (items !== null) {
-      const result = this.countProducts(items);
-      const productsNames = Object.keys(result);
-      const productsQuantity = Object.values(result);
-      const arr = [];
-      for (let i = 0; i < productsNames.length; i += 1) {
-        arr[i] = [productsNames[i], productsQuantity[i]];
-      }
-      this.setState({ products: arr, loading: false });
-    }
-  }
-
   render() {
-    const { loading, products } = this.state;
+    const { products } = this.state;
     return (
       <div>
-        {loading ? 'CarregandoItems...' : this.loadingList(products)}
+        {this.renderListShoppingCart(products)}
       </div>
     );
   }
