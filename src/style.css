@@ -56,7 +56,7 @@ body {
 .categories-list select {
   border: 1px solid #344;
   border-radius: 100px;
-  font-family: Open Sans, sans-serif;
+  font-family: Open Sans , sans-serif;
   font-size: 14px;
   outline: none;
   padding: 2px 10px;
@@ -124,8 +124,7 @@ body {
 .sec-products {
   align-items: flex-start;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: center;
   margin-top: 10px;
   width: 800px;
@@ -138,10 +137,9 @@ body {
 .product-card {
   align-items: center;
   border-radius: 10px;
-  box-shadow: 0px 0px 2px rgba(125, 145, 0, 0.2);
+  box-shadow: 0 0 2px rgba(125, 145, 0, 0.2);
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   margin: 10px;
   padding: 10px;
   text-align: center;
@@ -150,10 +148,10 @@ body {
 }
 
 .product-card:hover {
-  box-shadow: 0px 2px 4px rgba(125, 145, 0, 0.4);
+  box-shadow: 0 2px 4px rgba(125, 145, 0, 0.4);
 }
 
 .product-card h3 {
-  font-family: Quicksand, sans-serif;
+  font-family: Quicksand , sans-serif;
   font-size: 14px;
 }
