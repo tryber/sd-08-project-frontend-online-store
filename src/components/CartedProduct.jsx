@@ -9,22 +9,62 @@ class CartedProduct extends React.Component {
     };
     this.increase = this.increase.bind(this);
     this.decrease = this.decrease.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
   increase() {
+    const quantity = this.accessLocalStorageQuantity();
+    const { product: { id } } = this.props;
     const { product } = this.props;
     const { available_quantity: availableQuantity } = product;
-    this.setState((state) => ({
-      quantity:
-        state.quantity + 1 > availableQuantity ? state.quantity : state.quantity + 1,
-    }));
+
+    quantity.forEach((objQuantity, index) => {
+      if(Object.keys(objQuantity)[0] === id) {
+        const previousQuantity = quantity[index][id].quantity;
+        quantity[index][id].quantity = previousQuantity + 1 > availableQuantity ? previousQuantity : previousQuantity + 1;
+      }
+    })
+    localStorage.setItem('quantity', JSON.stringify(quantity));
+    this.updateState();
   }
 
   decrease() {
-    this.setState((state) => ({
-      quantity: state.quantity > 1 ? state.quantity - 1 : state.quantity,
-    }));
+    const quantity = this.accessLocalStorageQuantity();
+    const { product: { id } } = this.props;
+    const { product } = this.props;
+    quantity.forEach((objQuantity, index) => {
+      if(Object.keys(objQuantity)[0] === id) {
+        const previousQuantity = quantity[index][id].quantity;
+        quantity[index][id].quantity = previousQuantity > 1 ? previousQuantity - 1 : previousQuantity;
+      }
+    })
+    localStorage.setItem('quantity', JSON.stringify(quantity));
+    this.updateState();
   }
+
+  componentDidMount() {
+    this.updateState();
+  }
+
+  updateState() {
+    const quantity = this.accessLocalStorageQuantity();
+    const { product: { id } } = this.props;
+    quantity.map((objQuantity) => {
+      if(Object.keys(objQuantity)[0] === id) {
+        this.setState({
+          quantity: objQuantity[id].quantity,
+        })
+      }
+    })
+
+
+  }
+
+  accessLocalStorageQuantity() {
+    const quantity = JSON.parse(localStorage.quantity);
+    return quantity;
+  }
+
 
   render() {
     const { product } = this.props;
@@ -50,6 +90,7 @@ class CartedProduct extends React.Component {
         </button>
         <img src={ product.thumbnail } alt="product model" />
         <h4>{product.price}</h4>
+        <h3>Preço Total: {product.price * quantity}</h3>
       </li>
     );
   }
