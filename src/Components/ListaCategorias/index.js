@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../../services/api';
 
-export default class ListaDeCategorias extends Component {
+export default class ListaCategorias extends Component {
   constructor() {
     super();
     this.fetchListOfCategories = this.fetchListOfCategories.bind(this);
@@ -51,6 +51,6 @@ export default class ListaDeCategorias extends Component {
   }
 }
 
-ListaDeCategorias.propTypes = {
+ListaCategorias.propTypes = {
   onChangeCategoryId: PropTypes.func.isRequired,
 };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ListaDeCategorias from '../../Components/ListaDeCategorias';
+import ListaCategorias from '../../Components/ListaCategorias';
 import BotaoCarrinho from '../../Components/BotaoCarrinho';
 import ListaProdutos from '../../Components/ListaProdutos';
 
@@ -59,7 +59,7 @@ export default class PaginaInicial extends Component {
         <ListaProdutos inputStatus={ inputStatus } categoryId={ categoryId } />
         <BotaoCarrinho />
         {(inputStatus === '' && categoryId === '') && this.renderInitialMessage()}
-        <ListaDeCategorias onChangeCategoryId={ this.changeCategoryId } />
+        <ListaCategorias onChangeCategoryId={ this.changeCategoryId } />
       </div>
     );
   }
