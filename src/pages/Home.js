@@ -55,25 +55,37 @@ class Home extends React.Component {
     });
   }
 
+  handleClikBtn() {
+    console.log('Clicou');
+  }
+
   returnProducts() {
     const { products } = this.state;
     return (
       <div className="show-products">
         {products.map((product) => (
-          <Link
-            key={ product.id }
-            to={ {
-              pathname: `/details/${product.id}`,
-              state: { product },
-            } }
-            data-testid="product-detail-link"
-          >
-            <div key={ product.id } data-testid="product">
-              <p>{product.title}</p>
-              <img src={ `${product.thumbnail}` } alt={ product.title } />
-              <p>{product.price}</p>
-            </div>
-          </Link>
+          <div key={ product.id } data-testid="product">
+            <Link
+              key={ product.id }
+              to={ {
+                pathname: `/details/${product.id}`,
+                state: { product },
+              } }
+              data-testid="product-detail-link"
+            >
+              <div>
+                <p>{product.title}</p>
+                <img src={ `${product.thumbnail}` } alt={ product.title } />
+                <p>{product.price}</p>
+              </div>
+            </Link>
+            <button
+              type="submit"
+              onClick={ this.handleClikBtn }
+            >
+              Adicionar ao Carrinho
+            </button>
+          </div>
         ))}
       </div>
     );
