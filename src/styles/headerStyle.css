@@ -4,6 +4,7 @@ header {
   display: flex;
   padding: 30px;
   text-align: center;
+  width: 100%;
 }
 
 .logo {

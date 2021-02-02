@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import '../styles/shoppingCartStyle.css';
 import * as localStorage from '../services/localStorage';
@@ -34,22 +35,29 @@ class ShoppingCart extends Component {
   productsList() {
     const { cart } = this.state;
     return (
-      <div className="cart-products">
-        { cart.map(({ price, amount, title, id, thumbnail }) => (
-          <div className="product" key={ id } data-testid="shopping-cart-product-name">
-            <h1>{ title }</h1>
-            <h2 className="product-qtd" data-testid="shopping-cart-product-quantity">
-              { `Quantidade: ${amount}` }
-              <p>
-                { `Preço unitário: R$ ${price}` }
-              </p>
-              <p>
-                { `Total: R$ ${price * amount}` }
-              </p>
-            </h2>
-            <img src={ thumbnail } alt={ title } />
-          </div>
-        ))}
+      <div>
+        <Header />
+        <main className="cart-container">
+          {cart.map(({ price, amount, title, id, thumbnail }) => (
+            <div className="product" key={ id } data-testid="shopping-cart-product-name">
+              <img className="cart-product-img" src={ thumbnail } alt={ title } />
+              <div className="product-info">
+                <Link to={ `/${id}` }>
+                  <h1>{ title }</h1>
+                </Link>
+                <h2 className="product-qtd" data-testid="shopping-cart-product-quantity">
+                  { `Quantidade: ${amount}` }
+                  <p>
+                    { `Preço unitário: R$ ${price}` }
+                  </p>
+                  <p>
+                    { `Total: R$ ${price * amount}` }
+                  </p>
+                </h2>
+              </div>
+            </div>
+          ))}
+        </main>
       </div>
     );
   }
@@ -68,7 +76,7 @@ class ShoppingCart extends Component {
     return (
       <div>
         <Header />
-        { this.emptyMessage() }
+        { this.emptyMessage()}
       </div>
     );
   }

@@ -1,22 +1,25 @@
-.cart-container {
+.product-details-main-content {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 30px;
-  text-align: center;
 }
 
-.product {
+.product-details {
   background-color: white;
   border-radius: 20px;
   display: flex;
   margin-top: 30px;
-  padding: 60px;
+  padding: 80px;
   text-align: center;
-  width: 800px;
+  width: 900px;
 }
 
-.cart-product-img {
+.product-details-img {
   margin-right: 100px;
+  width: 200px;
+}
+
+.details-container {
+  margin-right: 50px;
   width: 500px;
 }
