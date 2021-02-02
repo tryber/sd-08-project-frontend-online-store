@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class ProductDetail extends React.Component {
       productId: id,
       productInfo: [],
     };
+    this.addToCart = this.addToCart.bind(this);
   }
 
   async componentDidMount() {
@@ -22,18 +24,31 @@ class ProductDetail extends React.Component {
     this.setState({
       productInfo: array,
     });
-    console.log(array);
+  }
+
+  addToCart({ target }) {
+    const { value } = target;
+    localStorage.setItem(JSON.parse(value).id, value);
   }
 
   render() {
     const { productInfo } = this.state;
-    console.log(productInfo.title);
     return (
       <main>
+        <Link data-testid="shopping-cart-button" to="/shopping-cart">Carrinho</Link>
         <h1 data-testid="product-detail-name">{ productInfo.title }</h1>
         <img src={ productInfo.thumbnail } alt="Imagem do produto" />
         <p>{ productInfo.price }</p>
         <h3>Especificacoes Técnicas</h3>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          value={ JSON.stringify(productInfo, ['id', 'thumbnail', 'title', 'price']) }
+          onClick={ this.addToCart }
+        >
+          Adicionar ao carrinho
+        </button>
+        <Link to="/">Voltar</Link>
       </main>
     );
   }
@@ -45,6 +60,8 @@ ProductDetail.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  handleAddToCart: PropTypes.func.isRequired,
+  productList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductDetail;

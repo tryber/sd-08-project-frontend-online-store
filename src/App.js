@@ -17,3 +17,23 @@ function App() {
 }
 
 export default App;
+
+/* function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/shopping-cart" component={ //ShoppingCart } />
+        <Route exact path="/" component={ //Home } />
+        <Route path="/details/:id">
+          <ProductDetail
+            productList={ productList }
+            handleRequest={ handleRequest }
+            handleAddToCart={ handleAddToCart }
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+}
+
+export default App; */
