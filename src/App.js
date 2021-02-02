@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Carrinho from './Pages/Carrinho';
-import DetalhesDoProduto from './Pages/DetalhesDoProduto';
+import Checkout from './Pages/Checkout';
+import DetalhesProduto from './Pages/DetalhesProduto';
 import PaginaInicial from './Pages/PaginaInicial';
 
 function App() {
@@ -10,8 +11,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/details/:id" component={ DetalhesDoProduto } />
+          <Route path="/details/:id" component={ DetalhesProduto } />
           <Route path="/cart" component={ Carrinho } />
+          <Route path="/checkout" component={ Checkout } />
           <Route exact path="/" component={ PaginaInicial } />
         </Switch>
       </Router>

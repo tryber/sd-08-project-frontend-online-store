@@ -5,8 +5,7 @@ import BotaoCarrinho from '../../Components/BotaoCarrinho';
 
 import FormularioAvaliaçao from '../../Components/FormularioAvaliaçao';
 
-export default class DetalhesDoProduto extends Component {
-
+export default class DetalhesProduto extends Component {
   render() {
     const { location: { state: { product } } } = this.props;
     const { title, subtitle, price,
@@ -19,25 +18,15 @@ export default class DetalhesDoProduto extends Component {
         <p>{price}</p>
         <p>{condition}</p>
         <p>{warranty}</p>
-<<<<<<< HEAD
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          /* onClick={ addProduct } */
-        >
-          Adicionar ao Carrinho
-        </button>
-=======
         <BotaoAdiciona product={ product } testId="product-detail-add-to-cart" />
         <BotaoCarrinho />
         <FormularioAvaliaçao />
->>>>>>> c4dbebc61196f24401a32bb9e6e9a897e7786d1a
       </>
     );
   }
 }
 
-DetalhesDoProduto.propTypes = {
+DetalhesProduto.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
       product: PropTypes.shape({

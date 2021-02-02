@@ -1,20 +1,20 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const BotaoCarrinho = () => {
+const BotaoComprar = () => {
   const [shouldRedirect, setShouldRedirect] = React.useState(false);
 
-  if (shouldRedirect) return <Redirect to="/cart" />;
+  if (shouldRedirect) return <Redirect to="/checkout" />;
   return (
     <button
-      data-testid="shopping-cart-button"
+      data-testid="checkout-products"
       type="button"
       onClick={ () => setShouldRedirect(true) }
     >
-      CARRINHO
+      COMPRAR
 
     </button>
   );
 };
 
-export default BotaoCarrinho;
+export default BotaoComprar;
