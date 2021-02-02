@@ -27,6 +27,7 @@ class AddItem extends Component {
           className="add-to-cart"
           onClick={ this.addToCart }
         />
+        Adicionar ao carrinho
       </span>
     );
   }
