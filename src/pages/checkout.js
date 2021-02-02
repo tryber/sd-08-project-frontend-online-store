@@ -143,9 +143,21 @@ class Checkout extends Component {
         { this.inputNumber() }
         { this.inputCEP() }
         { this.inputAddress() }
-        <button type="submit"><a href="https://www.youtube.com/watch?v=3e14skRuVk0">enviar</a></button>      </form>
+        <button
+          type="submit"
+        >
+          <a
+            href="https://www.youtube.com/watch?v=3e14skRuVk0"
+          >
+            enviar
+          </a>
+        </button>
+
+        {' '}
+
+      </form>
     );
   }
 }
 
-export default Checkout
+export default Checkout;
