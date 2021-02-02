@@ -47,8 +47,9 @@ class SearchBar extends Component {
               Pesquisar
             </button>
             <br />
-            {!changed
-              && <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>}
+            {!changed && (
+              <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
+            )}
           </label>
         </form>
         <CategoryList onClick={ this.setCategory } />

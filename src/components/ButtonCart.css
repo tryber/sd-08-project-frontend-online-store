@@ -6,3 +6,19 @@
   right: 5%;
   top: 15px;
 }
+
+.itens-cart {
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  height: 28px;
+  margin: 5px 0;
+  padding: 2px;
+  position: absolute;
+  right: 4%;
+  text-align: center;
+  top: 0%;
+  width: 28px;
+}

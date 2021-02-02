@@ -22,7 +22,7 @@ class ProductCard extends Component {
         >
           Detalhes
         </Link>
-        <AddItem title={ title } dataTestId="product-add-to-cart" />
+        <AddItem title={ title } quantity={ 1 } dataTestId="product-add-to-cart" />
       </div>
     );
   }

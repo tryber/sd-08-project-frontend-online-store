@@ -14,12 +14,16 @@ class SearchPage extends Component {
   }
 
   requestProducts(categoryId, query) {
+    let { itensOnCart } = this.state;
+    if ({}.hasOwnProperty.call(sessionStorage, 'itensOnCart')) {
+      itensOnCart = JSON.parse(sessionStorage.getItem('itensOnCart'));
+    }
     this.setState(async () => {
       const results = await api.getProductsFromCategoryAndQuery(
         categoryId,
         query,
       );
-      this.setState({ products: results.results });
+      this.setState({ products: results.results, itensOnCart });
     });
   }
 

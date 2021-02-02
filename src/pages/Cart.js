@@ -18,8 +18,6 @@ class Cart extends Component {
     };
   }
 
-  componentDidUpdate() {}
-
   render() {
     const { products } = this.state;
     return (
