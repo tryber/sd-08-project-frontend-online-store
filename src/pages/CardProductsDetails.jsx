@@ -42,15 +42,15 @@ export default class ProductDetails extends Component {
               <h3>
                 { `Preço unitário: R$ ${price}` }
               </h3>
-              <button
-                type="button"
-                className="add-to-cart-button"
-                data-testid="product-detail-add-to-cart"
-                onClick={ () => cartApi.addToCart(product) }
-              >
-                Adicionar ao carrinho
-              </button>
             </div>
+            <button
+              type="button"
+              className="add-to-cart-button"
+              data-testid="product-detail-add-to-cart"
+              onClick={ () => cartApi.addToCart(product) }
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
         </main>
       </div>
