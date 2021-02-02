@@ -10,17 +10,17 @@ class AddToCart extends Component {
 
   setLocalStorage() {
     const { prop } = this.props;
-    const { title, thumbnail, price, installments } = prop;
-    const { quantity } = installments;
-    // const storageItem = (`<li>
-    //   <img src='${thumbnail}' />
-    //   <p data-testid="shopping-cart-product-name">'${title}'</p>
-    //   <p data-testid="shopping-cart-product-quantity">${quantity}</p>
-    //   <p>'R$ ${price.toFixed(2)}'</p>
-    // </li>`);
-
-    localStorage.setItem('cart', prop);
-    console.log(quantity);
+    const { id } = prop;
+    if (localStorage.cart) {
+      const test1 = JSON.parse(localStorage.getItem('cart'));
+      test1.push(prop);
+      const Productobject = JSON.stringify(test1);
+      localStorage.setItem('cart', Productobject);
+    } else {
+      const test1 = [prop];
+      const Productobject = JSON.stringify(test1);
+      localStorage.setItem('cart', Productobject);
+    }
   }
 
   render() {
