@@ -25,7 +25,6 @@ class SearchPage extends Component {
 
   render() {
     const { products } = this.state;
-    console.log(products);
     return (
       <div>
         <SearchBar requestProducts={ this.requestProducts } />
