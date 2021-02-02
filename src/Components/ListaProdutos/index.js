@@ -1,56 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as api from '../../services/api';
+import CardProduto from '../CardProduto';
 
-import * as api from '../services/api';
-import CardProduto from './CardProduto';
-
-export default class ListaProdutos extends React.Component {
+export default class ListaProdutos extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      objectAPI: [],
+      products: [],
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.fetchProducts = this.fetchProducts.bind(this);
   }
 
   componentDidUpdate(prevProps) {
     const { categoryId } = this.props;
     if (prevProps.categoryId !== categoryId) {
-      this.handleClick();
+      this.fetchProducts();
     }
   }
 
-  handleClick() {
+  fetchProducts() {
     const { inputStatus, categoryId } = this.props;
     const { getProductsFromCategoryAndQuery } = api;
 
     getProductsFromCategoryAndQuery(categoryId, inputStatus)
-      .then((products) => {
+      .then((data) => {
         this.setState({
-          objectAPI: products.results,
+          products: data.results,
         });
       });
   }
 
   render() {
-    const { objectAPI } = this.state;
+    const { products } = this.state;
 
     return (
       <div>
         <button
           type="button"
           data-testid="query-button"
-          onClick={ this.handleClick }
+          onClick={ this.fetchProducts }
         >
           Buscar
         </button>
         <div className="container-product-list">
-          { objectAPI.map((product) => (<CardProduto
-            key={ product.id }
-            produto={ product }
-          />))}
+          { products.map((product) => (
+            <CardProduto
+              key={ product.id }
+              product={ product }
+            />))}
         </div>
       </div>
     );

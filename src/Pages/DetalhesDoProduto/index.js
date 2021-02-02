@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class DetalhesDoProduto extends React.Component {
+export default class DetalhesDoProduto extends Component {
 
   render() {
-    const { location: { state: { produto } } } = this.props;
+    const { location: { state: { product } } } = this.props;
     const { title, subtitle, price,
-      condition, warranty, thumbnail } = produto;
+      condition, warranty, thumbnail } = product;
     return (
       <>
         <img src={ `${thumbnail}` } alt="product" />
@@ -18,7 +18,7 @@ class DetalhesDoProduto extends React.Component {
         <button
           type="button"
           data-testid="product-detail-add-to-cart"
-          onClick={ addProduct }
+          /* onClick={ addProduct } */
         >
           Adicionar ao Carrinho
         </button>
@@ -30,7 +30,7 @@ class DetalhesDoProduto extends React.Component {
 DetalhesDoProduto.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
-      produto: PropTypes.shape({
+      product: PropTypes.shape({
         title: PropTypes.string,
         subtitle: PropTypes.string,
         price: PropTypes.number,
@@ -41,5 +41,3 @@ DetalhesDoProduto.propTypes = {
     }),
   }).isRequired,
 };
-
-export default DetalhesDoProduto;
