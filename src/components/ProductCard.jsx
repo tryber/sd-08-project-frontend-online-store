@@ -4,29 +4,36 @@ import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   render() {
-    const { productCard } = this.props;
+    const { productsCard, addToCar } = this.props;
     return (
       <div>
-        { productCard.map(({ id, title, thumbnail, price }) => (
-          <div key={ id }>
+        { productsCard.map((product) => (
+          <div key={ product.id }>
             <Link
-              to={ { pathname: `/productDetails/${id}`,
-                state: { id, title, thumbnail, price } } }
+              to={ {
+                pathname: `/productDetails/${product.id}`,
+                state: {
+                  id: product.id,
+                  title: product.title,
+                  thumbnail: product.thumbnail,
+                  price: product.price,
+                } } }
               data-testid="product-detail-link"
             >
               <div className="card" data-testid="product">
                 <h4>
-                  { title }
+                  { product.title }
                 </h4>
-                <img src={ thumbnail } alt={ title } />
+                <img src={ product.thumbnail } alt={ product.title } />
                 <p>
-                  { `R$ ${price}` }
+                  { `R$ ${product.price}` }
                 </p>
               </div>
             </Link>
             <button
               type="button"
               data-testid="product-add-to-cart"
+              onClick={ () => addToCar(product) }
             >
               Add to Cart
             </button>
@@ -38,7 +45,8 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
-  productCard: PropTypes.arrayOf(PropTypes.object).isRequired,
+  productsCard: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToCar: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

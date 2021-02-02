@@ -5,10 +5,15 @@ import ShoppingCart from '../shopping-cart.png';
 
 class ProductCar extends Component {
   render() {
-    const { cartSize } = this.props;
+    const { cartSize, productsCar } = this.props;
     return (
       <div>
-        <Link data-testid="shopping-cart-button" to="/shoppingcart">
+        <Link
+          data-testid="shopping-cart-button"
+          to={ {
+            pathname: '/shoppingcart',
+            state: productsCar } }
+        >
           <img
             className="shopping-cart-icon"
             src={ ShoppingCart }
@@ -28,6 +33,7 @@ class ProductCar extends Component {
 
 ProductCar.propTypes = {
   cartSize: propTypes.number.isRequired,
+  productsCar: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default ProductCar;
