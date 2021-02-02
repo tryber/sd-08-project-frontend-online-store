@@ -14,6 +14,13 @@ class ProductItem extends Component {
       </p>) : null;
   }
 
+  availableQuantity() {
+    const { item: { available_quantity: availableQuantity } } = this.props;
+    return (
+      <p>{availableQuantity}</p>
+    );
+  }
+
   render() {
     const { item } = this.props;
     const { title, thumbnail, price, id } = item;
@@ -23,6 +30,11 @@ class ProductItem extends Component {
         <p className="product-price">{ `R$ ${price.toFixed(2)}` }</p>
         { this.isFreeShipping() }
         <p className="product-title">{title}</p>
+        <div>
+          Qntd.
+          {' '}
+          { this.availableQuantity() }
+        </div>
         <Link
           to={ `/details/${id}` }
           data-testid="product-detail-link"
@@ -40,6 +52,7 @@ ProductItem.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    available_quantity: PropTypes.number.isRequired,
     shipping: PropTypes.shape({
       free_shipping: PropTypes.bool,
     }).isRequired,
