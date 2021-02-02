@@ -1,42 +1,30 @@
-// import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-// class ButtonAddToCart extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       // data-testid,
-//       onCart: [],
-//     }
+class ButtonAddToCart extends Component {
+  render() {
+    const { addCart, dataTestId, product } = this.props;
 
-//     this.addCart = this.addCart.bind(this);
-//   }
+    return (
+      <button
+        type="button"
+        onClick={ () => addCart(product) }
+        data-testid={ dataTestId }
+      >
+        Adicionar ao carrinho
+      </button>
+    );
+  }
+}
 
-//   addCart(product) {
-//     const { onCart } = this.state;
-//     this.setState({ onCart: [...onCart, product] });
-//   }
+ButtonAddToCart.propTypes = {
+  product: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
+  addCart: PropTypes.func.isRequired,
+  dataTestId: PropTypes.string.isRequired,
+};
 
-//   render() {
-//     const { addCart } = this.props;
-//     return (
-//       <button
-//         type="button"
-//         onClick={ () => addCart() }
-//         data-testid="product-add-to-cart" // passar como props e alternar, em ProductDetails 'data-testid="product-detail-add-to-cart"' e em ProductList 'data-testid="product-add-to-cart"'
-//       >
-//         Adicionar ao carrinho
-//       </button>
-//     );
-//   }
-// }
-
-// ButtonAddToCart.propTypes = {
-//   productSelected: PropTypes.shape({
-//     title: PropTypes.string.isRequired,
-//     thumbnail: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
-
-// export default ButtonAddToCart;
+export default ButtonAddToCart;

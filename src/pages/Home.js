@@ -1,30 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ShoppingCartLink from '../components/ShoppingCartLink';
 import ProductList from '../components/ProductList';
 
 class Home extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      onCart: [],
-    };
-    this.addCart = this.addCart.bind(this);
-  }
-
-  addCart(product) {
-    const { onCart } = this.state;
-    this.setState({ onCart: [...onCart, product] });
-  }
-
   render() {
-    const { onCart } = this.state;
+    const { addCart } = this.props;
     return (
       <div>
-        <ShoppingCartLink onCart={ onCart } />
-        <ProductList addCart={ this.addCart } />
+        <ShoppingCartLink />
+        <ProductList addCart={ addCart } />
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  addCart: PropTypes.func.isRequired,
+};
 
 export default Home;
