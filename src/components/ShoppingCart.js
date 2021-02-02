@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ShoppingCart extends React.Component {
+  getProduct(element) {
+    const copy = { ...element };
+    delete copy.qty;
+    return copy;
+  }
+
   itemProduto(cart) {
+    const { addToCart, removeFromCart, removeAllFromCart } = this.props;
     return cart.map((element) => (
       <div
         key={ element.id }
@@ -14,6 +21,26 @@ class ShoppingCart extends React.Component {
         </p>
         <img src={ element.thumbnail } alt="imagem" />
         <p data-testid="shopping-cart-product-quantity">{ element.qty }</p>
+        <button
+          type="button"
+          onClick={ () => addToCart(this.getProduct(element)) }
+          data-testid="product-increase-quantity"
+        >
+          +
+        </button>
+        <button
+          type="button"
+          data-testid="product-decrease-quantity"
+          onClick={ () => removeFromCart(this.getProduct(element)) }
+        >
+          -
+        </button>
+        <button
+          type="button"
+          onClick={ () => removeAllFromCart(this.getProduct(element)) }
+        >
+          ×
+        </button>
       </div>));
   }
 
@@ -41,11 +68,16 @@ class ShoppingCart extends React.Component {
     return (
       <div>
         { this.itemProduto(this.cartReduce(cart)) }
+        <button type="button">Finalizar Compra</button>
       </div>
     );
   }
 }
 ShoppingCart.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToCart: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+  removeAllFromCart: PropTypes.func.isRequired,
 };
+
 export default ShoppingCart;
