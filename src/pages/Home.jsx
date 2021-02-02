@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CategoriesFilter from '../components/CategoriesFilter';
 import ProductCard from '../components/ProductCard';
+import ProductCar from '../components/ProductCar';
 import InputSearch from '../components/InputSearch';
 import * as api from '../services/api';
 
@@ -9,11 +10,13 @@ class Home extends Component {
     super();
     this.state = {
       categoryId: '',
-      productCard: [],
+      productsCard: [],
+      productsCar: [],
       query: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.getProdutsByQuery = this.getProdutsByQuery.bind(this);
+    this.handleAddToCard = this.handleAddToCard.bind(this);
   }
 
   handleChange({ target: { name, id } }) {
@@ -22,27 +25,32 @@ class Home extends Component {
     });
   }
 
+  handleAddToCard(object) {
+    const { productsCar } = this.state;
+    this.setState({ productsCar: [...productsCar, object] });
+  }
+
   async getProdutsByQuery() {
     const { categoryId, query } = this.state;
     const searchResult = await api.getProductsFromCategoryAndQuery(categoryId, query);
-    this.setState({ productCard: searchResult.results });
+    this.setState({ productsCard: searchResult.results });
   }
 
   render() {
-    const { productCard, query, cartSize } = this.state;
+    const { productsCard, query, productsCar } = this.state;
     return (
       <div className="App">
         <InputSearch
           query={ query }
           onChange={ ({ target: { name, value } }) => this.setState({ [name]: value }) }
           onClick={ this.getProdutsByQuery }
-          cartSize={ cartSize }
         />
+        <ProductCar cartSize={ productsCar.length } productsCar={ productsCar } />
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <CategoriesFilter handleChange={ this.handleChange } />
-        <ProductCard productCard={ productCard } />
+        <ProductCard productsCard={ productsCard } addToCar={ this.handleAddToCard } />
       </div>
     );
   }

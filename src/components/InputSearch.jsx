@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import ProductCar from './ProductCar';
 
 class InputSearch extends React.Component {
   render() {
@@ -23,7 +22,6 @@ class InputSearch extends React.Component {
         >
           Pesquisar
         </button>
-        <ProductCar />
       </header>
     );
   }
