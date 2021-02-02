@@ -62,8 +62,6 @@ ProductDetail.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
-  handleAddToCart: PropTypes.func.isRequired,
-  productList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductDetail;
