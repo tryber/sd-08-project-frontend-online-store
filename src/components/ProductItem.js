@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './ProductItem.css';
@@ -13,13 +14,20 @@ class ProductItem extends Component {
   }
 
   render() {
-    const { item: { title, thumbnail, price } } = this.props;
+    const { item } = this.props;
+    const { title, thumbnail, price, id } = item;
     return (
       <section className="product" data-testid="product">
         <img src={ thumbnail } alt="Imagem do produto" />
         <p className="product-price">{ `R$ ${price.toFixed(2)}` }</p>
         { this.isFreeShipping() }
         <p className="product-title">{title}</p>
+        <Link
+          to={ `/details/${id}` }
+          data-testid="product-detail-link"
+        >
+          Ver detalhes...
+        </Link>
       </section>
     );
   }
@@ -29,6 +37,7 @@ ProductItem.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     shipping: PropTypes.shape({
       free_shipping: PropTypes.bool,
     }).isRequired,

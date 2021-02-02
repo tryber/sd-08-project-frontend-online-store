@@ -14,7 +14,7 @@ class Home extends Component {
 
     this.state = {
       items: [],
-      category: 'MLB1182',
+      category: '',
       query: 'mais-vendidos',
     };
 
