@@ -48,6 +48,9 @@ class Home extends Component {
 
 Home.propTypes = {
   handleAddToCart: PropTypes.func.isRequired,
+  results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleSearch: PropTypes.func.isRequired,
+  handleSearchCategory: PropTypes.func.isRequired,
 };
 
 export default Home;
