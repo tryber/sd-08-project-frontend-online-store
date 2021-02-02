@@ -41,4 +41,27 @@
 
 .cart-qtd {
   color: rgb(167, 4, 4);
+  padding: 5px;
+  width: 50px;
 }
+
+.cart-btn-sub,
+.cart-btn-sum,
+.cart-btn-remove {
+  background-color: #ddd;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 3px;
+}
+
+.cart-btn-sub:hover,
+.cart-btn-sum:hover,
+.cart-btn-remove:hover {
+  background-color: #aaa;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+

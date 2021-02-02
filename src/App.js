@@ -12,13 +12,14 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      cart: [],
+      cartId: [],
+      cartProduct: [],
       categorias: [],
       produtos: [],
       catID: '',
       search: '',
-      // searchBtn: undefined,
     };
+    this.addCartProduct = this.addCartProduct.bind(this);
     this.alteraCategoriaBusca = this.alteraCategoriaBusca.bind(this);
     this.buscaInput = this.buscaInput.bind(this);
     this.submitBotao = this.submitBotao.bind(this);
@@ -78,16 +79,21 @@ export default class App extends Component {
   }
 
   addCart(id) {
-    const { cart } = this.state;
-    const cartStorage = localStorage.getItem('cart');
+    const { cartId } = this.state;
     this.setState({
-      cart: [...cart, id],
+      cartId: [...cartId, { id, qtd: 1 }],
     });
-    localStorage.setItem('cart', [id, cartStorage]);
+  }
+
+  addCartProduct(product) {
+    const { cartProduct } = this.state;
+    this.setState({
+      cartProduct: [...cartProduct, product],
+    });
   }
 
   render() {
-    const { cart, categorias, produtos } = this.state;
+    const { cartId, cartProduct, categorias, produtos } = this.state;
     return (
       <BrowserRouter>
         <Header />
@@ -107,7 +113,12 @@ export default class App extends Component {
             />
             <Route
               path="/cart"
-              render={ (props) => <Cart { ...props } produtos={ cart } /> }
+              render={ (props) => (<Cart
+                { ...props }
+                cartProduct={ cartProduct }
+                cartId={ cartId }
+                addCartProduct={ this.addCartProduct }
+              />) }
             />
             <Route
               path="/produto/:produtoId"

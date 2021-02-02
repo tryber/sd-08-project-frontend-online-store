@@ -1,98 +1,89 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Cart.css';
-import { TiArrowBack } from 'react-icons/ti';
+import * as api from '../../services/api';
 
-class Cart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      produtos: [],
-    };
-  }
-
+export default class Cart extends Component {
   componentDidMount() {
-    if (localStorage.getItem('cart')) {
-      const carts = localStorage.getItem('cart').split(',');
-
-      const produtos = carts.map((item, i) => {
-        const repete = carts.filter((item2) => carts.indexOf(item2) === i);
-        if (!repete[0]) {
-          return;
-        }
-        return { id: repete[0], qtd: repete.length };
-      });
-      const produtosFiltados = produtos.filter((e) => e !== undefined);
-      produtosFiltados.map(async (produto) => {
-        const BASE = 'https://api.mercadolibre.com/items/';
-        const buscaProdutos = await fetch(`${BASE}${produto.id}`);
-        const resultProd = await buscaProdutos.json();
-        this.salvaProduto(resultProd, produto.qtd);
-      });
-    }
+    this.buscaProduct();
   }
 
-  salvaProduto(produto, qtd) {
-    const { produtos } = this.state;
-    this.setState({
-      produtos: [...produtos, { produto, qtd }],
+  async buscaProduct() {
+    const { cartId, addCartProduct } = this.props;
+    const newProduct = cartId.map(async (item) => {
+      const product = await api.getProductById(item.id);
+      addCartProduct(product);
     });
+    return newProduct;
   }
 
-  priceBr(price) {
-    price = price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-    price = price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-    return price;
+  renderizaCarrinho() {
+    const { cartId, cartProduct } = this.props;
+    console.log(cartProduct);
+    return (
+      <table>
+        <tbody>
+          <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Total</th>
+          </tr>
+          {cartProduct.map((item, index) => (
+            <tr key={ item.id }>
+              <td>
+                <span data-testid="shopping-cart-product-name">{ item.title }</span>
+              </td>
+              <td>
+                <span data-testid="shopping-cart-product-quantity">
+                  {cartId[index].qtd}
+                </span>
+              </td>
+              <td>
+                R$
+                { item.price.toFixed(2).replace('.', ',') }
+              </td>
+              <td>
+                R$
+                { (item.price * cartId[index].qtd).toFixed(2).replace('.', ',') }
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+
+  renderizaVazio() {
+    return (
+      <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
+    );
   }
 
   render() {
-    const { history } = this.props;
-    const { produtos } = this.state;
+    const { cartId, cartProduct, history } = this.props;
     return (
-      <div className="cart-container">
-        <button type="button" className="cart-goback" onClick={ history.goBack }>
-          <TiArrowBack className="cart-goback-icon" />
+      <div>
+        <button
+          type="button"
+          className="cart-goback"
+          onClick={ history.goBack }
+        >
           Voltar
         </button>
-        {produtos.length >= 1
-          ? produtos.map((item) => (
-            <li
-              className="cart-list"
-              data-testid="shopping-cart-product-name"
-              key={ item.produto.id }
-            >
-              <img src={ item.produto.thumbnail } alt={ item.produto.title } />
-              <p>
-                {item.produto.title}
-              </p>
-              <span data-testid="shopping-cart-product-quantity">
-                Quantidade:
-                <span className="cart-qtd">{item.qtd}</span>
-              </span>
-              <p>
-                Preço Unitário:
-                { this.priceBr(item.produto.price) }
-              </p>
-              <p>
-                Total:
-                <span
-                  className="cart-qtd"
-                >
-                  { this.priceBr(item.produto.price * item.qtd) }
-                </span>
-              </p>
-            </li>
-          ))
-          : <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>}
+        {cartProduct.length >= 1
+          ? this.renderizaCarrinho(cartId)
+          : this.renderizaVazio()}
+
       </div>
     );
   }
 }
 
 Cart.propTypes = {
+  cartId: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cartProduct: PropTypes.arrayOf(PropTypes.object).isRequired,
   history: PropTypes.shape({
     goBack: PropTypes.func,
   }).isRequired,
+  addCartProduct: PropTypes.func.isRequired,
 };
-
-export default Cart;
