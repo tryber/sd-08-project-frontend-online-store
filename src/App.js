@@ -63,6 +63,7 @@ class App extends React.Component {
                 productList={ productList }
                 handleRequest={ this.handleRequest }
                 handleAddToCart={ this.handleAddToCart }
+                cartList={ cartList }
               />
             </Route>
             <Route path="/shopping-cart">
@@ -77,6 +78,7 @@ class App extends React.Component {
                 productList={ productList }
                 handleRequest={ this.handleRequest }
                 handleAddToCart={ this.handleAddToCart }
+                cartList={ cartList }
               />
             </Route>
             <Route path="/checkout">

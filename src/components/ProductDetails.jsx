@@ -29,11 +29,15 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { productList, handleAddToCart } = this.props;
+    const { productList, handleAddToCart, cartList } = this.props;
     const { productInfo, productId } = this.state;
     return (
       <main>
         <Link data-testid="shopping-cart-button" to="/shopping-cart">Carrinho</Link>
+        <p data-testid="shopping-cart-size">
+          Total de Produtos:
+          { cartList.reduce((acc, curr) => acc + curr.quantity, 0) }
+        </p>
         <h1 data-testid="product-detail-name">{ productInfo.title }</h1>
         <img src={ productInfo.thumbnail } alt="Imagem do produto" />
         <p>{ productInfo.price }</p>
@@ -59,6 +63,7 @@ ProductDetails.propTypes = {
   }).isRequired,
   handleAddToCart: PropTypes.func.isRequired,
   productList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default withRouter(ProductDetails);

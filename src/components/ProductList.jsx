@@ -41,6 +41,7 @@ class ProductList extends React.Component {
   }
 
   renderForm() {
+    const { cartList } = this.props;
     return (
       <form>
         <input type="text" onChange={ this.handleChange } data-testid="query-input" />
@@ -48,6 +49,10 @@ class ProductList extends React.Component {
           Pesquisar
         </button>
         <Link data-testid="shopping-cart-button" to="/shopping-cart">Carrinho</Link>
+        <p data-testid="shopping-cart-size">
+          Total de Produtos:
+          { cartList.reduce((acc, curr) => acc + curr.quantity, 0) }
+        </p>
       </form>
     );
   }
@@ -112,6 +117,7 @@ ProductList.propTypes = {
   handleAddToCart: PropTypes.func.isRequired,
   handleRequest: PropTypes.func.isRequired,
   productList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductList;
