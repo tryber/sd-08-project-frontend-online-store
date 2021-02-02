@@ -5,7 +5,8 @@ class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
 
-    let parsedItems = JSON.parse(localStorage.cartItems);
+    let parsedItems;
+    if (localStorage.cartItems) parsedItems = JSON.parse(localStorage.cartItems);
     if (!parsedItems) parsedItems = [];
 
     this.state = {
