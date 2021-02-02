@@ -44,7 +44,7 @@ export default class ListaProdutos extends Component {
           data-testid="query-button"
           onClick={ onFetchProducts }
         >
-          Buscar
+          BUSCAR
         </button> */}
         <div className="container-product-list">
           {

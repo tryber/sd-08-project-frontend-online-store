@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import * as api from '../../services/api';
-
-import ListaDeCategorias from '../../Components/ListaDeCategorias';
+import ListaCategorias from '../../Components/ListaCategorias';
 import BotaoCarrinho from '../../Components/BotaoCarrinho';
 import ListaProdutos from '../../Components/ListaProdutos';
 
@@ -73,7 +71,7 @@ export default class PaginaInicial extends Component {
           data-testid="query-button"
           onClick={ this.fetchProducts }
         >
-          Buscar
+          BUSCAR
         </button>
       </div>
     );
@@ -101,7 +99,7 @@ export default class PaginaInicial extends Component {
         />
         <BotaoCarrinho />
         {(inputStatus === '' && categoryId === '') && this.renderInitialMessage()}
-        <ListaDeCategorias onChangeCategoryId={ this.changeCategoryId } />
+        <ListaCategorias onChangeCategoryId={ this.changeCategoryId } />
       </div>
     );
   }

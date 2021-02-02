@@ -37,7 +37,7 @@ export default class BotaoAdiciona extends Component {
         } }
         data-testid={ testId }
       >
-        Add to card
+        ADICIONAR
       </button>
     );
   }
