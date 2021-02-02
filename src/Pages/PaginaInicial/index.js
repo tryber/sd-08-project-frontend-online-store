@@ -1,75 +1,26 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import ListaCategorias from '../../Components/ListaCategorias';
 import BotaoCarrinho from '../../Components/BotaoCarrinho';
 import ListaProdutos from '../../Components/ListaProdutos';
 
 export default class PaginaInicial extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      products: [],
-      inputStatus: '',
-      categoryId: '',
-      cartProducts: [],
-    };
-
-    this.fetchProducts = this.fetchProducts.bind(this);
-    this.changeInputStatus = this.changeInputStatus.bind(this);
-    this.changeCategoryId = this.changeCategoryId.bind(this);
-    this.addProductToCart = this.addProductToCart.bind(this);
-  }
-
-  fetchProducts() {
-    const { inputStatus, categoryId } = this.state;
-    const { getProductsFromCategoryAndQuery } = api;
-
-    getProductsFromCategoryAndQuery(categoryId, inputStatus)
-      .then((data) => {
-        this.setState({
-          products: data.results,
-        });
-      });
-  }
-
-  changeCategoryId({ target }) {
-    const { value } = target;
-    this.setState({
-      categoryId: value,
-    });
-  }
-
-  changeInputStatus({ target }) {
-    const { value } = target;
-    this.setState({
-      inputStatus: value,
-    });
-  }
-
-  addProductToCart(product) {
-    this.setState((prevState) => {
-      if (prevState.cartProducts.length !== 0) {
-        return { cartProducts: [...prevState.cartProducts, product] };
-      }
-      return { cartProducts: [product] };
-    });
-  }
-
   renderStatusInput() {
-    const { inputStatus } = this.state;
+    const { queryStatus, changeQueryStatus, fetchProducts } = this.props;
     return (
       <div>
         <input
           type="text"
           id="buscador"
-          value={ inputStatus }
-          onChange={ this.changeInputStatus }
+          value={ queryStatus }
+          onChange={ changeQueryStatus }
           data-testid="query-input"
         />
         <button
           type="button"
           data-testid="query-button"
-          onClick={ this.fetchProducts }
+          onClick={ fetchProducts }
         >
           BUSCAR
         </button>
@@ -86,21 +37,40 @@ export default class PaginaInicial extends Component {
   }
 
   render() {
-    const { products, inputStatus, categoryId } = this.state;
+    const {
+      products,
+      queryStatus,
+      categoryId,
+      fetchProducts,
+      changeCategoryId,
+      addProductToCart,
+      cartSize,
+    } = this.props;
     return (
       <div>
         {this.renderStatusInput()}
         <ListaProdutos
           products={ products }
-          // inputStatus={ inputStatus }
           categoryId={ categoryId }
-          onFetchProducts={ this.fetchProducts }
-          onAddProductToCart={ this.addProductToCart }
+          onFetchProducts={ fetchProducts }
+          addProductToCart={ addProductToCart }
         />
-        <BotaoCarrinho />
-        {(inputStatus === '' && categoryId === '') && this.renderInitialMessage()}
-        <ListaCategorias onChangeCategoryId={ this.changeCategoryId } />
+        <BotaoCarrinho cartSize={ cartSize } />
+        {(queryStatus === '' && categoryId === '') && this.renderInitialMessage()}
+        <ListaCategorias onChangeCategoryId={ changeCategoryId } />
       </div>
     );
   }
 }
+
+PaginaInicial.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  queryStatus: PropTypes.string.isRequired,
+  categoryId: PropTypes.string.isRequired,
+  fetchProducts: PropTypes.func.isRequired,
+  changeQueryStatus: PropTypes.func.isRequired,
+  changeCategoryId: PropTypes.func.isRequired,
+  addProductToCart: PropTypes.func.isRequired,
+  cartSize: PropTypes.number.isRequired,
+
+};
