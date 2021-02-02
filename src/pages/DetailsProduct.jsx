@@ -1,7 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+// import '../css/DetailsProduct.css';
 import { useLocation } from 'react-router-dom';
-// import * as api from '../services/api';
 import { BtnShoppingCart } from '../components';
 import { localStorageSave } from '../localStorage';
 
@@ -10,22 +9,36 @@ export default function DetailsProject() {
   const { title, price, thumbnail, attributes } = product;
   const data = Object.values({ ...attributes });
   // const img = Object.values({ ...pictures });
+  
+  
   return (
-    <section>
-      <div className="cartItems">
-        <BtnShoppingCart />
-      </div>
-      <div>
+    <main>
+      <section className="product-details">
+     <div className="header-content">
+        <div>
+          <img className="logo" src={ Img } />
+        </div>
+        <div className="cartItems">     
+          <BtnShoppingCart />
+        </div>       
+     </div>
+        
+      
+      <div className="product-img">
         <img
+          className=""
           src={ thumbnail.replace('I', 'O') }
           alt="foto"
         />
       </div>
-      <div>
+      <div className="detail-name">
         <h3 data-testid="product-detail-name">{title}</h3>
       </div>
-      <div>
-        <span>{price}</span>
+      <div className="price-label">
+        <span>{`R$ ${price.toFixed(2)}`}</span>        
+        <div className="cartItems">     
+          <BtnShoppingCart />
+        </div>
       </div>
       <div>
         <button
@@ -49,5 +62,6 @@ export default function DetailsProject() {
         </table>
       </div>
     </section>
+    </main>
   );
 }

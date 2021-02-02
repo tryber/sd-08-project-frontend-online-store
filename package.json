@@ -17,7 +17,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
-    "lint:styles": "npx stylelint '**/*.css'",
   },
   "browserslist": {
     "production": [

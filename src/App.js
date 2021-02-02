@@ -15,6 +15,7 @@ function App() {
             ) }
           />
           <Route path="/shoppingcart" component={ ShoppingCart } />
+          {/* <Route path="/product" component={ Product } /> */}
           <Route exact path="/" component={ Home } />
         </Switch>
       </Router>
