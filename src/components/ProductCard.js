@@ -9,7 +9,6 @@ class ProductCard extends React.Component {
       shouldRedirect: false,
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handleClickCart = this.handleClickCart.bind(this);
   }
 
   handleClick() {
@@ -18,13 +17,10 @@ class ProductCard extends React.Component {
     });
   }
 
-  handleClickCart() {
-    
-  }
-
   render() {
     const { shouldRedirect } = this.state;
-    const { product: { title, price, thumbnail, id }, query, category } = this.props;
+    const {
+      product: { title, price, thumbnail, id }, query, category, onClick } = this.props;
     if (shouldRedirect) {
       return (
         <Redirect
@@ -35,8 +31,8 @@ class ProductCard extends React.Component {
       );
     }
     return (
-      <div data-testid="product">
-        <div onClick={ this.handleClick } aria-hidden="true">
+      <div>
+        <div data-testid="product" onClick={ this.handleClick } aria-hidden="true">
           <div data-testid="product-detail-link">
             <h3>{title}</h3>
             <img src={ thumbnail } alt="Imagem do produto" />
@@ -48,7 +44,8 @@ class ProductCard extends React.Component {
         </div>
         <button
           type="button"
-          onClick={ this.handleClickCart }
+          data-testid="product-add-to-cart"
+          onClick={ () => onClick(title, price) }
         >
           Adicionar ao carrinho
         </button>
@@ -66,6 +63,7 @@ ProductCard.propTypes = {
   }).isRequired,
   query: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
