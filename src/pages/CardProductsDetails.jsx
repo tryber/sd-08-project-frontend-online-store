@@ -29,7 +29,7 @@ export default class ProductDetails extends Component {
     const { product } = this.state;
     const { title, price, thumbnail } = product;
     return (
-      <div className="product-details-container">
+      <div>
         <Header />
         <main className="product-details-main-content">
           <div className="product-details" data-testid="product-detail-name">
