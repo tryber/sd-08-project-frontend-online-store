@@ -169,3 +169,11 @@
 .submitBtn:focus {
   outline: 0;
 }
+
+.reviewList {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+}
