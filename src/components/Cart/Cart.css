@@ -45,8 +45,8 @@
   width: 50px;
 }
 
-.cart-btn-sub ,
-.cart-btn-sum ,
+.cart-btn-sub,
+.cart-btn-sum,
 .cart-btn-remove {
   background-color: #ddd;
   border: none;
@@ -55,13 +55,9 @@
   padding: 3px;
 }
 
-.cart-btn-sub:hover ,
-.cart-btn-sum:hover ,
+.cart-btn-sub:hover,
+.cart-btn-sum:hover,
 .cart-btn-remove:hover {
   background-color: #aaa;
-}
-
-table, th, td {
-  border: 1px solid black;
 }
 
