@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // , useEffect
 import { useSelector, useDispatch } from 'react-redux';
 import { parseCart } from '../helpers/helpers';
@@ -9,17 +9,11 @@ import CartMenu from './cart/CartMenu';
 import CartListItem from './cart/CartListItem';
 import CartButtonBox from './cart/CartButtonBox';
 
-// useEffect(() => {
-//   if (update <= control.updatecart) {
-//     setList(parseCart(cart));
-//   }
-//   setUpdate(control.updatecart);
-// }, [control]);
 export default function CartSlide() {
   const cart = useSelector((state) => state.cart);
-  // cartconst control = useSelector((state) => state.control); // lint
+  const control = useSelector((state) => state.control); // lint
   const [list, setList] = useState(parseCart(cart));
-  // const [update, setUpdate] = useState(0); // lint
+  const [update, setUpdate] = useState(0); // lint
   const dispatch = useDispatch();
   const handleItemAdd = (product) => {
     const item = list[list.findIndex((i) => i.id === product.id)];
@@ -29,7 +23,12 @@ export default function CartSlide() {
       dispatch(actionAdd(product));
     }
   };
-
+  useEffect(() => {
+    if (update <= control.updatecart) {
+      setList(parseCart(cart));
+    }
+    setUpdate(control.updatecart);
+  }, [control]);
   const handleItemRemove = (product) => {
     const item = list[list.findIndex((i) => i.id === product.id)];
     if (item.quantity > 0) {
