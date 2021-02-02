@@ -43,7 +43,11 @@ export default function ProductDetails() {
       <section className="product-detail">
         {found ? <ProductInfo productId={ id } /> : null}
         <div className="box-add-cart">
-          <InputQuantity onHandleChange={ handleChangeQuantity } value={ qtd } />
+          <InputQuantity
+            onHandleChange={ handleChangeQuantity }
+            value={ qtd }
+            max={ details.find((i) => i.id === id).stock || 0 }
+          />
           <ButtonAddCart handleClick={ handleBuyClick } />
         </div>
       </section>

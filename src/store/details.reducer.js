@@ -11,6 +11,13 @@ export function actionAdd(payload) {
   };
 }
 
+export function actionUpdate(payload) {
+  return {
+    type: 'DETAILS_UPDATE',
+    payload,
+  };
+}
+
 const INITIAL_STATE = [];
 
 export default function details(state = INITIAL_STATE, action) {
@@ -22,6 +29,9 @@ export default function details(state = INITIAL_STATE, action) {
   }
   case 'DETAILS_ADD': {
     return [...state, { ...action.payload }];
+  }
+  case 'DETAILS_UPDATE': {
+    return [...state, ...action.payload];
   }
 
   default:

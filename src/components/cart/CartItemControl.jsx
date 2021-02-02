@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function CartItemControl(props) {
   const { handleAdd, handleRemove } = props;
+
   return (
     <div className="item-control">
       <button data-testid="product-increase-quantity" type="button" onClick={ handleAdd }>

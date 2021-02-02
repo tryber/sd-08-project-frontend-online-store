@@ -9,6 +9,7 @@ import ProductCard from './ProductCard';
 import { parseProductData } from '../helpers/helpers';
 import * as api from '../services/api';
 import { actionUpdate } from '../store/products.reducer';
+import { actionUpdate as actionUpdateDetails } from '../store/details.reducer';
 
 //  const [error, setError] = useState(false);
 export default function ProductList() {
@@ -23,7 +24,7 @@ export default function ProductList() {
       const data = await api.getProductsFromCategoryAndQuery(category, query);
       const products = await parseProductData(data.results);
       dispatch(actionUpdate(products));
-      // setProductList(products);
+      dispatch(actionUpdateDetails(products));
     } catch (e) {
       // setProductList([]);
       dispatch(actionUpdate([]));

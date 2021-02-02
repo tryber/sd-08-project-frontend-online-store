@@ -24,7 +24,8 @@ export default function ProductCard(props) {
     history.push(`/product/${id}`);
   };
   const handleBuyClick = () => {
-    dispatch(actionAdd({ id, title, price }));
+    const { product } = props;
+    dispatch(actionAdd({ ...product }));
     dispatch(actionCartUpdate());
     // history.push('/');
   };

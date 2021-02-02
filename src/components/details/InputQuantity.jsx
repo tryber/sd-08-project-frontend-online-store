@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function InputQuantity(props) {
-  const { value, onHandleChange } = props;
+  const { value, onHandleChange, max } = props;
   const [quantity, setQuantity] = useState(value);
 
   const handleIncClick = () => {
-    setQuantity(quantity + 1);
-    if (onHandleChange) {
-      onHandleChange(quantity + 1);
+    if (quantity < max) {
+      setQuantity(quantity + 1);
+      if (onHandleChange) {
+        onHandleChange(quantity + 1);
+      }
     }
   };
   const handleDecClick = () => {
@@ -20,6 +22,7 @@ function InputQuantity(props) {
     }
   };
   const handleInputChange = (e) => {
+    if (e.target.value > max) e.target.value = max;
     setQuantity(e.target.value);
     if (onHandleChange) {
       onHandleChange(e.target.value);
@@ -28,7 +31,7 @@ function InputQuantity(props) {
 
   return (
     <div className="input-quantity">
-      <input type="number" value={ quantity } onChange={ handleInputChange } />
+      <input min="0" type="number" value={ quantity } onChange={ handleInputChange } />
       <button type="button" onClick={ handleIncClick }>
         <i className="fas fa-plus" />
       </button>
@@ -44,8 +47,9 @@ InputQuantity.defaultProps = {
 };
 
 InputQuantity.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
   onHandleChange: PropTypes.func,
+  max: PropTypes.number.isRequired,
 };
 
 export default InputQuantity;

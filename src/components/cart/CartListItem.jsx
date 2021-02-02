@@ -9,7 +9,6 @@ import CartItemDetail from './CartItemDetail';
 
 export default function CartListItem(props) {
   const { item, handleItemAdd, handleItemRemove } = props;
-
   return (
     <div className="shopping-cart-list-item">
       <div className="cart-slide-box">
@@ -20,6 +19,7 @@ export default function CartListItem(props) {
       <CartItemControl
         handleAdd={ () => handleItemAdd({ ...item }) }
         handleRemove={ () => handleItemRemove(item) }
+        max={ item.stock }
       />
       <CartItemSum value={ item.total } />
     </div>
@@ -33,6 +33,7 @@ CartListItem.propTypes = {
     price: PropTypes.number.isRequired,
     total: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
+    stock: PropTypes.number.isRequired,
   }).isRequired,
   handleItemAdd: PropTypes.func.isRequired,
   handleItemRemove: PropTypes.func.isRequired,
