@@ -17,17 +17,19 @@ export default function CartSlide() {
   const dispatch = useDispatch();
   const handleItemAdd = (product) => {
     const item = list[list.findIndex((i) => i.id === product.id)];
-    if (item.quantity < item.stock) item.quantity += 1;
-    if (item.quantity < item.stock) item.total += parseFloat(item.price);
-    if (item.quantity < item.stock) dispatch(actionAdd(product));
+    if (item.quantity < item.stock) {
+      item.total += parseFloat(item.price);
+      item.quantity += 1;
+      dispatch(actionAdd(product));
+    }
   };
   const handleItemRemove = (product) => {
     const item = list[list.findIndex((i) => i.id === product.id)];
     if (item.quantity > 0) {
       item.quantity -= 1;
       item.total -= parseFloat(item.price);
+      dispatch(actionRemove(item.id));
     }
-    dispatch(actionRemove(item.id));
   };
   const handleClearCart = () => {
     dispatch(actionClear());
