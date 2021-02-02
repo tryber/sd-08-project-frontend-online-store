@@ -22,6 +22,7 @@ class Home extends React.Component {
     this.search = this.search.bind(this);
     this.fetchCategories = this.fetchCategories.bind(this);
     this.filterForCategory = this.filterForCategory.bind(this);
+    this.productList = this.productList.bind(this);
   }
 
   componentDidMount() {
@@ -55,10 +56,22 @@ class Home extends React.Component {
     });
   }
 
+  productList() {
+    const { addToCart, isAvailable } = this.props;
+    const { products } = this.state;
+    return (
+      <ProductList
+        addToCart={ addToCart }
+        isAvailable={ isAvailable }
+        products={ products }
+      />
+    );
+  }
+
   render() {
+    const { cart } = this.props;
     const { loadingCategory, categories, searchText,
-      products, loadingProducts, renderProducts } = this.state;
-    const { addToCart, cart } = this.props;
+      loadingProducts, renderProducts } = this.state;
     return (
       <div>
         <div>
@@ -82,7 +95,7 @@ class Home extends React.Component {
         </button>
         { renderProducts
         && (loadingProducts ? <p>Carregando produtos</p>
-          : <ProductList addToCart={ addToCart } cart={ cart } products={ products } />) }
+          : this.productList())}
       </div>
     );
   }
@@ -91,6 +104,7 @@ class Home extends React.Component {
 Home.propTypes = {
   addToCart: PropTypes.func.isRequired,
   cart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isAvailable: PropTypes.func.isRequired,
 };
 
 export default Home;
