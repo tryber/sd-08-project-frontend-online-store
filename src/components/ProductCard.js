@@ -8,7 +8,7 @@ import AddItem from './AddItem';
 class ProductCard extends Component {
   render() {
     const {
-      id, title, image, price, attributes, availableQuantity, freeShipping
+      id, title, image, price, attributes, availableQuantity, freeShipping,
     } = this.props;
     return (
       <div data-testid="product" className="card-container">
