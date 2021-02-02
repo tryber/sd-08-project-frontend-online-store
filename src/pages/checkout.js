@@ -119,7 +119,7 @@ class Checkout extends Component {
   inputAddress() {
     const { address } = this.state;
     return (
-      <form>
+      <div className="mb-3">
         <label htmlFor="CEP" className="form-label">
           Endereço
           <input
@@ -130,7 +130,7 @@ class Checkout extends Component {
             onChange={ this.handleChange }
           />
         </label>
-      </form>
+      </div>
     );
   }
 
