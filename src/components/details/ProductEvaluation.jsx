@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { actionAdd } from '../../store/evaluation.reducer';
 import InputStars from './InputStars';
@@ -8,7 +8,7 @@ import InputStars from './InputStars';
 function ProductEvaluation(props) {
   const { productId } = props;
   const [evaluation, setEvaluation] = useState({ email: '', description: '', stars: 0 });
-  const evals = useSelector((state) => state.evaluation);
+  // const evals = useSelector((state) => state.evaluation);
   const dispatch = useDispatch();
   const handleEvalClick = () => {
     if (evaluation.email.length > 1 && evaluation.description.length > 1) {

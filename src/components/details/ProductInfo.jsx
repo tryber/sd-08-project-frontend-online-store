@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import DetailImage from './DetailImage';
 import DetailAttr from './DetailAttr';
@@ -9,10 +9,8 @@ import DetailAttr from './DetailAttr';
 export default function ProductInfo(props) {
   const { productId } = props;
   const details = useSelector((state) => state.details);
-  // const dispatch = useDispatch();
   const product = details.find((i) => i.id === productId);
 
-  // const product = details.find((i) => i.id === (id));
   return (
     <section className="product-info">
       <div className="product-info-left">
