@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ShoppingCartLink from './ShoppingCartLink';
-import * as api from '../services/api';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -103,6 +102,7 @@ ProductDetails.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
       products: PropTypes.objectOf(PropTypes.any).isRequired,
+      cart: PropTypes.arrayOf(PropTypes.object),
     }),
   }).isRequired,
 };
