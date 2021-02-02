@@ -52,6 +52,14 @@ class App extends React.Component {
       });
   }
 
+  renderShipping(free) {
+    if (free === true) {
+      return (
+        <span style={ { color: 'red' } } data-testid="free-shipping">Frete Gratis</span>
+      );
+    }
+  }
+
   render() {
     const { cartList, productList } = this.state;
     return (
@@ -63,6 +71,7 @@ class App extends React.Component {
                 productList={ productList }
                 handleRequest={ this.handleRequest }
                 handleAddToCart={ this.handleAddToCart }
+                renderShipping={ this.renderShipping }
               />
             </Route>
             <Route path="/shopping-cart">
@@ -77,6 +86,7 @@ class App extends React.Component {
                 productList={ productList }
                 handleRequest={ this.handleRequest }
                 handleAddToCart={ this.handleAddToCart }
+                renderShipping={ this.renderShipping }
               />
             </Route>
             <Route path="/checkout">
