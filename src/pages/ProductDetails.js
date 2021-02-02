@@ -16,16 +16,26 @@ class ProductDetails extends React.Component {
 
     this.getProductDetails = this.getProductDetails.bind(this);
     this.sendToCart = this.sendToCart.bind(this);
+    this.handleStorage = this.handleStorage.bind(this);
   }
 
   componentDidMount() {
     this.getProductDetails();
-    const productsCart = JSON.parse(localStorage.getItem('productsCart'));
+    this.handleStorage();
+  }
 
-    if (productsCart !== null) {
+  handleStorage() {
+    const productsCart = JSON.parse(localStorage.getItem('productsCart'));
+    let { productsInCart } = this.state;
+
+    if (productsCart === null) {
+      this.setState({
+        productsInCart,
+      });
+    } else {
       this.setState({
         productsInCart: productsCart,
-      });
+      })
     }
   }
 
@@ -45,12 +55,13 @@ class ProductDetails extends React.Component {
   }
 
   sendToCart() {
-    const { productDetail, productsInCart } = this.state;
+    const { productDetail } = this.state;
     const { title, price } = productDetail;
     const { match: { params: { id } } } = this.props;
-    this.setState(() => ({
+    this.setState(({ productsInCart }) => ({
       productsInCart: [...productsInCart, { title, price, id }],
     }), () => {
+      const { productsInCart } = this.state;
       localStorage.setItem('productsCart', JSON.stringify(productsInCart));
     });
   }
