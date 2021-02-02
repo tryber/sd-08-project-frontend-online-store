@@ -4,7 +4,10 @@ import { BsSearch } from 'react-icons/bs';
 class Loading extends React.Component {
   render() {
     return (
-      <p className="loading-text"><BsSearch /> Carregando...</p>
+      <p className="loading-text">
+        <BsSearch />
+        Carregando...
+      </p>
     );
   }
 }

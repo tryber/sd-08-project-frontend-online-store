@@ -20,13 +20,7 @@ class Categories extends React.Component {
     this.setResults = this.setResults.bind(this);
   }
 
-  categorySelected(categoryID) {
-    this.setState({ loading: true });
-    api.getProductsFromCategoryAndQuery(categoryID, null).then((r) => this.refreshState(r));
-  }
-
   componentDidMount() {
-    this.setState({ loading: true });
     api.getCategories().then((categories) => {
       this.setState({ categories, loading: false });
     });
@@ -35,7 +29,14 @@ class Categories extends React.Component {
   setResults(termo) {
     this.setState({ loading: true });
     const categoryId = null;
-    api.getProductsFromCategoryAndQuery(categoryId, termo).then((r) => this.refreshState(r));
+    api.getProductsFromCategoryAndQuery(categoryId, termo)
+      .then((r) => this.refreshState(r));
+  }
+
+  categorySelected(categoryID) {
+    this.setState({ loading: true });
+    api.getProductsFromCategoryAndQuery(categoryID, null)
+      .then((r) => this.refreshState(r));
   }
 
   refreshState(resultado) {
@@ -46,7 +47,7 @@ class Categories extends React.Component {
   loading() {
     const { loading } = this.state;
     if (loading) {
-      return <Loading />
+      return <Loading />;
     }
   }
 
@@ -60,7 +61,14 @@ class Categories extends React.Component {
           <select onChange={ (e) => this.categorySelected(e.target.value) }>
             { categories.map((cat) => {
               const { id, name } = cat;
-              return <option value={ id } data-testid="category" key={ id }>{ name }</option>;
+              return (
+                <option
+                  value={ id }
+                  data-testid="category"
+                  key={ id }
+                >
+                  { name }
+                </option>);
             }) }
           </select>
           { this.loading() }
