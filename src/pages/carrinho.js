@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Carrinho extends Component {
   render() {
@@ -30,6 +31,15 @@ class Carrinho extends Component {
               +
             </button>
             <button type="button">X</button>
+            <Link
+              data-testid="checkout-products"
+              to={ {
+                pathname: '/checkout',
+
+              } }
+            >
+              Finalizar a Compra
+            </Link>
           </div>
         ))}
       </div>
