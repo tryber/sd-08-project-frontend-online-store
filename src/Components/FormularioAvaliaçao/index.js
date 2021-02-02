@@ -48,7 +48,7 @@ export default class FormularioAvaliaçao extends Component {
             data-testid="product-detail-evaluation"
           />
           <button type="button">
-            Avaliar
+            AVALIAR
           </button>
         </fieldset>
       </div>

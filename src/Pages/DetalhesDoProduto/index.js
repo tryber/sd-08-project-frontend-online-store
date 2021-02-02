@@ -5,7 +5,7 @@ import BotaoCarrinho from '../../Components/BotaoCarrinho';
 
 import FormularioAvaliaçao from '../../Components/FormularioAvaliaçao';
 
-export default class DetalhesDoProduto extends Component {
+export default class DetalhesProduto extends Component {
   render() {
     const { location: { state: { product } } } = this.props;
     const { title, subtitle, price,
@@ -26,7 +26,7 @@ export default class DetalhesDoProduto extends Component {
   }
 }
 
-DetalhesDoProduto.propTypes = {
+DetalhesProduto.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
       product: PropTypes.shape({
