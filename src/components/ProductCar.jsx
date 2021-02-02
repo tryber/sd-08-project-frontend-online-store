@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ShoppingCart from '../shopping-cart.png';
 import propTypes from 'prop-types';
+import ShoppingCart from '../shopping-cart.png';
 
 class ProductCar extends Component {
   render() {
     const { cartSize } = this.props;
     return (
       <div>
-         <Link data-testid="shopping-cart-button" to="/shoppingcart">
-          <img
+        <Link data-testid="shopping-cart-button" to="/shoppingcart">
+           <img
             className="shopping-cart-icon"
             src={ ShoppingCart }
             alt="icon shopping cart"
-          />
-          <span
+           />
+           <span
             className="cart-quantity"
             data-testid="shopping-cart-size"
           >
@@ -28,6 +28,6 @@ class ProductCar extends Component {
 
 ProductCar.propTypes = {
   cartSize: propTypes.number.isRequired,
-}
+};
 
 export default ProductCar;

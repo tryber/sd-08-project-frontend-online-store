@@ -1,25 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ProductCar from './ProductCar';
-import * as api from '../services/api';
 
 class ProductDetail extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      product: '',
-    };
-  }
-
-  async componentDidMount() {
-    const { match: { params: { title } } } = this.props;
-    const result = await api.getProductsFromCategoryAndQuery('', title);      
-    this.setState({
-      product: result,
-    });
-  }
-
-  render() {   
+  render() {
     const { location: { state } } = this.props;
 
     return (
@@ -32,5 +16,15 @@ class ProductDetail extends Component {
     );
   }
 }
+
+ProductDetail.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      title: PropTypes.string,
+      thumbnail: PropTypes.string,
+      price: PropTypes.number,
+    })
+  }).isRequired,
+};
 
 export default ProductDetail;
