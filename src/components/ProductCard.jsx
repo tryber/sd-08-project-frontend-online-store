@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class ProductCard extends Component {
   render() {
-    const { product } = this.props;
+    const { product, click } = this.props;
     const { title, thumbnail, price, id } = product;
     return (
       <section data-testid="product">
@@ -17,6 +17,13 @@ class ProductCard extends Component {
         >
           Ver Detalhes
         </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => click(product) }
+        >
+          Adicionar ao Carrinho
+        </button>
       </section>
     );
   }
@@ -29,6 +36,7 @@ ProductCard.propTypes = {
     price: PropTypes.number,
     id: PropTypes.string,
   }).isRequired,
+  click: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

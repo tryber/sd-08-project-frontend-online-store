@@ -10,10 +10,12 @@ class SearchBar extends Component {
     this.state = {
       product: [],
       query: '',
+      cartProduct: [],
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.addCart = this.addCart.bind(this);
   }
 
   async handleSearch() {
@@ -36,6 +38,11 @@ class SearchBar extends Component {
     });
   }
 
+  addCart(product) {
+    const { cartProduct } = this.state;
+    this.setState({ cartProduct: [...cartProduct, product] });
+  }
+
   renderAviso() {
     return (
       <h3 data-testid="home-initial-message">
@@ -44,7 +51,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { query, product } = this.state;
+    const { query, product, cartProduct } = this.state;
     return (
       <section>
         <label htmlFor="input">
@@ -64,11 +71,16 @@ class SearchBar extends Component {
         >
           Button
         </button>
-        <ShopButton />
+        <ShopButton cartProduct={ cartProduct } />
         <Categories onClick={ this.handleClick } />
         {product.length < 1
           ? this.renderAviso()
-          : product.map((item) => <ProductCard key={ item.id } product={ item } />)}
+          : product.map((item) => (
+            <ProductCard
+              click={ this.addCart }
+              key={ item.id }
+              product={ item }
+            />))}
       </section>
     );
   }
