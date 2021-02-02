@@ -1,5 +1,4 @@
 function setProductState(product, amount) {
-  console.log(product);
   const result = {
     id: product.id,
     title: product.title,
@@ -24,7 +23,6 @@ const localStorageSave = (nameLocal, product, id) => {
       localStorage.setItem(nameLocal, JSON.stringify(localProduct));
     } else {
       const result = localProduct.map((el) => {
-        console.log(`${el.id} --- ${id}`);
         if (el.id === id) {
           el.amount += 1;
         }
@@ -35,15 +33,18 @@ const localStorageSave = (nameLocal, product, id) => {
   }
 };
 
-const localStorageDelete = (nameLocal, id) => {
-  const localProduct = JSON.parse(localStorage.getItem(nameLocal));
-  const result = localProduct.filter((el) => {
-    if (el.idProduct === id) {
-      return el.idProduct;
+const localStorageDelete = (nameLocal, id, product) => {
+  const result = product.filter((el) => {
+    if (el.id !== id) {
+      return el;
     }
     return '';
   });
   localStorage.setItem(nameLocal, JSON.stringify(result));
+};
+
+const localStorageSaveCarItems = (nameLocal, products) => {
+  localStorage.setItem(nameLocal, JSON.stringify(products));
 };
 
 const localStorageLoad = (nameLocal) => {
@@ -60,4 +61,9 @@ const localStorageLoad = (nameLocal) => {
   return localSave;
 };
 
-export { localStorageLoad, localStorageSave, localStorageDelete };
+export {
+  localStorageLoad,
+  localStorageSave,
+  localStorageSaveCarItems,
+  localStorageDelete,
+};

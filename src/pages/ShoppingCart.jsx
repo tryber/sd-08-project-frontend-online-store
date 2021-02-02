@@ -1,5 +1,5 @@
 import React from 'react';
-import { localStorageLoad } from '../localStorage';
+import { localStorageLoad, localStorageSaveCarItems } from '../localStorage';
 import '../css/ShoppingCart.css';
 
 class ShoppingCart extends React.Component {
@@ -9,15 +9,52 @@ class ShoppingCart extends React.Component {
       products: [],
     };
     this.setLocalStorageState = this.setLocalStorageState.bind(this);
+    this.handleChangeAdd = this.handleChangeAdd.bind(this);
+    this.handleChangeSub = this.handleChangeSub.bind(this);
+    this.handleClickDelete = this.handleClickDelete.bind(this);
   }
 
   componentDidMount() {
     this.setLocalStorageState();
   }
 
+  componentDidUpdate(__prevProps, prevState) {
+    const { products } = this.state;
+    if (prevState.products !== products) {
+      localStorageSaveCarItems('shoppingCart', products);
+    }
+  }
+
+  handleChangeAdd({ target }) {
+    const { products } = this.state;
+    const result = products.map((el) => {
+      if (el.id === target.id && el.amount + 1 <= el.availableQuantity) {
+        el.amount += 1;
+      }
+      return el;
+    });
+    this.setState({ products: result });
+  }
+
+  handleChangeSub({ target }) {
+    const { products } = this.state;
+    const result = products.map((el) => {
+      if (el.id === target.id && el.amount - 1 >= 1) {
+        el.amount -= 1;
+      }
+      return el;
+    });
+    this.setState({ products: result });
+  }
+
+  handleClickDelete({ target }) {
+    const { products } = this.state;
+    const results = products.filter((el) => el.id !== target.id);
+    this.setState({ products: results });
+  }
+
   setLocalStorageState() {
     const results = localStorageLoad('shoppingCart');
-    console.log(results);
     this.setState({ products: results });
   }
 
@@ -78,37 +115,64 @@ class ShoppingCart extends React.Component {
     );
   }
 
-  renderAddAmountProductCart(amount) {
+  renderAddAmountProductCart(id, availableQuantity) {
     return (
       <div>
-        <input
-          value={ amount }
-          type="number"
+        <button
+          id={ id }
+          type="button"
           min="1"
-        />
+          max={ availableQuantity }
+          data-testid="product-increase-quantity"
+          onClick={ this.handleChangeAdd }
+        >
+          +
+        </button>
       </div>
     );
   }
 
-  renderRemoveProductToCart() {
+  renderSubAmountProductCart(id, availableQuantity) {
     return (
       <div>
-        <button type="button">REMOVER</button>
+        <button
+          id={ id }
+          type="button"
+          min="1"
+          max={ availableQuantity }
+          data-testid="product-decrease-quantity"
+          onClick={ this.handleChangeSub }
+        >
+          -
+        </button>
       </div>
     );
   }
 
-  renderTotalPriceProductCart() {
+  renderRemoveProductToCart(id) {
     return (
       <div>
-        <span>Total:</span>
+        <button
+          id={ id }
+          type="button"
+          onClick={ this.handleClickDelete }
+        >
+          REMOVER
+        </button>
+      </div>
+    );
+  }
+
+  renderTotalPriceProductCart(amount, price) {
+    return (
+      <div>
+        <span>{`Total: R$${(amount * price).toFixed(2)}`}</span>
       </div>
     );
   }
 
   render() {
     const { products } = this.state;
-    console.log(products);
     if (!products) {
       return this.renderMsgCartEmpty();
     }
@@ -121,9 +185,10 @@ class ShoppingCart extends React.Component {
               {this.renderTitleProductCart(el.title)}
               {this.renderPriceProductCart(el.price)}
               {this.renderAmountProductCart(el.amount)}
-              {this.renderAddAmountProductCart()}
-              {this.renderRemoveProductToCart()}
-              {this.renderTotalPriceProductCart()}
+              {this.renderAddAmountProductCart(el.id, el.availableQuantity)}
+              {this.renderSubAmountProductCart(el.id, el.availableQuantity)}
+              {this.renderRemoveProductToCart(el.id)}
+              {this.renderTotalPriceProductCart(el.amount, el.price)}
             </div>
           ))}
         </div>

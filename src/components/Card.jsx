@@ -7,7 +7,6 @@ class Card extends React.Component {
   render() {
     const { product, handleChangeClickBuyProduct } = this.props;
     const { id, title, thumbnail, price } = product;
-    console.log(product);
     return (
       <div key={ id } data-testid="product" className="item-card">
         <img
