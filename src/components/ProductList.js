@@ -55,6 +55,10 @@ class ProductList extends Component {
     });
   }
 
+  addAmount = (product) => {
+    product.amount = 1;
+  }
+
   render() {
     const { products, listCategories, query } = this.state;
     const { addCart } = this.props;
@@ -66,27 +70,30 @@ class ProductList extends Component {
           value={ query }
         />
         <ListCategories categories={ listCategories } onClick={ this.handleChange } />
-        {products.map((product) => (
-          <div key={ product.id }>
-            <Link
-              to={ {
-                pathname: `/product/${product.id}`,
-                state: { productObj: product } } }
-              data-testid="product-detail-link"
-            >
-              <ProductCard
-                product={ product }
-              />
-            </Link>
-            <button
-              type="button"
-              onClick={ () => addCart(product) }
-              data-testid="product-add-to-cart"
-            >
-              Adicionar ao carrinho
-            </button>
-          </div>
-        ))}
+        {products.map((product) => {
+          product.amount = 1;
+          return (
+            <div key={ product.id }>
+              <Link
+                to={ {
+                  pathname: `/product/${product.id}`,
+                  state: { productObj: product } } }
+                data-testid="product-detail-link"
+              >
+                <ProductCard
+                  product={ product }
+                />
+              </Link>
+              <button
+                type="button"
+                onClick={ () => addCart(product) }
+                data-testid="product-add-to-cart"
+              >
+                Adicionar ao carrinho
+              </button>
+            </div>
+          );
+        })}
       </div>
     );
   }

@@ -12,6 +12,7 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { onCart } = this.state;
+    const { increaseQuantity, decreaseQuantity, deleteProduct } = this.props.location;
     return (
       <div>
         {
@@ -20,8 +21,34 @@ class ShoppingCart extends React.Component {
               <img src={ product.thumbnail } alt={ product.title } />
               <h4 data-testid="shopping-cart-product-name">{product.title}</h4>
               <p>{ product.price }</p>
-              <p data-testid="shopping-cart-product-quantity">1</p>
-            </div>))
+              <p data-testid="shopping-cart-product-quantity">{ product.amount}</p>
+              <span>
+                <button
+                  type="button"
+                  onClick={ increaseQuantity }
+                  value={ product.title }
+                  data-testid="product-increase-quantity"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  onClick={ decreaseQuantity }
+                  value={ product.title }
+                  data-testid="product-decrease-quantity"
+                >
+                  -
+                </button>
+                <button
+                  type="button"
+                  onClick={ deleteProduct }
+                  value={ product.title }
+                >
+                  X
+                </button>
+              </span>
+            </div>
+          ))
             : (
               <div>
                 <p data-testid="shopping-cart-empty-message">
