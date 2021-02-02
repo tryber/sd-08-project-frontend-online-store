@@ -26,7 +26,7 @@ class ProductDetails extends React.Component {
 
   handleStorage() {
     const productsCart = JSON.parse(localStorage.getItem('productsCart'));
-    let { productsInCart } = this.state;
+    const { productsInCart } = this.state;
 
     if (productsCart === null) {
       this.setState({
@@ -35,7 +35,7 @@ class ProductDetails extends React.Component {
     } else {
       this.setState({
         productsInCart: productsCart,
-      })
+      });
     }
   }
 
