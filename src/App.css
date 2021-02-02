@@ -11,6 +11,12 @@ body {
   height: auto;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .header {
   background-color: #fff159;
   border: 0;
