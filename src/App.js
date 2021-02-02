@@ -19,8 +19,8 @@ class App extends React.Component {
     this.state = {
       categories: [],
       products: [],
-      productsOnCart: [],
-      totalItems: 0,
+      productsOnCart: this.getFromLocalStorage(),
+      totalItems: this.getFromLocalStorageTotal(),
     };
   }
 
@@ -34,6 +34,29 @@ class App extends React.Component {
     envet.preventDefault();
     const { name, value } = envet.target;
     this.setState({ [name]: value });
+  }
+
+  getFromLocalStorageTotal() {
+    let currentLocal = window.localStorage.getItem('total');
+    if (currentLocal === null) {
+      currentLocal = 0;
+    }
+    return +currentLocal;
+  }
+
+  getFromLocalStorage() {
+    let currentLocal = window.localStorage.getItem('cart');
+    currentLocal = JSON.parse(currentLocal);
+    if (currentLocal === null) {
+      currentLocal = [];
+    }
+    return currentLocal;
+  }
+
+  saveOnLocalStorage(array, total) {
+    array = JSON.stringify(array);
+    window.localStorage.setItem('total', total);
+    window.localStorage.setItem('cart', array);
   }
 
   buscaDeProdutos(id) {
@@ -52,15 +75,20 @@ class App extends React.Component {
   }
 
   addCart(obj, amount = 1) {
-    obj.amountToBuy = amount;
-    this.setState((old) => {
-      if (!old.productsOnCart.includes(obj)) {
-        return {
-          productsOnCart: [...old.productsOnCart, obj],
-          totalItems: (old.totalItems + amount),
-        };
-      }
-    });
+    const { productsOnCart, totalItems } = this.state;
+    const { id } = obj;
+    if (!productsOnCart.includes(obj)) {
+      obj.amountToBuy = amount;
+      const local = this.getFromLocalStorage();
+      local.push(obj);
+      this.saveOnLocalStorage(local, (totalItems + amount));
+      this.setState((old) => ({
+        productsOnCart: [...old.productsOnCart, obj],
+        totalItems: (old.totalItems + amount),
+      }));
+    } else {
+      this.changeQtd(amount, id);
+    }
   }
 
   changeQtd(num, idToChange) {
@@ -78,6 +106,7 @@ class App extends React.Component {
       itemToChange.amountToBuy = availableQtd;
       newTotalItems -= 1;
     }
+    this.saveOnLocalStorage(newProductsOnCart, newTotalItems);
     this.setState(() => (
       {
         productsOnCart: newProductsOnCart,

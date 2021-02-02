@@ -13,7 +13,9 @@ class TopNavBar extends React.Component {
         <Link className="cartIcon" to="/shoppingCart" data-testid="shopping-cart-button">
           <FiShoppingCart />
           (
-          { cartSize }
+          <div data-testid="shopping-cart-size">
+            { cartSize }
+          </div>
           )
         </Link>
       </div>
