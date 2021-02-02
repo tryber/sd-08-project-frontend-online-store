@@ -42,7 +42,10 @@ class Cart extends Component {
                   {product.title}
                 </span>
                 <span className="product-cart-quantity">
-                  <DisplayQuantity availableQuantity={ product.availableQuantity } quantity={ 1 } />
+                  <DisplayQuantity
+                    availableQuantity={ product.availableQuantity }
+                    quantity={ 1 }
+                  />
                 </span>
               </div>
             ))}
