@@ -33,7 +33,7 @@ EvaluationList.propTypes = {
   state: PropTypes.shape({
     comment: PropTypes.string,
     rating: PropTypes.number,
-    evaluation: PropTypes.func,
+    evaluation: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
   saveEvaluation: PropTypes.func.isRequired,
 };

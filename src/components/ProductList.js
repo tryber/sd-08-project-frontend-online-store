@@ -38,10 +38,10 @@ class ProductList extends Component {
     this.fetchProducts(category, query);
   }
 
-  async fetchProducts(categorie, query) {
+  async fetchProducts(category, query) {
     try {
       const { results } = await RequestAPI
-        .getProductsFromCategoryAndQuery(categorie, query);
+        .getProductsFromCategoryAndQuery(category, query);
       this.setState({ products: results });
     } catch (error) {
       console.log(error);
@@ -70,30 +70,32 @@ class ProductList extends Component {
           value={ query }
         />
         <ListCategories categories={ listCategories } onClick={ this.handleChange } />
-        {products.map((product) => {
-          product.amount = 1;
-          return (
-            <div key={ product.id }>
-              <Link
-                to={ {
-                  pathname: `/product/${product.id}`,
-                  state: { productObj: product } } }
-                data-testid="product-detail-link"
-              >
-                <ProductCard
-                  product={ product }
-                />
-              </Link>
-              <button
-                type="button"
-                onClick={ () => addCart(product) }
-                data-testid="product-add-to-cart"
-              >
-                Adicionar ao carrinho
-              </button>
-            </div>
-          );
-        })}
+        {products.map((product) => (
+          <div key={ product.id }>
+            <Link
+              to={ {
+                pathname: `/product/${product.id}`,
+                state: { productObj: product } } }
+              data-testid="product-detail-link"
+            >
+              <ProductCard
+                product={ product }
+              />
+            </Link>
+            {/* <ButtonAddToCart
+              data-testid={ "product-add-to-cart" }
+              onClick={ () => addCart(product) }
+            /> */}
+            <button
+              type="button"
+              onClick={ () => addCart(product) }
+              data-testid="product-add-to-cart"
+            >
+              {/* <Link /> */}
+              Adicionar ao carrinho
+            </button>
+          </div>
+        ))}
       </div>
     );
   }
