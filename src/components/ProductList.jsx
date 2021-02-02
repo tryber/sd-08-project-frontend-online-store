@@ -83,6 +83,7 @@ class ProductList extends React.Component {
             <ButtonAddToCart
               onClick={ handleAddToCart }
               id={ item.id }
+              price={ item.price }
               list={ productList }
               dataTestId="product-add-to-cart"
             />
