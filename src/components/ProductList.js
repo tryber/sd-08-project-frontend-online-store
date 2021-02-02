@@ -38,10 +38,10 @@ class ProductList extends Component {
     this.fetchProducts(category, query);
   }
 
-  async fetchProducts(categorie, query) {
+  async fetchProducts(category, query) {
     try {
       const { results } = await RequestAPI
-        .getProductsFromCategoryAndQuery(categorie, query);
+        .getProductsFromCategoryAndQuery(category, query);
       this.setState({ products: results });
     } catch (error) {
       console.log(error);
@@ -78,11 +78,16 @@ class ProductList extends Component {
                 product={ product }
               />
             </Link>
+            {/* <ButtonAddToCart
+              data-testid={ "product-add-to-cart" }
+              onClick={ () => addCart(product) }
+            /> */}
             <button
               type="button"
               onClick={ () => addCart(product) }
               data-testid="product-add-to-cart"
             >
+              {/* <Link /> */}
               Adicionar ao carrinho
             </button>
           </div>
