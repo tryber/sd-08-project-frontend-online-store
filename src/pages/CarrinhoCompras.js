@@ -32,18 +32,27 @@ class CarrinhoCompras extends Component {
 
   increaseItem(item) {
     const { products } = this.state;
-    const newProduct = products.find((element) => element.id === item.id);
-    newProduct.qtd += 1;
+    const newProduct = products.map((element) => {
+      if (element.id === item.id) {
+        element.qtd += 1;
+      }
+      return element;
+    });
     localStorage.setItem('itemsCart', JSON.stringify(newProduct));
     this.setState({ products: newProduct });
   }
 
   decreaseItem(item) {
     const { products } = this.state;
-    const newProduct = products.find((element) => element.id === item.id);
-    const flagZero = 0;
-    if (newProduct.qtd > flagZero) {
-      newProduct.qtd -= 1;
+    const quantity = products.find((element) => element.id === item.id);
+    const flagZero = 1;
+    if (quantity.qtd > flagZero) {
+      const newProduct = products.map((element) => {
+        if (element.id === item.id) {
+          element.qtd -= 1;
+        }
+        return element;
+      });
       localStorage.setItem('itemsCart', JSON.stringify(newProduct));
       this.setState({ products: newProduct });
     }

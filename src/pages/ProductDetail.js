@@ -34,17 +34,17 @@ class ProductDetail extends React.Component {
   async addCartItem() {
     const { product } = this.state;
     product[0].qtd = 1;
-    let itemsCart;
+    let itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
 
-    if (localStorage.getItem('itemsCart')) {
-      itemsCart = await JSON.parse(localStorage.getItem('itemsCart'));
-      Object.keys(itemsCart).forEach((key) => {
-        if (itemsCart[key].id === product[0].id) {
-          itemsCart[key].qtd += 1;
+    if (itemsCart && itemsCart.length !== 0) {
+      console.log(itemsCart);
+      itemsCart.forEach((item) => {
+        if (item.id === product[0].id) {
+          item.qtd += 1;
         } else {
           itemsCart = [
             ...itemsCart,
-            product[0],
+            product,
           ];
         }
       });
