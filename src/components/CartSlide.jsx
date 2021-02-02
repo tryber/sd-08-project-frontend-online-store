@@ -9,11 +9,17 @@ import CartMenu from './cart/CartMenu';
 import CartListItem from './cart/CartListItem';
 import CartButtonBox from './cart/CartButtonBox';
 
+// useEffect(() => {
+//   if (update <= control.updatecart) {
+//     setList(parseCart(cart));
+//   }
+//   setUpdate(control.updatecart);
+// }, [control]);
 export default function CartSlide() {
   const cart = useSelector((state) => state.cart);
-  const control = useSelector((state) => state.control);
+  // const control = useSelector((state) => state.control);
   const [list, setList] = useState(parseCart(cart));
-  const [update, setUpdate] = useState(0);
+  // const [update, setUpdate] = useState(0);
   const dispatch = useDispatch();
   const handleItemAdd = (product) => {
     const item = list[list.findIndex((i) => i.id === product.id)];
@@ -35,12 +41,7 @@ export default function CartSlide() {
     dispatch(actionClear());
     setList([]);
   };
-  useEffect(() => {
-    if (update <= control.updatecart) {
-      setList(parseCart(cart));
-    }
-    setUpdate(control.updatecart);
-  }, [control]);
+
   return (
     <div id="cart-slide" className="cart-slide">
       <CartMenu />
