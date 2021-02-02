@@ -12,12 +12,20 @@ class ProductDetails extends React.Component {
     this.state = {
       loading: true,
       product: [],
+      shoppingCart: {},
     };
     this.responseFromAPI = this.responseFromAPI.bind(this);
+    this.getCartData = this.getCartData.bind(this);
   }
 
   componentDidMount() {
     this.responseFromAPI();
+    this.getCartData();
+  }
+
+  getCartData() {
+    const cart = localStorage.getItem('currentCart');
+    if (cart) this.setState({ shoppingCart: JSON.parse(cart) });
   }
 
   async responseFromAPI() {
@@ -34,9 +42,14 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { loading, product } = this.state;
+    const { loading, product, shoppingCart } = this.state;
     if (loading) {
-      return <Loading />;
+      return (
+        <>
+          <Button shoppingCart={ shoppingCart } />
+          <Loading />
+        </>
+      );
     }
     return (
       <div>
@@ -67,7 +80,7 @@ class ProductDetails extends React.Component {
           </ul>
           <Evaluation />
         </div>
-        <Button />
+        <Button shoppingCart={ shoppingCart } />
       </div>
     );
   }

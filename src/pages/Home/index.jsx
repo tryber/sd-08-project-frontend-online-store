@@ -87,7 +87,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories, loading, products, searchInput } = this.state;
+    const { categories, loading, products, searchInput, shoppingCart } = this.state;
 
     return (
       <div>
@@ -96,7 +96,7 @@ class Home extends React.Component {
           value={ searchInput }
           handleSearch={ this.findProducts }
         />
-        <Button />
+        <Button shoppingCart={ shoppingCart } />
         <main>
           <div className="categoryContainer">
             { categories.map((category) => (
