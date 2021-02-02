@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../../components/Button';
 // import * as api from '../../services/api';
 import Loading from '../../components/Loading';
+import ButtonAddCart from '../../components/ButtonAddCart';
 
 const fetchAPI = 'https://api.mercadolibre.com/items/';
 
@@ -11,7 +12,7 @@ class ProductDetails extends React.Component {
     super();
     this.state = {
       loading: true,
-      product: [],
+      product: {},
     };
     this.responseFromAPI = this.responseFromAPI.bind(this);
   }
@@ -30,7 +31,6 @@ class ProductDetails extends React.Component {
         product: response,
       },
     );
-    // console.log(response);
   }
 
   render() {
@@ -66,6 +66,7 @@ class ProductDetails extends React.Component {
             ))}
           </ul>
         </div>
+        <ButtonAddCart productInfo={ product } addProductToCart={  }/>
         <Button />
       </div>
     );
