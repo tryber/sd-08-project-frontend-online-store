@@ -8,7 +8,8 @@ export default class BotaoAdiciona extends Component {
   }
 
   addToLocalStorage(product) {
-    const { title, price, thumbnail, id } = product;
+    const { title, price, thumbnail, id,
+      available_quantity: availableQuantity } = product;
     if (localStorage.getItem('PRODUTOS')) {
       const local = JSON.parse(localStorage.getItem('PRODUTOS'));
       local.forEach((item) => {
@@ -17,12 +18,22 @@ export default class BotaoAdiciona extends Component {
           localStorage.setItem('PRODUTOS', JSON.stringify(local));
         } else {
           localStorage.setItem('PRODUTOS',
-            JSON.stringify([...local, { title, price, thumbnail, id, quantity: 1 }]));
+            JSON.stringify([...local, { title,
+              price,
+              thumbnail,
+              id,
+              quantity: 1,
+              availableQuantity }]));
         }
       });
     } else {
       localStorage.setItem('PRODUTOS',
-        JSON.stringify([{ title, price, thumbnail, id, quantity: 1 }]));
+        JSON.stringify([{ title,
+          price,
+          thumbnail,
+          id,
+          quantity: 1,
+          availableQuantity }]));
     }
   }
 
