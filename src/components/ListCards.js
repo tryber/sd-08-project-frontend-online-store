@@ -19,7 +19,7 @@ class ListCards extends Component {
         <Link
           prop={ productprop }
           data-testid="product-detail-link"
-          to={ { pathname: `/product/${title}`,
+          to={ { pathname: `/product/${id}`,
             state: {
               product: { productprop, id },
             } } }
@@ -34,7 +34,7 @@ class ListCards extends Component {
 
 ListCards.propTypes = {
   productprop: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,

@@ -7,6 +7,8 @@ class ShoppingCart extends React.Component {
     this.state = {
       eu: 'ihuu',
     };
+
+    this.setState(localStorage.getItem('cart'));
   }
 
   render() {
@@ -17,7 +19,7 @@ class ShoppingCart extends React.Component {
           Seu carrinho está vazio
         </p>);
     }
-    return (localStorage.getItem('cart'));
+    return (console.log(localStorage.getItem('cart')));
   }
 }
 export default ShoppingCart;

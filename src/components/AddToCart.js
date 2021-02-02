@@ -1,26 +1,21 @@
-import { findAllByTitle } from '@testing-library/react';
 import React, { Component } from 'react';
 
 class AddToCart extends Component {
   constructor() {
     super();
 
+    this.state = {
+      cart: [],
+
+    };
     this.setLocalStorage = this.setLocalStorage.bind(this);
   }
 
-  setLocalStorage() {
-    const { prop } = this.props;
-    const { title, thumbnail, price, installments } = prop;
-    const { quantity } = installments;
-    // const storageItem = (`<li>
-    //   <img src='${thumbnail}' />
-    //   <p data-testid="shopping-cart-product-name">'${title}'</p>
-    //   <p data-testid="shopping-cart-product-quantity">${quantity}</p>
-    //   <p>'R$ ${price.toFixed(2)}'</p>
-    // </li>`);
-
-    localStorage.setItem('cart', prop);
-    console.log(quantity);
+  addCartClick() {
+    const { item } = this.state;
+    this.setState((prev) => ({
+      cart: [...prev.cart, item],
+    }));
   }
 
   render() {
