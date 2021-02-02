@@ -45,6 +45,28 @@ body {
   transition: all 0.5s;
 }
 
+.cel-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  width: 90%;
+}
+
+.cel {
+  border: #3030305b solid 2px;
+  border-collapse: collapse;
+  padding: 5px 0;
+  width: 49%;
+}
+
+.details-cover {
+  font-size: 25px;
+  font-weight: 600;
+  padding: 30px;
+  width: 45%;
+}
+
 .header {
   align-items: center;
   background-color: #303030;
@@ -69,6 +91,11 @@ body {
   height: 350px;
   margin: auto;
   width: 100%;
+}
+
+.infos-list {
+  padding: 30px 0;
+  width: 50%;
 }
 
 .logo-title-container {
@@ -101,6 +128,18 @@ main {
   font-weight: 600;
   height: 210px;
   text-decoration: none;
+}
+
+.product-details {
+  background-color: white;
+  display: flex;
+  margin: 10px auto;
+  text-align: center;
+  width: 80%;
+}
+
+.product-details img {
+  width: 200px;
 }
 
 .product-list {
