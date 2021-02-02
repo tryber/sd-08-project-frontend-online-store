@@ -9,12 +9,12 @@ class AddItem extends Component {
   }
 
   addToCart() {
-    const { title, price } = this.props;
+    const { title, price, availableQuantity } = this.props;
     let products = [];
     if ({}.hasOwnProperty.call(sessionStorage, 'products')) {
       products = JSON.parse(sessionStorage.getItem('products'));
     }
-    const item = { title, price };
+    const item = { title, price, availableQuantity };
     sessionStorage.setItem('products', JSON.stringify([...products, item]));
   }
 
@@ -39,8 +39,10 @@ AddItem.propTypes = {
   dataTestId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
+  availableQuantity: PropTypes.number.isRequired,
   products: PropTypes.shape({
     title: PropTypes.string,
+    availableQuantity: PropTypes.number.isRequired,
   }),
 };
 
