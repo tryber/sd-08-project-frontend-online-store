@@ -1,19 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TiShoppingCart } from 'react-icons/ti';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 class Button extends React.Component {
+  createCartCount(itemCount) {
+    return (
+      <span className="cartCount" data-testid="shopping-cart-size">{itemCount}</span>
+    );
+  }
+
   render() {
     const { shoppingCart } = this.props;
+    const keys = Object.keys(shoppingCart);
+    const itemCount = !keys.length ? 0 : keys.reduce(
+      (acc, key) => acc + shoppingCart[key].amountInCart, 0,
+    );
+
     return (
       <Link
         data-testid="shopping-cart-button"
-        to={ {
-          pathname: '/shopping-cart',
-          state: { shoppingCart },
-        } }
+        to="/shopping-cart"
+        className="shoppingCart"
       >
+        {itemCount ? this.createCartCount(itemCount) : ''}
         <TiShoppingCart size={ 30 } />
       </Link>
     );
@@ -21,7 +31,7 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
-  shoppingCart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  shoppingCart: PropTypes.shape({}).isRequired,
 };
 
 export default Button;
