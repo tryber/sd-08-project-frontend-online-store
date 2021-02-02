@@ -1,0 +1,11 @@
+.loading {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.loading p {
+  color: aliceblue;
+  font-size: 56px;
+}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './ProductItem.css';
+import AddProduct from './AddProduct';
 
 class ProductItem extends Component {
   isFreeShipping() {
@@ -28,6 +29,7 @@ class ProductItem extends Component {
         >
           Ver detalhes...
         </Link>
+        <AddProduct item={ item } testid="product-add-to-cart" />
       </section>
     );
   }

@@ -20,7 +20,6 @@ class FilterCategories extends Component {
 
   onClick({ target: { value } }) {
     const { handleClick } = this.props;
-    console.log(value);
     handleClick(value);
   }
 
