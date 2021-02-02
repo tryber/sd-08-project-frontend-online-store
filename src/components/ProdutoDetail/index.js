@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FaCartPlus } from 'react-icons/fa';
 import { TiArrowBack } from 'react-icons/ti';
+import Rating from '../Rating/index';
 import './ProdutoDetail.css';
 
 class ProdutoDetail extends Component {
@@ -48,6 +49,7 @@ class ProdutoDetail extends Component {
           data-testid="product-detail-add-to-cart"
           onClick={ () => addCart(produto.id) }
         />
+        <Rating />
       </div>
     );
   }
