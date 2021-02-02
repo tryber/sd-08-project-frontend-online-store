@@ -146,7 +146,7 @@ class Checkout extends Component {
         { this.inputNumber() }
         { this.inputCEP() }
         { this.inputAddress() }
-        <button type="button" href="https://www.youtube.com/watch?v=3e14skRuVk0">Finalizar a Compra</button>
+        <button type="submit"><a href="https://www.youtube.com/watch?v=3e14skRuVk0">enviar</a></button>
       </form>
 
     );
