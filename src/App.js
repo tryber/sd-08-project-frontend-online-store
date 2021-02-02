@@ -33,6 +33,9 @@ class App extends React.Component {
   handleChange(envet) {
     envet.preventDefault();
     const { name, value } = envet.target;
+    if (name === 'select') {
+      this.filterProducts(value);
+    }
     this.setState({ [name]: value });
   }
 
@@ -51,6 +54,15 @@ class App extends React.Component {
       currentLocal = [];
     }
     return currentLocal;
+  }
+
+  filterProducts(value) {
+    const { products } = this.state;
+    if (value === 'Menor') {
+      products.sort((a, b) => a.price - b.price);
+    } else {
+      products.sort((a, b) => b.price - a.price);
+    }
   }
 
   saveOnLocalStorage(array, total) {
