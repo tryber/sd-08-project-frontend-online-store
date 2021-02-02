@@ -505,7 +505,7 @@ O que será verificado:
 
 #### 9. Adicione um produto ao carrinho a partir de sua tela de exibição detalhada
 
-**PRIORIDADE 3** - Na tela de listagem de produtos, permitir adicionar o produto ao carrinho (veja os detalhes no card).
+**PRIORIDADE 3** - Na tela de detalhe do produto, permitir adicionar o produto ao carrinho (veja os detalhes no card).
 
 - [Tela principal - Adicionar ao carrinho na exibição detalhada](https://github.com/tryber/sd-08-project-frontend-online-store/tree/master/wireframes/card_13.png)
 
