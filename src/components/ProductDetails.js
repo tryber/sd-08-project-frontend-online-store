@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -34,8 +35,16 @@ class ProductDetails extends React.Component {
   render() {
     const { location: { product }, ratings } = this.props;
     const { title, price, thumbnail, attributes } = product;
+    const { cart } = this.props;
+    const productNumber = cart.length;
     return (
       <div className="product-details" data-testid="product-detail-name">
+        <Link to="/shoppingcart" data-testid="shopping-cart-button">
+          Futura imagem do carrinho
+          <p data-testid="shopping-cart-size">
+            {productNumber}
+          </p>
+        </Link>
         <h1>{title}</h1>
         <img src={ thumbnail } alt={ title } />
         <p>{price}</p>
@@ -48,16 +57,16 @@ class ProductDetails extends React.Component {
               </li>))}
           </ul>
         </div>
-        { this.formRating() }
+        { this.formRating()}
         { ratings.filter(({ id }) => id === product.id).map(({ id, rating, comment }) => (
           <div key={ id }>
             <p>
               Avaliação:
-              { rating }
+              {rating}
             </p>
             <p>
               Comentário:
-              { comment }
+              {comment}
             </p>
           </div>
         ))}
@@ -78,6 +87,7 @@ ProductDetails.propTypes = {
   }).isRequired,
   addRating: PropTypes.func.isRequired,
   ratings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cart: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductDetails;

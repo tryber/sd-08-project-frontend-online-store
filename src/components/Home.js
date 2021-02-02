@@ -59,11 +59,15 @@ class Home extends React.Component {
     const { loadingCategory, categories, searchText,
       products, loadingProducts, renderProducts } = this.state;
     const { addToCart, cart } = this.props;
+    const productNumber = cart.length;
     return (
       <div>
         <div>
           <Link to="/shoppingcart" data-testid="shopping-cart-button">
             Futura imagem do carrinho
+            <p data-testid="shopping-cart-size">
+              {productNumber}
+            </p>
           </Link>
         </div>
         <p data-testid="home-initial-message">
