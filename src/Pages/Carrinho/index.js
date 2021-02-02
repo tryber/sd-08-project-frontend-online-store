@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ProdutosCarrinho from '../../Components/ProdutosCarrinho';
+import BotaoComprar from '../../Components/BotaoComprar';
 
 export default class Carrinho extends Component {
   render() {
@@ -13,17 +15,8 @@ export default class Carrinho extends Component {
     }
     return (
       <>
-        {products.map((product) => {
-          const { title, thumbnail, price, quantity } = product;
-          return (
-            <>
-              <img src={ `${thumbnail}` } alt="product" />
-              <p data-testid="shopping-cart-product-name">{title}</p>
-              <p>{price}</p>
-              <div data-testid="shopping-cart-product-quantity">{quantity}</div>
-            </>
-          );
-        })}
+        <ProdutosCarrinho />
+        <BotaoComprar />
       </>
     );
   }

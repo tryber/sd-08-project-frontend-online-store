@@ -34,7 +34,7 @@ export default class BotaoAdiciona extends Component {
         onClick={ () => this.addToLocalStorage(product) }
         data-testid={ testId }
       >
-        Add to card
+        ADICIONAR
       </button>
     );
   }
