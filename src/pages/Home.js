@@ -18,6 +18,7 @@ export default class Home extends React.Component {
 
     this.productByCategory = this.productByCategory.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.attSearch = this.attSearch.bind(this);
   }
 
   componentDidMount() {
@@ -46,18 +47,23 @@ export default class Home extends React.Component {
     }, () => { this.fetchProducts(); });
   }
 
+  attSearch(event) {
+    this.setState({
+      search: event.target.value,
+    });
+  }
+
   render() {
     const { categoriesList, productList } = this.state;
     return (
       <main>
-        <SearchBar />
+        <SearchBar handleChange={ this.attSearch } handleClick={ this.fetchProducts } />
         {categoriesList.length < 1
           ? <p>Carregando...</p>
           : (
             <Categories
               categoriesList={ categoriesList }
               productByCategory={ this.productByCategory }
-              renderProductList={ this.fetchProducts }
             />
           )}
         <ProductCardsList productList={ productList } />
