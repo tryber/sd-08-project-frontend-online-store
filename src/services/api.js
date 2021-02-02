@@ -24,7 +24,6 @@ function getURL(categoryId, query, productID) {
 
 export async function getProductsFromCategoryAndQuery(categoryId, query, productID) {
   const URL = getURL(categoryId, query, productID);
-  console.log(URL);
   const products = await fetch(URL)
     .then((data) => data.json())
     .then((productsByCategoryAndQuery) => productsByCategoryAndQuery);

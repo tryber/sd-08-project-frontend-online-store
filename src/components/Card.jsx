@@ -5,7 +5,7 @@ import '../css/Card.css';
 
 class Card extends React.Component {
   render() {
-    const { product } = this.props;
+    const { product, handleChangeClickBuyProduct } = this.props;
     const { id, title, thumbnail, price } = product;
     return (
       <div key={ id } data-testid="product" className="item-card">
@@ -28,6 +28,17 @@ class Card extends React.Component {
           {' '}
           {`R$${price}`}
         </span>
+        <div>
+          <button
+            id={ id }
+            name="buyProductsId"
+            type="button"
+            onClick={ handleChangeClickBuyProduct }
+            data-testid="product-add-to-cart"
+          >
+            Comprar
+          </button>
+        </div>
       </div>
     );
   }
@@ -41,6 +52,7 @@ Card.propTypes = {
     price: PropTypes.number,
     category_id: PropTypes.string,
   }),
+  handleChangeClickBuyProduct: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {

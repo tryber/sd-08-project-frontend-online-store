@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header, Main, ButtonCategory } from '../components';
+import { localStorageSave } from '../localStorage';
 import '../css/Main-content.css';
 
 import * as api from '../services/api';
@@ -14,6 +15,7 @@ class Home extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.requestApi = this.requestApi.bind(this);
+    this.handleChangeClickBuyProduct = this.handleChangeClickBuyProduct.bind(this);
   }
 
   componentDidUpdate(previousProp, previousState) {
@@ -21,6 +23,12 @@ class Home extends React.Component {
     if (previousState.categoryID !== categoryID) {
       this.requestApi();
     }
+  }
+
+  handleChangeClickBuyProduct({ target }) {
+    const { listProducts } = this.state;
+    const product = listProducts.find((el) => el.id === target.id);
+    localStorageSave('shoppingCart', product, target.id);
   }
 
   handleChange({ target }) {
@@ -38,7 +46,6 @@ class Home extends React.Component {
 
   render() {
     const { queryProduct, listProducts } = this.state;
-    console.log(listProducts);
     return (
       <div>
         <Header
@@ -48,7 +55,10 @@ class Home extends React.Component {
         />
         <div className="main-content">
           <ButtonCategory handleChange={ this.handleChange } />
-          <Main listProducts={ listProducts } />
+          <Main
+            listProducts={ listProducts }
+            handleChangeClickBuyProduct={ this.handleChangeClickBuyProduct }
+          />
         </div>
       </div>
     );
