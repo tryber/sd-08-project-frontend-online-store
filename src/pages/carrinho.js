@@ -4,33 +4,37 @@ import { Link } from 'react-router-dom';
 
 class Carrinho extends Component {
   render() {
-    const { cartProducts, subCarQuantityProduct, addCarQuantityProduct } = this.props;
+    const { cartProducts, changeCarQuantityProduct, deleteCartProduct } = this.props;
     if (cartProducts.length < 1) {
       return <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     }
     return (
       <div className="right-content">
         {cartProducts.map((product) => (
-          <div key={ product.name }>
-            <p data-testid="shopping-cart-product-name">{ product.name }</p>
+          <div key={ product.id }>
+            <p data-testid="shopping-cart-product-name">{ product.title }</p>
             <button
               type="button"
+              name="subtract"
               data-testid="product-decrease-quantity"
-              name={ product.name }
-              onClick={ subCarQuantityProduct }
+              id={ product.id }
+              onClick={ changeCarQuantityProduct }
             >
               -
             </button>
-            <span data-testid="shopping-cart-product-quantity">{product.quantity}</span>
+            <span data-testid="shopping-cart-product-quantity">
+              {product.quantity}
+            </span>
             <button
               type="button"
+              name="add"
               data-testid="product-increase-quantity"
-              name={ product.name }
-              onClick={ addCarQuantityProduct }
+              id={ product.id }
+              onClick={ changeCarQuantityProduct }
             >
               +
             </button>
-            <button type="button">X</button>
+            <button type="button" onClick={ () => deleteCartProduct(product) }>X</button>
             <Link
               data-testid="checkout-products"
               to={ {
@@ -54,8 +58,8 @@ Carrinho.propTypes = {
       quantity: PropTypes.number,
     }),
   ).isRequired,
-  addCarQuantityProduct: PropTypes.func.isRequired,
-  subCarQuantityProduct: PropTypes.func.isRequired,
+  changeCarQuantityProduct: PropTypes.func.isRequired,
+  deleteCartProduct: PropTypes.func.isRequired,
 };
 
 export default Carrinho;
