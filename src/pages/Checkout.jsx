@@ -6,6 +6,7 @@ import Header from '../components/Header';
 // import { parseCart } from '../helpers/helpers';
 // import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
 
+// 11 / 12
 export default function Checkout() {
   // const cart = useSelector((state) => state.cart);
   // const dispatch = useDispatch();

@@ -29,6 +29,21 @@ input:focus {
   border: 1px solid rgba(149, 149, 149, 0.883);
 }
 
+textarea {
+  border: 1px solid rgba(149, 149, 149, 0.692);
+  color: #4b4b4b;
+  background-color: white;
+}
+
+textarea:hover {
+  border: 1px solid #959595;
+}
+
+textarea:focus {
+  outline: none;
+  border: 1px solid rgba(149, 149, 149, 0.883);
+}
+
 .loading {
   font-size: 1.5em;
   color: black;
@@ -1220,5 +1235,77 @@ input:focus {
 
 .input-quantity button i {
   text-align: center;
+}
+
+.product-evaluation {
+  border: 1px solid #4d4d4d;
+  background-color: #fafafa;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 16px;
+  padding-bottom: 10px;
+  margin-top: 6px;
+  font-size: 0.8em;
+  border-radius: 10px;
+}
+
+.product-evaluation h4 {
+  font-size: 1.2em;
+  padding: 0;
+  margin: 0;
+  margin-top: 2px;
+}
+
+.product-evaluation label {
+  margin-top: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.product-evaluation label input {
+  margin-left: 8px;
+  font-size: 1.2em;
+  width: 100%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.product-evaluation span {
+  margin-top: 8px;
+}
+
+.product-evaluation textarea {
+  margin-top: 2px;
+  font-size: 1em;
+  resize: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  max-width: 100%;
+}
+
+.product-evaluation button {
+  margin-top: 8px;
+  width: 50%;
+  height: 34px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  background-color: white;
+  border: 1px solid #5c5c5c;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
 }
 /*# sourceMappingURL=App.css.map */

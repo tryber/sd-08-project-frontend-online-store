@@ -5,6 +5,7 @@ import categories from './categories.reducer';
 import products from './products.reducer';
 import details from './details.reducer';
 import control from './control.reducer';
+import evaluation from './evaluation.reducer';
 
 const rootReducer = combineReducers({
   cart,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   products,
   details,
   control,
+  evaluation,
 });
 
 const store = createStore(rootReducer);

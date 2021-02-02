@@ -10,6 +10,7 @@ import { actionCartUpdate } from '../store/control.reducer';
 import ProductInfo from '../components/details/ProductInfo';
 import ButtonAddCart from '../components/details/ButtonAddCart';
 import InputQuantity from '../components/details/InputQuantity';
+import ProductEvaluation from '../components/details/ProductEvaluation';
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -50,6 +51,7 @@ export default function ProductDetails() {
           />
           <ButtonAddCart handleClick={ handleBuyClick } />
         </div>
+        {found ? <ProductEvaluation productId={ id } /> : null}
       </section>
     </main>
   );
