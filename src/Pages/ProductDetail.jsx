@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Rating from '../Components/Rating';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class ProductDetail extends React.Component {
           Adicionar ao carrinho
         </button>
         <Link to="/">Voltar</Link>
+        <Rating />
       </main>
     );
   }
