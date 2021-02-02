@@ -1,13 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Search from './Search';
 import ListAllCategories from './ListAllCategories';
 import { getCategories } from '../services/api';
-import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor() {
     super();
-    
     this.state = {
       busca: '',
       categories: [],
@@ -16,20 +15,20 @@ class Home extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    this.fetchCategories();
+  }
+
   handleChange({ target }) {
     const { name, value } = target;
     this.setState({ [name]: value });
-  }
-
-  componentDidMount() {
-    this.fetchCategories();
   }
 
   async fetchCategories() {
     const categories = await getCategories();
     this.setState({ categories });
   }
-    
+
   busca(busca) {
     return (
       <div>
