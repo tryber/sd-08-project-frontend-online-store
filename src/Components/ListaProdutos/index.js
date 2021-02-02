@@ -43,7 +43,7 @@ export default class ListaProdutos extends Component {
           data-testid="query-button"
           onClick={ this.fetchProducts }
         >
-          Buscar
+          BUSCAR
         </button>
         <div className="container-product-list">
           { products.map((product) => (
