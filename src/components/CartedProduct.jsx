@@ -13,7 +13,6 @@ class CartedProduct extends React.Component {
 
   increase() {
     const { product } = this.props;
-    console.log(product);
     const { available_quantity: availableQuantity } = product;
     this.setState((state) => ({
       quantity:
