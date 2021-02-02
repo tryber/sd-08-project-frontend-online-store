@@ -5,6 +5,7 @@ import './styles/headerStyle.css';
 import './styles/homeStyle.css';
 import './styles/categoriesStyle.css';
 import './styles/cardStyles.css';
+import './styles/cardProductDetailsStyle.css';
 import Home from './pages/Home';
 import ShoppingCart from './pages/shoppingCart';
 import CardProductsDetails from './pages/CardProductsDetails';

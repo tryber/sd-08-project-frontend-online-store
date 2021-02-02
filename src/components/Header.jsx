@@ -33,7 +33,9 @@ class Header extends Component {
     const { query } = this.state;
     return (
       <header>
-        <img className="logo" src={ Logo } alt="" />
+        <Link to="/">
+          <img className="logo" src={ Logo } alt="" />
+        </Link>
         <SearchBar
           query={ query }
           onClick={ this.getProdutsByQuery }
