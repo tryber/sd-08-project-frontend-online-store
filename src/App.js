@@ -17,6 +17,7 @@ class App extends React.Component {
     this.removeAllFromCart = this.removeAllFromCart.bind(this);
     this.addRating = this.addRating.bind(this);
     this.cleanCart = this.cleanCart.bind(this);
+    this.isAvailable = this.isAvailable.bind(this);
   }
 
   addRating(rating) {
@@ -37,6 +38,12 @@ class App extends React.Component {
     this.setState({
       cart: [],
     });
+  }
+
+  isAvailable({ id, available_quantity: quantity }) {
+    const { cart } = this.state;
+    const cartFiltered = cart.filter((prod) => prod.id === id);
+    return (cartFiltered.length < quantity);
   }
 
   removeFromCart(product) {
@@ -75,6 +82,7 @@ class App extends React.Component {
               render={ (props) => (
                 <ProductDetails
                   { ...props }
+                  cart={ cart }
                   ratings={ ratings }
                   addRating={ this.addRating }
                   addToCart={ this.addToCart }
@@ -83,6 +91,7 @@ class App extends React.Component {
             <Route
               path="/shoppingcart"
               render={ () => (<ShoppingCart
+                isAvailable={ this.isAvailable }
                 cart={ cart }
                 addToCart={ this.addToCart }
                 removeAllFromCart={ this.removeAllFromCart }
@@ -91,7 +100,13 @@ class App extends React.Component {
             />
             <Route
               path="/"
-              render={ () => <Home addToCart={ this.addToCart } cart={ cart } /> }
+              render={ () => (
+                <Home
+                  addToCart={ this.addToCart }
+                  isAvailable={ this.isAvailable }
+                  cart={ cart }
+                />
+              ) }
             />
           </Switch>
         </main>

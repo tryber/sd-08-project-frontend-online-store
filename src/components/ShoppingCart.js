@@ -9,7 +9,7 @@ class ShoppingCart extends React.Component {
   }
 
   itemProduto(cart) {
-    const { addToCart, removeFromCart, removeAllFromCart } = this.props;
+    const { addToCart, removeFromCart, removeAllFromCart, isAvailable } = this.props;
     return cart.map((element) => (
       <div
         key={ element.id }
@@ -25,6 +25,7 @@ class ShoppingCart extends React.Component {
           type="button"
           onClick={ () => addToCart(this.getProduct(element)) }
           data-testid="product-increase-quantity"
+          disabled={ !isAvailable(this.getProduct(element)) }
         >
           +
         </button>
@@ -78,6 +79,7 @@ ShoppingCart.propTypes = {
   addToCart: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
   removeAllFromCart: PropTypes.func.isRequired,
+  isAvailable: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;
