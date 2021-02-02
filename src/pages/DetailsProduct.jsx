@@ -2,7 +2,7 @@ import React from 'react';
 // import '../css/DetailsProduct.css';
 import { useLocation } from 'react-router-dom';
 import { BtnShoppingCart } from '../components';
-import Img from '../img/logo-armazem-28.JPG';
+import { localStorageSave } from '../localStorage';
 
 export default function DetailsProject() {
   const { state: { product } } = useLocation();
@@ -39,6 +39,15 @@ export default function DetailsProject() {
         <div className="cartItems">     
           <BtnShoppingCart />
         </div>
+      </div>
+      <div>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => localStorageSave('shoppingCart', product, product.id) }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
       <div>
         <table>
