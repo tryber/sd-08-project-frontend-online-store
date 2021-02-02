@@ -1,4 +1,5 @@
 import React from 'react';
+import Img from '../img/logo-armazem-28.JPG';
 // import '../css/DetailsProduct.css';
 import { useLocation } from 'react-router-dom';
 import { BtnShoppingCart } from '../components';
@@ -16,7 +17,7 @@ export default function DetailsProject() {
       <section className="product-details">
      <div className="header-content">
         <div>
-          <img className="logo" src={ Img } />
+          <img className="logo" src={ Img } alt="logo"/>
         </div>
         <div className="cartItems">     
           <BtnShoppingCart />
