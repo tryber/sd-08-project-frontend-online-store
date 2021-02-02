@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import CategoryList from '../components/CategoryList';
-import ListCard from './ListCard';
+import { CategoryList, ListCard } from '../components';
 
 import * as api from '../services/api';
 
