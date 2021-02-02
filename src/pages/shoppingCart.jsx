@@ -55,11 +55,9 @@ class ShoppingCart extends Component {
                   </p>
                 </h2>
               </div>
-              
             </div>
           ))}
         </main>
-        
       </div>
     );
   }

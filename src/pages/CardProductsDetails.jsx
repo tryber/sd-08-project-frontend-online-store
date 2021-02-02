@@ -39,11 +39,6 @@ export default class ProductDetails extends Component {
             <div className="details-container">
               <h3>{ title }</h3>
               <h3>Especificações</h3>
-              <ul>
-                <li>Especificação 1</li>
-                <li>Especificação 2</li>
-                <li>Especificação 3</li>
-              </ul>
               <h3>
                 { `Preço unitário: R$ ${price}` }
               </h3>
