@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Review.css';
 
 class Review extends Component {
   getKeys(id) {
