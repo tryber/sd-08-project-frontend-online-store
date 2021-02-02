@@ -9,6 +9,8 @@ class ShoppingCart extends React.Component {
     this.state = {
       cart,
     };
+
+    this.setState(localStorage.getItem(cart));
   }
 
   render() {

@@ -2,16 +2,18 @@ import React from 'react';
 
 class CartProduct extends React.Component {
   render() {
+    const { prop } = this.props;
     return (
-      <div>
-        <h2>
-          {this.props.prop.title}
-        </h2>
-        <p>
-          R$
-          {this.props.prop.price.toFixed(2)}
-        </p>
-      </div>
+      <section className="cartlist-section">
+        <div key={ prop.id } className="cartlist-itens">
+          <img src={ prop.thumbnail } alt={ prop.title } />
+          <p>{prop.title}</p>
+          <p>
+            R$
+            {prop.price.toFixed(2)}
+          </p>
+        </div>
+      </section>
     );
   }
 }

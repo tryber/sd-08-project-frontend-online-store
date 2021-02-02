@@ -1,10 +1,13 @@
-import { findAllByTitle } from '@testing-library/react';
 import React, { Component } from 'react';
 
 class AddToCart extends Component {
   constructor() {
     super();
 
+    this.state = {
+      cart: [],
+
+    };
     this.setLocalStorage = this.setLocalStorage.bind(this);
   }
 
