@@ -67,7 +67,7 @@ class ShoppingCart extends React.Component {
             <button
               type="submit"
               data-testid="product-decrease-quantity"
-             onClick={ () => this.decreaseItem(product) }
+              onClick={ () => this.decreaseItem(product) }
             >
               -
             </button>
