@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import CategoryList from './CategoryList';
+import CategoryList from '../components/CategoryList';
 import ListCard from './ListCard';
 
 import * as api from '../services/api';
