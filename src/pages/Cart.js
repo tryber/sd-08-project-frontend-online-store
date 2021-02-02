@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Cart extends React.Component {
+class Cart extends Component {
   constructor() {
     super();
     this.loadingItems = this.loadingItems.bind(this);
@@ -23,18 +23,6 @@ class Cart extends React.Component {
     return counts;
   }
 
-  loadingItems() {
-    const items = JSON.parse(localStorage.getItem('cart'));
-    const countedItems = this.countProducts(items);
-    const productsNames = Object.keys(countedItems);
-    const productsQuantity = Object.values(countedItems);
-    const arr = [];
-    for (let i = 0; i < productsNames.length; i += i) {
-      arr[i] = [productsNames[i], productsQuantity[i]];
-    }
-    this.setState({ products: arr, loading: false });
-  }
-
   loadingList(products) {
     if (localStorage.getItem('cart')) {
       return products.map((product) => (
@@ -45,27 +33,37 @@ class Cart extends React.Component {
           </div>
           <div data-testid="shopping-cart-product-quantity">
             Quantity:
-            {products[1]}
+            {product[1]}
           </div>
         </div>
       ));
     }
     return (
-      <div>
-        <span
-          data-testid="shopping-cart-empty-message"
-        >
-          Seu carrinho está vazio
-        </span>
+      <div data-testid="shopping-cart-empty-message">
+        Seu carrinho está vazio
       </div>
     );
+  }
+
+  loadingItems() {
+    const items = JSON.parse(localStorage.getItem('cart'));
+    if (items !== null) {
+      const result = this.countProducts(items);
+      const productsNames = Object.keys(result);
+      const productsQuantity = Object.values(result);
+      const arr = [];
+      for (let i = 0; i < productsNames.length; i += 1) {
+        arr[i] = [productsNames[i], productsQuantity[i]];
+      }
+      this.setState({ products: arr, loading: false });
+    }
   }
 
   render() {
     const { loading, products } = this.state;
     return (
       <div>
-        {loading ? 'Carregando Items...' : this.loadingList(products)}
+        {loading ? 'CarregandoItems...' : this.loadingList(products)}
       </div>
     );
   }
