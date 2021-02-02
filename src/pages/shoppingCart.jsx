@@ -36,8 +36,8 @@ class ShoppingCart extends Component {
   addSubButton(productId, operationName) {
     const { cart } = this.state;
     const index = cart.findIndex(({ id }) => id === productId);
-    if (operationName === "add") cart[index].amount += 1;
-    if (operationName === "sub" && cart[index].amount > 0) cart[index].amount -= 1;
+    if (operationName === 'add') cart[index].amount += 1;
+    if (operationName === 'sub' && cart[index].amount > 0) cart[index].amount -= 1;
     this.setState({ cart }, () => localStorage.saveCart(cart));
   }
 
@@ -64,10 +64,10 @@ class ShoppingCart extends Component {
                       data-testid="product-decrease-quantity"
                       onClick={ (e) => this.addSubButton(id, e.target.name) }
                       name="sub"
-                      >
+                    >
                       -
                     </button>
-                      { amount }
+                    { amount }
                     <button
                       type="button"
                       data-testid="product-increase-quantity"
