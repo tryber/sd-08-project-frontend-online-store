@@ -9,7 +9,7 @@ class ShoppingCart extends React.Component {
       cart,
     };
 
-    this.setState(localStorage.getItem('cart'));
+    this.setState(localStorage.getItem(cart));
   }
 
   render() {
@@ -22,13 +22,19 @@ class ShoppingCart extends React.Component {
           Seu carrinho está vazio
         </p>);
     }
-    return (<p>
-      {cart.map((cartelement) => (
-        <h2>
-          {cartelement.title}
-        </h2>
-      ))}
-            </p>);
+    return (
+      <section className="cartlist-section">
+        {cart.map((cartelement) => (
+          <div key={ cartelement.id } className="cartlist-itens">
+            <img src={ cartelement.thumbnail } alt={ cartelement.title } />
+            <p>{cartelement.title}</p>
+            <p>
+              R$
+              {cartelement.price.toFixed(2)}
+            </p>
+          </div>
+        ))}
+      </section>);
   }
 }
 export default ShoppingCart;
