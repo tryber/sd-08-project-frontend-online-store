@@ -25,6 +25,7 @@ class SearchPage extends Component {
 
   render() {
     const { products } = this.state;
+    console.log(products);
     return (
       <div>
         <SearchBar requestProducts={ this.requestProducts } />
@@ -37,6 +38,7 @@ class SearchPage extends Component {
               image={ product.thumbnail }
               price={ `R$ ${product.price}` }
               attributes={ product.attributes }
+              freeShipping={ product.shipping.free_shipping }
             />
           ))}
           {!products.length && <p>Nenhum produto foi encontrado</p>}
