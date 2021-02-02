@@ -11,9 +11,9 @@ class ProductList extends React.Component {
     this.handleClickCart = this.handleClickCart.bind(this);
   }
 
-  handleClickCart(title, price) {
+  handleClickCart(title, price, id) {
     this.setState(({ productsCart }) => ({
-      productsCart: [...productsCart, { title, price }],
+      productsCart: [...productsCart, { title, price, id }],
     }), () => {
       const { productsCart } = this.state;
       localStorage.setItem('productsCart', JSON.stringify(productsCart));
