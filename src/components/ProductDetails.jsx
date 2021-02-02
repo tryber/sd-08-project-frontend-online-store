@@ -13,6 +13,7 @@ class ProductDetails extends React.Component {
     this.state = {
       productId: id,
       productInfo: [],
+      shipping: '',
     };
   }
 
@@ -25,12 +26,19 @@ class ProductDetails extends React.Component {
   infoState(array) {
     this.setState({
       productInfo: array,
+      shipping: array.shipping.free_shipping,
     });
   }
 
+  waitApiReturn(info, callback) {
+    if (info === true) {
+      return callback(true);
+    }
+  }
+
   render() {
-    const { productList, handleAddToCart, cartList } = this.props;
-    const { productInfo, productId } = this.state;
+    const { productList, handleAddToCart, cartList, renderShipping } = this.props;
+    const { productInfo, productId, shipping } = this.state;
     return (
       <main>
         <Link data-testid="shopping-cart-button" to="/shopping-cart">Carrinho</Link>
@@ -41,6 +49,7 @@ class ProductDetails extends React.Component {
         <h1 data-testid="product-detail-name">{ productInfo.title }</h1>
         <img src={ productInfo.thumbnail } alt="Imagem do produto" />
         <p>{ productInfo.price }</p>
+        { this.waitApiReturn(shipping, renderShipping) }
         <h3>Especificacoes Tecnicas</h3>
         <ButtonAddToCart
           onClick={ handleAddToCart }
@@ -64,6 +73,7 @@ ProductDetails.propTypes = {
   handleAddToCart: PropTypes.func.isRequired,
   productList: PropTypes.arrayOf(PropTypes.object).isRequired,
   cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  renderShipping: PropTypes.func.isRequired,
 };
 
 export default withRouter(ProductDetails);

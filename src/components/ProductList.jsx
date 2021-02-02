@@ -58,7 +58,7 @@ class ProductList extends React.Component {
   }
 
   renderProductList() {
-    const { productList, handleAddToCart } = this.props;
+    const { productList, handleAddToCart, renderShipping } = this.props;
 
     if (!productList.length) {
       return (
@@ -78,6 +78,7 @@ class ProductList extends React.Component {
           >
             <img src={ item.thumbnail } alt="Imagem do produto" />
             <h3>{ item.title }</h3>
+            { renderShipping(item.shipping.free_shipping) }
             <p>{ item.price }</p>
             <Link
               to={ `/details/${item.id}` }
@@ -118,6 +119,7 @@ ProductList.propTypes = {
   handleRequest: PropTypes.func.isRequired,
   productList: PropTypes.arrayOf(PropTypes.object).isRequired,
   cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  renderShipping: PropTypes.func.isRequired,
 };
 
 export default ProductList;

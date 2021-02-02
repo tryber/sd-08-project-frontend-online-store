@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
+  getQuantity(list, item) {
+    return list.find((cartItem) => cartItem.id === item.id).quantity;
+  }
+
   negative() {
     return (
       <section>
@@ -29,15 +33,17 @@ class ShoppingCart extends React.Component {
             >
               <img src={ item.thumbnail } alt="Imagem do produto" />
               <h3 data-testid="shopping-cart-product-name">{ item.title }</h3>
-              <p>{ item.price }</p>
+              <p>{ `Preço: ${item.price}` }</p>
               <p data-testid="shopping-cart-product-quantity">
-                {cartList.find((cartItem) => cartItem.id === item.id).quantity}
+                {`Qt: ${this.getQuantity(cartList, item)}.`}
               </p>
+              <p>{`Qt disponível: ${item.available_quantity}`}</p>
               <div>
                 <button
                   type="button"
                   onClick={ () => change('+', item.id) }
                   data-testid="product-increase-quantity"
+                  disabled={ this.getQuantity(cartList, item) >= item.available_quantity }
                 >
                   +
                 </button>
@@ -45,6 +51,7 @@ class ShoppingCart extends React.Component {
                   type="button"
                   onClick={ () => change('-', item.id) }
                   data-testid="product-decrease-quantity"
+                  disabled={ this.getQuantity(cartList, item) <= 0 }
                 >
                   -
                 </button>

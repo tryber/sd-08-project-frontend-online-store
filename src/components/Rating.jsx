@@ -38,7 +38,6 @@ class Rating extends React.Component {
     const { product } = this.state;
     let string = JSON.parse(sessionStorage.getItem(`${product}`));
     if (string === null) string = [];
-    console.log(string);
     return (
       <section>
         <form>
