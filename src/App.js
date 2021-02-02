@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
 
+import ProductList from './shop/ProductList';
+import SearchBar from './shop/SearchBar';
+
 function App() {
   return (
     <div className="App">
-      <h1>Trybe Express</h1>
+      <SearchBar />
+      <ProductList />
     </div>
   );
 }

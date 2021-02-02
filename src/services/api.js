@@ -1,7 +1,7 @@
 export async function getCategories() {
-  const categorie = await fetch('https://api.mercadolibre.com/sites/MLB/categories')
+  const categories = await fetch('https://api.mercadolibre.com/sites/MLB/categories')
     .then((response) => response.json());
-  return categorie;
+  return categories;
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
