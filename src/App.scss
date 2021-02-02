@@ -1135,12 +1135,55 @@ textarea {
   margin-top: 6px;
   font-size: 0.8em;
   border-radius: 10px;
-  h4 {
-    font-size: 1.2em;
-    padding: 0;
-    margin: 0;
-    margin-top: 2px;
+  .product-evaluation-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    h4 {
+      font-size: 1.2em;
+      padding: 0;
+      margin: 0;
+      width: 50%;
+      align-self: center;
+    }
+    .input-starts {
+      width: 50%;
+      height: auto;
+      display: flex;
+      // border: 1px solid blue;
+      align-self: flex-start;
+      margin: 0;
+      padding: 0;
+      justify-content: flex-end;
+
+      .button-star {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        margin: 1px;
+        padding: 2px;
+        width: 28px;
+        height: 28px;
+        // border: 1px solid rgb(143, 143, 143);
+        border-radius: 50%;
+
+        i {
+          font-size: 1.4em;
+          // color: #ffe70d;
+          //color: #d8d8d8;
+          padding: 0;
+          padding: 2px;
+          text-shadow: 0 0 2px #1b1b1b;   
+          -webkit-text-stroke: 1px rgb(92, 92, 92);   
+        }
+       
+      }
+    }
+    
   }
+
   label {
     margin-top: 14px;
     display: flex;
@@ -1175,3 +1218,4 @@ textarea {
     border-radius: 6px;
   }
 }
+

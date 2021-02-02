@@ -1258,11 +1258,71 @@ textarea:focus {
   border-radius: 10px;
 }
 
-.product-evaluation h4 {
+.product-evaluation .product-evaluation-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.product-evaluation .product-evaluation-header h4 {
   font-size: 1.2em;
   padding: 0;
   margin: 0;
-  margin-top: 2px;
+  width: 50%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.product-evaluation .product-evaluation-header .input-starts {
+  width: 50%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin: 0;
+  padding: 0;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.product-evaluation .product-evaluation-header .input-starts .button-star {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 0;
+  margin: 1px;
+  padding: 2px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.product-evaluation .product-evaluation-header .input-starts .button-star i {
+  font-size: 1.4em;
+  padding: 0;
+  padding: 2px;
+  text-shadow: 0 0 2px #1b1b1b;
+  -webkit-text-stroke: 1px #5c5c5c;
 }
 
 .product-evaluation label {
