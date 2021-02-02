@@ -6,8 +6,8 @@ const urlCategoryID = `https://api.mercadolibre.com/sites/MLB/search?category=${
 const urlQuery = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
 const urlAll = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
 
-async function funcFetch(url) {
-  await fetch(url)
+function funcFetch(url) {
+  fetch(url)
     .then((response) => {
       if (!response.ok) return new Error(failedRequest);
       if (response.status === erro) return new Error(noResult);
@@ -15,12 +15,12 @@ async function funcFetch(url) {
     });
 }
 
-export function getCategories() {
-  funcFetch(urlCategory);
+export async function getCategories() {
+  await funcFetch(urlCategory);
 }
 
-export function getProductsFromCategoryAndQuery(categoryId, query) {
-  if (!query) return funcFetch(urlCategoryID);
-  if (!categoryId) return funcFetch(urlQuery);
-  funcFetch(urlAll);
+export async function getProductsFromCategoryAndQuery(categoryId, query) {
+  if (!query) await funcFetch(urlCategoryID);
+  if (!categoryId) await funcFetch(urlQuery);
+  await funcFetch(urlAll);
 }
