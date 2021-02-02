@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Rating from '../Components/Rating';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -27,13 +28,14 @@ class ProductDetail extends React.Component {
 
   render() {
     const { productInfo } = this.state;
-    console.log(productInfo.title);
+    // console.log(productInfo.title);
     return (
       <main>
         <h1 data-testid="product-detail-name">{ productInfo.title }</h1>
         <img src={ productInfo.thumbnail } alt="Imagem do produto" />
         <p>{ productInfo.price }</p>
         <h3>Especificacoes Técnicas</h3>
+        <Rating />
       </main>
     );
   }
