@@ -10,9 +10,14 @@ export default class Home extends React.Component {
     super();
 
     this.state = {
-      categoriesList: [0],
+      categoriesList: [],
+      category: '',
       productList: [],
+      search: '',
     };
+
+    this.productByCategory = this.productByCategory.bind(this);
+    this.fetchProducts = this.fetchProducts.bind(this);
   }
 
   componentDidMount() {
@@ -26,11 +31,19 @@ export default class Home extends React.Component {
     });
   }
 
-  async fetchProducts(category, search) {
+  async fetchProducts() {
+    const { category, search } = this.state;
     const products = await api.getProductsFromCategoryAndQuery(category, search);
     this.setState({
-      productList: products,
+      productList: products.results,
     });
+  }
+
+  productByCategory(event) {
+    const idByChoice = event.target.id;
+    this.setState({
+      category: idByChoice,
+    }, () => { this.fetchProducts(); });
   }
 
   render() {
@@ -38,13 +51,14 @@ export default class Home extends React.Component {
     return (
       <main>
         <SearchBar />
-        {typeof (categoriesList) !== 'undefined'
-          && (
-            <aside>
-              {categoriesList.length === 1
-                ? <p>Carregando...</p>
-                : <Categories categoriesList={ categoriesList } />}
-            </aside>
+        {categoriesList.length < 1
+          ? <p>Carregando...</p>
+          : (
+            <Categories
+              categoriesList={ categoriesList }
+              productByCategory={ this.productByCategory }
+              renderProductList={ this.fetchProducts }
+            />
           )}
         <ProductCardsList productList={ productList } />
       </main>

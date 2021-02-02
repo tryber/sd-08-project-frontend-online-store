@@ -9,12 +9,13 @@ export default class ProductCard extends React.Component {
       <section data-testid="product" className="product-card">
         <Link to={ `/details/${id}` } data-testid="product-detail-link">
           <p>{title}</p>
-          <div><img src={ thumbnail } alt={ title } /></div>
-          <p>{`R$${price}`}</p>
+          <img src={ thumbnail } alt={ title } />
+          <p>{`R$${price.toFixed(2)}`}</p>
         </Link>
         <button
           type="button"
           data-testid="product-add-to-cart"
+          className="button-buy"
         >
           Comprar
         </button>
@@ -27,7 +28,7 @@ ProductCard.propTypes = {
   card: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
 };
