@@ -58,7 +58,7 @@ class Home extends React.Component {
   render() {
     const { loadingCategory, categories, searchText,
       products, loadingProducts, renderProducts } = this.state;
-    const { addToCart } = this.props;
+    const { addToCart, cart } = this.props;
     return (
       <div>
         <div>
@@ -82,12 +82,15 @@ class Home extends React.Component {
         </button>
         { renderProducts
         && (loadingProducts ? <p>Carregando produtos</p>
-          : <ProductList addToCart={ addToCart } products={ products } />) }
+          : <ProductList addToCart={ addToCart } cart={ cart } products={ products } />) }
       </div>
     );
   }
 }
+
 Home.propTypes = {
   addToCart: PropTypes.func.isRequired,
+  cart: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
 export default Home;
