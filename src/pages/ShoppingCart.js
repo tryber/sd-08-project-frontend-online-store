@@ -3,10 +3,6 @@ import ReturnButoon from '../components/ReturnButton';
 import Button from '../components/Button';
 
 class PageShoppingCart extends Component {
-  componentDidMount() {
-    this.getKeys();
-  }
-
   getKeys() {
     const keysList = [];
     for (let index = 0; index < localStorage.length; index += 1) {

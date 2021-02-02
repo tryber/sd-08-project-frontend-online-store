@@ -1,0 +1,29 @@
+nota{
+    display:block;
+    width:130px;
+    height:21px;
+    background: #76003A repeat-y;
+    }
+    .nota:hover{
+    background-position:0px 0px !important;
+    }
+    .nota i{
+    display: block;
+    width: 130px;
+    height: 100%;
+    /* background: url(https://1.bp.blogspot.com/-mc8--z3iiZM/UyX8E6m6UBI/AAAAAAAAEwk/qZXQYiXLp5U/s1600/moldura_estrela.png) repeat-x; */
+    }
+    .nota a:link{
+    display:block;
+    float:left;
+    width:20%;
+    opacity:0;
+    }
+    .nota img{
+    width:100%;
+    height:auto;
+    background:#76003A;
+    }
+    .nota>i>a:hover ~ a:link{
+    opacity:1;
+    }
