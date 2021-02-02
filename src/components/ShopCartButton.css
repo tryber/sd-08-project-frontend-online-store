@@ -7,7 +7,7 @@
 /* @media ( prefers-reduced-motion : no-preference ) {
 
   .cart-img {
-    animation: cart-img-spin infinite 6s linear;
+    animation: cart-img-spin infinite 2s linear;
   }
 
   .cart-img:hover {
@@ -55,4 +55,4 @@
   to {
     transform: rotate(360deg);
   }
-} */
+}  */
