@@ -1,16 +1,17 @@
-/* import React, { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class FreteGratis extends Component {
   render() {
-    const product = this.props;
+    const { product } = this.props;
     const { shipping: { free_shipping } } = product;
 
     if (free_shipping === true) {
       return (
-        <p>Frete Grátis</p>
+        <p data-testid="free-shipping">Frete Grátis</p>
       );
     }
+    return <div />;
   }
 }
 
@@ -21,4 +22,3 @@ FreteGratis.propTypes = {
     }),
   }).isRequired,
 };
- */
