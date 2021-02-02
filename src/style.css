@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Quicksand:wght@700&display=swap');
+
+body {
+  background-color: #ffd;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.special-text {
+  color: #344;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 25px;
+  line-height: 1.75em;
+}
+
+.main-container {
+  background-color: white;
+  border: 1px solid #344;
+  border-radius: 25px;
+  font-size: 18px;
+  padding: 10px 25px;
+}
+
+/*
+--- SHOPPING CART
+*/
+
+.shopping-cart-icon {
+  border-radius: 100px;
+  background-color: #C9DE55;
+  transition: all 0.25s ease;
+}
+
+.shopping-cart-icon:hover {
+  background-color: #7D9100;
+}
+
+/*
+--- CATEGORIES ---
+*/
+
+.sec-categories {
+  display: flex;
+  flex-direction: row;
+}
+
+.categories-list h3 {
+  margin: 0;
+}
+
+.categories-list {
+  margin: 10px 20px;
+  padding: 10px 25px;
+  flex-basis: auto;
+}
+
+.categories-list ul {
+  list-style: none;
+}
+
+.categories-list ul li {
+  line-height: 1.75em;
+}
+
+/*
+--- SEARCHBAR
+*/
+
+.search-bar {
+  color: #344;
+  outline: none;
+  padding: 3px 10px;
+  width: 300px;
+  transition: all 0.25s ease;
+}
+
+.search-bar:focus {
+  border: 1px solid #C9DE55;
+}
+
+.search-bar-button {
+  background-color: #C9DE55;
+  border: none;
+  border-radius: 100px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  height: 32px;
+  margin-left: 5px;
+  outline: none;
+  transition: all 0.25s ease;
+  width: 32px;
+}
+
+.search-bar-button:hover {
+  background-color: #7D9100;
+}
+
+.search-bar:hover {
+  border-color: #7D9100;
+}
+
+.search-bar-button:focus {
+  color: #344;
+}
+
+.div-separator {
+  margin: 10px;
+}
+
+/*
+---PRODUCT LIST---
+*/
+
+.sec-products {
+  width: 800px;
+  margin-top: 10px;
+}
