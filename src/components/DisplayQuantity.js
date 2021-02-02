@@ -6,9 +6,10 @@ import './DisplayQuantity.css';
 class DisplayQuantity extends Component {
   constructor(props) {
     super(props);
-    const { quantity } = this.props;
+    const { quantity, availableQuantity } = this.props;
     this.state = {
       quantity,
+      availableQuantity,
     };
     this.incrementQuantity = this.incrementQuantity.bind(this);
     this.decrementQuantity = this.decrementQuantity.bind(this);
@@ -22,8 +23,10 @@ class DisplayQuantity extends Component {
   }
 
   incrementQuantity() {
-    const { quantity } = this.state;
-    this.setState({ quantity: quantity + 1 });
+    const { quantity, availableQuantity } = this.state;
+    if (quantity < availableQuantity) {
+      this.setState({ quantity: quantity + 1 });
+    }
   }
 
   render() {
@@ -48,6 +51,7 @@ class DisplayQuantity extends Component {
 
 DisplayQuantity.propTypes = {
   quantity: PropTypes.number.isRequired,
+  availableQuantity: PropTypes.number.isRequired,
 };
 
 export default DisplayQuantity;

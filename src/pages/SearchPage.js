@@ -36,7 +36,7 @@ class SearchPage extends Component {
               id={ product.id }
               title={ product.title }
               image={ product.thumbnail }
-              available={ product.available_quantity }
+              availableQuantity={ product.available_quantity }
               price={ `R$ ${product.price}` }
               attributes={ product.attributes }
             />
