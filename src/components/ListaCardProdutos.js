@@ -14,14 +14,15 @@ class ListaCardProdutos extends React.Component {
       );
     }
     return (
-      <div>
+      <>
         {listOfProducts.map((product) => (
           <CardProdutos
             key={ product.id }
             products={ product }
             addToCart={ addToCart }
           />))}
-      </div>
+        <span />
+      </>
     );
   }
 }
