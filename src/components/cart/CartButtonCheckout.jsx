@@ -7,7 +7,12 @@ export default function CartButtonCheckout() {
     history.push('/checkout');
   };
   return (
-    <button className="cart-checkout-button" type="button" onClick={ handleClick }>
+    <button
+      className="cart-checkout-button"
+      type="button"
+      onClick={ handleClick }
+      data-testid="checkout-products"
+    >
       Finalizar Compra
     </button>
   );
