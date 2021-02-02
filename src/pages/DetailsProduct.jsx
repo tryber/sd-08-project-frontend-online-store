@@ -19,7 +19,9 @@ export default function DetailsProject() {
       </div>
       <div className="product-img">
         <img
-          className="" src={ thumbnail.replace('I', 'O') } alt="foto"
+          className="" 
+          src={ thumbnail.replace('I', 'O') } 
+          alt="foto"
         />
       </div>
       <div className="detail-name">
