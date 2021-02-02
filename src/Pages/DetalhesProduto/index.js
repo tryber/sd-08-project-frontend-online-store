@@ -12,7 +12,7 @@ export default class DetalhesDoProduto extends Component {
     const { title, subtitle, price,
       condition, warranty, thumbnail } = product;
     const { addProductToCart, cartSize } = this.props;
-    
+
     return (
       <>
         <img src={ `${thumbnail}` } alt="product" />
