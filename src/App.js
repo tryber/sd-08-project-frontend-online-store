@@ -83,7 +83,6 @@ class App extends React.Component {
     const isOnCart = cartProducts.find((e) => e.id === product.id);
     if (!isOnCart) {
       const newProduct = { ...product, quantitity: 0 };
-      console.log(newProduct);
       return this.setState({
         cartProducts: [...cartProducts, newProduct],
       });
