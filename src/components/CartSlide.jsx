@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
+// , useEffect
 import { useSelector, useDispatch } from 'react-redux';
 import { parseCart } from '../helpers/helpers';
 import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
@@ -15,6 +15,7 @@ import CartButtonBox from './cart/CartButtonBox';
 //   }
 //   setUpdate(control.updatecart);
 // }, [control]);
+
 export default function CartSlide() {
   const cart = useSelector((state) => state.cart);
   // const control = useSelector((state) => state.control);
