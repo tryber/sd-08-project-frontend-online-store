@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import ListCard from './ListCard';
+import { CategoryList, ListCard } from '../components';
+
 import * as api from '../services/api';
 
 class ProductsList extends Component {
@@ -56,6 +57,7 @@ class ProductsList extends Component {
             .map((item) => (
               <ListCard key={ item.id } item={ item } />))}
         </p>
+        <CategoryList />
       </main>
     );
   }
