@@ -47,7 +47,7 @@ InputQuantity.defaultProps = {
 };
 
 InputQuantity.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   onHandleChange: PropTypes.func,
   max: PropTypes.number.isRequired,
 };
