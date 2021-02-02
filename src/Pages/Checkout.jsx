@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Checkout extends React.Component {
   constructor() {
@@ -103,6 +104,33 @@ class Checkout extends React.Component {
     );
   }
 
+  paymentMethod() {
+    return (
+      <form action="">
+        Método de Pagamento
+        <div>
+          Boleto
+          <input type="radio" name="credt-card" value="boleto" />
+        </div>
+        <div>
+          Cartão de crédito
+          <div>
+            <input type="radio" name="credt-card" value="mastercard" />
+            Mastercard
+            <input type="radio" name="credt-card" value="visa" />
+            Visa
+            <input type="radio" name="credt-card" value="other" />
+            Other
+          </div>
+        </div>
+      </form>
+    );
+  }
+
+  clicked() {
+    localStorage.clear();
+  }
+
   render() {
     const { location: { state } } = this.props;
     const stateCart = Object.values(state);
@@ -136,7 +164,9 @@ class Checkout extends React.Component {
             { this.formCep() }
             { this.formAddress() }
           </form>
+          { this.paymentMethod() }
         </div>
+        <Link to="/" onClick={ this.clicked }>Comprar</Link>
       </div>
     );
   }
