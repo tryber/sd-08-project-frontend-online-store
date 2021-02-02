@@ -10,9 +10,12 @@ class ProductDetails extends React.Component {
     this.state = {
       productDetail: {},
       loading: true,
+      productsInCart: [],
     };
 
     this.getProductDetails = this.getProductDetails.bind(this);
+    this.sendToCart = this.sendToCart.bind(this);
+    this.handleClickButton = this.handleClickButton.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +37,36 @@ class ProductDetails extends React.Component {
     });
   }
 
+  handleClickButton() {
+    const productsCart = JSON.parse(localStorage.getItem('productsCart'));
+      this.setState({
+        productsInCart: productsCart,
+      }, () => { this.sendToCart(); })
+  }
+
+  sendToCart() {
+    const { productDetail } = this.state;
+    const { match: { params: { id } } } = this.props;
+    const { title, price } = productDetail;
+    const { productsInCart } = this.state;
+    if (productsInCart === null) {
+      this.setState(() => ({
+        productsInCart: [{ title, price, id }],
+      }), () => {
+        const { productsInCart } = this.state;
+        localStorage.setItem('productsCart', JSON.stringify(productsInCart));
+      });
+    } else {
+      this.setState(() => ({
+        productsInCart: [ ...productsInCart, { title, price, id }],
+      }), () => {
+        const { productsInCart } = this.state;
+        localStorage.setItem('productsCart', JSON.stringify(productsInCart));
+      });
+    }
+
+  }
+
   render() {
     const { productDetail, loading } = this.state;
     const { title, price, thumbnail, attributes } = productDetail;
@@ -44,6 +77,15 @@ class ProductDetails extends React.Component {
         <img src={ thumbnail } alt={ title } />
         <AttributesList attributes={ attributes } />
         <span>{`R$${price}`}</span>
+        <div data-testid="product-detail-add-to-cart">
+          <button
+            type="button"
+            data-testid="shopping-cart-button"
+            onClick={ this.handleClickButton }
+          >
+            Adicionar ao carrinho
+          </button>
+        </div>
       </div>
     );
   }
