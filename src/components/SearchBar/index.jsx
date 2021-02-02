@@ -12,9 +12,6 @@ class SearchBar extends React.Component {
           onChange={ onSearchTextChange }
           data-testid="query-input"
         />
-        <h3 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h3>
       </div>
     );
   }
@@ -31,6 +28,9 @@ class SearchBar extends React.Component {
         >
           Pesquisar
         </button>
+        <h3 data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </h3>
       </header>
     );
   }

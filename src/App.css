@@ -73,6 +73,29 @@ a {
   margin-top: 4px;
 }
 
+.shoppingCart {
+  display: inline;
+  position: relative;
+}
+
+.shoppingCart svg {
+  z-index: 0;
+}
+
+.cartCount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -20px;
+  right: -10px;
+  background-color: red;
+  border-radius: 50%;
+  z-index: 1;
+}
+
 @keyframes App-logo-spin {
 
   from {
