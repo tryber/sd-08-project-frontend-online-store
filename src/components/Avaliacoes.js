@@ -48,7 +48,7 @@ class Avaliacoes extends React.Component {
   }
 
   render() {
-    const { avaliations } = this.props;
+    const { avaliations, listOfProducts } = this.props;
     return (
       <div className="avaliation-container">
         <div className="new-avaliation-container">
@@ -81,7 +81,8 @@ class Avaliacoes extends React.Component {
           </form>
         </div>
         <div className="comments">
-          {avaliations.map((aval, index) => this.mountAvaliation(aval, index))}
+          {listOfProducts.length > 1
+          && avaliations.map((aval, index) => this.mountAvaliation(aval, index))}
         </div>
       </div>
     );

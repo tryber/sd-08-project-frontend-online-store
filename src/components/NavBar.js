@@ -7,7 +7,7 @@ import './NavBar.css';
 
 class NavBar extends React.Component {
   render() {
-    const { cartProducts } = this.props;
+    const { totalItemsInCart } = this.props;
     return (
       <header className="header">
         <HomeButton />
@@ -22,7 +22,7 @@ class NavBar extends React.Component {
             />
           </Link>
           <div data-testid="shopping-cart-size" className="cart-counter">
-            { cartProducts.length }
+            { totalItemsInCart }
           </div>
         </div>
       </header>
@@ -31,7 +31,10 @@ class NavBar extends React.Component {
 }
 
 NavBar.propTypes = {
-  cartProducts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  totalItemsInCart: PropTypes.number,
 };
 
+NavBar.defaultProps = {
+  totalItemsInCart: undefined,
+};
 export default NavBar;
