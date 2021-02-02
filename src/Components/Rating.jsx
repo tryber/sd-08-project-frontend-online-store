@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Rating extends Component {
   constructor() {
@@ -27,6 +27,7 @@ class Rating extends Component {
           id="email"
           type="email"
           name="email"
+          placeholder="Email"
           value={email}
           onChange={onEmailChange}
         />
@@ -37,10 +38,12 @@ class Rating extends Component {
   fillTextArea(text, ontextChange) {
     return (
       <label htmlFor="textarea">
-        <input
+        <textarea
+          data-testid="product-detail-evaluation"
           id="textarea"
           type="textarea"
           name="textarea"
+          placeholder="Mensagem(opcional)"
           value={text}
           onChange={ontextChange}
         />
@@ -51,7 +54,7 @@ class Rating extends Component {
   render() {
     const { email, textarea } = this.state;
     const { handleChange } = this;
-    console.log(email);
+    // console.log(email);
     return (
       <div>
         <h3>Avaliações</h3>

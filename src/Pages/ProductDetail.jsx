@@ -28,7 +28,7 @@ class ProductDetail extends React.Component {
 
   render() {
     const { productInfo } = this.state;
-    console.log(productInfo.title);
+    // console.log(productInfo.title);
     return (
       <main>
         <h1 data-testid="product-detail-name">{ productInfo.title }</h1>
