@@ -9,6 +9,7 @@ class ShoppingCart extends React.Component {
     this.state = { };
     this.addProduct = this.addProduct.bind(this);
     this.lessProduct = this.lessProduct.bind(this);
+    this.renderLinkCheckout = this.renderLinkCheckout.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,18 @@ class ShoppingCart extends React.Component {
     }));
   }
 
+  renderLinkCheckout() {
+    const { shoppingCart } = this.state;
+    return (
+      <Link
+        data-testid="checkout-products"
+        to={ { pathname: '/checkout', state: { shoppingCart } } }
+      >
+        Finalizar Compra
+      </Link>
+    );
+  }
+
   render() {
     const { location: { state: { shoppingCart } } } = this.props;
 
@@ -37,6 +50,7 @@ class ShoppingCart extends React.Component {
       return (
         <div>
           <Link to="/">Home</Link>
+          { this.renderLinkCheckout() }
           <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
           </p>
@@ -47,6 +61,7 @@ class ShoppingCart extends React.Component {
     return (
       <div>
         <Link to="/">Home</Link>
+        { this.renderLinkCheckout() }
         {shoppingCart.map((item) => {
           const { [item.id]: quantity } = this.state;
           return (
