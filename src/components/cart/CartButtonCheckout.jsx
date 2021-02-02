@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default function CartButtonCheckout(props) {
+export default function CartButtonCheckout() {
   const history = useHistory();
   const handleClick = () => {
     history.push('/checkout');

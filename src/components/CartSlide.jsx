@@ -5,10 +5,9 @@ import { parseCart } from '../helpers/helpers';
 import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
 
 import CartMessage from './cart/CartMessage';
-import CartButtonClear from './cart/CartButtonClear';
 import CartMenu from './cart/CartMenu';
 import CartListItem from './cart/CartListItem';
-import CartButtonCheckout from './cart/CartButtonCheckout';
+import CartButtonBox from './cart/CartButtonBox';
 
 export default function CartSlide() {
   const cart = useSelector((state) => state.cart);
@@ -54,10 +53,7 @@ export default function CartSlide() {
               handleItemRemove={ () => handleItemRemove(i) }
             />
           ))}
-          <div className="box-button-cart">
-            <CartButtonClear handleClick={ handleClearCart } />
-            <CartButtonCheckout />
-          </div>
+          <CartButtonBox handleClearCartClick={ handleClearCart } />
         </div>
       </div>
     </div>
