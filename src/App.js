@@ -13,8 +13,9 @@ class App extends React.Component {
       listOfProducts: undefined,
       query: undefined,
       category: undefined,
-      cartProducts: [],
-      avaliations: [],
+      cartProducts: JSON.parse(localStorage.getItem('cartProducts')) || [],
+      avaliations: JSON.parse(localStorage.getItem('avaliations')) || [],
+      totalItemsInCart: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,13 +24,13 @@ class App extends React.Component {
     this.fetchProducts = this.fetchProducts.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.updateAvaliations = this.updateAvaliations.bind(this);
-    this.addCarQuantityProduct = this.addCarQuantityProduct.bind(this);
-    this.subCarQuantityProduct = this.subCarQuantityProduct.bind(this);
-    this.deleteCarProduct = this.deleteCarProduct.bind(this);
+    this.changeCarQuantityProduct = this.changeCarQuantityProduct.bind(this);
+    this.deleteCartProduct = this.deleteCartProduct.bind(this);
   }
 
   componentDidMount() {
     this.fetchProducts();
+    this.updateCartItemsQuantity();
   }
 
   handleChange(e) {
@@ -77,87 +78,101 @@ class App extends React.Component {
     }
   }
 
-  addToCart(product) {
+  updateCartItemsQuantity() {
     const { cartProducts } = this.state;
-
-    const isOnCart = cartProducts.find((e) => e.id === product.id);
-    if (!isOnCart) {
-      const newProduct = { ...product, quantitity: 0 };
-      return this.setState({
-        cartProducts: [...cartProducts, newProduct],
-      });
+    if (cartProducts.length === 1) {
+      return this.setState({ totalItemsInCart: cartProducts[0].quantity },
+        () => localStorage.setItem('cartProducts',
+          JSON.stringify(cartProducts)));
     }
 
+    const total = cartProducts.reduce((acc, curr) => {
+      acc += curr.quantity;
+      return acc;
+    }, 0);
+    return this.setState({ totalItemsInCart: total },
+      () => localStorage.setItem('cartProducts',
+        JSON.stringify(cartProducts)));
+  }
+
+  addToCart(product) {
+    const { cartProducts } = this.state;
+    if (product.available_quantity < 1) {
+      return;
+    }
+    const isOnCart = cartProducts.find((e) => e.id === product.id);
+    if (!isOnCart) {
+      const newProduct = { ...product, quantity: 1 };
+      return this.setState({
+        cartProducts: [...cartProducts, newProduct],
+      }, () => this.updateCartItemsQuantity());
+    }
     const allProducts = [...cartProducts];
     allProducts.forEach((prod) => {
-      if (prod.id === product.id) {
-        prod.quantitity += 1;
+      if (prod.id === product.id && product.available_quantity > prod.quantity) {
+        prod.quantity += 1;
       }
     });
     return this.setState({
-      cartProducts: [...cartProducts, allProducts],
-    });
+      cartProducts: [...allProducts],
+    }, () => this.updateCartItemsQuantity());
   }
 
   updateAvaliations(newAvaliation) {
     const { avaliations } = this.state;
-    this.setState({ avaliations: [...avaliations, newAvaliation] });
+    return this.setState({ avaliations: [...avaliations, newAvaliation] },
+      () => localStorage.setItem('avaliations',
+        JSON.stringify(avaliations)));
   }
 
-  addCarQuantityProduct(e) {
+  changeCarQuantityProduct(e) {
     const { cartProducts } = this.state;
-    const title = e.target.name;
-    const product = cartProducts.find((prod) => prod.name === title);
+    const product = cartProducts.find((prod) => prod.id === e.target.id);
     const index = cartProducts.indexOf(product);
-    product.quantity += 1;
+    if (e.target.name === 'subtract') {
+      product.quantity -= 1;
+      if (product.quantity < 1) {
+        this.deleteCartProduct(product);
+      }
+    }
+    if (e.target.name === 'add' && product.available_quantity > product.quantity) {
+      product.quantity += 1;
+    }
     this.setState({
       [cartProducts[index]]: product,
-    });
+    }, () => this.updateCartItemsQuantity());
   }
 
-  subCarQuantityProduct(e) {
+  deleteCartProduct(product) {
     const { cartProducts } = this.state;
-    const title = e.target.name;
-    const product = cartProducts.find((prod) => prod.name === title);
+    const array = [...cartProducts];
     const index = cartProducts.indexOf(product);
-    if (product.quantity > 1) {
-      product.quantity -= 1;
-      this.setState({
-        [cartProducts[index]]: product,
-      });
-    }
-  }
-
-  deleteCarProduct(e) {
-    const { cartProducts } = this.state;
-    const title = e.target.name;
-    const product = cartProducts.find((prod) => prod.name === title);
-    const index = cartProducts.indexOf(product);
-    if (product.quantity > 1) {
-      this.setState({
-        [cartProducts[index]]: product,
-      });
+    if (index >= 0) {
+      array.splice(index, 1);
+      return this.setState({
+        cartProducts: array,
+      }, () => this.updateCartItemsQuantity());
     }
   }
 
   render() {
-    const { cartProducts } = this.state;
+    const { totalItemsInCart } = this.state;
     return (
       <BrowserRouter>
         <NavBar
           handleChange={ this.handleChange }
           handleClick={ this.handleClick }
-          cartProducts={ cartProducts }
+          totalItemsInCart={ totalItemsInCart }
         />
         <main className="main">
           <Content
             { ...this.state }
             fetchProducts={ this.fetchProducts }
             addToCart={ this.addToCart }
-            addCarQuantityProduct={ this.addCarQuantityProduct }
-            subCarQuantityProduct={ this.subCarQuantityProduct }
+            changeCarQuantityProduct={ this.changeCarQuantityProduct }
             handleClickCategory={ this.handleClickCategory }
             updateAvaliations={ this.updateAvaliations }
+            deleteCartProduct={ this.deleteCartProduct }
           />
         </main>
         <Switch>
