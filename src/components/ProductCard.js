@@ -2,15 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './ProductCard.css';
 import { Link } from 'react-router-dom';
+import FreeShipping from '../img/free-shipping-icon.png';
 import AddItem from './AddItem';
 
 class ProductCard extends Component {
   render() {
-    const { id, title, image, price, attributes, availableQuantity } = this.props;
+    const {
+      id, title, image, price, attributes, availableQuantity, freeShipping,
+    } = this.props;
     return (
       <div data-testid="product" className="card-container">
         <span className="product-title">{title}</span>
         <img className="product-image" src={ image } alt="Product Tumbnail" />
+        {freeShipping && <img
+          data-testid="free-shipping"
+          className="free-shipping-image"
+          src={ FreeShipping }
+          alt="Frete grátis"
+        /> }
         <span className="product-price">{price}</span>
         <Link
           className="details"
@@ -40,5 +49,6 @@ ProductCard.propTypes = {
   availableQuantity: PropTypes.number.isRequired,
   price: PropTypes.string.isRequired,
   attributes: PropTypes.arrayOf(Object).isRequired,
+  freeShipping: PropTypes.bool.isRequired,
 };
 export default ProductCard;

@@ -39,6 +39,7 @@ class SearchPage extends Component {
               availableQuantity={ product.available_quantity }
               price={ `R$ ${product.price}` }
               attributes={ product.attributes }
+              freeShipping={ product.shipping.free_shipping }
             />
           ))}
           {!products.length && <p>Nenhum produto foi encontrado</p>}
