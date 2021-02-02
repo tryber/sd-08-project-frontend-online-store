@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Checkout from './pages/Checkout';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
 import ShoppingCart from './pages/ShoppingCart';
@@ -76,6 +77,17 @@ class App extends React.Component {
     });
   }
 
+  sumPrice = (array) => {
+    const result = array.reduce((accumulate, currentObject) => accumulate
+    + parseFloat(currentObject.price)
+    * currentObject.amount, 0);
+    return (
+      <h3>
+        {`R$ ${result}`}
+      </h3>
+    );
+  }
+
   render() {
     const { onCart } = this.state;
     return (
@@ -101,6 +113,7 @@ class App extends React.Component {
                   increaseQuantity={ this.increaseQuantity }
                   decreaseQuantity={ this.decreaseQuantity }
                   deleteProduct={ this.deleteProduct }
+                  sumPrice={ this.sumPrice }
                 />
               ) }
             />
@@ -112,6 +125,12 @@ class App extends React.Component {
                   onCart={ onCart }
                   addCart={ this.addCart }
                 />
+              ) }
+            />
+            <Route
+              path="/checkout"
+              render={ (props) => (
+                <Checkout { ...props } onCart={ onCart } sumPrice={ this.sumPrice } />
               ) }
             />
           </Switch>
