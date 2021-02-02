@@ -164,6 +164,12 @@ class LandingPage extends React.Component {
         >
           Carrinho de Compras
         </Link>
+        <Link
+          data-testid="checkout-products"
+          to={ { pathname: '/checkout', state: { shoppingCart } } }
+        >
+          Finalizar Compra
+        </Link>
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
