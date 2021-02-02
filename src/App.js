@@ -26,8 +26,7 @@ class App extends React.Component {
     const i = items.findIndex((item) => item.id === id);
 
     items[i].quantity = (opType === '+' && (items[i].quantity + 1))
-    || (opType === '-' && (items[i].quantity >= 1) && (items[i].quantity - 1))
-    || 0;
+    || (opType === '-' && (items[i].quantity - 1));
 
     this.setState({
       cartList: items,
@@ -38,6 +37,7 @@ class App extends React.Component {
     const { id } = event.target;
     const { cartList, productList } = this.state;
     const { price, title } = productList.find((item) => item.id === id);
+
     this.setState({
       cartList: [...cartList, { id, price, title, quantity: 1 }],
     });
