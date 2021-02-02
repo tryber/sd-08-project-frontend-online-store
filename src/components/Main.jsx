@@ -9,7 +9,7 @@ class Main extends React.Component {
     if (listProducts.length === 0) {
       return (
         <>
-          <h1 data-testid="product">Vázio</h1>
+          <h1 data-testid="product">Nenhum produto encontrado</h1>
           <h1 data-testid="product">{' '}</h1>
         </>
       );
