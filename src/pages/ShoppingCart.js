@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as LocalStorage from '../services/apiLocalStorage';
 
 import ShoppingCartList from '../components/ShoppingCartList';
@@ -59,6 +60,7 @@ export default class ShoppingCart extends Component {
             <span data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
             </span>)}
+        <Link to="/Payment" data-testid="checkout-products">Finalizar Compra</Link>
       </div>
     );
   }
