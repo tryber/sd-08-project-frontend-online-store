@@ -14,12 +14,13 @@ class App extends React.Component {
     this.buscaDeProdutos = this.buscaDeProdutos.bind(this);
     this.buscaProdutosInput = this.buscaProdutosInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
     this.addCart = this.addCart.bind(this);
+    this.changeQtd = this.changeQtd.bind(this);
     this.state = {
       categories: [],
       products: [],
       productsOnCart: [],
+      totalItems: 0,
     };
   }
 
@@ -54,23 +55,49 @@ class App extends React.Component {
     obj.amountToBuy = amount;
     this.setState((old) => {
       if (!old.productsOnCart.includes(obj)) {
-        return { productsOnCart: [...old.productsOnCart, obj] };
+        return {
+          productsOnCart: [...old.productsOnCart, obj],
+          totalItems: (old.totalItems + amount),
+        };
       }
     });
   }
 
-  render() {
-    const { categories, products, productsOnCart } = this.state;
+  changeQtd(num, idToChange) {
+    const { productsOnCart, totalItems } = this.state;
+    const newProductsOnCart = [...productsOnCart];
+    const itemToChange = newProductsOnCart.find(({ id }) => id === idToChange);
+    const { available_quantity: availableQtd } = itemToChange;
+    const index = newProductsOnCart.indexOf(itemToChange);
+    itemToChange.amountToBuy += num;
+    let newTotalItems = totalItems + num;
+    if (itemToChange.amountToBuy === 0) {
+      newProductsOnCart.splice(index, 1);
+    }
+    if (itemToChange.amountToBuy > availableQtd) {
+      itemToChange.amountToBuy = availableQtd;
+      newTotalItems -= 1;
+    }
+    this.setState(() => (
+      {
+        productsOnCart: newProductsOnCart,
+        totalItems: newTotalItems,
+      }));
+  }
 
+  render() {
+    const { categories, products, productsOnCart, totalItems } = this.state;
     return (
       <BrowserRouter>
-        <TopNavBar cartSize={ productsOnCart.length } />
+        <TopNavBar cartSize={ totalItems } />
         <Switch>
           <Route
             path="/shoppingCart"
             render={ (props) => (<CartPage
               { ...props }
               productsOnCart={ productsOnCart }
+              changeQtd={ this.changeQtd }
+              totalItems={ totalItems }
             />) }
           />
           <Route

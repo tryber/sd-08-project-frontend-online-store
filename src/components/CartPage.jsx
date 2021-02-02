@@ -4,9 +4,60 @@ import ProductOnCart from './ProductOnCart';
 import './CartPage.css';
 
 class CartPage extends React.Component {
-  render() {
-    const { productsOnCart } = this.props;
+  constructor() {
+    super();
+    this.calculateTotalPrice = this.calculateTotalPrice.bind(this);
+  }
 
+  calculateTotalPrice() {
+    const { productsOnCart } = this.props;
+    const totalPrice = productsOnCart.reduce((acc, curr) => {
+      acc += (curr.amountToBuy * curr.price);
+      return acc;
+    }, 0);
+    return totalPrice;
+  }
+
+  renderCheckout() {
+    const { totalItems } = this.props;
+    let totalPrice = this.calculateTotalPrice();
+    totalPrice = Math.floor(totalPrice * 100) / 100;
+    return (
+      <div className="totalPrice">
+        <h1>Resumo da Compra</h1>
+        <hr />
+        <table>
+          <tbody>
+            <tr>
+              <td className="leftSide">Qtd de itens</td>
+              <td className="rightSide">{ totalItems }</td>
+            </tr>
+            <tr>
+              <td className="leftSide">Subtotal</td>
+              <td className="rightSide">{ `R$ ${totalPrice}`}</td>
+            </tr>
+            <tr>
+              <td className="leftSide">Descontos</td>
+              <td className="rightSide">R$0</td>
+            </tr>
+          </tbody>
+        </table>
+        <hr />
+        <table>
+          <tbody>
+            <tr>
+              <td className="leftSide">TOTAL</td>
+              <td className="rightSide">{ `R$ ${totalPrice}`}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button">CHECKOUT</button>
+      </div>
+    );
+  }
+
+  render() {
+    const { productsOnCart, changeQtd } = this.props;
     if (productsOnCart.length === 0) {
       return (
         <p
@@ -22,11 +73,10 @@ class CartPage extends React.Component {
           { productsOnCart.map((product) => (<ProductOnCart
             key={ product.id }
             product={ product }
+            changeQtd={ changeQtd }
           />))}
         </div>
-        <div className="totalPrice">
-          TOTAL
-        </div>
+        { this.renderCheckout()}
       </div>
     );
   }
@@ -34,6 +84,8 @@ class CartPage extends React.Component {
 
 CartPage.propTypes = {
   productsOnCart: PropTypes.arrayOf(PropTypes.any).isRequired,
+  changeQtd: PropTypes.func.isRequired,
+  totalItems: PropTypes.number.isRequired,
 };
 
 export default CartPage;

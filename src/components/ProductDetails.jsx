@@ -164,8 +164,8 @@ class ProductDetails extends React.Component {
 
     return (
       <div>
-        { filteredReviews.map((review) => (<Review
-          key={ review.id }
+        { filteredReviews.map((review, index) => (<Review
+          key={ index }
           review={ review }
         />))}
       </div>
