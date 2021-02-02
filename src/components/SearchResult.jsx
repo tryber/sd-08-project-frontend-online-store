@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ShowDetails from './ShowDetailsButton';
+import ProductDetailsToCart from './ProductDetailsToCart';
 
 class SearchResult extends React.Component {
   renderCard() {
@@ -28,6 +29,21 @@ class SearchResult extends React.Component {
                 // currency_id={ currency_id }
                 // shipping={ shipping }
                 address={ address }
+                condition={ condition }
+              />
+              <ProductDetailsToCart
+                id={ id }
+                title={ title }
+                thumbnail={ thumbnail }
+                price={ price }
+                // attributes={ attributes }
+                // available_quantity={ available_quantity }
+                // sold_quantity={ sold_quantity }
+                // stop_time={ stop_time }
+                // accepts_mercadopago={ accepts_mercadopago }
+                // currency_id={ currency_id }
+                // shipping={ shipping }
+                // address={ address }
                 condition={ condition }
               />
             </li>
