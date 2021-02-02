@@ -1,24 +1,143 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Checkout from './pages/Checkout';
+import Home from './pages/Home';
+import ProductDetails from './pages/ProductDetails';
+import ShoppingCart from './pages/ShoppingCart';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      onCart: [],
+    };
+  }
+
+  increaseQuantity = (event) => {
+    const { onCart } = this.state;
+    let position;
+    for (let index = 0; index < onCart.length; index += 1) {
+      if (onCart[index].title === event.target.value) {
+        position = index;
+      }
+    }
+    onCart[position].amount += 1;
+    this.setState({
+      onCart,
+    });
+  };
+
+  decreaseQuantity = (event) => {
+    const { onCart } = this.state;
+    let position;
+    for (let index = 0; index < onCart.length; index += 1) {
+      if (onCart[index].title === event.target.value) {
+        position = index;
+      }
+    }
+    if (onCart[position].amount === 1) {
+      const productToDelete = onCart.find((product) => (
+        event.target.value === product.title));
+      const newList = onCart.filter((product) => product.title !== productToDelete.title);
+      this.setState({
+        onCart: newList,
+      });
+    } else {
+      onCart[position].amount -= 1;
+      this.setState({
+        onCart,
+      });
+    }
+  }
+
+  deleteProduct = (event) => {
+    const { onCart } = this.state;
+    const productToDelete = onCart.find((product) => (
+      event.target.value === product.title));
+    const newList = onCart.filter((product) => product.title !== productToDelete.title);
+    this.setState({
+      onCart: newList,
+    });
+  }
+
+  addCart = (product) => {
+    // const { onCart } = this.state;
+    // this.setState({ onCart: [...onCart, product] });
+    console.log('handleCart');
+    this.setState((prevState) => {
+      const isReapeated = prevState.onCart.find(
+        (productOnCart) => productOnCart.title === product.title,
+      );
+      if (isReapeated === undefined) {
+        return {
+          onCart: [...prevState.onCart, product],
+        };
+      }
+    });
+  }
+
+  sumPrice = (array) => {
+    const result = array.reduce((accumulate, currentObject) => accumulate
+    + parseFloat(currentObject.price)
+    * currentObject.amount, 0);
+    return (
+      <h3>
+        {`R$ ${result}`}
+      </h3>
+    );
+  }
+
+  render() {
+    const { onCart } = this.state;
+    return (
+      <div>
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={ (props) => (
+                <Home
+                  { ...props }
+                  addCart={ this.addCart }
+                />
+              ) }
+            />
+            <Route
+              path="/shopping-cart"
+              render={ (props) => (
+                <ShoppingCart
+                  { ...props }
+                  onCart={ onCart }
+                  increaseQuantity={ this.increaseQuantity }
+                  decreaseQuantity={ this.decreaseQuantity }
+                  deleteProduct={ this.deleteProduct }
+                  sumPrice={ this.sumPrice }
+                />
+              ) }
+            />
+            <Route
+              path="/product/:id"
+              render={ (props) => (
+                <ProductDetails
+                  { ...props }
+                  onCart={ onCart }
+                  addCart={ this.addCart }
+                />
+              ) }
+            />
+            <Route
+              path="/checkout"
+              render={ (props) => (
+                <Checkout { ...props } onCart={ onCart } sumPrice={ this.sumPrice } />
+              ) }
+            />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;
