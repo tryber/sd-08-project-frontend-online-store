@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactStars from 'react-stars';
+import StarRatings from 'react-star-ratings';
 
 import styles from './styles.module.css';
 
@@ -15,12 +15,13 @@ class ProductEvaluations extends Component {
             <div key={ index } className={ styles.evaluation }>
               <div className={ styles.row }>
                 <p className={ styles.email }>{ email }</p>
-                <ReactStars
-                  edit={ false }
-                  count={ 5 }
+                <StarRatings
+                  rating={ stars }
+                  starRatedColor="gold"
                   value={ stars }
-                  size={ 24 }
-                  color2="#ffd700"
+                  numberOfStars={ 5 }
+                  starDimension="20px"
+                  starSpacing="5px"
                 />
               </div>
               <div>
