@@ -24,7 +24,7 @@ export function updateStorageItem(item) {
 export function totalValue() {
   const storageProducts = JSON.parse(localStorage.cartItems);
   function totalPrice(acc, crr) {
-    acc += crr.price * crr.count;
+    acc += crr.price * crr.quantity;
     return acc;
   }
   return storageProducts.reduce(totalPrice, 0);

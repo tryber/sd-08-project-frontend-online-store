@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { updateStorageItem } from '../services/storageFuncs';
+import CartSizeContext from '../services/context';
 
 class AddProduct extends Component {
   constructor(props) {
@@ -12,12 +13,14 @@ class AddProduct extends Component {
 
   onClick() {
     const { item } = this.props;
+    const updateCartSize = this.context;
     if (localStorage.cartItems) {
       updateStorageItem(item);
     } else {
       const quantifiedItem = { ...item, quantity: 1 };
       localStorage.cartItems = JSON.stringify([quantifiedItem]);
     }
+    updateCartSize();
   }
 
   render() {
@@ -33,6 +36,8 @@ class AddProduct extends Component {
     );
   }
 }
+
+AddProduct.contextType = CartSizeContext;
 
 AddProduct.propTypes = {
   item: PropTypes.shape({

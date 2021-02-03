@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { totalValue } from '../services/storageFuncs';
 
 class Checkout extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       fullName: '',
       email: '',
@@ -44,11 +44,13 @@ class Checkout extends React.Component {
         <legend>Revise seus produtos</legend>
         { storageProducts.map(({ id, quantity, thumbnail, title, price }) => (
           <div key={ id }>
-            { quantity }
+            <span>{ quantity }</span>
             <img src={ thumbnail } alt="imagem produto" />
-            { title }
-            R$
-            { price }
+            <span>{ title }</span>
+            <span>
+              R$
+              { price }
+            </span>
           </div>
         )) }
         <span>Total a pagar: R$ </span>
@@ -62,6 +64,7 @@ class Checkout extends React.Component {
     return (
       <input
         data-testid="checkout-fullname"
+        name="fullName"
         type="text"
         placeholder="Nome Completo"
         value={ fullName }
@@ -76,6 +79,7 @@ class Checkout extends React.Component {
     return (
       <input
         data-testid="checkout-email"
+        name="email"
         type="text"
         placeholder="Email"
         value={ email }
@@ -90,6 +94,7 @@ class Checkout extends React.Component {
     return (
       <input
         data-testid="checkout-cpf"
+        name="cpf"
         type="text"
         placeholder="CPF"
         value={ cpf }
@@ -104,6 +109,7 @@ class Checkout extends React.Component {
     return (
       <input
         data-testid="checkout-phone"
+        name="phoneNumber"
         type="text"
         placeholder="Telefone"
         value={ phoneNumber }
@@ -118,6 +124,7 @@ class Checkout extends React.Component {
     return (
       <input
         data-testid="checkout-cep"
+        name="cep"
         type="text"
         placeholder="CEP"
         value={ cep }
@@ -132,6 +139,7 @@ class Checkout extends React.Component {
     return (
       <input
         data-testid="checkout-address"
+        name="address"
         type="text"
         placeholder="Endereço Completo"
         value={ address }
@@ -146,7 +154,7 @@ class Checkout extends React.Component {
       <fieldset>
         <legend>Método de pagamento</legend>
         <label htmlFor="boleto">
-          <input type="radio" id="boleto" value="bo" name="payment" checked />
+          <input type="radio" id="boleto" value="bo" name="payment" defaultChecked />
           Boleto
         </label>
         <label htmlFor="visa">

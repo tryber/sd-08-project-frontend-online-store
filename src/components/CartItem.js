@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { updateStorageQuantity } from '../services/storageFuncs';
+import CartSizeContext from '../services/context';
 
 class CartItem extends Component {
   constructor(props) {
@@ -12,8 +12,11 @@ class CartItem extends Component {
     const { quantity } = JSON.parse(localStorage.cartItems)
       .find(({ title }) => title === name);
 
+    const { item: { available_quantity: availableQuantity } } = props;
+
     this.state = {
       quantity,
+      availableQuantity,
     };
 
     this.add = this.add.bind(this);
@@ -36,13 +39,16 @@ class CartItem extends Component {
   updateAll() {
     const { item: { title }, handleChange } = this.props;
     const { quantity } = this.state;
+    const updateCartSize = this.context;
     updateStorageQuantity(title, quantity);
     handleChange();
+    updateCartSize();
   }
 
   render() {
     const { item: { title, thumbnail, price } } = this.props;
-    const { quantity } = this.state;
+    const { quantity, availableQuantity } = this.state;
+    const addButton = quantity < availableQuantity;
     return (
       <section>
         <img src={ thumbnail } alt={ title } />
@@ -60,30 +66,25 @@ class CartItem extends Component {
           <div data-testid="shopping-cart-product-quantity">{ quantity }</div>
           <button
             type="button"
-            onClick={ this.add }
+            onClick={ addButton ? this.add : undefined }
             data-testid="product-increase-quantity"
           >
             +
           </button>
         </section>
         <p>{ `R$ ${(price * quantity).toFixed(2)}` }</p>
-        <Link to="/pages/checkout">
-          <button
-            data-testid="checkout-products"
-            type="button"
-          >
-            Finalizar Compra
-          </button>
-        </Link>
       </section>
     );
   }
 }
 
+CartItem.contextType = CartSizeContext;
+
 CartItem.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
+    available_quantity: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
