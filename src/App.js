@@ -5,6 +5,7 @@ import './App.css';
 import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <Route path="/details/:id" component={ ProductDetails } />
           <Route path="/pages/shoppingcart" component={ ShoppingCart } />
+          <Route path="/pages/checkout" componet={ Checkout } />
           <Route exact path="/" component={ Home } />
         </Switch>
       </main>

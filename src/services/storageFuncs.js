@@ -20,3 +20,12 @@ export function updateStorageItem(item) {
   }
   localStorage.cartItems = JSON.stringify(parsedItems);
 }
+
+export function totalValue() {
+  const storageProducts = JSON.parse(localStorage.cartItems);
+  function totalPrice(acc, crr) {
+    acc += crr.price * crr.count;
+    return acc;
+  }
+  return storageProducts.reduce(totalPrice, 0);
+}

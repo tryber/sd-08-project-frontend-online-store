@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { updateStorageQuantity } from '../services/storageFuncs';
@@ -66,6 +67,14 @@ class CartItem extends Component {
           </button>
         </section>
         <p>{ `R$ ${(price * quantity).toFixed(2)}` }</p>
+        <Link to="/pages/checkout">
+          <button
+            data-testid="checkout-products"
+            type="button"
+          >
+            Finalizar Compra
+          </button>
+        </Link>
       </section>
     );
   }
