@@ -7,7 +7,6 @@ import ShoppingCartIcon from './ShoppingCartIcon';
 class ProductDetail extends React.Component {
   constructor() {
     super();
-
     this.addToCart = this.addToCart.bind(this);
   }
 
@@ -45,6 +44,22 @@ class ProductDetail extends React.Component {
             </section>
           </section>
         </section>
+        <form className="FormAvaliation">
+          <label htmlFor="avaliation">
+            Avaliação:
+            <textarea
+              data-testid="product-detail-evaluation"
+              id="avaliation"
+              placeholder="Avaliação"
+              type="text"
+            />
+          </label>
+          <input
+            onClick={ () => console.log('yeah') }
+            value="Enviar"
+            type="button"
+          />
+        </form>
       </section>
     );
   }
