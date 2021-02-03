@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 
 export default class ProdutosCarrinho extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       products: JSON.parse(localStorage.getItem('PRODUTOS')),
     };
@@ -49,6 +50,10 @@ export default class ProdutosCarrinho extends Component {
     });
   }
 
+  updateLocalStorage(products) {
+    localStorage.setItem('PRODUTOS', JSON.stringify(products));
+  }
+
   render() {
     const { products } = this.state;
     return (
@@ -64,18 +69,30 @@ export default class ProdutosCarrinho extends Component {
               <button
                 type="button"
                 data-testid="product-increase-quantity"
-                onClick={ () => this.increment(product, index) }
+                onClick={ () => {
+                  this.increment(product, index);
+                  this.updateLocalStorage(products);
+                } }
               >
                 +
               </button>
               <button
                 type="button"
                 data-testid="product-decrease-quantity"
-                onClick={ () => this.decrement(product, index) }
+                onClick={ () => {
+                  this.decrement(product, index);
+                  this.updateLocalStorage(products);
+                } }
               >
                 -
               </button>
-              <button type="button" onClick={ () => this.remove(product, index) }>
+              <button
+                type="button"
+                onClick={ () => {
+                  this.remove(product, index);
+                  this.updateLocalStorage(products);
+                } }
+              >
                 X
               </button>
               <div data-testid="shopping-cart-product-quantity">{quantity}</div>
@@ -87,3 +104,7 @@ export default class ProdutosCarrinho extends Component {
     );
   }
 }
+
+// ProdutosCarrinho.propTypes = {
+//   cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+// };

@@ -10,8 +10,8 @@ export default class BotaoAdiciona extends Component {
   addToLocalStorage(product) {
     const { title, price, thumbnail, id,
       available_quantity: availableQuantity } = product;
-    if (localStorage.getItem('PRODUTOS')) {
-      const local = JSON.parse(localStorage.getItem('PRODUTOS'));
+    const local = JSON.parse(localStorage.getItem('PRODUTOS'));
+    if (local.length !== 0) {
       local.forEach((item) => {
         if (Object.values(item).includes(id)) {
           item.quantity += 1;
