@@ -16,12 +16,21 @@ export default class App extends Component {
       queryStatus: '',
       categoryId: '',
       cartProducts: [],
+      orderFilter: '',
     };
 
     this.fetchProducts = this.fetchProducts.bind(this);
     this.changeQueryStatus = this.changeQueryStatus.bind(this);
     this.changeCategoryId = this.changeCategoryId.bind(this);
     this.addProductToCart = this.addProductToCart.bind(this);
+    this.handleOrder = this.handleOrder.bind(this);
+  }
+
+  handleOrder({ target }) {
+    const { value } = target;
+    this.setState({
+      orderFilter: value,
+    });
   }
 
   fetchProducts() {
@@ -60,7 +69,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { products, queryStatus, categoryId, cartProducts } = this.state;
+    const { products, queryStatus, categoryId, cartProducts, orderFilter } = this.state;
     return (
       <div className="App">
         <Router>
@@ -89,6 +98,8 @@ export default class App extends Component {
                 changeCategoryId={ this.changeCategoryId }
                 addProductToCart={ this.addProductToCart }
                 cartSize={ cartProducts.length }
+                orderFilter={ orderFilter }
+                handleOrder={ this.handleOrder }
               />) }
             />
           </Switch>
