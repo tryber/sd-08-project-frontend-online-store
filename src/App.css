@@ -8,13 +8,6 @@ body {
   max-width: 1366px;
 }
 
-.cart {
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 30px;
-  width: 100%;
-}
-
 .categories-list {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -59,27 +52,6 @@ body {
   margin: auto;
   width: 90%;
 }
-
-.cel-container-row {
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  width: 90%;
-}
-
-.cel-container-row .cel {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding: 15px 20px;
-}
-
-.cel-container-row .cel .cel{
-  height: 5px;
-  margin: 0 10px;
-  width: 1%;
-}
-
 
 .cel {
   border: #3030305b solid 2px;
