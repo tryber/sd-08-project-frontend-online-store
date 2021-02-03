@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ListaCategorias from '../../Components/ListaCategorias';
 import BotaoCarrinho from '../../Components/BotaoCarrinho';
 import ListaProdutos from '../../Components/ListaProdutos';
+import SeletorOrdenar from '../../Components/SeletorOrdenar';
 
 export default class PaginaInicial extends Component {
   renderStatusInput() {
@@ -45,19 +46,23 @@ export default class PaginaInicial extends Component {
       changeCategoryId,
       addProductToCart,
       cartSize,
+      orderFilter,
+      handleOrder,
     } = this.props;
     return (
       <div>
-        {this.renderStatusInput()}
+        {this.renderStatusInput() }
+        <SeletorOrdenar orderFilter={ orderFilter } handleOrder={ handleOrder } />
+        <BotaoCarrinho cartSize={ cartSize } />
+        {(queryStatus === '' && categoryId === '') && this.renderInitialMessage()}
+        <ListaCategorias onChangeCategoryId={ changeCategoryId } />
         <ListaProdutos
           products={ products }
           categoryId={ categoryId }
           onFetchProducts={ fetchProducts }
           addProductToCart={ addProductToCart }
+          orderFilter={ orderFilter }
         />
-        <BotaoCarrinho cartSize={ cartSize } />
-        {(queryStatus === '' && categoryId === '') && this.renderInitialMessage()}
-        <ListaCategorias onChangeCategoryId={ changeCategoryId } />
       </div>
     );
   }
@@ -72,5 +77,6 @@ PaginaInicial.propTypes = {
   changeCategoryId: PropTypes.func.isRequired,
   addProductToCart: PropTypes.func.isRequired,
   cartSize: PropTypes.number.isRequired,
-
+  orderFilter: PropTypes.string.isRequired,
+  handleOrder: PropTypes.func.isRequired,
 };
