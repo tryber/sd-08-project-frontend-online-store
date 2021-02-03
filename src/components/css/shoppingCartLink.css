@@ -1,0 +1,19 @@
+.cart-link {
+  align-items: center;
+  color: black;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1vh;
+  text-decoration: none;
+}
+
+.cart-svg {
+  margin-right: 1px;
+  max-width: 30px;
+  min-width: 25px;
+  width: 4vw;
+}
+
+.product-counter {
+  font-size: 0.8rem;
+}
