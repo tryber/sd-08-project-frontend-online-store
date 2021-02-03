@@ -6,7 +6,7 @@ renderFreeShipping = () => {
   const { product: { shipping: {
     free_shipping: freeShipping } } } = this.props;
   if (freeShipping) {
-    return <p data-testid={"free-shipping"}>Frete Grátis</p>;
+    return <p data-testid="free-shipping">Frete Grátis</p>;
   }
 }
 
