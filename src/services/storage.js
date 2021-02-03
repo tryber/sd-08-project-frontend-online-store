@@ -1,6 +1,6 @@
 export async function getCart() {
   return new Promise((resolve) => {
-    resolve(JSON.parse(localStorage.getItem('cart')) || []);
+    resolve(JSON.parse(localStorage.getItem('cart')) || {});
   });
 }
 
