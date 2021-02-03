@@ -50,7 +50,7 @@ class Home extends Component {
 
   render() {
     const { items } = this.state;
-
+    console.log(items);
     return (
       <>
         <header>
