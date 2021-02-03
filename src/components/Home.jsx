@@ -61,6 +61,8 @@ class ProductList extends React.Component {
   addProductToCart(id) {
     const { products } = this.state;
     const newProduct = products.results.find((result) => result.id === id);
+    newProduct.quantity = 1;
+    newProduct.totalPrice = newProduct.price * newProduct.quantity;
     this.setState((previousState) => ({
       cart: [...previousState.cart, newProduct],
     }));

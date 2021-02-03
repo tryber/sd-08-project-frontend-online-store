@@ -23,6 +23,8 @@ class ProductDetails extends React.Component {
 
   handleClick() {
     const { product } = this.state;
+    product.quantity = 1;
+    product.totalPrice = product.price * product.quantity;
     this.setState((previousState) => ({
       cart: [...previousState.cart, product],
     }));
