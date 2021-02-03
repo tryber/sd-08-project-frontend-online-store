@@ -5,6 +5,7 @@ import './App.css';
 import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
+import Checkout from './pages/Checkout';
 import CartSizeContext from './services/context';
 
 class App extends React.Component {
@@ -43,6 +44,7 @@ class App extends React.Component {
                   <ProductDetails { ...props } cartSize={ cartSize } />) }
               />
               <Route path="/pages/shoppingcart" component={ ShoppingCart } />
+              <Route path="/pages/checkout" component={ Checkout } />
               <Route
                 exact
                 path="/"
