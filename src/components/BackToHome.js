@@ -7,7 +7,7 @@ class HomeButton extends React.Component {
       <Link
         to="/"
       >
-        <span className="navbar-brand">Home</span>
+        <span className="navbar-brand mr-1">Home</span>
       </Link>
 
     );

@@ -15,6 +15,7 @@ class App extends React.Component {
       cartProducts: JSON.parse(localStorage.getItem('cartProducts')) || [],
       avaliations: JSON.parse(localStorage.getItem('avaliations')) || [],
       totalItemsInCart: undefined,
+      width: window.innerWidth,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,11 +26,17 @@ class App extends React.Component {
     this.updateAvaliations = this.updateAvaliations.bind(this);
     this.changeCarQuantityProduct = this.changeCarQuantityProduct.bind(this);
     this.deleteCartProduct = this.deleteCartProduct.bind(this);
+    this.updateDimensions = this.updateDimensions.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
     this.fetchProducts();
     this.updateCartItemsQuantity();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   handleChange(e) {
@@ -58,6 +65,10 @@ class App extends React.Component {
       });
       this.fetchProducts();
     }
+  }
+
+  updateDimensions() {
+    this.setState({ width: window.innerWidth });
   }
 
   async fetchProducts() {
@@ -155,13 +166,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { totalItemsInCart } = this.state;
+    const { totalItemsInCart, width } = this.state;
     return (
       <BrowserRouter>
         <NavBar
           handleChange={ this.handleChange }
           handleClick={ this.handleClick }
           totalItemsInCart={ totalItemsInCart }
+          width={ width }
         />
         <main className="main">
           <Content

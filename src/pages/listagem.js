@@ -6,11 +6,12 @@ import CategoriesList from '../components/CategoriesList';
 class Listagem extends Component {
   render() {
     const { listOfProducts, addToCart, handleClickCategory } = this.props;
-    // console.log(this.props);
     return (
-      <div className="container d-flex flex-colum">
+      <div className="container d-flex p-0">
         <CategoriesList handleClickCategory={ handleClickCategory } />
-        <div className="show-products d-flex flex-wrap justify-content-center">
+        <div
+          className="show-products d-flex flex-wrap justify-content-center"
+        >
           <ListaCardProdutos
             listOfProducts={ listOfProducts }
             addToCart={ addToCart }
@@ -25,6 +26,7 @@ Listagem.propTypes = {
   listOfProducts: PropTypes.arrayOf(PropTypes.object),
   addToCart: PropTypes.func.isRequired,
   handleClickCategory: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired,
 };
 
 Listagem.defaultProps = {

@@ -6,7 +6,7 @@ class NavForm extends React.Component {
     const { handleChange, handleClick } = this.props;
     return (
 
-      <form className="search-product-by-name d-flex flex-nowrap">
+      <form className="d-flex flex-nowrap">
         <span data-testid="home-initial-message" className="color-white d-none">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </span>

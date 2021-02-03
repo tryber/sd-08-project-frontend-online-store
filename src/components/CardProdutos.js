@@ -9,7 +9,7 @@ class CardProdutos extends React.Component {
       shipping: { free_shipping: freeShipping }, installments }, addToCart } = this.props;
 
     return (
-      <div data-testid="product" className="card" style={ { width: '18rem' } }>
+      <div data-testid="product" className="card mb-4 ml-2" style={ { width: '18rem' } }>
         <Link to={ `/produto/${id}` } data-testid="product-detail-link">
           <img src={ thumbnail } alt={ title } className="card-img-top" />
         </Link>
