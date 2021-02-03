@@ -5,22 +5,8 @@ import * as localStorage from '../services/localStorage';
 import ShoppingCart from '../shopping-cart.png';
 
 class ProductDetail extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cartSize: localStorage.showQuantInCart(),
-    };
-  }
-
-  componentDidUpdate() {
-    this.setState({
-      cartSize: localStorage.showQuantInCart(),
-    });
-  }
-
   render() {
-    const { location: { state } } = this.props;
-    const { cartSize } = this.state;
+    const { location: { state: { product } } } = this.props;
     return (
       <div>
         <Link data-testid="shopping-cart-button" to="/shoppingcart">
@@ -33,18 +19,18 @@ class ProductDetail extends Component {
             className="cart-quantity"
             data-testid="shopping-cart-size"
           >
-            {cartSize}
+            {localStorage.showQuantInCart()}
           </span>
         </Link>
         <div data-testid="product-detail-name">
-          <p>{ state.title }</p>
-          <img src={ state.thumbnail } alt={ state.title } />
-          <p>{ state.price }</p>
+          <p>{ product.title }</p>
+          <img src={ product.thumbnail } alt={ product.title } />
+          <p>{ product.price }</p>
         </div>
         <button
           type="button"
           data-testid="product-detail-add-to-cart"
-          onClick={ () => localStorage.addToCart(state) }
+          onClick={ () => localStorage.addToCart(product) }
         >
           Add to Cart
         </button>
