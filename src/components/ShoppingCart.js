@@ -1,7 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      redirect: false,
+    };
+    this.redirecionaCheckout = this.redirecionaCheckout.bind(this);
+  }
+
   getProduct(element) {
     const copy = { ...element };
     delete copy.qty;
@@ -55,8 +64,15 @@ class ShoppingCart extends React.Component {
     []);
   }
 
+  redirecionaCheckout() {
+    this.setState({
+      redirect: '/checkout',
+    });
+  }
+
   render() {
     const { cart } = this.props;
+    const { redirect } = this.state;
 
     if (cart.length === 0) {
       return (
@@ -65,14 +81,22 @@ class ShoppingCart extends React.Component {
         </p>
       );
     }
+    if (redirect) { return <Redirect to={ redirect } />; }
     return (
       <div>
         { this.itemProduto(this.cartReduce(cart)) }
-        <button type="button">Finalizar Compra</button>
+        <button
+          type="button"
+          data-testid="checkout-products"
+          onClick={ this.redirecionaCheckout }
+        >
+          Finalizar Compra
+        </button>
       </div>
     );
   }
 }
+
 ShoppingCart.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.object).isRequired,
   addToCart: PropTypes.func.isRequired,
