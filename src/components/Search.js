@@ -12,7 +12,7 @@ class Search extends React.Component {
     this.state = {
       query: '',
       cart: [],
-      // ATUALIZA O VALOR A CADA DIGITAÇÃO NO INPUT
+      amount: 1,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +33,7 @@ class Search extends React.Component {
   }
 
   render() {
-    const { query, cart } = this.state;
+    const { query, cart, amount } = this.state;
     const { onSearch, search, handleQuery, queryResult } = this.props;
 
     return (
@@ -57,7 +57,7 @@ class Search extends React.Component {
         </label>
 
         <Link
-          to={ { pathname: '/shopping-cart/', cart } }
+          to={ { pathname: '/shopping-cart/', cart, amount } }
           data-testid="shopping-cart-button"
         >
           <img src={ shoppingCartIcon } alt="shopping-cart" className="shopping-cart" />

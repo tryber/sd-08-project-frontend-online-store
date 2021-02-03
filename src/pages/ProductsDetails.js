@@ -9,6 +9,7 @@ class ProductsDetails extends React.Component {
 
     this.state = {
       cart: [],
+      amount: 1,
     };
 
     this.addProduct = this.addProduct.bind(this);
@@ -22,14 +23,14 @@ class ProductsDetails extends React.Component {
   }
 
   render() {
-    const { cart } = this.state;
+    const { cart, amount } = this.state;
     const { location: { state: { product } } } = this.props;
     const { title, price, thumbnail } = product;
 
     return (
       <div>
         <Link
-          to={ { pathname: '/shopping-cart/', cart } }
+          to={ { pathname: '/shopping-cart/', cart, amount } }
           data-testid="shopping-cart-button"
         >
           <img src={ shoppingCartIcon } alt="shopping-cart" className="shopping-cart" />
