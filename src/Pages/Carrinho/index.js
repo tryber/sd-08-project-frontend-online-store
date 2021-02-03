@@ -7,7 +7,7 @@ export default class Carrinho extends Component {
   render() {
     const { cartProducts } = this.props;
     const products = JSON.parse(localStorage.getItem('PRODUTOS'));
-    if (!products) {
+    if (products.length === 0) {
       return (
         <div data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
