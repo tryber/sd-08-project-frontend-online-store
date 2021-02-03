@@ -39,13 +39,12 @@ class Checkout extends React.Component {
 
   productsInfo() {
     const storageProducts = JSON.parse(localStorage.cartItems);
-    console.log(storageProducts);
     return (
       <fieldset>
         <legend>Revise seus produtos</legend>
-        { storageProducts.map(({ id, amount, thumbnail, title, price }) => (
+        { storageProducts.map(({ id, quantity, thumbnail, title, price }) => (
           <div key={ id }>
-            { amount }
+            { quantity }
             <img src={ thumbnail } alt="imagem produto" />
             { title }
             R$
