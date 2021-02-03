@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactStars from 'react-stars';
+import StarRatings from 'react-star-ratings';
 
 import styles from './styles.module.css';
 
@@ -22,8 +22,10 @@ class ProductEvaluationForm extends Component {
     this.setState({ [name]: value });
   }
 
-  handleChangeStars(stars) {
-    this.setState({ stars });
+  handleChangeStars(newRating, name) {
+    this.setState({
+      [name]: newRating,
+    });
   }
 
   render() {
@@ -45,13 +47,13 @@ class ProductEvaluationForm extends Component {
               onChange={ this.handleChange }
               placeholder="Email"
             />
-            <ReactStars
+            <StarRatings
+              rating={ stars }
+              starRatedColor="gold"
+              starHoverColor="gold"
+              changeRating={ this.handleChangeStars }
+              numberOfStars={ 5 }
               name="stars"
-              count={ 5 }
-              value={ stars }
-              onChange={ this.handleChangeStars }
-              size={ 40 }
-              color2="#ffd700"
             />
           </div>
           <textarea

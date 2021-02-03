@@ -3,21 +3,23 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { CartButton, BackButton, CartItems } from '../../components';
+import Header from '../../components/Header';
 
 import styles from './styles.module.css';
 
 class Cart extends Component {
   render() {
-    const { cart, handleIncrease, handleDecrease, handleRemove } = this.props;
+    const { cart, handleIncrease, handleDecrease,
+      handleRemove, getCartItemsQuantity } = this.props;
     return (
       <div className={ styles.cart }>
-        <header className={ styles.header }>
-          <BackButton />
-          <div className={ styles.cartButton }>
-            <CartButton />
+        <Header>
+          <div>
+            <BackButton />
+            <CartButton getCartItemsQuantity={ getCartItemsQuantity } />
             <span className={ styles.buttonMessage }>Carrinho de compras</span>
           </div>
-        </header>
+        </Header>
         <CartItems
           cart={ cart }
           handleIncrease={ handleIncrease }
@@ -41,6 +43,7 @@ Cart.propTypes = {
   handleIncrease: PropTypes.func.isRequired,
   handleDecrease: PropTypes.func.isRequired,
   handleRemove: PropTypes.func.isRequired,
+  getCartItemsQuantity: PropTypes.func.isRequired,
 };
 
 export default Cart;

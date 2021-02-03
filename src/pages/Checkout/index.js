@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import ProductsReview from '../../components/ProductsReview';
+import { BackButton } from '../../components';
+import Header from '../../components/Header';
 
 import styles from './styles.module.css';
-import { BackButton } from '../../components';
 
 class Checkout extends Component {
   constructor(props) {
@@ -112,7 +113,9 @@ class Checkout extends Component {
     const { cart, handleIncrease, handleDecrease, handleRemove } = this.props;
     return (
       <div className={ styles.checkout }>
-        <BackButton />
+        <Header>
+          <BackButton />
+        </Header>
         <ProductsReview
           cart={ cart }
           handleIncrease={ handleIncrease }

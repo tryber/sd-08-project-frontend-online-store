@@ -16,3 +16,9 @@
   font-size: 1.4rem;
   margin-bottom: 50px;
 }
+
+.cartItemsList {
+  align-items: center;
+  align-self: stretch;
+  padding: 0 30px;
+}

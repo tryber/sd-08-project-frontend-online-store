@@ -1,5 +1,25 @@
-.evaluations {
+.container {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 1000px;
+}
+
+.productDetails {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.evaluations {
+  margin: 30px 0;
+}
+
+.attributes {
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex: 1;
+  margin: 10px 0;
+  max-height: 400px;
+  overflow-x: hidden;
   padding: 20px;
 }

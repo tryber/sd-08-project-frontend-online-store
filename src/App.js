@@ -7,6 +7,7 @@ import ProductDetails from './pages/ProductDetails';
 import Checkout from './pages/Checkout';
 
 import * as api from './services/api';
+import * as storage from './services/storage';
 
 class App extends Component {
   constructor() {
@@ -26,25 +27,38 @@ class App extends Component {
     this.getEvaluations = this.getEvaluations.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSearchCategory = this.handleSearchCategory.bind(this);
+    this.getCartItemsQuantity = this.getCartItemsQuantity.bind(this);
+  }
+
+  componentDidMount() {
+    storage.getCart().then((cart) => this.setState({ cart }));
+  }
+
+  componentDidUpdate(_, prevState) {
+    const { cart } = this.state;
+    const { prevCart } = prevState;
+    if (cart !== prevCart) {
+      storage.saveCart(cart);
+    }
   }
 
   handleAddToCart(product) {
     const { id } = product;
-    this.setState(({ cart }) => {
-      if (!cart[id]) {
-        return {
-          cart: {
-            ...cart,
-            [id]: {
-              item: product,
-              quantity: 1,
-              order: Object.keys(cart).length,
-            },
+    const { cart: currentCart } = this.state;
+    if (!currentCart[id]) {
+      this.setState(({ cart }) => ({
+        cart: {
+          ...cart,
+          [id]: {
+            item: product,
+            quantity: 1,
+            order: Object.keys(cart).length,
           },
-        };
-      }
-      return null;
-    });
+        },
+      }));
+    } else {
+      this.handleIncrease(product);
+    }
   }
 
   handleIncrease(product) {
@@ -121,6 +135,13 @@ class App extends Component {
     return evaluations[id] || [];
   }
 
+  getCartItemsQuantity() {
+    const { cart } = this.state;
+    return Object.values(cart)
+      .map(({ quantity }) => quantity)
+      .reduce((acc, cur) => acc + cur, 0);
+  }
+
   renderCheckoutRoute() {
     const { cart } = this.state;
     return (
@@ -149,6 +170,7 @@ class App extends Component {
             handleAddToCart={ this.handleAddToCart }
             handleChangeEvaluation={ this.handleChangeEvaluation }
             getEvaluations={ this.getEvaluations }
+            getCartItemsQuantity={ this.getCartItemsQuantity }
           />) }
       />
     );
@@ -166,6 +188,7 @@ class App extends Component {
             handleIncrease={ this.handleIncrease }
             handleDecrease={ this.handleDecrease }
             handleRemove={ this.handleRemove }
+            getCartItemsQuantity={ this.getCartItemsQuantity }
           />) }
       />
     );
@@ -182,6 +205,7 @@ class App extends Component {
             handleAddToCart={ this.handleAddToCart }
             handleSearch={ this.handleSearch }
             handleSearchCategory={ this.handleSearchCategory }
+            getCartItemsQuantity={ this.getCartItemsQuantity }
             results={ results }
           />
         ) }

@@ -4,6 +4,11 @@
   padding: 40px 0;
 }
 
+.checkout {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
 .checkout fieldset {
   border: none;
   padding: 20px;
