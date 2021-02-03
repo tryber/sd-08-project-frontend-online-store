@@ -8,19 +8,15 @@ class Listagem extends Component {
     const { listOfProducts, addToCart, handleClickCategory } = this.props;
     // console.log(this.props);
     return (
-      <>
-        <div className="left-content">
-          <CategoriesList handleClickCategory={ handleClickCategory } />
+      <div className="container d-flex flex-colum">
+        <CategoriesList handleClickCategory={ handleClickCategory } />
+        <div className="show-products">
+          <ListaCardProdutos
+            listOfProducts={ listOfProducts }
+            addToCart={ addToCart }
+          />
         </div>
-        <div className="right-content">
-          <div className="show-products">
-            <ListaCardProdutos
-              listOfProducts={ listOfProducts }
-              addToCart={ addToCart }
-            />
-          </div>
-        </div>
-      </>
+      </div>
     );
   }
 }

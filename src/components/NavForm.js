@@ -5,26 +5,31 @@ class NavForm extends React.Component {
   render() {
     const { handleChange, handleClick } = this.props;
     return (
-      <form>
-        <label htmlFor="busca" data-testid="home-initial-message" className="s-bar">
-          <div>
-            <input
-              type="text"
-              name="query"
-              onChange={ handleChange }
-              id="busca"
-              data-testid="query-input"
-            />
-            <button
-              className="query-button"
-              data-testid="query-button"
-              type="submit"
-              onClick={ handleClick }
-            >
-              Pesquisar
-            </button>
-          </div>
+
+      <form className="search-product-by-name d-flex flex-nowrap">
+        <span data-testid="home-initial-message" className="color-white d-none">
           Digite algum termo de pesquisa ou escolha uma categoria.
+        </span>
+        <label className="input-group mb-0 flex-nowrap" htmlFor="busca">
+          <input
+            type="text"
+            className="form-control rounded"
+            placeholder="Search Product"
+            aria-label="Search"
+            aria-describedby="basic-addon2"
+            name="query"
+            onChange={ handleChange }
+            id="busca"
+            data-testid="query-input"
+          />
+          <button
+            className="query-button"
+            type="submit"
+            data-testid="query-button"
+            onClick={ handleClick }
+          >
+            <i className="fas fa-search ml-2 color-white" />
+          </button>
         </label>
       </form>
     );
