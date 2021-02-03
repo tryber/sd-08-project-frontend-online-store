@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header, Main, ButtonCategory } from '../components';
-import { localStorageSave } from '../localStorage';
+import { localStorageSave, localStorageLoad } from '../localStorage';
 import '../css/Main-content.css';
 
 import * as api from '../services/api';
@@ -27,8 +27,12 @@ class Home extends React.Component {
 
   handleChangeClickBuyProduct({ target }) {
     const { listProducts } = this.state;
-    const product = listProducts.find((el) => el.id === target.id);
-    localStorageSave('shoppingCart', product, target.id);
+    const localStorageProduct = localStorageLoad('shoppingCart');
+    console.log(localStorageProduct);
+    if (localStorageProduct.every((el) => el.id !== target.id)) {
+      const product = listProducts.find((el) => el.id === target.id);
+      localStorageSave('shoppingCart', product, target.id);
+    }
   }
 
   handleChange({ target }) {

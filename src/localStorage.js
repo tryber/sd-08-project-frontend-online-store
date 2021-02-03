@@ -1,4 +1,4 @@
-function setProductState(product, amount) {
+const setProductState = (product, amount) => {
   const result = {
     id: product.id,
     title: product.title,
@@ -9,7 +9,7 @@ function setProductState(product, amount) {
     shipping: product.shipping.free_shipping,
   };
   return result;
-}
+};
 const localStorageSave = (nameLocal, product, id) => {
   const objectProduct = setProductState(product, 1);
   const arrayProduct = [];
@@ -23,7 +23,7 @@ const localStorageSave = (nameLocal, product, id) => {
       localStorage.setItem(nameLocal, JSON.stringify(localProduct));
     } else {
       const result = localProduct.map((el) => {
-        if (el.id === id) {
+        if (el.id === id && el.amount + 1 <= el.availableQuantity) {
           el.amount += 1;
         }
         return el;
@@ -48,7 +48,7 @@ const localStorageSaveCarItems = (nameLocal, products) => {
 };
 
 const localStorageLoad = (nameLocal) => {
-  let localSave = '';
+  let localSave = [];
   if (typeof localStorage !== 'undefined') {
     if (localStorage.length > 0) {
       localSave = JSON.parse(localStorage.getItem(nameLocal));
@@ -61,9 +61,35 @@ const localStorageLoad = (nameLocal) => {
   return localSave;
 };
 
+const lsSaveEvaluationProduct = (nameLocal, id, description) => {
+  const objectEval = { id_product: id, desc: [description] };
+  let arrayEval = [];
+  if (JSON.parse(localStorage.getItem(nameLocal)) === null) {
+    arrayEval.push(objectEval);
+    localStorage.setItem(nameLocal, JSON.stringify(arrayEval));
+  } else {
+    arrayEval = JSON.parse(localStorage.getItem(nameLocal));
+    if (arrayEval.every((el) => el.id_product !== id)) {
+      arrayEval.push(objectEval);
+      console.log(objectEval);
+      localStorage.setItem(nameLocal, JSON.stringify(arrayEval));
+    } else {
+      const result = arrayEval.map((el) => {
+        if (el.id_product === id) {
+          el.desc = [...el.desc, description];
+          return el;
+        }
+        return el;
+      });
+      localStorage.setItem(nameLocal, JSON.stringify(result));
+    }
+  }
+};
+
 export {
   localStorageLoad,
   localStorageSave,
   localStorageSaveCarItems,
   localStorageDelete,
+  lsSaveEvaluationProduct,
 };
