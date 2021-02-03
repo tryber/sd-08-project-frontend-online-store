@@ -11,12 +11,17 @@ class Cart extends Component {
   render() {
     const { cart, handleIncrease, handleDecrease,
       handleRemove, getCartItemsQuantity } = this.props;
+    // Paulo Simões: Não entendi esse warning, os dados logados nos devtools
+    // e no teste são inconsistentes. WTF?!
+    // console.log(Array.isArray(cart), cart);
     return (
       <div className={ styles.cart }>
         <Header>
-          <BackButton />
-          <CartButton getCartItemsQuantity={ getCartItemsQuantity } />
-          <span className={ styles.buttonMessage }>Carrinho de compras</span>
+          <div>
+            <BackButton />
+            <CartButton getCartItemsQuantity={ getCartItemsQuantity } />
+            <span className={ styles.buttonMessage }>Carrinho de compras</span>
+          </div>
         </Header>
         <CartItems
           cart={ cart }

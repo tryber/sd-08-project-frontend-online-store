@@ -7,6 +7,7 @@ import ProductDetails from './pages/ProductDetails';
 import Checkout from './pages/Checkout';
 
 import * as api from './services/api';
+import * as storage from './services/storage';
 
 class App extends Component {
   constructor() {
@@ -29,23 +30,35 @@ class App extends Component {
     this.getCartItemsQuantity = this.getCartItemsQuantity.bind(this);
   }
 
+  componentDidMount() {
+    storage.getCart().then((cart) => this.setState({ cart }));
+  }
+
+  componentDidUpdate(_, prevState) {
+    const { cart } = this.state;
+    const { prevCart } = prevState;
+    if (cart !== prevCart) {
+      storage.saveCart(cart);
+    }
+  }
+
   handleAddToCart(product) {
     const { id } = product;
-    this.setState(({ cart }) => {
-      if (!cart[id]) {
-        return {
-          cart: {
-            ...cart,
-            [id]: {
-              item: product,
-              quantity: 1,
-              order: Object.keys(cart).length,
-            },
+    const { cart: currentCart } = this.state;
+    if (!currentCart[id]) {
+      this.setState(({ cart }) => ({
+        cart: {
+          ...cart,
+          [id]: {
+            item: product,
+            quantity: 1,
+            order: Object.keys(cart).length,
           },
-        };
-      }
-      return null;
-    });
+        },
+      }));
+    } else {
+      this.handleIncrease(product);
+    }
   }
 
   handleIncrease(product) {

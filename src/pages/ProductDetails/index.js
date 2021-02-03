@@ -19,8 +19,10 @@ class ProductDetails extends Component {
     return (
       <div>
         <Header>
-          <BackButton />
-          <CartButton getCartItemsQuantity={ getCartItemsQuantity } />
+          <div>
+            <BackButton />
+            <CartButton getCartItemsQuantity={ getCartItemsQuantity } />
+          </div>
         </Header>
         <div className={ styles.container }>
           <div className={ styles.productDetails }>
