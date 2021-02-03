@@ -1,0 +1,16 @@
+.leftSide {
+  align-items: stretch;
+  max-width: 300px;
+  width: 25%;
+}
+
+.rightSide {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 75%;
+}
+
+.mainContent {
+  display: flex;
+}

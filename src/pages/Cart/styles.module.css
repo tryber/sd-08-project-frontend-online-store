@@ -1,0 +1,35 @@
+.cart {
+  background: unset;
+  display: flex;
+  flex-direction: column;
+}
+
+.cartButton {
+  align-items: center;
+  display: flex;
+  padding: 10px 0;
+}
+
+.buttonMessage {
+  margin-left: 10px;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.buy {
+  align-self: center;
+  background-color: rgba(44, 110, 94, 0.644);
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  min-width: 100px;
+  padding: 10px;
+  text-decoration: none;
+}

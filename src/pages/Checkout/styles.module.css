@@ -1,0 +1,61 @@
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+}
+
+.checkout {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.checkout fieldset {
+  border: none;
+  padding: 20px;
+}
+
+.checkout input {
+  font-size: 1.4rem;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.checkout legend {
+  font-size: 1.8rem;
+}
+
+.consumerInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.consumerInfo label {
+  display: flex;
+  flex-direction: column;
+}
+
+.consumerInfo > * {
+  margin-bottom: 15px;
+}
+
+.paymentMethods label {
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.paymentMethods input {
+  margin-right: 10px;
+}
+
+.button {
+  align-self: center;
+  background-color: rgba(44, 110, 94, 0.644);
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  min-width: 100px;
+  padding: 10px;
+}
