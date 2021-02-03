@@ -19,7 +19,7 @@ export default class Details extends React.Component {
   }
 
   async getDetails() {
-    const { match: { params: { id }, onClick } } = this.props;
+    const { match: { params: { id } } } = this.props;
     const getItemInfos = await fetch(`https://api.mercadolibre.com/items/${id}`);
     const result = await getItemInfos.json();
     const {
@@ -40,13 +40,21 @@ export default class Details extends React.Component {
 
   render() {
     const { Title, Sku, Price, Thumbnail, Attributes } = this.state;
+    const { onClick } = this.props;
     return (
       <section key={ Sku } className="product-details">
         <div className="details-cover">
           <p data-testid="product-detail-name">{Title}</p>
           <img src={ Thumbnail } alt={ Title } />
           <p>{`R$${parseFloat(Price).toFixed(2)}`}</p>
-          <button type="button">Comprar</button>
+          <button
+            type="button"
+            onClick={ onClick }
+            id={ Sku }
+            data-testid="product-detail-add-to-cart"
+          >
+            Comprar
+          </button>
         </div>
         <div className="infos-list">
           {Attributes.map((attribute) => (

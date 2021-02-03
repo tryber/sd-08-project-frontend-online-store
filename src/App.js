@@ -45,7 +45,7 @@ class App extends React.Component {
             />
             <Route
               path="/details/:id"
-              render={ (props) => <Home { ...props } onClick={ this.getId } /> }
+              render={ (props) => <Details { ...props } onClick={ this.getId } /> }
             />
           </Switch>
         </BrowserRouter>

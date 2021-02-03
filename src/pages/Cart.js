@@ -66,7 +66,7 @@ export default class Cart extends React.Component {
                       </div>
                       <button type="button" name={ item.title }> + </button>
                     </div>
-                    <div className="cel">{item.price.toFixed(2)}</div>
+                    <div className="cel">{parseFloat(item.price).toFixed(2)}</div>
                   </div>
                 ))}
               </div>
