@@ -19,16 +19,17 @@ class ProductsReview extends Component {
           alt={ title }
         />
         <p className={ styles.title }>{ title }</p>
+        <p className={ styles.price }>
+          R$
+          { (price * quantity).toFixed(2) }
+        </p>
         <ProductControls
           handleIncrease={ handleIncrease }
           handleDecrease={ handleDecrease }
           handleRemove={ handleRemove }
           product={ product }
         />
-        <p className={ styles.price }>
-          R$
-          { (price * quantity).toFixed(2) }
-        </p>
+        <p className={ styles.quantity }>{ quantity }</p>
         <Link
           data-testid="product-detail-link"
           to={ {

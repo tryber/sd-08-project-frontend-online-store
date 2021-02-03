@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 
 class SearchBar extends Component {
   renderForm() {
-    const { handleChange, handleSearch } = this.props;
+    const { handleChange, handleSearch, getCartItemsQuantity } = this.props;
 
     return (
       <form
@@ -34,7 +34,7 @@ class SearchBar extends Component {
               <GiMagnifyingGlass />
             </IconContext.Provider>
           </button>
-          <CartButton />
+          <CartButton getCartItemsQuantity={ getCartItemsQuantity } />
         </div>
       </form>
     );
@@ -52,6 +52,7 @@ class SearchBar extends Component {
 SearchBar.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
+  getCartItemsQuantity: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

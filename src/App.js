@@ -26,6 +26,7 @@ class App extends Component {
     this.getEvaluations = this.getEvaluations.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSearchCategory = this.handleSearchCategory.bind(this);
+    this.getCartItemsQuantity = this.getCartItemsQuantity.bind(this);
   }
 
   handleAddToCart(product) {
@@ -121,6 +122,13 @@ class App extends Component {
     return evaluations[id] || [];
   }
 
+  getCartItemsQuantity() {
+    const { cart } = this.state;
+    return Object.values(cart)
+      .map(({ quantity }) => quantity)
+      .reduce((acc, cur) => acc + cur, 0);
+  }
+
   renderCheckoutRoute() {
     const { cart } = this.state;
     return (
@@ -149,6 +157,7 @@ class App extends Component {
             handleAddToCart={ this.handleAddToCart }
             handleChangeEvaluation={ this.handleChangeEvaluation }
             getEvaluations={ this.getEvaluations }
+            getCartItemsQuantity={ this.getCartItemsQuantity }
           />) }
       />
     );
@@ -166,6 +175,7 @@ class App extends Component {
             handleIncrease={ this.handleIncrease }
             handleDecrease={ this.handleDecrease }
             handleRemove={ this.handleRemove }
+            getCartItemsQuantity={ this.getCartItemsQuantity }
           />) }
       />
     );
@@ -182,6 +192,7 @@ class App extends Component {
             handleAddToCart={ this.handleAddToCart }
             handleSearch={ this.handleSearch }
             handleSearchCategory={ this.handleSearchCategory }
+            getCartItemsQuantity={ this.getCartItemsQuantity }
             results={ results }
           />
         ) }

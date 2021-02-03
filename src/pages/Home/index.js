@@ -22,7 +22,7 @@ class Home extends Component {
 
   render() {
     const { results, handleSearch, handleSearchCategory,
-      handleAddToCart } = this.props;
+      handleAddToCart, getCartItemsQuantity } = this.props;
     const { queryInput } = this.state;
     return (
       <div>
@@ -34,6 +34,7 @@ class Home extends Component {
             <SearchBar
               handleChange={ this.handleChange }
               handleSearch={ () => { handleSearch(queryInput); } }
+              getCartItemsQuantity={ getCartItemsQuantity }
             />
             <SearchResults
               results={ results }
@@ -51,6 +52,7 @@ Home.propTypes = {
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleSearch: PropTypes.func.isRequired,
   handleSearchCategory: PropTypes.func.isRequired,
+  getCartItemsQuantity: PropTypes.func.isRequired,
 };
 
 export default Home;
