@@ -10,7 +10,7 @@ class Listagem extends Component {
     return (
       <div className="container d-flex flex-colum">
         <CategoriesList handleClickCategory={ handleClickCategory } />
-        <div className="show-products">
+        <div className="show-products d-flex flex-wrap justify-content-center">
           <ListaCardProdutos
             listOfProducts={ listOfProducts }
             addToCart={ addToCart }
