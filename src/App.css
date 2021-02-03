@@ -84,10 +84,23 @@ a {
   font-size: 8px;
 }
 
-.shopping-cart-container {
+.product-list-container {
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+.product-list-container a {
+  background: rgb(59, 93, 20);
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  color: white;
+  font-size: 13px;
+  padding: 5px;
+}
+
+.product-list-container a:hover {
+  background: rgb(79, 134, 15);
 }
 
 .cart-list-items {
