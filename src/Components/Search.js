@@ -61,7 +61,7 @@ class Search extends React.Component {
     }
     return (
       products.map((product) => (
-        <div key={ product.id } data-testid="product">
+        <div className="ItemCard" key={ product.id } data-testid="product">
           <p>{ product.title }</p>
           <img src={ product.thumbnail } alt={ product.title } />
           <p>
@@ -96,14 +96,15 @@ class Search extends React.Component {
   render() {
     return (
       <div>
+        <h3
+          data-testid="home-initial-message"
+          className="SearchText"
+        >
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </h3>
         { this.renderSearchInput() }
         { this.renderSearchbutton() }
         { this.renderSearchResults() }
-        <h2
-          data-testid="home-initial-message"
-        >
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h2>
       </div>
     );
   }
