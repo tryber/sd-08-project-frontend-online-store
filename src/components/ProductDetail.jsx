@@ -1,52 +1,55 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ProductCar from './ProductCar';
+import { Link } from 'react-router-dom';
+import * as localStorage from '../services/localStorage';
+import ShoppingCart from '../shopping-cart.png';
 
 class ProductDetail extends Component {
   constructor() {
     super();
     this.state = {
-      product: {},
-      products: [],
+      cartSize: localStorage.showQuantInCart(),
     };
-
-    this.addToCar = this.addToCar.bind(this);
-    this.carregarLocation = this.carregarLocation.bind(this);
   }
 
-  componentDidMount() {
-    this.carregarLocation();
-  }
-
-  carregarLocation() {
-    const { location: { state: { product, products } } } = this.props;
-
-    this.setState({ product });
-    this.setState({ products });
-  }
-
-  addToCar(object) {
-    const { products } = this.state;
-    this.setState({ products: [...products, object] });
+  componentDidUpdate() {
+    this.setState({
+      cartSize: localStorage.showQuantInCart(),
+    });
   }
 
   render() {
-    const { product, products } = this.state;
-
+    const { location: { state } } = this.props;
+    const { cartSize } = this.state;
     return (
-      <div data-testid="product-detail-name">
-        <p>{ product.title }</p>
-        <img src={ product.thumbnail } alt={ product.title } />
-        <p>{ product.price }</p>
-        <ProductCar cartSize={ products.length } productsCar={ products } />
+      <div>
+        <Link data-testid="shopping-cart-button" to="/shoppingcart">
+          <img
+            className="shopping-cart-icon"
+            src={ ShoppingCart }
+            alt="icon shopping cart"
+          />
+          <span
+            className="cart-quantity"
+            data-testid="shopping-cart-size"
+          >
+            {cartSize}
+          </span>
+        </Link>
+        <div data-testid="product-detail-name">
+          <p>{ state.title }</p>
+          <img src={ state.thumbnail } alt={ state.title } />
+          <p>{ state.price }</p>
+        </div>
         <button
           type="button"
           data-testid="product-detail-add-to-cart"
-          onClick={ () => this.addToCar(product) }
+          onClick={ () => localStorage.addToCart(state) }
         >
           Add to Cart
         </button>
       </div>
+
     );
   }
 }
