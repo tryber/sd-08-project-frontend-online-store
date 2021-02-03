@@ -505,7 +505,7 @@ O que será verificado:
 
 #### 9. Adicione um produto ao carrinho a partir de sua tela de exibição detalhada
 
-**PRIORIDADE 3** - Na tela de listagem de produtos, permitir adicionar o produto ao carrinho (veja os detalhes no card).
+**PRIORIDADE 3** - Na tela de exibição detalhada do produto, permitir adicionar o produto ao carrinho (veja os detalhes no card).
 
 - [Tela principal - Adicionar ao carrinho na exibição detalhada](https://github.com/tryber/sd-08-project-frontend-online-store/tree/master/wireframes/card_13.png)
 
@@ -534,7 +534,7 @@ São operações básicas de carrinho a alteração da quantidade de um determin
 
   * Adicione elementos na página do carrinho de compras para aumentar ou diminuir a quantidade de cada produto presente no carrinho.
   * Adicione o atributo `data-testid` com o valor `product-increase-quantity` no elemento que aumenta a quantidade de um produto. Adicione esse atributo para todos os produtos.
-  * Adicione o atributo `data-testid` com o valor `product-decreate-quantity` no elemento que diminui a quantidade de um produto. Adicione esse atributo para todos os produtos.
+  * Adicione o atributo `data-testid` com o valor `product-decrease-quantity` no elemento que diminui a quantidade de um produto. Adicione esse atributo para todos os produtos.
 
 O que será verificado:
 ```

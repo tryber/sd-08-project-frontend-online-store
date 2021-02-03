@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { localStorageLoad, localStorageSaveCarItems } from '../localStorage';
 import '../css/ShoppingCart.css';
 
@@ -163,6 +164,16 @@ class ShoppingCart extends React.Component {
     );
   }
 
+  renderBtnCheckout() {
+    return (
+      <div>
+        <Link to="/shoppingcart/checkout">
+          <button type="button">Finalizar compra</button>
+        </Link>
+      </div>
+    );
+  }
+
   renderTotalPriceProductCart(amount, price) {
     return (
       <div>
@@ -192,6 +203,7 @@ class ShoppingCart extends React.Component {
             </div>
           ))}
         </div>
+        { this.renderBtnCheckout()}
       </section>
     );
   }
