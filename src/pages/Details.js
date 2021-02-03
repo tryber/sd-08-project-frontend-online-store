@@ -19,7 +19,7 @@ export default class Details extends React.Component {
   }
 
   async getDetails() {
-    const { match: { params: { id } } } = this.props;
+    const { match: { params: { id }, onClick } } = this.props;
     const getItemInfos = await fetch(`https://api.mercadolibre.com/items/${id}`);
     const result = await getItemInfos.json();
     const {
@@ -46,6 +46,7 @@ export default class Details extends React.Component {
           <p data-testid="product-detail-name">{Title}</p>
           <img src={ Thumbnail } alt={ Title } />
           <p>{`R$${parseFloat(Price).toFixed(2)}`}</p>
+          <button type="button">Comprar</button>
         </div>
         <div className="infos-list">
           {Attributes.map((attribute) => (
@@ -68,4 +69,5 @@ Details.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };

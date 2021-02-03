@@ -43,7 +43,10 @@ class App extends React.Component {
               path="/"
               render={ (props) => <Home { ...props } onClick={ this.getId } /> }
             />
-            <Route path="/details/:id" component={ Details } />
+            <Route
+              path="/details/:id"
+              render={ (props) => <Home { ...props } onClick={ this.getId } /> }
+            />
           </Switch>
         </BrowserRouter>
       </main>
