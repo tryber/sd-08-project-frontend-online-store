@@ -13,6 +13,9 @@ class ProductDetails extends Component {
     this.state = {
       comment: '',
       rating: undefined,
+      /*  Esse evaluation gera um bug por se tratar de uma função que seta o estado original, consegui resolver isso no formulario,
+      recomendo fortemente que seja setado um estado inicial estatico e depois use a função setState para mudar o estado com essa função.
+      */
       evaluation: this.loadEvaluation(),
     };
   }
@@ -41,11 +44,11 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { location: { state: { productObj } }, addCart } = this.props;
+    const { location: { state: { productObj } }, addCart, onCart } = this.props;
     const { attributes } = productObj;
     return (
       <div>
-        <ShoppingCartLink />
+        <ShoppingCartLink lengthOfCart={ onCart.length } />
         <div data-testid="product-detail-name">
           <ProductCard product={ productObj } />
         </div>
@@ -85,6 +88,7 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
   addCart: PropTypes.func.isRequired,
+  onCart: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductDetails;

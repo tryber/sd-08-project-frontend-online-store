@@ -13,6 +13,30 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    // Foi necessario salvar o carrinho no localStorage para o requisito 13 e depois recuperar ele, creio que seja um erro no teste.
+    this.getLastCart();
+  }
+
+  componentDidUpdate(prevProps) {
+    // Essas prevProps são necessarias para fazer comparações afim de evitar um loop infinito dentro do desta função =).
+    this.setCurrentCart(prevProps);
+  }
+
+  getLastCart = () => {
+    const lastCart = localStorage.getItem('lastCart');
+    if (lastCart) {
+      this.setState({ onCart: JSON.parse(lastCart) });
+    }
+  }
+
+  setCurrentCart = (props) => {
+    const { onCart } = this.state;
+    if (props !== onCart) {
+      localStorage.setItem('lastCart', JSON.stringify(onCart));
+    }
+  }
+
   increaseQuantity = (event) => {
     const { onCart } = this.state;
     let position;
@@ -63,17 +87,10 @@ class App extends React.Component {
   addCart = (product) => {
     // const { onCart } = this.state;
     // this.setState({ onCart: [...onCart, product] });
-    console.log('handleCart');
-    this.setState((prevState) => {
-      const isReapeated = prevState.onCart.find(
-        (productOnCart) => productOnCart.title === product.title,
-      );
-      if (isReapeated === undefined) {
-        return {
-          onCart: [...prevState.onCart, product],
-        };
-      }
-    });
+    // Foi necessario remover a logica que removia elementos repetidos no carrinho, pois estavam dando problemas com o requisito 13!
+    const { onCart } = this.state;
+    // Foi necessario mudar a logica desse setState, o lint estava berrando.
+    this.setState({ onCart: [...onCart, product] });
   }
 
   render() {
@@ -88,6 +105,7 @@ class App extends React.Component {
               render={ (props) => (
                 <Home
                   { ...props }
+                  onCart={ onCart }
                   addCart={ this.addCart }
                 />
               ) }
