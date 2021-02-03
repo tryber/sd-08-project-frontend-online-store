@@ -52,13 +52,8 @@ class CartPage extends React.Component {
             </tr>
           </tbody>
         </table>
-        <Link
-          to={ {
-            pathname: '/checkout',
-            calculateTotalPrice: this.calculateTotalPrice,
-          } }
-        >
-          <button type="button" data-testId="checkout-products">CHECKOUT</button>
+        <Link to="/checkout">
+          <button type="button" data-testid="checkout-products">CHECKOUT</button>
         </Link>
       </div>
     );
