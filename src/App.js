@@ -103,11 +103,7 @@ class App extends React.Component {
               exact
               path="/"
               render={ (props) => (
-                <Home
-                  { ...props }
-                  onCart={ onCart }
-                  addCart={ this.addCart }
-                />
+                <Home { ...props } onCart={ onCart } addCart={ this.addCart } />
               ) }
             />
             <Route
