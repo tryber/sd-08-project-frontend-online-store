@@ -4,3 +4,5 @@ export { default as Search } from './Search';
 export { default as Main } from './Main';
 export { default as Card } from './Card';
 export { default as BtnShoppingCart } from './BtnShoppingCart';
+export { default as ProductEvaluation } from './ProductEvaluation';
+export { default as EvaluationHistory } from './ EvaluationHistory';
