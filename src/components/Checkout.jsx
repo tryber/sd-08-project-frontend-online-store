@@ -4,42 +4,41 @@ import PropTypes from 'prop-types';
 import InforComprador from './InforComprador';
 import MetodoPagmento from './MetodoPagamento';
 
+import './Checkout.css';
+
 class Checkout extends React.Component {
   render() {
-    const { getFromLocalStorage, location } = this.props;
+    const { getFromLocalStorage } = this.props;
     const resumo = getFromLocalStorage();
-    const result = location.calculateTotalPrice();
+    let result = resumo.reduce((acc, curr) => {
+      acc += (curr.amountToBuy * curr.price);
+      return acc;
+    }, 0);
+    result = Math.floor(result * 100) / 100;
     return (
-      <div>
-        <fieldset>
+      <div className="checkoutDiv">
+        <fieldset className="resumoItemsDiv">
           <legend>Revise seus Produtos</legend>
-          <div>
-            {resumo.map((arry) => (
-              <div key={ arry.id }>
-                <img src={ arry.thumbnail } alt="img" />
-                <p>
-                  Titulo:
-                  { arry.title }
-                </p>
-                <p>
-                  Quantidade:
-                  { arry.amountToBuy }
-                </p>
-                <p>
-                  Preço:
-                  { arry.price }
-                </p>
-              </div>
-            ))}
-            <h1>
-              Total: R$
-              { result }
-            </h1>
-          </div>
+
+          {resumo.map((arry) => (
+            <div key={ arry.id } className="resumoCard">
+              <img src={ arry.thumbnail } alt="img" />
+              <p>{ arry.title }</p>
+              <p>{ `Quantidade: ${arry.amountToBuy}`}</p>
+              <p>{ `Preço: R$${arry.price * arry.amountToBuy}` }</p>
+            </div>
+          ))}
+          <h1>
+            Total R$
+            { result }
+          </h1>
+
         </fieldset>
-        <InforComprador />
-        <MetodoPagmento />
-        <button type="button">Comprar</button>
+        <div className="pagamento">
+          <InforComprador />
+          <MetodoPagmento />
+        </div>
+        <button type="button" className="checkoutBtn">Finalizar Compra</button>
       </div>
     );
   }
@@ -47,7 +46,6 @@ class Checkout extends React.Component {
 
 Checkout.propTypes = {
   getFromLocalStorage: PropTypes.func.isRequired,
-  location: PropTypes.func.isRequired,
 };
 
 export default Checkout;
