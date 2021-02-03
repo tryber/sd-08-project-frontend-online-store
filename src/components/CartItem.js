@@ -12,8 +12,11 @@ class CartItem extends Component {
     const { quantity } = JSON.parse(localStorage.cartItems)
       .find(({ title }) => title === name);
 
+    const { item: { available_quantity: availableQuantity } } = props;
+
     this.state = {
       quantity,
+      availableQuantity,
     };
 
     this.add = this.add.bind(this);
@@ -44,7 +47,8 @@ class CartItem extends Component {
 
   render() {
     const { item: { title, thumbnail, price } } = this.props;
-    const { quantity } = this.state;
+    const { quantity, availableQuantity } = this.state;
+    const addButton = quantity < availableQuantity;
     return (
       <section>
         <img src={ thumbnail } alt={ title } />
@@ -62,7 +66,7 @@ class CartItem extends Component {
           <div data-testid="shopping-cart-product-quantity">{ quantity }</div>
           <button
             type="button"
-            onClick={ this.add }
+            onClick={ addButton ? this.add : undefined }
             data-testid="product-increase-quantity"
           >
             +
@@ -80,6 +84,7 @@ CartItem.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
+    available_quantity: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
