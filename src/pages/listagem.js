@@ -26,7 +26,6 @@ Listagem.propTypes = {
   listOfProducts: PropTypes.arrayOf(PropTypes.object),
   addToCart: PropTypes.func.isRequired,
   handleClickCategory: PropTypes.func.isRequired,
-  width: PropTypes.number.isRequired,
 };
 
 Listagem.defaultProps = {
