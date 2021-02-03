@@ -16,6 +16,8 @@ body {
   background-color: white;
   border: 1px solid #344;
   border-radius: 25px;
+  display: flex;
+  flex-flow: row wrap;
   font-size: 18px;
   padding: 10px 25px;
 }
@@ -66,7 +68,13 @@ body {
 */
 
 .search-bar {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.search-bar-input {
   color: #344;
+  flex-flow: row nowrap;
   outline: none;
   padding: 3px 10px;
   transition: all 0.25s ease;
@@ -114,4 +122,66 @@ body {
 .sec-products {
   margin-top: 10px;
   width: 800px;
+}
+
+/*
+----PRODUCT CARD---
+*/
+
+.product-card {
+  align-items: center;
+  background-color: white;
+  border: 1px solid #344;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  margin: 10px;
+  width: 47%;
+}
+
+.product-card-title-img {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.product-card-image {
+  display: flex;
+  width: 40%;
+}
+
+.product-card-title {
+  display: flex;
+  font-size: 0.9em;
+  margin-top: 0;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.product-card a {
+  color: #334;
+  text-decoration: none;
+}
+
+.product-card-price {
+  display: block;
+  margin: 10px;
+  text-align: center;
+}
+
+/*
+----PRODUCT DETAILS---
+*/
+
+.product-detail {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 80px 20px;
+  width: 80%;
 }
