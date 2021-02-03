@@ -8,6 +8,7 @@ export default class Cart extends React.Component {
     this.state = {
       cartList: [],
       idList: productId,
+      qnt: 1,
     };
   }
 
@@ -32,9 +33,9 @@ export default class Cart extends React.Component {
   }
 
   render() {
-    const { cartList } = this.state;
+    const { cartList, qnt } = this.state;
     return (
-      <div>
+      <div className="cart">
         {cartList.length === 0
           ? (
             <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
@@ -42,18 +43,32 @@ export default class Cart extends React.Component {
           : (
             <section>
               <div>
-                <div className="cel-container">
-                  <p className="cel">Item</p>
-                  <p className="cel">Preço</p>
-                  <p className="cel">Quantidade</p>
-                  <p className="cel">Total</p>
+                <div className="cel-container-row">
+                  <div className="cel">Item</div>
+                  <div className="cel">Preço</div>
+                  <div className="cel">Quantidade</div>
+                  <div className="cel">Total</div>
                 </div>
                 {cartList.map((item) => (
-                  <div key={ item.id } className="cel-container">
-                    <p data-testid="shopping-cart-product-name">{item.title}</p>
-                    <p data-testid="shopping-cart-product-quantity">1</p>
-                    <p>{item.price}</p>
-                    <p>{(item.price)}</p>
+                  <div key={ item.id } className="cel-container-row">
+                    <div
+                      data-testid="shopping-cart-product-name"
+                      className="cel"
+                    >
+                      {item.title}
+                    </div>
+                    <div className="cel">
+                      <button type="button" name={ item.title }> - </button>
+                      <div
+                        data-testid="shopping-cart-product-quantity"
+                        className="cel"
+                      >
+                        {qnt}
+                      </div>
+                      <button type="button" name={ item.title }> + </button>
+                    </div>
+                    <div className="cel">{item.price}</div>
+                    <div className="cel">{(item.price)}</div>
                   </div>
                 ))}
               </div>
