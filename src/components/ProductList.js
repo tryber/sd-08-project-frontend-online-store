@@ -68,7 +68,7 @@ class ProductList extends Component {
         />
         <ListCategories categories={ listCategories } onClick={ this.handleChange } />
         {products.map((product) => {
-          product.amount = 1;
+          // product.amount = 1;
           return (
             <div key={ product.id }>
               <Link

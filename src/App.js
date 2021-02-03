@@ -62,19 +62,27 @@ class App extends React.Component {
   }
 
   addCart = (product) => {
-    // const { onCart } = this.state;
-    // this.setState({ onCart: [...onCart, product] });
-    console.log('handleCart');
-    this.setState((prevState) => {
-      const isReapeated = prevState.onCart.find(
-        (productOnCart) => productOnCart.title === product.title,
-      );
-      if (isReapeated === undefined) {
-        return {
-          onCart: [...prevState.onCart, product],
-        };
+    const { onCart } = this.state;
+    const isReapeated = onCart.find(
+      (productOnCart) => productOnCart.id === product.id,
+    );
+    if (isReapeated !== undefined) {
+      let position;
+      for (let index = 0; index < onCart.length; index += 1) {
+        if (onCart[index].id === product.id) {
+          position = index;
+        }
       }
-    });
+      onCart[position].amount += 1;
+      this.setState({
+        onCart,
+      });
+    } else {
+      product.amount = 1;
+      this.setState({
+        onCart: [...onCart, product],
+      });
+    }
   }
 
   sumPrice = (array) => {
