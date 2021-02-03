@@ -47,7 +47,6 @@ export default class Cart extends React.Component {
                   <div className="cel">Item</div>
                   <div className="cel">Preço</div>
                   <div className="cel">Quantidade</div>
-                  <div className="cel">Total</div>
                 </div>
                 {cartList.map((item) => (
                   <div key={ item.id } className="cel-container-row">
@@ -67,8 +66,7 @@ export default class Cart extends React.Component {
                       </div>
                       <button type="button" name={ item.title }> + </button>
                     </div>
-                    <div className="cel">{item.price}</div>
-                    <div className="cel">{(item.price)}</div>
+                    <div className="cel">{item.price.toFixed(2)}</div>
                   </div>
                 ))}
               </div>
