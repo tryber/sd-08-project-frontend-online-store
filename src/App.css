@@ -67,6 +67,13 @@ body {
   width: 90%;
 }
 
+.cel {
+  border: #3030305b solid 2px;
+  border-collapse: collapse;
+  padding: 5px 0;
+  width: 49%;
+}
+
 .cel-container-row .cel {
   align-items: center;
   display: flex;
@@ -74,18 +81,10 @@ body {
   padding: 15px 20px;
 }
 
-.cel-container-row .cel .cel{
-  height: 5px;
+.cel-container-row .cel .cel {
+  height: 6px;
   margin: 0 10px;
   width: 1%;
-}
-
-
-.cel {
-  border: #3030305b solid 2px;
-  border-collapse: collapse;
-  padding: 5px 0;
-  width: 49%;
 }
 
 .details-cover {
