@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 class ShoppingCart extends Component {
   render() {
     const { location: { state } } = this.props;
-
+    const carrinhoVazio = !state || state.length === 0;
     return (
       <div className="App">
-        { state.length === 0
+        { carrinhoVazio
         && <p data-testid="shopping-cart-empty-message"> Seu carrinho está vazio. </p>}
-        { state.length > 0
+        { !carrinhoVazio
         && state.map((product) => (
           <div key={ product.title } className="card">
             <h4 data-testid="shopping-cart-product-name">

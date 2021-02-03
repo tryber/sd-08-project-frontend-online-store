@@ -50,7 +50,11 @@ class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <CategoriesFilter handleChange={ this.handleChange } />
-        <ProductCard productsCard={ productsCard } addToCar={ this.handleAddToCard } />
+        <ProductCard
+          productsCard={ productsCard }
+          productsCar={ productsCar }
+          addToCar={ this.handleAddToCard }
+        />
       </div>
     );
   }
