@@ -1,0 +1,13 @@
+.categories-content {
+  background-color: rgb(220, 180, 255);
+  border-radius: 15px;
+  color: rgb(117, 93, 113);
+  height: 700px;
+  margin: 30px;
+  padding: 20px;
+  width: 230px;
+}
+
+h3 {
+  margin-left: 65px;
+}

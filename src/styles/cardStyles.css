@@ -1,0 +1,42 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  width: 80%;
+}
+
+a {
+  color: rgb(117, 93, 113);
+  text-decoration: none;
+}
+
+h2 {
+  color: rgb(50, 20, 60);
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  height: 270px;
+  margin-bottom: 30px;
+  margin-right: 30px;
+  padding: 20px;
+  text-align: center;
+  width: 180px;
+}
+
+.card:hover {
+  box-shadow: 0 2px 5px rgba(12, 6, 12, 0.507);
+}
+
+.add-to-cart-button {
+  background-color: rgb(210, 170, 250);
+  border: 2px solid rgb(253, 227, 247);
+  border-radius: 10px;
+  height: 50px;
+  padding: 10px;
+}
+
+.add-to-cart-button:hover {
+  background-color: rgb(230, 180, 250);
+}
