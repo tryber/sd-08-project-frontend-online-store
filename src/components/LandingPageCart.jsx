@@ -61,7 +61,7 @@ class LandingPageCart extends Component {
               >
                 -
               </button>
-              <button type="button">X</button>
+              <button type="button">x</button>
             </div>);
         })}
       </section>
