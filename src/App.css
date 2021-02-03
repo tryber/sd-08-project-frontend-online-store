@@ -4,6 +4,16 @@
   margin-left: 5px;
 }
 
+.cartlist-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartlist-itens {
+  border: 1px solid black;
+  display: inline-flex;
+}
+
 .container {
   display: flex;
 }
