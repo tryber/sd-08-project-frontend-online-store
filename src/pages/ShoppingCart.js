@@ -33,14 +33,16 @@ class ShoppingCart extends React.Component {
 
   updateState() {
     const productsCart = JSON.parse(localStorage.getItem('productsCart'));
-    const totalPrice = productsCart.reduce((acc, product) => {
-      acc += product.price * product.quant;
-      return acc;
-    }, 0);
-    this.setState({
-      products: productsCart,
-      total: totalPrice,
-    });
+    if (productsCart) {
+      const totalPrice = productsCart.reduce((acc, product) => {
+        acc += product.price * product.quant;
+        return acc;
+      }, 0);
+      this.setState({
+        products: productsCart,
+        total: totalPrice,
+      });
+    }
   }
 
   updateQuant(quant, id, targetName) {
