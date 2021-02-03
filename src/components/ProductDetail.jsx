@@ -57,9 +57,12 @@ class ProductDetail extends Component {
 ProductDetail.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
-      title: PropTypes.string,
-      thumbnail: PropTypes.string,
-      price: PropTypes.number,
+      product: PropTypes.shape({
+        title: PropTypes.string,
+        thumbnail: PropTypes.string,
+        price: PropTypes.number,
+      }),
+      products: PropTypes.arrayOf(PropTypes.object),
     }),
   }).isRequired,
 };

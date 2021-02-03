@@ -5,7 +5,7 @@ import * as localStorage from '../services/localStorage';
 
 class ProductCard extends React.Component {
   render() {
-    const { productsCard, addToCar } = this.props;
+    const { productsCard, addToCar, productsCar } = this.props;
     return (
       <div>
         { productsCard.map((product) => (
@@ -14,10 +14,8 @@ class ProductCard extends React.Component {
               to={ {
                 pathname: `/productDetails/${product.id}`,
                 state: {
-                  id: product.id,
-                  title: product.title,
-                  thumbnail: product.thumbnail,
-                  price: product.price,
+                  product,
+                  products: productsCar,
                 } } }
               data-testid="product-detail-link"
             >
@@ -51,6 +49,7 @@ class ProductCard extends React.Component {
 ProductCard.propTypes = {
   productsCard: PropTypes.arrayOf(PropTypes.object).isRequired,
   addToCar: PropTypes.func.isRequired,
+  productsCar: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductCard;
