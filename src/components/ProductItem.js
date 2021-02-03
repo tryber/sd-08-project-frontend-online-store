@@ -9,7 +9,7 @@ class ProductItem extends Component {
   isFreeShipping() {
     const { item: { shipping: { free_shipping: free } } } = this.props;
     return free ? (
-      <p className="free-shipping">
+      <p data-testid="free-shipping">
         FRETE GRÁTIS
       </p>) : null;
   }
