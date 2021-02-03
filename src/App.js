@@ -144,7 +144,10 @@ class App extends React.Component {
           />
           <Route
             path="/checkout"
-            render={ (props) => <Checkout { ...props } getFromLocalStorage={ this.getFromLocalStorage } /> }
+            render={ (props) => (<Checkout
+              { ...props }
+              getFromLocalStorage={ this.getFromLocalStorage }
+            />) }
           />
           <Route
             path="/:id"
