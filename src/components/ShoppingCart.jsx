@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import removeIcon from '../remove-item-icon.svg';
@@ -129,9 +130,19 @@ class ShoppingCart extends React.Component {
     const { cart } = this.state;
 
     return (
-      <section className="shopping-cart-container">
+      <section className="product-list-container">
+
         { this.renderCartList(cart) }
-        <button onClick={ this.increaseQuantity } type="button">Finalizar Compra</button>
+
+        <Link
+          to={ {
+            pathname: '/checkout',
+            state: { cart } } }
+          data-testid="checkout-products"
+        >
+          Finalizar Compra
+        </Link>
+
       </section>
     );
   }
