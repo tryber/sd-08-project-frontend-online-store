@@ -7,6 +7,7 @@ import TopNavBar from './components/TopNavBar';
 import * as api from './services/api';
 import MainPage from './components/MainPage';
 import ProductDetails from './components/ProductDetails';
+import Checkout from './components/Checkout';
 
 class App extends React.Component {
   constructor() {
@@ -140,6 +141,10 @@ class App extends React.Component {
               changeQtd={ this.changeQtd }
               totalItems={ totalItems }
             />) }
+          />
+          <Route
+            path="/checkout"
+            render={ (props) => <Checkout { ...props } getFromLocalStorage={ this.getFromLocalStorage } /> }
           />
           <Route
             path="/:id"

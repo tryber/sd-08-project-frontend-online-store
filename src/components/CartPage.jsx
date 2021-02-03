@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ProductOnCart from './ProductOnCart';
 import './CartPage.css';
 
@@ -51,7 +52,14 @@ class CartPage extends React.Component {
             </tr>
           </tbody>
         </table>
-        <button type="button">CHECKOUT</button>
+        <Link
+          to={ {
+            pathname: '/checkout',
+            calculateTotalPrice: this.calculateTotalPrice,
+          } }
+        >
+          <button type="button" data-testId="checkout-products">CHECKOUT</button>
+        </Link>
       </div>
     );
   }
