@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { updateStorageQuantity } from '../services/storageFuncs';
+import CartSizeContext from '../services/context';
 
 class CartItem extends Component {
   constructor(props) {
@@ -35,8 +36,10 @@ class CartItem extends Component {
   updateAll() {
     const { item: { title }, handleChange } = this.props;
     const { quantity } = this.state;
+    const updateCartSize = this.context;
     updateStorageQuantity(title, quantity);
     handleChange();
+    updateCartSize();
   }
 
   render() {
@@ -70,6 +73,8 @@ class CartItem extends Component {
     );
   }
 }
+
+CartItem.contextType = CartSizeContext;
 
 CartItem.propTypes = {
   item: PropTypes.shape({
