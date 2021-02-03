@@ -23,11 +23,7 @@ class ProductItem extends Component {
         <p className="product-price">{ `R$ ${price.toFixed(2)}` }</p>
         { this.isFreeShipping() }
         <p className="product-title">{title}</p>
-        <div>
-          Qntd.
-          {' '}
-          { availableQuantity }
-        </div>
+        <p>{ `Qntd. ${availableQuantity}` }</p>
         <Link
           to={ `/details/${id}` }
           data-testid="product-detail-link"

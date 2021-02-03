@@ -7,7 +7,6 @@ import './ProductList.css';
 class ProductList extends Component {
   render() {
     const { items } = this.props;
-    // console.log(items);
     return (
       <section className="product-list">
         {items.length < 1 ? <p>Nenhum produto foi encontrado.</p>

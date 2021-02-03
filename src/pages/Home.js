@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-// import PropTypes from 'prop-types';
-
+import CartQuantifier from '../components/CartQuantifier';
 import FilterCategories from '../components/FilterCategories';
 import ProductList from '../components/ProductList';
 import QueryInput from '../components/QueryInput';
@@ -50,12 +50,14 @@ class Home extends Component {
 
   render() {
     const { items } = this.state;
-    console.log(items);
+    const { cartSize } = this.props;
+
     return (
       <>
         <header>
           <Link to="/pages/shoppingcart" data-testid="shopping-cart-button">
             Carrinho
+            <CartQuantifier size={ cartSize } />
           </Link>
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
@@ -72,7 +74,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-
+  cartSize: PropTypes.number.isRequired,
 };
 
 export default Home;
