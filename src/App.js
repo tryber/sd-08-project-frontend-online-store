@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import * as api from './services/api';
 
+import CartLogo from './CartLogo.png';
+
 import Search from './Components/Search';
 import ShoppingCart from './Components/ShoppingCart';
 import Categories from './Components/Categories';
@@ -28,13 +30,19 @@ class App extends React.Component {
     const { categories } = this.state;
     return (
       <Router>
-        <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
-        <Categories categories={ categories } />
+        <Link
+          className="CartLink"
+          to="/shoppingcart"
+          data-testid="shopping-cart-button"
+        >
+          <img className="CartLogo" src={ CartLogo } alt="cart link" />
+        </Link>
         <Switch>
           <Route exact path="/" component={ Search } />
           <Route exact path="/shoppingcart" component={ ShoppingCart } />
           <Route exact path="/:id/detalhes" component={ ProductDetails } />
         </Switch>
+        <Categories categories={ categories } />
       </Router>
     );
   }

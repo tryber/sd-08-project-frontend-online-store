@@ -36,6 +36,7 @@ class Categories extends React.Component {
     const { categories } = this.props;
     return categories.map((elem) => (
       <button
+        className="CategoryButton"
         type="button"
         key={ elem.id }
         data-testid="category"
@@ -55,7 +56,7 @@ class Categories extends React.Component {
 
     return (
       products.map((product) => (
-        <div key={ product.id } data-testid="product">
+        <div className="ItemCard" key={ product.id } data-testid="product">
           <p>{ product.title }</p>
           <img src={ product.thumbnail } alt={ product.title } />
           <p>
