@@ -6,3 +6,7 @@ export { default as Card } from './Card';
 export { default as BtnShoppingCart } from './BtnShoppingCart';
 export { default as ProductEvaluation } from './ProductEvaluation';
 export { default as EvaluationHistory } from './ EvaluationHistory';
+export { default as CheckoutForm } from './CheckoutForm';
+export { default as CheckoutProducts } from './CheckoutProducts';
+export { default as PaymentMethodTypes } from './PaymentMethodTypes';
+export { default as BtnGoHome } from './BtnGoHome';
