@@ -2,7 +2,24 @@ import React, { Component } from 'react';
 import ReturnButoon from '../components/ReturnButton';
 import Button from '../components/Button';
 
+let quantity = {};
 class PageShoppingCart extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+
+    };
+    this.getItems = this.getItems.bind(this);
+    this.createState = this.createState.bind(this);
+    this.soma = this.soma.bind(this);
+    this.decrease = this.decrease.bind(this);
+  }
+
+  componentDidMount() {
+    this.createState();
+  }
+
   getKeys() {
     const keysList = [];
     for (let index = 0; index < localStorage.length; index += 1) {
@@ -15,18 +32,62 @@ class PageShoppingCart extends Component {
   }
 
   getItems(key) {
-    const product = JSON.parse(localStorage.getItem(key));
+    const productObj = JSON.parse(localStorage.getItem(key));
+    quantity = { ...quantity, [productObj.id]: 1 };
+    const { [productObj.id]: keyFromState } = this.state;
     return (
-      <div key={ product.id }>
-        <img src={ product.thumbnail } alt={ product.title } />
-        <h3 data-testid="shopping-cart-product-name">{ product.title }</h3>
-        <p>{ product.price }</p>
+      <div key={ productObj.id }>
+        <img src={ productObj.thumbnail } alt={ productObj.title } />
+        <h3 data-testid="shopping-cart-product-name">{ productObj.title }</h3>
+        <p>{ productObj.price }</p>
+        <button
+          type="button"
+          name={ productObj.id }
+          onClick={ this.decrease }
+          data-testid="product-decrease-quantity"
+        >
+          -
+        </button>
         <p>
           Qtd:
-          <span data-testid="shopping-cart-product-quantity"> 1</span>
+          <span
+            data-testid="shopping-cart-product-quantity"
+            id={ productObj.id }
+          >
+            { keyFromState }
+          </span>
         </p>
+        <button
+          type="button"
+          data-testid="product-increase-quantity"
+          name={ productObj.id }
+          onClick={ this.soma }
+        >
+          +
+        </button>
+        <button type="button">x</button>
       </div>
     );
+  }
+
+  createState() {
+    this.setState({
+      ...quantity,
+    });
+  }
+
+  soma({ target }) {
+    // console.log(document.getElementById(`${target.name}`).innerHTML);
+    this.setState((state) => ({
+      [target.name]: state[target.name] + 1,
+    }));
+  }
+
+  decrease({ target }) {
+    // console.log(document.getElementById(`${target.name}`).innerHTML);
+    this.setState((state) => ({
+      [target.name]: state[target.name] - 1,
+    }));
   }
 
   render() {
@@ -42,4 +103,5 @@ class PageShoppingCart extends Component {
     );
   }
 }
+
 export default PageShoppingCart;
