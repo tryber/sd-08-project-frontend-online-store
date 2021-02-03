@@ -8,20 +8,47 @@ import Hero from './components/Hero';
 import Home from './pages/Home';
 import Details from './pages/Details';
 
-function App() {
-  return (
-    <main>
-      <BrowserRouter>
-        <Header />
-        <Hero />
-        <Switch>
-          <Route exact path="/cart/" component={ Cart } />
-          <Route exact path="/" component={ Home } />
-          <Route path="/details/:id" component={ Details } />
-        </Switch>
-      </BrowserRouter>
-    </main>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      productIdList: [],
+    };
+
+    this.getId = this.getId.bind(this);
+  }
+
+  getId(event) {
+    const { productIdList } = this.state;
+    this.setState({
+      productIdList: [...productIdList, event.target.id] });
+  }
+
+  render() {
+    const { productIdList } = this.state;
+    return (
+      <main>
+        <BrowserRouter>
+          <Header />
+          <Hero />
+          <Switch>
+            <Route
+              exact
+              path="/cart/"
+              render={ (props) => <Cart { ...props } productId={ productIdList } /> }
+            />
+            <Route
+              exact
+              path="/"
+              render={ (props) => <Home { ...props } onClick={ this.getId } /> }
+            />
+            <Route path="/details/:id" component={ Details } />
+          </Switch>
+        </BrowserRouter>
+      </main>
+    );
+  }
 }
 
 export default App;
