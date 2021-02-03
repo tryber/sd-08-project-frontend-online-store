@@ -14,16 +14,9 @@ class ProductItem extends Component {
       </p>) : null;
   }
 
-  availableQuantity() {
-    const { item: { available_quantity: availableQuantity } } = this.props;
-    return (
-      <p>{availableQuantity}</p>
-    );
-  }
-
   render() {
     const { item } = this.props;
-    const { title, thumbnail, price, id } = item;
+    const { title, thumbnail, price, id, available_quantity: availableQuantity } = item;
     return (
       <section className="product" data-testid="product">
         <img src={ thumbnail } alt="Imagem do produto" />
@@ -33,7 +26,7 @@ class ProductItem extends Component {
         <div>
           Qntd.
           {' '}
-          { this.availableQuantity() }
+          { availableQuantity }
         </div>
         <Link
           to={ `/details/${id}` }
