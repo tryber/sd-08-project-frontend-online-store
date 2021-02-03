@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import * as localStorage from '../services/localStorage';
 
 class ProductCard extends React.Component {
   render() {
@@ -33,7 +34,10 @@ class ProductCard extends React.Component {
             <button
               type="button"
               data-testid="product-add-to-cart"
-              onClick={ () => addToCar(product) }
+              onClick={ () => {
+                localStorage.addToCart(product);
+                addToCar();
+              } }
             >
               Add to Cart
             </button>

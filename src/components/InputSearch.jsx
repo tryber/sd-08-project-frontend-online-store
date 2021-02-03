@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
+import ShoppingCart from '../shopping-cart.png';
 
 class InputSearch extends React.Component {
   render() {
-    const { query, onChange, onClick } = this.props;
+    const { query, onChange, onClick, cartSize } = this.props;
     return (
       <header>
         <input
@@ -14,7 +16,6 @@ class InputSearch extends React.Component {
           value={ query }
           onChange={ onChange }
         />
-
         <button
           type="button"
           onClick={ onClick }
@@ -22,6 +23,19 @@ class InputSearch extends React.Component {
         >
           Pesquisar
         </button>
+        <Link data-testid="shopping-cart-button" to="/shoppingcart">
+          <img
+            className="shopping-cart-icon"
+            src={ ShoppingCart }
+            alt="icon shopping cart"
+          />
+          <span
+            className="cart-quantity"
+            data-testid="shopping-cart-size"
+          >
+            { cartSize }
+          </span>
+        </Link>
       </header>
     );
   }
@@ -33,4 +47,5 @@ InputSearch.propTypes = {
   query: propTypes.string.isRequired,
   onChange: propTypes.func.isRequired,
   onClick: propTypes.func.isRequired,
+  cartSize: propTypes.number.isRequired,
 };
