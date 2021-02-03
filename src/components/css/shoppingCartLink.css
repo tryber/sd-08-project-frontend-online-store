@@ -7,10 +7,10 @@
   text-decoration: none;
 }
 
-.cart-svg{
-  min-width: 25px;
-  max-width: 30px;
+.cart-svg {
   margin-right: 1px;
+  max-width: 30px;
+  min-width: 25px;
   width: 4vw;
 }
 
