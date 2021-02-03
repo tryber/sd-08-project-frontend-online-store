@@ -9,15 +9,39 @@ class ProductList extends React.Component {
       productsCart: [],
     };
     this.handleClickCart = this.handleClickCart.bind(this);
+    this.addProduct = this.addProduct.bind(this);
   }
 
   handleClickCart(title, price, id) {
+    this.addProduct(title, price, id);
     this.setState(({ productsCart }) => ({
-      productsCart: [...productsCart, { title, price, id }],
+      productsCart: [...productsCart],
     }), () => {
       const { productsCart } = this.state;
       localStorage.setItem('productsCart', JSON.stringify(productsCart));
     });
+  }
+
+  addProduct(title, price, id) {
+    const { productsCart } = this.state;
+    let newProduct = productsCart.find((product) => product.id === id);
+
+    if (newProduct) {
+      newProduct.quant += 1;
+      this.setState({
+        productsCart: [...productsCart],
+      });
+    } else {
+      newProduct = {
+        title,
+        price,
+        id,
+        quant: 1,
+      };
+      this.setState({
+        productsCart: [...productsCart, newProduct],
+      });
+    }
   }
 
   render() {
