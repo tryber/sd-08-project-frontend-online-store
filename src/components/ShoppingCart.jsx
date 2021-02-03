@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import removeIcon from '../remove-item-icon.svg';
+
 class ShoppingCart extends React.Component {
   constructor() {
     super();
@@ -8,6 +10,9 @@ class ShoppingCart extends React.Component {
     this.state = {
       cart: [],
     };
+
+    this.decreaseQuantity = this.decreaseQuantity.bind(this);
+    this.increaseQuantity = this.increaseQuantity.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +26,61 @@ class ShoppingCart extends React.Component {
     });
   }
 
+  getCartTotalPrice() {
+    const { cart } = this.state;
+    return cart.reduce((acc, item) => (acc + item.totalPrice), 0);
+  }
+
+  increaseQuantity(event) {
+    const { cart } = this.state;
+    const index = cart.map((item) => item.id).indexOf(event.target.id);
+    const stateCopy = this.state;
+    stateCopy.cart[index].quantity += 1;
+    stateCopy.cart[index].totalPrice = stateCopy.cart[index].price
+    * stateCopy.cart[index].quantity;
+    this.setState(stateCopy);
+  }
+
+  decreaseQuantity(event) {
+    const { cart } = this.state;
+    const index = cart.map((item) => item.id).indexOf(event.target.id);
+    const stateCopy = this.state;
+    if (stateCopy.cart[index].quantity !== 0) {
+      stateCopy.cart[index].quantity -= 1;
+      stateCopy.cart[index].totalPrice = stateCopy.cart[index].price
+      * stateCopy.cart[index].quantity;
+      this.setState(stateCopy);
+    }
+  }
+
+  renderIncreaseButton(id) {
+    return (
+      <button
+        data-testid="product-increase-quantity"
+        id={ id }
+        className="increase-button"
+        type="button"
+        onClick={ this.increaseQuantity }
+      >
+        +
+      </button>
+    );
+  }
+
+  renderDecreaseButton(id) {
+    return (
+      <button
+        data-testid="product-decrease-quantity"
+        id={ id }
+        className="decrease-button"
+        type="button"
+        onClick={ this.decreaseQuantity }
+      >
+        -
+      </button>
+    );
+  }
+
   renderCartList(cart) {
     if (cart.length === 0) {
       return (
@@ -31,13 +91,37 @@ class ShoppingCart extends React.Component {
     }
 
     return (
-      cart.map((item) => (
-        <li className="cart-list-items" key={ item.id }>
-          <img alt="Item" src={ item.thumbnail } />
-          <p data-testid="shopping-cart-product-name">{item.title}</p>
-          <p data-testid="shopping-cart-product-quantity">1</p>
-          <p>{item.price.toFixed(2)}</p>
-        </li>))
+      <table className="cart-list-items">
+        <thead>
+          <tr>
+            <th> </th>
+            <th>Descrição</th>
+            <th className="quantity-header">Quantidade</th>
+            <th>Valor</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          { cart.map((item) => (
+            <tr key={ item.id }>
+              <td><img alt="Item" src={ item.thumbnail } /></td>
+              <td data-testid="shopping-cart-product-name">{item.title}</td>
+              <td className="cart-list-qnt" data-testid="shopping-cart-product-quantity">
+                {this.renderIncreaseButton(item.id)}
+                { item.quantity }
+                {this.renderDecreaseButton(item.id)}
+              </td>
+              <td>{(item.totalPrice).toFixed(2)}</td>
+              <td><img alt="Remove Item Icon" src={ removeIcon } /></td>
+            </tr>)) }
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td className="cart-list-total"><strong>Total</strong></td>
+            <td>{ `R$ ${this.getCartTotalPrice().toFixed(2)}` }</td>
+          </tr>
+        </tbody>
+      </table>
     );
   }
 
@@ -45,7 +129,10 @@ class ShoppingCart extends React.Component {
     const { cart } = this.state;
 
     return (
-      <ul>{ this.renderCartList(cart) }</ul>
+      <section className="shopping-cart-container">
+        { this.renderCartList(cart) }
+        <button onClick={ this.increaseQuantity } type="button">Finalizar Compra</button>
+      </section>
     );
   }
 }
