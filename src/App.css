@@ -1,42 +1,68 @@
-.App {
-  text-align: center;
+.btn {
+  border-radius: 5px;
+  display: inline-flex;
+  margin-left: 5px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
-}
-
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
+.cartlist-section {
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  justify-content: center;
-  min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.cartlist-itens {
+  border: 1px solid black;
+  display: inline-flex;
 }
 
-@keyframes App-logo-spin {
+.container {
+  display: flex;
+}
 
-  from {
-    transform: rotate(0deg);
-  }
+.categorylist {
+  border: 1px solid black;
+  display: flex;
+  flex-flow: column;
+  list-style-type: none;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.CardListContainer {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.DetailContainer {
+  align-content: space-between;
+  background-color: burlywood;
+  display: flex;
+  flex-flow: row wrap;
+  height: 500px;
+  width: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchbar {
+  border-radius: 5px;
+  display: inline-flex;
+  width: 400px;
+}
+
+.section-card {
+  align-content: flex-start;
+  align-items: center;
+  background-color: rgb(103, 94, 163);
+  border: 1px solid darkorchid;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: column wrap;
+  height: 250px;
+  width: 250px;
+}
+
+.shop-cart-img {
+  height: 50px;
+  width: 50px;
 }
