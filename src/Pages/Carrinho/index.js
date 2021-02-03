@@ -5,6 +5,7 @@ import BotaoComprar from '../../Components/BotaoComprar';
 
 export default class Carrinho extends Component {
   render() {
+    const { cartProducts } = this.props;
     const products = JSON.parse(localStorage.getItem('PRODUTOS'));
     if (!products) {
       return (
@@ -15,7 +16,7 @@ export default class Carrinho extends Component {
     }
     return (
       <>
-        <ProdutosCarrinho />
+        <ProdutosCarrinho cartProducts={ cartProducts } />
         <BotaoComprar />
       </>
     );
@@ -23,14 +24,15 @@ export default class Carrinho extends Component {
 }
 
 Carrinho.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.shape({
-      product: PropTypes.shape({
-        title: PropTypes.string,
-        subtitle: PropTypes.string,
-        price: PropTypes.number,
-        thumbnail: PropTypes.string,
-      }),
-    }),
-  }).isRequired,
+  // location: PropTypes.shape({
+  //   state: PropTypes.shape({
+  //     product: PropTypes.shape({
+  //       title: PropTypes.string,
+  //       subtitle: PropTypes.string,
+  //       price: PropTypes.number,
+  //       thumbnail: PropTypes.string,
+  //     }),
+  //   }),
+  // }).isRequired,
+  cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

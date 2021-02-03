@@ -26,10 +26,25 @@ export default class App extends Component {
     this.handleOrder = this.handleOrder.bind(this);
   }
 
+  componentDidMount() {
+    this.setLocalStorage();
+  }
+
   handleOrder({ target }) {
     const { value } = target;
     this.setState({
       orderFilter: value,
+    });
+  }
+
+  setLocalStorage() {
+    if (!localStorage.getItem('PRODUTOS')) {
+      localStorage.setItem('PRODUTOS', JSON.stringify([]));
+    }
+    const products = JSON.parse(localStorage.getItem('PRODUTOS'));
+
+    this.setState({
+      cartProducts: products,
     });
   }
 
@@ -82,7 +97,13 @@ export default class App extends Component {
                 cartSize={ cartProducts.length }
               />) }
             />
-            <Route path="/cart" component={ Carrinho } />
+            <Route
+              path="/cart"
+              render={ (props) => (<Carrinho
+                { ...props }
+                cartProducts={ cartProducts }
+              />) }
+            />
             <Route path="/checkout" component={ Checkout } />
             <Route
               exact
