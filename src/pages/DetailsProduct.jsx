@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { localStorageSave, lsSaveEvaluationProduct } from '../localStorage';
 import { BtnShoppingCart, ProductEvaluation, EvaluationHistory } from '../components';
 
@@ -36,6 +36,34 @@ class DetailsProject extends React.Component {
     lsSaveEvaluationProduct('evalProduct', id, results);
   }
 
+  renderMainProducts(data, product) {
+    const { title, thumbnail, price } = product;
+    return (
+      <>
+        <div className="product-img">
+          <img src={ thumbnail.replace('I', 'O') } alt="foto" />
+          <BtnShoppingCart />
+        </div>
+        <div className="detail-name">
+          <h3 data-testid="product-detail-name">{title}</h3>
+        </div>
+        <div className="price-label">
+          <span>{`R$ ${price.toFixed(2)}`}</span>
+        </div>
+        <div>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => localStorageSave('shoppingCart', product, product.id) }
+          >
+            Adicionar ao carrinho
+          </button>
+        </div>
+        {this.renderAttributesProduct(data)}
+      </>
+    );
+  }
+
   renderAttributesProduct(data) {
     return (
       <div>
@@ -61,32 +89,13 @@ class DetailsProject extends React.Component {
 
   render() {
     const { location: { state: { product } } } = this.props;
-    const { id, title, price, thumbnail, attributes } = product;
+    const { attributes } = product;
     const data = Object.values({ ...attributes });
     const { titleEvaluation, evaluationDescription, stars } = this.state;
     return (
       <main>
         <section className="product-details">
-          <div className="product-img">
-            <img src={ thumbnail.replace('I', 'O') } alt="foto" />
-            <BtnShoppingCart />
-          </div>
-          <div className="detail-name">
-            <h3 data-testid="product-detail-name">{title}</h3>
-          </div>
-          <div className="price-label">
-            <span>{`R$ ${price.toFixed(2)}`}</span>
-          </div>
-          <div>
-            <button
-              type="button"
-              data-testid="product-detail-add-to-cart"
-              onClick={ () => localStorageSave('shoppingCart', product, product.id) }
-            >
-              Adicionar ao carrinho
-            </button>
-          </div>
-          {this.renderAttributesProduct(data)}
+          {this.renderMainProducts(data, product)}
         </section>
         <aside>
           <ProductEvaluation
@@ -98,14 +107,26 @@ class DetailsProject extends React.Component {
             onClickSaveEval={ this.onClickSaveEval }
           />
         </aside>
-
+        <aside>
+          <EvaluationHistory />
+        </aside>
       </main>
     );
   }
 }
 
-// DetailsProject.propTypes = {
-
-// }
+DetailsProject.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      product: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        thumbnail: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        attributes: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default DetailsProject;

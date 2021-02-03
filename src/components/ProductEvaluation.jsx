@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactStars from 'react-stars';
+import PropTypes from 'prop-types';
 
 class ProductEvaluation extends React.Component {
   handleSubmit(event) {
@@ -52,5 +53,18 @@ class ProductEvaluation extends React.Component {
     );
   }
 }
+
+ProductEvaluation.propTypes = {
+  stars: PropTypes.number,
+  handleChangeStars: PropTypes.func.isRequired,
+  titleEvaluation: PropTypes.string.isRequired,
+  evaluationDescription: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  onClickSaveEval: PropTypes.func.isRequired,
+};
+
+ProductEvaluation.defaultProps = {
+  stars: 0,
+};
 
 export default ProductEvaluation;
