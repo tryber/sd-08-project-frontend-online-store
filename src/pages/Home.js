@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import * as api from '../services/api';
 import SearchBar from '../components/SearchBar';
@@ -55,6 +56,7 @@ export default class Home extends React.Component {
 
   render() {
     const { categoriesList, productList } = this.state;
+    const { onClick } = this.props;
     return (
       <main>
         <SearchBar handleChange={ this.attSearch } handleClick={ this.fetchProducts } />
@@ -66,8 +68,10 @@ export default class Home extends React.Component {
               productByCategory={ this.productByCategory }
             />
           )}
-        <ProductCardsList productList={ productList } />
+        <ProductCardsList productList={ productList } onClick={ onClick } />
       </main>
     );
   }
 }
+
+Home.propTypes = { onClick: PropTypes.func.isRequired };
