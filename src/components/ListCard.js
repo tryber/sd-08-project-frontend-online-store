@@ -11,8 +11,8 @@ class ListCard extends React.Component {
         <img alt="item" src={ thumbnail } />
         <p>{`R$${price}`}</p>
         <div>
-          <Link data-testid="product-detail-link" to={ `/details/${search}&${id}` }>
-            <button type="button">
+          <Link to={ `/details/${search}&${id}` }>
+            <button data-testid="product-detail-link" type="button">
               Ver mais detalhes
             </button>
           </Link>

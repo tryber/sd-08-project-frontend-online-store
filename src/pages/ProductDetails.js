@@ -34,7 +34,7 @@ class ProductDetails extends React.Component {
   render() {
     const { details, general } = this.state;
     return (
-      <div className="atributes-container">
+      <div data-testid="product-detail-name" className="atributes-container">
         <h3>{general.title}</h3>
         <p>
           Preço: R$
@@ -45,12 +45,15 @@ class ProductDetails extends React.Component {
           Detalhes
           {details
             .map((detail, index) => (
-              <ul data-testid="product-detail-name" key={ index }>
-                {`
-                ${detail.name}:
-                ${detail.value_name}`}
+              <ul key={ index }>
+                <p>
+                  {detail.name}
+                  :
+                  {detail.value_name}
+                </p>
               </ul>))}
           <Link to="/"><button type="button">Voltar</button></Link>
+          <button type="button">Adicionar ao Carrinho</button>
         </div>
         <Link to="/shoppingcart">Carrinho de compras</Link>
       </div>
