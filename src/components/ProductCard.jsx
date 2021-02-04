@@ -15,7 +15,7 @@ class ProductCard extends React.Component {
   }
 
   freeShippingChecker(product) {
-    return product.shipping.free_shipping
+    return product.shipping.free_shipping;
   }
 
   render() {

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import shopCartImg from '../carrinho-de-compras.png';
 
 class ShoppingCartLink extends React.Component {
-
   render() {
     const { cart, length } = this.props;
 
