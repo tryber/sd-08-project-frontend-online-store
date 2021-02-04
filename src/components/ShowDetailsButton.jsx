@@ -6,8 +6,8 @@ class ShowDetails extends React.Component {
   render() {
     const { id, title, thumbnail, price, attributes, condition,
       // available_quantity, sold_quantity, stop_time, accepts_mercadopago, currency_id,
-      address, shipping } = this.props;
-    // console.log(attributes);
+      address, shipping, productsList, handleAddItemToCart } = this.props;
+    // console.log(this.props);
     return (
       <Link
         data-testid="product-detail-link"
@@ -18,14 +18,18 @@ class ShowDetails extends React.Component {
             thumbnail,
             price,
             attributes,
+            condition,
+            address,
+            shipping,
+            productsList,
+            handleAddItemToCart,
+            // handleProductRating,
             // available_quantity,
             // sold_quantity,
             // stop_time,
             // accepts_mercadopago,
             // currency_id,
-            condition,
-            address,
-            shipping },
+          },
         } }
       >
         Product Details
