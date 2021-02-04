@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cartItemDecrease, cartItemIncrease } from '../services/cart';
 import '../styles/CartItem.css';
-import PropTypes from 'prop-types';
 
 class CartItem extends React.Component {
   render() {
