@@ -11,12 +11,14 @@ class Categories extends React.Component {
     this.state = {
       categories: [],
       results: [],
+      categoryID: '',
       loading: false,
     };
 
-    this.refreshState = this.refreshState.bind(this);
-    this.loading = this.loading.bind(this);
     this.categorySelected = this.categorySelected.bind(this);
+    this.clearCat = this.clearCat.bind(this);
+    this.loading = this.loading.bind(this);
+    this.refreshState = this.refreshState.bind(this);
     this.setResults = this.setResults.bind(this);
   }
 
@@ -27,15 +29,15 @@ class Categories extends React.Component {
   }
 
   setResults(termo) {
+    const { categoryID } = this.state;
     this.setState({ loading: true });
-    const categoryId = null;
-    api.getProductsFromCategoryAndQuery(categoryId, termo)
+    api.getProductsFromCategoryAndQuery(categoryID, termo)
       .then((r) => this.refreshState(r));
   }
 
   categorySelected(categoryID) {
-    this.setState({ loading: true });
-    api.getProductsFromCategoryAndQuery(categoryID, null)
+    this.setState({ categoryID, loading: true });
+    api.getProductsFromCategoryAndQuery(categoryID, '')
       .then((r) => this.refreshState(r));
   }
 
@@ -51,6 +53,10 @@ class Categories extends React.Component {
     }
   }
 
+  clearCat() {
+    this.setState({ categoryID: '' });
+  }
+
   render() {
     const { categories, results } = this.state;
 
@@ -58,7 +64,50 @@ class Categories extends React.Component {
       <section className="sec-categories">
         <div className="categories-list main-container">
           <h3 className="special-text">Escolha uma Categoria</h3>
-          <select onChange={ (e) => this.categorySelected(e.target.value) }>
+          { this.loading() }
+          <div className="buttons-div">
+            { categories.map((cat) => {
+              const { id, name } = cat;
+              return (
+                <div key={ id }>
+                  <label htmlFor="category">
+                    <button
+                      className="categories-btn"
+                      type="button"
+                      data-testid="category"
+                      onClick={ () => this.categorySelected(id) }
+                    >
+                      { name }
+                    </button>
+                  </label>
+                </div>
+              );
+            }) }
+            <div>
+              <button
+                className="categories-btn"
+                type="button"
+                onClick={ () => this.clearCat() }
+              >
+                Limpar Opções
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="div-separator">
+          <SearchBar className="categories-searchbar" onClick={ this.setResults } />
+          <ProductList results={ results } />
+        </div>
+      </section>
+    );
+  }
+}
+
+export default Categories;
+
+/*
+          <select value={ categoryID } onChange={ (e) => this.categorySelected(e.target.value) }>
+            <option>Selecione uma Opção</option>
             { categories.map((cat) => {
               const { id, name } = cat;
               return (
@@ -71,15 +120,4 @@ class Categories extends React.Component {
                 </option>);
             }) }
           </select>
-          { this.loading() }
-        </div>
-        <div className="div-separator">
-          <SearchBar className="categories-searchbar" onClick={ this.setResults } />
-          <ProductList results={ results } />
-        </div>
-      </section>
-    );
-  }
-}
-
-export default Categories;
+*/

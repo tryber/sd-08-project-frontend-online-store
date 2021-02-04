@@ -71,6 +71,31 @@ body {
   font-size: 14px;
 }
 
+.categories-btn {
+  background-color: #354242;
+  border: none;
+  border-radius: 50px;
+  color: #ffd;
+  margin: 1px 2px;
+  padding: 5px 15px;
+  transition: all 0.25s ease;
+}
+
+.categories-btn:hover {
+  background-color: #acebae;
+  color: #344;
+}
+
+.categories-btn:focus {
+  background-color: #7d9100;
+  outline: none;
+}
+
+.buttons-div {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 /*
 --- SEARCHBAR
 */
@@ -128,6 +153,10 @@ body {
   justify-content: center;
   margin-top: 10px;
   width: 800px;
+}
+
+.products-error {
+  flex-flow: column wrap;
 }
 
 /*
