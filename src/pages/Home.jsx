@@ -1,11 +1,13 @@
 import React from 'react';
 import InitialMessage from '../components/Home/InitialMessage';
+import LinkToShoppingCart from '../components/LinkShoppingCart';
 
-function Home(props) {
+function Home() {
   return (
-    <form>
+    <div>
+      <LinkToShoppingCart />
       <InitialMessage />
-    </form>
+    </div>
   );
 }
 
