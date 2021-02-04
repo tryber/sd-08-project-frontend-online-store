@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import AddToCart from '../components/AddToCart';
 import CartButton from '../components/CartButton';
 
