@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class StarsContainer extends React.Component {
   constructor() {
@@ -41,5 +42,9 @@ class StarsContainer extends React.Component {
     );
   }
 }
+
+StarsContainer.propTypes = {
+  handleStarsInput: PropTypes.func,
+}.isRequired;
 
 export default StarsContainer;
