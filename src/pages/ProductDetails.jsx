@@ -54,7 +54,10 @@ ProductDetails.propTypes = {
       title: PropTypes.string.isRequired,
       thumbnail: PropTypes.string.isRequired,
       price: PropTypes.string.isRequired,
-      attributes: PropTypes.shape({}).isRequired,
+      attributes: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
 
     }).isRequired,
   }).isRequired,
