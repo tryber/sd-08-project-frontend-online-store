@@ -1,5 +1,4 @@
 import React from 'react';
-import CartButton from '../components/CartButton';
 import { recoverCart } from '../services/cart';
 
 class Cart extends React.Component {

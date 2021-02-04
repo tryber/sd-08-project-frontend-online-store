@@ -23,6 +23,7 @@ AddToCart.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
+    testId: PropTypes.string.isRequired,
   }).isRequired,
 };
 export default AddToCart;
