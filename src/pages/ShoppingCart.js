@@ -79,10 +79,17 @@ class ShoppingCart extends React.Component {
     return (
       <div>
         <h1>Carrinho</h1>
-
-        {productsCart.map((product) => (
-          <ProductsCart key={ product.id } product={ product } />))}
         <div>
+          {products.map((product) => (
+            <ProductsCart
+              key={ product.id }
+              product={ product }
+              updateQuant={ this.updateQuant }
+            />))}
+          <hr />
+          <div>
+            <span>{`Total: R$${total}`}</span>
+          </div>
           <Link
             to="/checkout"
             data-testid="checkout-products"
@@ -91,17 +98,6 @@ class ShoppingCart extends React.Component {
               Finalizar Compra
             </button>
           </Link>
-        
-        {products.map((product) => (
-          <ProductsCart
-            key={ product.id }
-            product={ product }
-            updateQuant={ this.updateQuant }
-          />))}
-        <hr />
-        <div>
-          <span>{`Total: R$${total}`}</span>
-
         </div>
       </div>
     );
