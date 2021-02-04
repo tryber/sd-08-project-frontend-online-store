@@ -14,10 +14,13 @@ class ProductCard extends React.Component {
     onClick(event.target.parentElement.id);
   }
 
+  freeShippingChecker(product) {
+    return product.shipping.free_shipping
+  }
+
   render() {
     const { product, cart, products } = this.props;
     const { id, title, thumbnail, price } = product;
-
     return (
       <li className="product-card" data-testid="product" id={ id }>
         <Link
@@ -26,7 +29,8 @@ class ProductCard extends React.Component {
             state: { cart, products } } }
           data-testid="product-detail-link"
         >
-          <div>
+          <div data-testid={ this.freeShippingChecker(product) && 'free-shipping' }>
+            { this.freeShippingChecker(product) && <p className="free">Frete Grátis</p>}
             <h4>{title}</h4>
             <img alt="Product" src={ thumbnail } />
             <p>{`R$ ${price.toFixed(2)}`}</p>

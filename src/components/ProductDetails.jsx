@@ -88,7 +88,9 @@ class ProductDetails extends React.Component {
 
     return (
       <div>
-        <ShoppingCartLink cart={ cart } />
+        <div className="cart-container">
+          <ShoppingCartLink cart={ cart } length={ cart.length } />
+        </div>
         { loading ? 'Carregando...' : this.renderProduct(product) }
       </div>
     );

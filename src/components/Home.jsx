@@ -120,7 +120,9 @@ class ProductList extends React.Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <ShoppingCartLink cart={ cart } />
+          <div className="cart-container">
+            <ShoppingCartLink cart={ cart } length={ cart.length } />
+          </div>
         </header>
 
         <section className="search-container">

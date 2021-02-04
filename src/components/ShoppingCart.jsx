@@ -36,10 +36,12 @@ class ShoppingCart extends React.Component {
     const { cart } = this.state;
     const index = cart.map((item) => item.id).indexOf(event.target.id);
     const stateCopy = this.state;
-    stateCopy.cart[index].quantity += 1;
-    stateCopy.cart[index].totalPrice = stateCopy.cart[index].price
-    * stateCopy.cart[index].quantity;
-    this.setState(stateCopy);
+    if (stateCopy.cart[index].quantity < stateCopy.cart[index].available_quantity) {
+      stateCopy.cart[index].quantity += 1;
+      stateCopy.cart[index].totalPrice = stateCopy.cart[index].price
+      * stateCopy.cart[index].quantity;
+      this.setState(stateCopy);
+    }
   }
 
   decreaseQuantity(event) {
@@ -128,7 +130,7 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { cart } = this.state;
-
+    console.log(cart);
     return (
       <section className="product-list-container">
 
