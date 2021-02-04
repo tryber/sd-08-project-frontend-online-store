@@ -1,4 +1,5 @@
 import React from 'react';
+import CartButton from '../components/CartButton';
 import { recoverCart } from '../services/cart';
 
 class Cart extends React.Component {
@@ -13,18 +14,15 @@ class Cart extends React.Component {
     const { cartItems } = this.state;
     console.log(cartItems);
     return (
-      <div>
-        {cartItems
-          ? (cartItems.map(({ id, name, amount }) => (
-            <div className="cartItem" key={ id }>
-              <p data-testid="shopping-cart-product-name">{ name }</p>
-              <p data-testid="shopping-cart-product-quantity">{ amount }</p>
-            </div>
-          )))
-          : (
-            <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
-          )}
-      </div>
+      cartItems.length === 0
+        ? (
+          <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>)
+        : (cartItems.map(({ id, name, amount }) => (
+          <div className="cartItem" key={ id }>
+            <p data-testid="shopping-cart-product-name">{ name }</p>
+            <p data-testid="shopping-cart-product-quantity">{ amount }</p>
+          </div>
+        )))
     );
   }
 }

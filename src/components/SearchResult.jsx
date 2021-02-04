@@ -50,7 +50,7 @@ class SearchResult extends React.Component {
               />
               <AddToCart
                 onClickCallback={ this.handleAddToCart }
-                productInfos={ { id, title, amount: 1 } }
+                productInfos={ { id, title, amount: 1, testId: 'product-add-to-cart' } }
               />
             </li>
           ))
