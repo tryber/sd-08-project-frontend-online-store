@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 class CartItem extends React.Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { cartItems } = this.props;
     return (
       <div>
         <Link to="/">Voltar</Link>
-        <ul>
+        <ul data-testid="checkout-products">
           {
             cartItems.length > 0
               ? cartItems.map((item) => (

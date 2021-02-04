@@ -5,7 +5,8 @@ import AddToCartButton from './AddToCartButton';
 
 class SearchResult extends React.Component {
   renderCard() {
-    const { productsList, handleAddItemToCart } = this.props;
+    const { productsList, handleAddItemToCart, handleProductRating, cartItems, setLocalStorageState } = this.props;
+    // console.log(handleProductRating);
     return (
       <ul className="product-card" key={ productsList.id }>
         {
@@ -19,6 +20,8 @@ class SearchResult extends React.Component {
               <p className="product-price">{ price }</p>
               {shipping.free_shipping && <p data-testid="free-shipping">Frete grátis</p>}
               <ShowDetails
+                productsList={ productsList }
+                handleProductRating={ handleProductRating }
                 id={ id }
                 title={ title }
                 thumbnail={ thumbnail }
@@ -26,16 +29,12 @@ class SearchResult extends React.Component {
                 attributes={ attributes }
                 address={ address }
                 condition={ condition }
-                // available_quantity={ available_quantity }
-                // sold_quantity={ sold_quantity }
-                // stop_time={ stop_time }
-                // accepts_mercadopago={ accepts_mercadopago }
-                // currency_id={ currency_id }
-                // shipping={ shipping }
               />
               <AddToCartButton
                 handleAddItemToCart={ handleAddItemToCart }
+                setLocalStorageState={ setLocalStorageState }
                 productsList={ productsList }
+                cartItems={ cartItems }
                 id={ id }
                 title={ title }
                 thumbnail={ thumbnail }

@@ -6,15 +6,15 @@ import { getCategories, getProductsFromCategoryAndQuery } from '../services/api'
 import SearchForm from '../components/SearchForm';
 
 class Home extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       searchField: '',
       productsList: [],
       categories: [],
       radioValue: '',
       cartItems: [],
-      // productDetail: [],
+      productRating: [],
       // showCart: false,
       // isLoading: true,
     };
@@ -31,13 +31,21 @@ class Home extends React.Component {
     this.getLocalStorage();
   }
 
-  componentWillUnmount() {
-    this.setLocalStorageState();
-  }
+  // componentWillUnmount() {
+  //   this.setLocalStorageState();
+  // }
 
   handleInputChange(event) {
     this.setState({
       searchField: event.target.value,
+    });
+  }
+
+  handleProductRating(product) {
+    const { productRating } = this.state;
+    productRating.push(product);
+    this.setState({
+      productRating,
     });
   }
 
@@ -57,12 +65,13 @@ class Home extends React.Component {
       radioValue: await event.target.value,
     });
     await this.getQueryList();
+    this.setLocalStorageState();
   }
 
-  handleAddItemToCart(event) {
+  async handleAddItemToCart(event) {
     const { cartItems, productsList } = this.state;
     cartItems.push(productsList.find((item) => item.id === event.target.value));
-    console.log(cartItems);
+    // console.log(cartItems);
     this.setState({
       cartItems,
     });
@@ -84,21 +93,21 @@ class Home extends React.Component {
     });
   }
 
-  setLocalStorageState() {
+  async setLocalStorageState() {
     const myState = JSON.stringify(this.state);
     // console.log(myState);
     localStorage.setItem('myState', myState);
   }
 
-  getLocalStorage() {
-    const myState = JSON.parse(localStorage.getItem('myState'));
+  async getLocalStorage() {
+    const myState = await JSON.parse(localStorage.getItem('myState'));
     this.setState(myState);
   }
 
   render() {
     const { categories, productsList, cartItems } = this.state;
     return (
-      <>
+      <div>
         <SearchForm
           submitCallback={ this.handleInputSubmit }
           handleInputChange={ this.handleInputChange }
@@ -110,9 +119,12 @@ class Home extends React.Component {
         />
         <SearchResult
           productsList={ productsList }
+          handleProductRating={ this.handleProductRating }
           handleAddItemToCart={ this.handleAddItemToCart }
+          cartItems={ cartItems }
+          setLocalStorageState={ this.setLocalStorageState }
         />
-      </>
+      </div>
     );
   }
 }

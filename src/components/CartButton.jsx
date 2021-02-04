@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class CartButton extends React.Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { cartItems } = this.props;
     return (
       <div>

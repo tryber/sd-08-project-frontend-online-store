@@ -10,12 +10,12 @@ class Categories extends React.Component {
         <ul className="categoriesList">
           {categories.map((category) => (
             <li key={ category.id }>
-              <label htmlFor={ category.id } key={ category.id }>
+              <label htmlFor={ category.id }>
                 <input
                   id={ category.id }
                   type="radio"
                   data-testid="category"
-                  key={ category.id }
+                  // key={ category.id }
                   value={ category.id }
                   name="categories-radio-button"
                   onChange={ handleInputRadio }

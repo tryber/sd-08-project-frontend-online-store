@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 
 class Cart extends React.Component {
   constructor() {
     super();
-    this.state = {
-      searchField: '',
-      productsList: [],
-      categories: [],
-      radioValue: '',
-      cartItems: [],
-    };
+    const state = JSON.parse(localStorage.getItem('myState'));
+    this.state = state;
+    // this.state = {
+    //   searchField: '',
+    //   productsList: [],
+    //   categories: [],
+    //   radioValue: '',
+    //   cartItems: [],
+    // };
     this.setLocalStorageState = this.setLocalStorageState.bind(this);
     this.getLocalStorage = this.getLocalStorage.bind(this);
   }
@@ -24,8 +27,8 @@ class Cart extends React.Component {
     this.setLocalStorageState();
   }
 
-  getLocalStorage() {
-    const myState = JSON.parse(localStorage.getItem('myState'));
+  async getLocalStorage() {
+    const myState = await JSON.parse(localStorage.getItem('myState'));
     this.setState(myState);
   }
 
@@ -36,11 +39,12 @@ class Cart extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    // const { location: { cartItems } } = this.props;
-    const { cartItems } = this.state;
+    // console.log(this.props);
+    const { location: { cartItems } } = this.props;
+    // const { cartItems } = this.state;
     return (
       <div>
+        <Link to={ { pathname: '/pages/checkout', cartItems } }>Finalizar Compra</Link>
         {
           cartItems.length > 0
             ? <CartItem cartItems={ cartItems } />

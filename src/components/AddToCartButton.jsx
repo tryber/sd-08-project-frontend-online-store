@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class AddToCartButton extends React.Component {
   render() {
-    const { handleAddItemToCart, id,
+    const { handleAddItemToCart, id, cartItems,
       // title, thumbnail, price, attributes, condition, address, shipping,
     } = this.props;
     // console.log(productsList);
@@ -17,6 +17,7 @@ class AddToCartButton extends React.Component {
           type="submit"
           value={ id }
           onClick={ handleAddItemToCart }
+          cartitems={ cartItems }
         >
           Adicionar ao carrinho
         </button>

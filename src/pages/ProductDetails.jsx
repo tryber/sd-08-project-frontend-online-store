@@ -3,18 +3,24 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AddToCartButton from '../components/AddToCartButton';
 import CartButton from '../components/CartButton';
+import RatingProduct from '../components/RatingProductDetails';
 
 class ProductDetails extends React.Component {
   constructor() {
     super();
+    const { cartItems } = JSON.parse(localStorage.getItem('myState'));
     this.state = {
       searchField: '',
       productsList: [],
       categories: [],
       radioValue: '',
-      cartItems: [],
+      cartItems,
+      productRating: [],
     };
     this.handleAddItemToCart = this.handleAddItemToCart.bind(this);
+    this.getLocalStorage = this.getLocalStorage.bind(this);
+    this.setLocalStorageState = this.setLocalStorageState.bind(this);
+    // this.handleRatingAndCommentProduct = this.handleRatingAndCommentProduct.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +31,7 @@ class ProductDetails extends React.Component {
     this.setLocalStorageState();
   }
 
-  handleAddItemToCart(event) {
+  async handleAddItemToCart(event) {
     const { cartItems, productsList } = this.state;
     cartItems.push(productsList.find((item) => item.id === event.target.value));
     console.log(cartItems);
@@ -33,6 +39,23 @@ class ProductDetails extends React.Component {
       cartItems,
     });
   }
+
+  // async handleRatingAndCommentProduct(event) {
+  //   event.preventDefault();
+  //   const { productsList, productRating } = this.state;
+  //   console.log(productsList);
+  //   productRating.push({
+  //     product: productsList.find((item) => item.id === event.target.value),
+  //     rating: {
+  //       email: this.handleEmailInput(),
+  //       stars: this.handleStarsInput(),
+  //       comment: this.handleCommentInput(),
+  //     }, // Objeto com comentarios, email e estrelas
+  //   });
+  //   this.setState({
+  //     productRating,
+  //   });
+  // }
 
   getLocalStorage() {
     const myState = JSON.parse(localStorage.getItem('myState'));
@@ -47,12 +70,13 @@ class ProductDetails extends React.Component {
 
   render() {
     const { location: { state: {
-      id, title, thumbnail, price, attributes, address, condition,
+      id, title, thumbnail, price, attributes, address, condition, productsList,
+      handleProductRating,
       // available_quantity, sold_quantity, stop_time, accepts_mercadopago,
       // currency_id, shipping
     } } } = this.props;
     // console.log(this.props);
-    const { cartItems } = this.state;
+    const { cartItems, productRating } = this.state;
     return (
       <section data-testid="product-detail-name">
         <Link to="/">Voltar</Link>
@@ -81,6 +105,12 @@ class ProductDetails extends React.Component {
           condition={ condition }
         />
         <CartButton cartItems={ cartItems } />
+        <RatingProduct
+          productRating={ productRating }
+          productsList={ productsList }
+          handleProductRating={ handleProductRating }
+          id={ id }
+        />
       </section>
     );
   }
