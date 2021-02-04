@@ -47,4 +47,22 @@ class ProductDetails extends React.Component {
   }
 }
 
+ProductDetails.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      attributes: PropTypes.arrayOf([
+        ({
+          id: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+        }).isRequired,
+      ]).isRequired,
+
+    }).isRequired,
+  }).isRequired,
+};
+
 export default ProductDetails;
