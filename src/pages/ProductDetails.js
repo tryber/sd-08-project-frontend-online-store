@@ -69,6 +69,7 @@ class ProductDetails extends React.Component {
   render() {
     const { productDetail, loading } = this.state;
     const { title, price, thumbnail, attributes } = productDetail;
+    const number = ['1', '2', '3', '4', '5'];
     if (loading) return <span>Carregando</span>;
     return (
       <div>
@@ -85,6 +86,28 @@ class ProductDetails extends React.Component {
           >
             Adicionar ao carrinho
           </button>
+        </div>
+        <div>
+          <form>
+            <label htmlFor="email">
+              <input
+                type="text"
+                id="email"
+                placeholder="email"
+              />
+            </label>
+            <label htmlFor="product-detail-evaluation">
+              <textarea
+                data-testid="product-detail-evaluation"
+                placeholder="comentário (opcional)"
+              />
+            </label>
+            <select>
+              { number
+                .map((numbers) => <option key={ numbers } name="rate">{numbers}</option>)}
+            </select>
+          </form>
+          <button type="button">Enviar</button>
         </div>
       </div>
     );
