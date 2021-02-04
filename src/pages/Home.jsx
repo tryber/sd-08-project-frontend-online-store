@@ -1,9 +1,10 @@
 import React from 'react';
+import InitialMessage from '../components/Home/InitialMessage';
 
 function Home(props) {
   return (
     <form>
-      <h1>Hello</h1>
+      <InitialMessage />
     </form>
   );
 }
