@@ -1,7 +1,6 @@
-function saveToCart(id, name, amount) {
+export function saveToCart(id, name, amount) {
   const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
   const productFound = currentCart.find((product) => product.id === id);
-  console.log(productFound);
 
   if (productFound) {
     const updatedCart = currentCart.map((product) => {
@@ -15,4 +14,7 @@ function saveToCart(id, name, amount) {
   }
 }
 
-export default saveToCart;
+export function recoverCart() {
+  const currentCart = JSON.parse(localStorage.getItem('cart'));
+  return currentCart || {};
+}

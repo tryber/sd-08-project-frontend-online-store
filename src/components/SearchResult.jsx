@@ -6,24 +6,22 @@ import AddToCart from './AddToCart';
 class SearchResult extends React.Component {
   constructor() {
     super();
-    const cartItems = this.props;
-    this.state = {
-      cartItems: { cartItems },
-    };
+    // const cartItems = this.props;
+    // this.state = {
+    //   cartItems: { cartItems },
+    // };
     this.handleAddToCart = this.handleAddToCart.bind(this);
   }
 
-  handleAddToCart(id, title, amount) {
-    const stateCartItems = this.state.cartItems;
-    if (stateCartItems[id]) {
-      stateCartItems[id].amount += amount;
-    } else {
-      stateCartItems[id] = { id, title, amount };
-    }
+  handleAddToCart() {
+    // const cartItems = JSON.parse(localStorage.getItem('cart'));
+    // this.setState({
+    //   cartItems,
+    // });
   }
 
   renderCard() {
-    const { productsList, cartItems } = this.props;
+    const { productsList } = this.props;
     return (
       <ul className="product-card" key={ productsList.id }>
         {
@@ -50,7 +48,10 @@ class SearchResult extends React.Component {
                 condition={ condition }
                 // cartitems={ cartItems }
               />
-              <AddToCart onClickCallback={ this.handleAddToCart } />
+              <AddToCart
+                onClickCallback={ this.handleAddToCart }
+                productInfos={ { id, title, amount: 1 } }
+              />
             </li>
           ))
         }
