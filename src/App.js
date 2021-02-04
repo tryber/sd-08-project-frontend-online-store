@@ -5,6 +5,7 @@ import './style.css';
 import { Link, Route, BrowserRouter, Switch } from 'react-router-dom';
 import Shop from './pages/Shop';
 import Home from './pages/Home';
+import ProductDetails from './pages/ProductDetails';
 import ShoppingCart from './Components/ShoppingCart';
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
       <Switch>
         <Route exact path="/shop" component={ Shop } />
         <Route exact path="/" component={ Home } />
+        <Route exact path="/details">
+          <ProductDetails />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

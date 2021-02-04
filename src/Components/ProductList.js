@@ -18,12 +18,13 @@ class ProductList extends React.Component {
     return (
       <section className="main-container sec-products">
         { results.map((product) => {
-          const { id, title, price, thumbnail } = product;
+          const { id, title, price, thumbnail, attributes } = product;
           return (<ProductCard
             key={ id }
             title={ title }
             price={ price }
             thumbnail={ thumbnail }
+            attributes={ attributes }
           />);
         }) }
       </section>

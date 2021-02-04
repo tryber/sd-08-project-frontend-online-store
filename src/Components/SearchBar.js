@@ -28,9 +28,9 @@ class SearchBar extends React.Component {
   render() {
     const { item } = this.state;
     return (
-      <form>
+      <form className="search-bar">
         <input
-          className="main-container search-bar"
+          className="main-container search-bar-input"
           data-testid="query-input"
           value={ item }
           onChange={ (e) => this.updateItem(e.target.value) }
