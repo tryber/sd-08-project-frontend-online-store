@@ -5,10 +5,10 @@ import ProductList from '../components/ProductList';
 
 class Home extends React.Component {
   render() {
-    const { addCart } = this.props;
+    const { addCart, sumAmount } = this.props;
     return (
       <div>
-        <ShoppingCartLink />
+        <ShoppingCartLink sumAmount={ sumAmount } />
         <ProductList addCart={ addCart } />
       </div>
     );
@@ -17,6 +17,11 @@ class Home extends React.Component {
 
 Home.propTypes = {
   addCart: PropTypes.func.isRequired,
+  sumAmount: PropTypes.number,
+};
+
+Home.defaultProps = {
+  sumAmount: 0,
 };
 
 export default Home;

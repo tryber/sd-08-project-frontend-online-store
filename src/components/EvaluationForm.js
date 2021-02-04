@@ -17,7 +17,8 @@ class EvaluationForm extends Component {
             min={ 0 }
             max={ 5 }
             value={ rating }
-            onChange={ (event) => updateField('rating', event.target.value) }
+            name="rating"
+            onChange={ (event) => updateField(event.target.name, event.target.value) }
           />
         </label>
         Deixe sua avaliação:
@@ -51,7 +52,7 @@ class EvaluationForm extends Component {
 EvaluationForm.propTypes = {
   state: PropTypes.shape({
     comment: PropTypes.string,
-    rating: PropTypes.number,
+    rating: PropTypes.string,
     evaluation: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
   handleSubmit: PropTypes.func.isRequired,

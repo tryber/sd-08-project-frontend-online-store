@@ -2,20 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class EvaluationList extends Component {
-  renderEvaluation = () => {
+  componentDidUpdate = () => {
     const { saveEvaluation, state } = this.props;
     const { evaluation } = state;
+    if (evaluation) saveEvaluation();
+  }
 
-    if (evaluation.length !== 0) saveEvaluation();
+  renderEvaluation = () => {
+    const { state } = this.props;
+    const { evaluation } = state;
+
     return (
       <ul>
         Avaliações
-        {evaluation.map((element) => (
+        {evaluation.length !== 0 ? evaluation.map((element) => (
           <li key={ element.comment }>
             {`Nota: ${element.rating}
               Avaliação: ${element.comment}`}
           </li>
-        ))}
+        )) : <p>Não há avaliações ainda.</p>}
       </ul>
     );
   }
@@ -32,7 +37,7 @@ class EvaluationList extends Component {
 EvaluationList.propTypes = {
   state: PropTypes.shape({
     comment: PropTypes.string,
-    rating: PropTypes.number,
+    rating: PropTypes.string,
     evaluation: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
   saveEvaluation: PropTypes.func.isRequired,

@@ -67,26 +67,24 @@ class ProductList extends Component {
           value={ query }
         />
         <ListCategories categories={ listCategories } onClick={ this.handleChange } />
-        {products.map((product) => {
-          // product.amount = 1;
-          return (
-            <div key={ product.id }>
-              <Link
-                to={ {
-                  pathname: `/product/${product.id}`,
-                  state: { productObj: product } } }
-                data-testid="product-detail-link"
-              >
-                <ProductCard
-                  product={ product }
-                />
-              </Link>
-              <ButtonAddToCart
-                dataTestId="product-add-to-cart"
-                addCart={ addCart }
+        {products.map((product) => (// product.amount = 1;
+          <div key={ product.id }>
+            <Link
+              to={ {
+                pathname: `/product/${product.id}`,
+                state: { productObj: product } } }
+              data-testid="product-detail-link"
+            >
+              <ProductCard
                 product={ product }
               />
-              {/* <button
+            </Link>
+            <ButtonAddToCart
+              dataTestId="product-add-to-cart"
+              addCart={ addCart }
+              product={ product }
+            />
+            {/* <button
                 type="button"
                 onClick={ () => addCart(product) }
                 data-testid="product-add-to-cart"
@@ -94,9 +92,8 @@ class ProductList extends Component {
                 <Link />
                 Adicionar ao carrinho
               </button> */}
-            </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     );
   }

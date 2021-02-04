@@ -12,7 +12,7 @@ class ProductDetails extends Component {
 
     this.state = {
       comment: '',
-      rating: undefined,
+      rating: '0',
       evaluation: this.loadEvaluation(),
     };
   }
@@ -31,7 +31,7 @@ class ProductDetails extends Component {
     }));
   }
 
-  loadEvaluation = () => ((localStorage.length !== 0)
+  loadEvaluation = () => ((localStorage.evaluation)
     ? JSON.parse(localStorage.getItem('evaluation'))
     : [])
 
@@ -41,11 +41,11 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { location: { state: { productObj } }, addCart } = this.props;
+    const { location: { state: { productObj } }, addCart, sumAmount } = this.props;
     const { attributes } = productObj;
     return (
       <div>
-        <ShoppingCartLink />
+        <ShoppingCartLink sumAmount={ sumAmount } />
         <div data-testid="product-detail-name">
           <ProductCard product={ productObj } />
         </div>
@@ -85,6 +85,11 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
   addCart: PropTypes.func.isRequired,
+  sumAmount: PropTypes.number,
+};
+
+ProductDetails.defaultProps = {
+  sumAmount: 0,
 };
 
 export default ProductDetails;

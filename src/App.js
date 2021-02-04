@@ -10,8 +10,21 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      onCart: [],
+      onCart: this.loadOncart(),
     };
+  }
+
+  loadOncart = () => ((localStorage.onCart)
+    ? JSON.parse(localStorage.getItem('onCart'))
+    : [])
+
+  saveOncart = () => {
+    const { onCart } = this.state;
+    localStorage.setItem('onCart', JSON.stringify(onCart));
+  }
+
+  componentDidUpdate = () => {
+    this.saveOncart();
   }
 
   increaseQuantity = (event) => {
@@ -62,6 +75,7 @@ class App extends React.Component {
   }
 
   addCart = (product) => {
+    this.saveOncart();
     const { onCart } = this.state;
     const isReapeated = onCart.find(
       (productOnCart) => productOnCart.id === product.id,
@@ -96,8 +110,57 @@ class App extends React.Component {
     );
   }
 
-  render() {
+  updateTotalAmount = () => {
     const { onCart } = this.state;
+    if (onCart.length !== 0) {
+      const sumAmount = onCart.reduce((accumulate, currentObject) => accumulate
+      + currentObject.amount, 0);
+      return (sumAmount);
+    }
+  }
+
+  renderHome = (props) => (
+    <Home
+      { ...props }
+      addCart={ this.addCart }
+      sumAmount={ this.updateTotalAmount() }
+    />
+  )
+
+  renderShoppingCart = (props) => {
+    const { onCart } = this.state;
+    return (
+      <ShoppingCart
+        { ...props }
+        onCart={ onCart }
+        increaseQuantity={ this.increaseQuantity }
+        decreaseQuantity={ this.decreaseQuantity }
+        deleteProduct={ this.deleteProduct }
+        sumPrice={ this.sumPrice }
+      />
+    );
+  }
+
+  renderProductDetails = (props) => {
+    const { onCart } = this.state;
+    return (
+      <ProductDetails
+        { ...props }
+        onCart={ onCart }
+        addCart={ this.addCart }
+        sumAmount={ this.updateTotalAmount() }
+      />
+    );
+  }
+
+  renderCheckout = (props) => {
+    const { onCart } = this.state;
+    return (
+      <Checkout { ...props } onCart={ onCart } sumPrice={ this.sumPrice } />
+    );
+  }
+
+  render() {
     return (
       <div>
         <BrowserRouter>
@@ -105,41 +168,19 @@ class App extends React.Component {
             <Route
               exact
               path="/"
-              render={ (props) => (
-                <Home
-                  { ...props }
-                  addCart={ this.addCart }
-                />
-              ) }
+              render={ this.renderHome }
             />
             <Route
               path="/shopping-cart"
-              render={ (props) => (
-                <ShoppingCart
-                  { ...props }
-                  onCart={ onCart }
-                  increaseQuantity={ this.increaseQuantity }
-                  decreaseQuantity={ this.decreaseQuantity }
-                  deleteProduct={ this.deleteProduct }
-                  sumPrice={ this.sumPrice }
-                />
-              ) }
+              render={ this.renderShoppingCart }
             />
             <Route
               path="/product/:id"
-              render={ (props) => (
-                <ProductDetails
-                  { ...props }
-                  onCart={ onCart }
-                  addCart={ this.addCart }
-                />
-              ) }
+              render={ this.renderProductDetails }
             />
             <Route
               path="/checkout"
-              render={ (props) => (
-                <Checkout { ...props } onCart={ onCart } sumPrice={ this.sumPrice } />
-              ) }
+              render={ this.renderCheckout }
             />
           </Switch>
         </BrowserRouter>
