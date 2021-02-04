@@ -1,3 +1,21 @@
+.minus, .plus {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  outline: inherit;
+  padding: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.plus {
+  margin-left: 10px;
+}
+
 .App {
   text-align: center;
 }
@@ -5,6 +23,21 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.prodContainer {
+  border: 1px solid black;
+  margin: 4px;
+  max-width: 400px;
+}
+
+main {
+  display: flex;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 
 @media ( prefers-reduced-motion : no-preference ) {
@@ -28,6 +61,39 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.categoryContainer button + button {
+  margin-top: 4px;
+}
+
+.shoppingCart {
+  display: inline;
+  position: relative;
+}
+
+.shoppingCart svg {
+  z-index: 0;
+}
+
+.cartCount {
+  align-items: center;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  position: absolute;
+  right: -10px;
+  top: -20px;
+  width: 20px;
+  z-index: 1;
 }
 
 @keyframes App-logo-spin {
