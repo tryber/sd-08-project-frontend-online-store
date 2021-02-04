@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Rating from './Rating';
 import StarsContainer from './StarsContainer';
 
@@ -11,7 +12,7 @@ class RatingProduct extends React.Component {
       // categories: [],
       // radioValue: '',
       // cartItems: [],
-      productsRated: [],
+      // productsRated: [],
       productRating: [],
       email: '',
       comment: '',
@@ -106,17 +107,21 @@ class RatingProduct extends React.Component {
 
   render() {
     const { productRating } = this.state;
-    const { productsList } = this.props;
-    const { id } = this.props;
+    // const { productsList } = this.props;
+    // const { id } = this.props;
     // console.log(productRating);
-    const comments = productsList.filter((e) => e.id === id);
-    const isCommented = productRating.some((e) => e.id === id);
+    // const comments = productsList.filter((e) => e.id === id);
+    // const isCommented = productRating.some((e) => e.id === id);
     return (
       <div>
         {
           productRating.length > 0
             ? productRating.map((e) => (
-              <Rating key={ productRating.indexOf(e) } data-testid="product-detail-evaluation" product={ e } />
+              <Rating
+                key={ productRating.indexOf(e) }
+                data-testid="product-detail-evaluation"
+                product={ e }
+              />
               // <div key={ productRating.indexOf(e) } data-testid="product-detail-evaluation">
               //   <p>{e.product.id}</p>
               //   <p>{e.rating.comment}</p>
@@ -144,5 +149,10 @@ class RatingProduct extends React.Component {
     );
   }
 }
+
+RatingProduct.propTypes = {
+  id: PropTypes.string,
+  productsList: PropTypes.arrayOf(PropTypes.shape({})),
+}.isRequired;
 
 export default RatingProduct;

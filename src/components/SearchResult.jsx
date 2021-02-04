@@ -5,7 +5,9 @@ import AddToCartButton from './AddToCartButton';
 
 class SearchResult extends React.Component {
   renderCard() {
-    const { productsList, handleAddItemToCart, handleProductRating, cartItems, setLocalStorageState } = this.props;
+    const { productsList, handleAddItemToCart, handleProductRating, cartItems,
+      setLocalStorageState,
+    } = this.props;
     // console.log(handleProductRating);
     return (
       <ul className="product-card" key={ productsList.id }>

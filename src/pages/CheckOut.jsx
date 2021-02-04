@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AdressCheckout from '../components/AddressCheckout';
 import CartItem from '../components/CartItem';
 import PersonCheckout from '../components/PersonCheckout';
@@ -27,5 +28,9 @@ class CheckOut extends React.Component {
     );
   }
 }
+
+CheckOut.propTypes = {
+  location: PropTypes.shape({}),
+}.isRequired;
 
 export default CheckOut;
