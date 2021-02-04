@@ -1,10 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ShowDetails from './ShowDetailsButton';
+import AddToCart from './AddToCart';
 
 class SearchResult extends React.Component {
+  constructor() {
+    super();
+    const cartItems = this.props;
+    this.state = {
+      cartItems: { cartItems },
+    };
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+  }
+
+  handleAddToCart(id, title, amount) {
+    const stateCartItems = this.state.cartItems;
+    if (stateCartItems[id]) {
+      stateCartItems[id].amount += amount;
+    } else {
+      stateCartItems[id] = { id, title, amount };
+    }
+  }
+
   renderCard() {
-    const { productsList } = this.props;
+    const { productsList, cartItems } = this.props;
     return (
       <ul className="product-card" key={ productsList.id }>
         {
@@ -29,7 +48,9 @@ class SearchResult extends React.Component {
                 // shipping={ shipping }
                 address={ address }
                 condition={ condition }
+                // cartitems={ cartItems }
               />
+              <AddToCart onClickCallback={ this.handleAddToCart } />
             </li>
           ))
         }
