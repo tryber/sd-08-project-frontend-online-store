@@ -12,6 +12,7 @@ class ProductDetails extends React.Component {
       productDetail: {},
       loading: true,
       productsInCart: [],
+      quant: 1,
     };
 
     this.getProductDetails = this.getProductDetails.bind(this);
@@ -55,11 +56,11 @@ class ProductDetails extends React.Component {
   }
 
   sendToCart() {
-    const { productDetail } = this.state;
+    const { productDetail, quant } = this.state;
     const { title, price } = productDetail;
     const { match: { params: { id } } } = this.props;
     this.setState(({ productsInCart }) => ({
-      productsInCart: [...productsInCart, { title, price, id }],
+      productsInCart: [...productsInCart, { title, price, id, quant }],
     }), () => {
       const { productsInCart } = this.state;
       localStorage.setItem('productsCart', JSON.stringify(productsInCart));
