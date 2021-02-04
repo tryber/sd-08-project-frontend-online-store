@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ProductsCart from '../components/ProductsCart';
 
 class ShoppingCart extends React.Component {
@@ -78,6 +79,19 @@ class ShoppingCart extends React.Component {
     return (
       <div>
         <h1>Carrinho</h1>
+
+        {productsCart.map((product) => (
+          <ProductsCart key={ product.id } product={ product } />))}
+        <div>
+          <Link
+            to="/checkout"
+            data-testid="checkout-products"
+          >
+            <button type="button">
+              Finalizar Compra
+            </button>
+          </Link>
+        
         {products.map((product) => (
           <ProductsCart
             key={ product.id }
@@ -87,6 +101,7 @@ class ShoppingCart extends React.Component {
         <hr />
         <div>
           <span>{`Total: R$${total}`}</span>
+
         </div>
       </div>
     );
