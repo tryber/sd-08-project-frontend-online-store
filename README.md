@@ -53,7 +53,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
     - [19. Coloque uma animação no carrinho para quando um produto for adicionado](#19-coloque-uma-animação-no-carrinho-para-quando-um-produto-for-adicionado)
     - [20. Crie um slider lateral para exibir o carrinho na tela principal](#20-crie-um-slider-lateral-para-exibir-o-carrinho-na-tela-principal)
     - [21. Destaque, na tela principal, os produtos já adicionados ao carrinho](#21-destaque-na-tela-principal-os-produtos-já-adicionados-ao-carrinho)
-    - [22. Crie um slider lateral para exibir o carrinho na tela principal](#22-crie-um-slider-lateral-para-exibir-o-carrinho-na-tela-principal)
+    - [22. Impeça que a quantidade do produto seja negativa](#22-impeça-que-a-quantidade-do-produto-seja-negativa)
 - [Avisos finais](#avisos-finais)
 
 # Habilidades
@@ -266,6 +266,8 @@ O retorno desse endpoint será algo no formato:
 ```
 
 O retorno desse endpoint será algo como o exemplo que temos [neste arquivo](exemplo-motorola.json).
+
+⚠ **ATENÇÃO! Se der erro de CORS aperte `ctrl + shift + r` no seu navegador** ⚠
 
 ### Linter
 
@@ -503,7 +505,7 @@ O que será verificado:
 
 #### 9. Adicione um produto ao carrinho a partir de sua tela de exibição detalhada
 
-**PRIORIDADE 3** - Na tela de listagem de produtos, permitir adicionar o produto ao carrinho (veja os detalhes no card).
+**PRIORIDADE 3** - Na tela de exibição detalhada do produto, permitir adicionar o produto ao carrinho (veja os detalhes no card).
 
 - [Tela principal - Adicionar ao carrinho na exibição detalhada](https://github.com/tryber/sd-08-project-frontend-online-store/tree/master/wireframes/card_13.png)
 
@@ -532,7 +534,7 @@ São operações básicas de carrinho a alteração da quantidade de um determin
 
   * Adicione elementos na página do carrinho de compras para aumentar ou diminuir a quantidade de cada produto presente no carrinho.
   * Adicione o atributo `data-testid` com o valor `product-increase-quantity` no elemento que aumenta a quantidade de um produto. Adicione esse atributo para todos os produtos.
-  * Adicione o atributo `data-testid` com o valor `product-decreate-quantity` no elemento que diminui a quantidade de um produto. Adicione esse atributo para todos os produtos.
+  * Adicione o atributo `data-testid` com o valor `product-decrease-quantity` no elemento que diminui a quantidade de um produto. Adicione esse atributo para todos os produtos.
 
 O que será verificado:
 ```
@@ -672,7 +674,7 @@ O que será verificado:
 
 - [Tela - Listagem com destaque.png](https://github.com/tryber/sd-08-project-frontend-online-store/tree/master/wireframes/bonus_marked_product.png)
 
-#### 22. Crie um slider lateral para exibir o carrinho na tela principal
+#### 22. Impeça que a quantidade do produto seja negativa
 
 **PRIORIDADE 5** - Da tela de detalhamento de produto, permitir alterar a quantidade daquele produto no carrinho, se ele estiver lá, com botões (-) e (+). A quantidade não pode ser negativa (veja detalhes no card).
 
@@ -684,6 +686,6 @@ O que será verificado:
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/3oQUErg)
 
 O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
