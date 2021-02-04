@@ -8,6 +8,13 @@ class Cart extends React.Component {
     this.state = {
       cartItems: recoverCart(),
     };
+    this.handleChangeCart = this.handleChangeCart.bind(this);
+  }
+
+  handleChangeCart() {
+    this.setState({
+      cartItems: recoverCart(),
+    });
   }
 
   render() {
@@ -19,7 +26,11 @@ class Cart extends React.Component {
           <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>)
         : (cartItems.map(({ id, name, amount }) => (
 
-          <CartItem key={ id } productInfos={ { name, amount } } />
+          <CartItem
+            key={ id }
+            productInfos={ { id, name, amount } }
+            handleChangeCart={ this.handleChangeCart }
+          />
 
           // <div className="cartItem" key={ id }>
           //   <p data-testid="shopping-cart-product-name">{ name }</p>
