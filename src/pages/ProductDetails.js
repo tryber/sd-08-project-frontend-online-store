@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import AddProduct from '../components/AddProduct';
 import Loading from '../components/Loading';
 import CartQuantifier from '../components/CartQuantifier';
+import Rating from '../components/Ratings';
 
 class ProductDetails extends React.Component {
   constructor(props) {
