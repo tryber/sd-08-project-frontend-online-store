@@ -14,7 +14,8 @@ class Search extends Component {
   }
 
   async searchCategories(valor) {
-    const results = await getProductsFromCategoryAndQuery('', valor);
+    const query = await getProductsFromCategoryAndQuery('', valor);
+    const { results } = query;
     this.setState({ results });
   }
 

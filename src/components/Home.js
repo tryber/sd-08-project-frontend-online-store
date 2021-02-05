@@ -33,8 +33,9 @@ class Home extends React.Component {
   }
 
   async pesquisarCategoria(idCategoria) {
-    const resultadoCategoria = await getProductsFromCategoryAndQuery(idCategoria);
-    this.setState({ resultadoCategoria });
+    const resultadoCategoria = await getProductsFromCategoryAndQuery(idCategoria, '');
+    const { results } = resultadoCategoria;
+    this.setState({ resultadoCategoria: results });
   }
 
   busca(busca) {
