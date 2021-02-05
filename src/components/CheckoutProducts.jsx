@@ -20,6 +20,14 @@ class CheckoutProducts extends React.Component {
             </div>
           ))}
         </div>
+        <div>
+          <span>
+            {`TOTAL DA COMPRA: R$${(products.reduce((current, value) => {
+              current += value.price * value.amount;
+              return current;
+            }, 0)).toFixed(2)}`}
+          </span>
+        </div>
       </div>
     );
   }
