@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 class ProductDetails extends React.Component {
   constructor() {
     super();
@@ -32,21 +34,31 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { location: { product }, ratings } = this.props;
+    const { location: { product }, ratings, addToCart } = this.props;
     const { title, price, thumbnail, attributes } = product;
     return (
       <div className="product-details" data-testid="product-detail-name">
-        <h1>{title}</h1>
+        <Link to="/shoppingcart" data-testid="shopping-cart-button">
+          Futura imagem do carrinho
+        </Link>
+        <h1>{ title }</h1>
         <img src={ thumbnail } alt={ title } />
         <p>{price}</p>
         <div>
           <h3>Especificações tecnicas</h3>
           <ul>
-            {attributes.map(({ id, value_name: value, name }) => (
+            { attributes.map(({ id, value_name: value, name }) => (
               <li key={ id }>
-                { `${name} : ${value}`}
+                {`${name} : ${value}`}
               </li>))}
           </ul>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => addToCart(product) }
+          >
+            Adicionar
+          </button>
         </div>
         { this.formRating() }
         { ratings.filter(({ id }) => id === product.id).map(({ id, rating, comment }) => (
@@ -76,6 +88,7 @@ ProductDetails.propTypes = {
       attributes: PropTypes.arrayOf(PropTypes.object).isRequired,
     }),
   }).isRequired,
+  addToCart: PropTypes.func.isRequired,
   addRating: PropTypes.func.isRequired,
   ratings: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
