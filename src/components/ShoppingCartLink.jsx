@@ -6,7 +6,7 @@ import shopCartImg from '../carrinho-de-compras.png';
 
 class ShoppingCartLink extends React.Component {
   render() {
-    const { cart } = this.props;
+    const { cart, length } = this.props;
 
     return (
       <Link
@@ -15,6 +15,7 @@ class ShoppingCartLink extends React.Component {
           state: { cart } } }
         data-testid="shopping-cart-button"
       >
+        <p data-testid="shopping-cart-size">{ length }</p>
         <img
           alt="carrinho de compras"
           className="cart-icon"
@@ -27,6 +28,7 @@ class ShoppingCartLink extends React.Component {
 
 ShoppingCartLink.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.object),
+  length: PropTypes.number.isRequired,
 };
 
 ShoppingCartLink.defaultProps = {
