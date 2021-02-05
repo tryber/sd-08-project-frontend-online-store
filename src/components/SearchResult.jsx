@@ -1,8 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ShowDetails from './ShowDetailsButton';
+import AddToCart from './AddToCart';
 
 class SearchResult extends React.Component {
+  constructor() {
+    super();
+    // const cartItems = this.props;
+    // this.state = {
+    //   cartItems: { cartItems },
+    // };
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+  }
+
+  handleAddToCart() {
+    // const cartItems = JSON.parse(localStorage.getItem('cart'));
+    // this.setState({
+    //   cartItems,
+    // });
+  }
+
   renderCard() {
     const { productsList } = this.props;
     return (
@@ -29,6 +46,11 @@ class SearchResult extends React.Component {
                 // shipping={ shipping }
                 address={ address }
                 condition={ condition }
+                // cartitems={ cartItems }
+              />
+              <AddToCart
+                onClickCallback={ this.handleAddToCart }
+                productInfos={ { id, title, amount: 1, testId: 'product-add-to-cart' } }
               />
             </li>
           ))

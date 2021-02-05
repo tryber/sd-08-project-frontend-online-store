@@ -14,13 +14,14 @@ import SearchForm from '../components/SearchForm';
 class Home extends React.Component {
   constructor() {
     super();
+    const currentCart = localStorage.getItem('cart');
     this.state = {
       searchField: '',
       productsList: [],
       categories: [],
       radioValue: '',
       // productDetail: [],
-      // cartItems: [],
+      cartItems: currentCart || [],
       // showCart: false,
       // isLoading: true,
     };
@@ -73,7 +74,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories, productsList } = this.state;
+    const { categories, productsList, cartItems } = this.state;
     return (
       <>
         <SearchForm
@@ -85,7 +86,10 @@ class Home extends React.Component {
           categories={ categories }
           handleInputRadio={ this.handleInputRadio }
         />
-        <SearchResult productsList={ productsList } />
+        <SearchResult
+          productsList={ productsList }
+          cartItems={ cartItems }
+        />
         {/* {
           productsList.length < 1
             ? <InitialMessage />
