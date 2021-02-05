@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Rating from '../components/Rating';
 
 export default class Details extends React.Component {
   constructor() {
