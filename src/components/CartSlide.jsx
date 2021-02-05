@@ -1,37 +1,27 @@
 import React, { useState, useEffect } from 'react';
-
+// , useEffect
 import { useSelector, useDispatch } from 'react-redux';
 import { parseCart } from '../helpers/helpers';
 import { actionClear, actionAdd, actionRemove } from '../store/cart.reducer';
 
 import CartMessage from './cart/CartMessage';
-import CartButtonClear from './cart/CartButtonClear';
 import CartMenu from './cart/CartMenu';
 import CartListItem from './cart/CartListItem';
+import CartButtonBox from './cart/CartButtonBox';
 
 export default function CartSlide() {
   const cart = useSelector((state) => state.cart);
-  const control = useSelector((state) => state.control);
+  const control = useSelector((state) => state.control); // lint
   const [list, setList] = useState(parseCart(cart));
-  const [update, setUpdate] = useState(0);
+  const [update, setUpdate] = useState(0); // lint
   const dispatch = useDispatch();
   const handleItemAdd = (product) => {
     const item = list[list.findIndex((i) => i.id === product.id)];
-    item.quantity += 1;
-    item.total += parseFloat(item.price);
-    dispatch(actionAdd(product));
-  };
-  const handleItemRemove = (product) => {
-    const item = list[list.findIndex((i) => i.id === product.id)];
-    if (item.quantity > 0) {
-      item.quantity -= 1;
-      item.total -= parseFloat(item.price);
+    if (item.quantity < item.stock) {
+      item.total += parseFloat(item.price);
+      item.quantity += 1;
+      dispatch(actionAdd(product));
     }
-    dispatch(actionRemove(item.id));
-  };
-  const handleClearCart = () => {
-    dispatch(actionClear());
-    setList([]);
   };
   useEffect(() => {
     if (update <= control.updatecart) {
@@ -39,6 +29,19 @@ export default function CartSlide() {
     }
     setUpdate(control.updatecart);
   }, [control]);
+  const handleItemRemove = (product) => {
+    const item = list[list.findIndex((i) => i.id === product.id)];
+    if (item.quantity > 0) {
+      item.quantity -= 1;
+      item.total -= parseFloat(item.price);
+      dispatch(actionRemove(item.id));
+    }
+  };
+  const handleClearCart = () => {
+    dispatch(actionClear());
+    setList([]);
+  };
+
   return (
     <div id="cart-slide" className="cart-slide">
       <CartMenu />
@@ -53,7 +56,7 @@ export default function CartSlide() {
               handleItemRemove={ () => handleItemRemove(i) }
             />
           ))}
-          <CartButtonClear handleClick={ handleClearCart } />
+          <CartButtonBox handleClearCartClick={ handleClearCart } />
         </div>
       </div>
     </div>

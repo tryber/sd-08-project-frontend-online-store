@@ -8,22 +8,24 @@ import CardInfo from './card/CardInfo';
 
 import { actionAdd } from '../store/cart.reducer';
 import { actionAdd as actionAddDetail } from '../store/details.reducer';
-import { actionCartUpdate } from '../store/control.reducer';
+import { actionCartUpdate, actionSlideClose } from '../store/control.reducer';
 
 export default function ProductCard(props) {
   const {
-    product: { id, title, thumbnail, price },
+    product: { id, title, thumbnail, price, shipping },
   } = props;
   const dispatch = useDispatch();
 
   const history = useHistory();
   const handleClick = () => {
     const { product } = props;
+    dispatch(dispatch(actionSlideClose()));
     dispatch(actionAddDetail({ ...product }));
     history.push(`/product/${id}`);
   };
   const handleBuyClick = () => {
-    dispatch(actionAdd({ id, title, price }));
+    const { product } = props;
+    dispatch(actionAdd({ ...product }));
     dispatch(actionCartUpdate());
     // history.push('/');
   };
@@ -35,7 +37,7 @@ export default function ProductCard(props) {
         data-testid="product-detail-link"
         onClick={ handleClick }
       >
-        <CardImage url={ thumbnail } alt={ title } />
+        <CardImage url={ thumbnail } freeshipping={ shipping } />
         <CardInfo price={ price } title={ title } />
       </button>
       <section className="product-buy">
@@ -60,5 +62,6 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     mercadopago: PropTypes.bool.isRequired,
+    shipping: PropTypes.bool.isRequired,
   }).isRequired,
 };

@@ -27,6 +27,8 @@ async function parseProductData(data) {
       price: parsePrice(i.price),
       mercadopago: i.accepts_mercadopago,
       thumbnail: i.thumbnail.replace('-I.jpg', '-O.jpg'),
+      shipping: i.shipping.free_shipping,
+      stock: i.available_quantity,
       // images: (await getProductImages(i.id)) || [],
       // attributes: (await getProductAttributes(i.id)) || [],
     })),
@@ -38,6 +40,7 @@ const parseCart = (cart) => {
   if (!cart) return [];
   return cart.reduce((a, c) => {
     const index = a.findIndex((i) => i.id === c.id);
+    c.price = parseFloat(c.price);
     if (index >= 0) {
       a[index].quantity += 1;
       a[index].total += parseFloat(c.price);
@@ -49,4 +52,36 @@ const parseCart = (cart) => {
   // .sort((a, b) => a.title.localeCompare(b.title));
 };
 
-module.exports = { shuffle, parsePrice, parseProductData, parseCart };
+async function getProductAttributes(productId) {
+  try {
+    const result = await fetch(`https://api.mercadolibre.com/items/${productId}`)
+      .then((res) => res.json())
+      .then((p) => p.attributes
+        .map((i) => ({
+          type: i.name,
+          value: i.value_name,
+        }))
+        .filter(
+          (i) => i.value !== null
+              && i.value !== undefined
+              && i.value !== 'UNDEFINED'
+              && i.type !== 'SKU'
+              && i.type !== undefined
+              && i.type !== 'Condição do item'
+              && i.type !== 'É kit'
+              && i.type !== 'Características do produto',
+        ));
+
+    return result;
+  } catch (e) {
+    return [];
+  }
+}
+
+module.exports = {
+  shuffle,
+  parsePrice,
+  parseProductData,
+  parseCart,
+  getProductAttributes,
+};

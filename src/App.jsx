@@ -8,9 +8,10 @@ import store from './store';
 
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
-import Cart from './pages/Cart';
+// import Cart from './pages/Cart';
 // import Debug from './pages/Debug';
 // import HomeModelo from './pages/HomeModelo';
+import Checkout from './pages/Checkout';
 
 export default function App() {
   return (
@@ -19,7 +20,8 @@ export default function App() {
         <Switch>
           <Route path="/" exact component={ Home } />
           <Route path="/product/:id" exact component={ ProductDetails } />
-          <Route path="/cart" exact component={ Cart } />
+          {/* <Route path="/cart" exact component={ Cart } /> */}
+          <Route path="/checkout" exact component={ Checkout } />
 
           <Redirect from="*" to="/" />
         </Switch>
