@@ -5,7 +5,7 @@ import ProductCard from './ProductCard';
 class ProductList extends React.Component {
   errorMessage() {
     return (
-      <section className="main-container sec-products">
+      <section className="main-container sec-products products-error">
         <h3>Nenhum produto foi encontrado</h3>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
