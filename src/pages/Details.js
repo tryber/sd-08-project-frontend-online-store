@@ -42,31 +42,33 @@ export default class Details extends React.Component {
     const { Title, Sku, Price, Thumbnail, Attributes } = this.state;
     const { onClick } = this.props;
     return (
-      <section key={ Sku } className="product-details">
-        <div className="details-cover">
-          <p data-testid="product-detail-name">{Title}</p>
-          <img src={ Thumbnail } alt={ Title } />
-          <p>{`R$${parseFloat(Price).toFixed(2)}`}</p>
-          <button
-            type="button"
-            onClick={ onClick }
-            id={ Sku }
-            data-testid="product-detail-add-to-cart"
-          >
-            Comprar
-          </button>
-        </div>
-        <div className="infos-list">
-          {Attributes.map((attribute) => (
-            attribute.value_name !== null
+      <div>
+        <section key={ Sku } className="product-details">
+          <div className="details-cover">
+            <p data-testid="product-detail-name">{Title}</p>
+            <img src={ Thumbnail } alt={ Title } />
+            <p>{`R$${parseFloat(Price).toFixed(2)}`}</p>
+            <button
+              type="button"
+              onClick={ onClick }
+              id={ Sku }
+              data-testid="product-detail-add-to-cart"
+            >
+              Comprar
+            </button>
+          </div>
+          <div className="infos-list">
+            {Attributes.map((attribute) => (
+              attribute.value_name !== null
             && (
               <div className="cel-container" key={ attribute.id }>
                 <div className="cel">{attribute.name}</div>
                 <div className="cel">{attribute.value_name}</div>
               </div>)
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      </div>
     );
   }
 }

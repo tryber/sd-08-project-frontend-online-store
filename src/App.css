@@ -177,6 +177,25 @@ main {
   width: 76%;
 }
 
+.rating-container {
+  background-color: #303030;
+  box-sizing: border-box;
+  height: 200px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 80%;
+}
+
+.star {
+  color: silver;
+  font-size: 25px;
+  margin: 2px;
+}
+
+.shine {
+  color: goldenrod;
+}
+
 .search-bar {
   align-items: center;
   display: flex;
