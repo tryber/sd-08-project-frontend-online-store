@@ -152,7 +152,7 @@ textarea:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #fff159;
+  background-color: rgba(255, 255, 255, 0);
   padding-left: 12px;
   padding-right: 4px;
 }
@@ -176,6 +176,41 @@ textarea:focus {
   color: rgba(0, 0, 0, 0.808);
   font-size: 0.9em;
   font-weight: 600;
+}
+
+.anim-move {
+  -webkit-animation: spin 0.3s linear infinite;
+          animation: spin 0.3s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  50% {
+    -webkit-transform: scale(1.05, 1.05);
+            transform: scale(1.05, 1.05);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  50% {
+    -webkit-transform: scale(1.05, 1.05);
+            transform: scale(1.05, 1.05);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
 }
 
 .content {
