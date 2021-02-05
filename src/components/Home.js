@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import ListAllCategories from './ListAllCategories';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import SearchByCategory from './SearchByCategory';
 
 class Home extends React.Component {
   constructor() {
@@ -10,9 +11,11 @@ class Home extends React.Component {
     this.state = {
       busca: '',
       categories: [],
+      resultadoCategoria: [],
     };
     this.fetchCategories = this.fetchCategories.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.pesquisarCategoria = this.pesquisarCategoria.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +32,11 @@ class Home extends React.Component {
     this.setState({ categories });
   }
 
+  async pesquisarCategoria(idCategoria) {
+    const resultadoCategoria = await getProductsFromCategoryAndQuery(idCategoria);
+    this.setState({ resultadoCategoria });
+  }
+
   busca(busca) {
     return (
       <div>
@@ -37,6 +45,9 @@ class Home extends React.Component {
           <input
             type="text"
             id="busca"
+            name="busca"
+            data-testid="query-input"
+            onChange={ this.handleChange }
           />
         </label>
         <Search valor={ busca } />
@@ -55,13 +66,17 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories, busca  } = this.state;
+    const { categories, busca, resultadoCategoria } = this.state;
     return (
       <form>
         {/* cria uma label e um input  e o botao */}
         { this.busca(busca) }
         { this.botao() }
-        <ListAllCategories categories={ categories } />
+        <ListAllCategories
+          pesquisarCategoria={ this.pesquisarCategoria }
+          categories={ categories }
+        />
+        <SearchByCategory produtos={ resultadoCategoria } />
       </form>
     );
   }

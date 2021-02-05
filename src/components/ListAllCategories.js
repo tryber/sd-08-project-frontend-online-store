@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 export default class ListAllCategories extends Component {
   render() {
-    const { categories } = this.props;
+    const { categories, pesquisarCategoria } = this.props;
     return (
       <div>
         {categories.map((category) => (
           <button
             data-testid="category"
             type="button"
+            onClick={ () => pesquisarCategoria(category.id) }
             key={ category.id }
           >
             { category.name }
@@ -22,4 +23,5 @@ export default class ListAllCategories extends Component {
 
 ListAllCategories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  pesquisarCategoria: PropTypes.func.isRequired,
 };
