@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CartItem from '../components/CartItem';
 
 export default class Cart extends React.Component {
   constructor(props) {
@@ -8,7 +9,6 @@ export default class Cart extends React.Component {
     this.state = {
       cartList: [],
       idList: productId,
-      qnt: 1,
     };
   }
 
@@ -28,11 +28,11 @@ export default class Cart extends React.Component {
     idList.map(async (idItem) => {
       await fetch(`https://api.mercadolibre.com/items/${idItem}`)
         .then((response) => response.json())
-        .then((data) => this.addProdutc(data));
+        .then((data) => this.addProduct(data));
     });
   }
 
-  addProdutc(product = {}) {
+  addProduct(product = {}) {
     const { cartList } = this.state;
     const index = cartList.findIndex((procu) => product.id === procu.id);
     if (index >= 0) {
@@ -49,7 +49,7 @@ export default class Cart extends React.Component {
     });
   }
 
-  removeProdutc(product = {}) {
+  removeProduct(product = {}) {
     const { cartList } = this.state;
     if (!product) { return console.log('Não há produto nesse pedido'); }
     const index = cartList.findIndex((procu) => product.id === procu.id
@@ -91,42 +91,11 @@ export default class Cart extends React.Component {
                   <div className="cel">Quantidade</div>
                   <div className="cel">Preço</div>
                 </div>
-                {cartList.map((item) => (
-                  <div key={ item.id } className="cel-container-row">
-                    <div
-                      data-testid="shopping-cart-product-name"
-                      className="cel"
-                    >
-                      {item.title}
-                    </div>
-                    <div className="cel">
-                      <button
-                        type="button"
-                        name={ item.title }
-                        data-testid="product-decrease-quantity"
-                        onClick={ () => this.removeProdutc(item) }
-                      >
-                        -
-                      </button>
-                      <div
-                        data-testid="shopping-cart-product-quantity"
-                        className="cel"
-                      >
-                        {item.quantity}
-                      </div>
-                      <button
-                        type="button"
-                        name={ item.title }
-                        onClick={ () => this.addProdutc(item) }
-                        data-testid="product-increase-quantity"
-                      >
-                        +
-
-                      </button>
-                    </div>
-                    <div className="cel">{parseFloat(item.price).toFixed(2)}</div>
-                  </div>
-                ))}
+                <CartItem
+                  cartList={ cartList }
+                  removeProduct={ this.removeProduct }
+                  addProduct={ this.addProduct }
+                />
               </div>
             </section>)}
       </div>
