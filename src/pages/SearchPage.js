@@ -25,6 +25,7 @@ class SearchPage extends Component {
 
   render() {
     const { products } = this.state;
+    const { updateItensOnCart } = this.props;
     console.log(products);
     return (
       <div>
@@ -40,6 +41,7 @@ class SearchPage extends Component {
               price={ `R$ ${product.price}` }
               attributes={ product.attributes }
               freeShipping={ product.shipping.free_shipping }
+              updateItensOnCart={ updateItensOnCart }
             />
           ))}
           {!products.length && <p>Nenhum produto foi encontrado</p>}

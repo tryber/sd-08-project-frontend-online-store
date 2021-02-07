@@ -8,18 +8,27 @@ import AddItem from './AddItem';
 class ProductCard extends Component {
   render() {
     const {
-      id, title, image, price, attributes, availableQuantity, freeShipping,
+      id,
+      title,
+      image,
+      price,
+      attributes,
+      availableQuantity,
+      freeShipping,
+      updateItensOnCart,
     } = this.props;
     return (
       <div data-testid="product" className="card-container">
         <span className="product-title">{title}</span>
         <img className="product-image" src={ image } alt="Product Tumbnail" />
-        {freeShipping && <img
-          data-testid="free-shipping"
-          className="free-shipping-image"
-          src={ FreeShipping }
-          alt="Frete grátis"
-        /> }
+        {freeShipping && (
+          <img
+            data-testid="free-shipping"
+            className="free-shipping-image"
+            src={ FreeShipping }
+            alt="Frete grátis"
+          />
+        )}
         <span className="product-price">{price}</span>
         <Link
           className="details"
@@ -36,6 +45,7 @@ class ProductCard extends Component {
           price={ price }
           availableQuantity={ availableQuantity }
           dataTestId="product-add-to-cart"
+          updateItensOnCart={ updateItensOnCart }
         />
       </div>
     );
