@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CartLine from '../components/CartLine';
 
 export default class Cart extends React.Component {
   constructor(props) {
@@ -8,7 +9,6 @@ export default class Cart extends React.Component {
     this.state = {
       cartList: [],
       idList: productId,
-      qnt: 1,
     };
   }
 
@@ -75,6 +75,17 @@ export default class Cart extends React.Component {
     return result;
   }
 
+  callback(cartList) {
+    return cartList;
+  }
+
+  changeState() {
+    const cartList = this.callback;
+    this.setState({
+      cartList: [...cartList],
+    });
+  }
+
   render() {
     const { cartList } = this.state;
     return (
@@ -83,52 +94,7 @@ export default class Cart extends React.Component {
           ? (
             <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
           )
-          : (
-            <section>
-              <div>
-                <div className="cel-container-row">
-                  <div className="cel">Item</div>
-                  <div className="cel">Quantidade</div>
-                  <div className="cel">Preço</div>
-                </div>
-                {cartList.map((item) => (
-                  <div key={ item.id } className="cel-container-row">
-                    <div
-                      data-testid="shopping-cart-product-name"
-                      className="cel"
-                    >
-                      {item.title}
-                    </div>
-                    <div className="cel">
-                      <button
-                        type="button"
-                        name={ item.title }
-                        data-testid="product-decrease-quantity"
-                        onClick={ () => this.removeProdutc(item) }
-                      >
-                        -
-                      </button>
-                      <div
-                        data-testid="shopping-cart-product-quantity"
-                        className="cel"
-                      >
-                        {item.quantity}
-                      </div>
-                      <button
-                        type="button"
-                        name={ item.title }
-                        onClick={ () => this.addProdutc(item) }
-                        data-testid="product-increase-quantity"
-                      >
-                        +
-
-                      </button>
-                    </div>
-                    <div className="cel">{parseFloat(item.price).toFixed(2)}</div>
-                  </div>
-                ))}
-              </div>
-            </section>)}
+          : <CartLine cartList={ cartList } callback={ this.callback } />}
       </div>
     );
   }
