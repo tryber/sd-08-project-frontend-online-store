@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import SearchBar from '../components/SearchBar';
 import * as api from '../services/api';
@@ -25,6 +26,7 @@ class SearchPage extends Component {
 
   render() {
     const { products } = this.state;
+    const { updateItensOnCart } = this.props;
     console.log(products);
     return (
       <div>
@@ -40,6 +42,7 @@ class SearchPage extends Component {
               price={ `R$ ${product.price}` }
               attributes={ product.attributes }
               freeShipping={ product.shipping.free_shipping }
+              updateItensOnCart={ updateItensOnCart }
             />
           ))}
           {!products.length && <p>Nenhum produto foi encontrado</p>}
@@ -48,5 +51,8 @@ class SearchPage extends Component {
     );
   }
 }
+SearchPage.propTypes = {
+  updateItensOnCart: PropTypes.func.isRequired,
+};
 
 export default SearchPage;

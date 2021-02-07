@@ -7,16 +7,37 @@ import AddItem from '../components/AddItem';
 import ProductEvaluation from '../components/ProductEvaluation';
 
 class ProductDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      itensOnCart: 0,
+    };
+    this.updateItensOnCart = this.updateItensOnCart.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateItensOnCart();
+  }
+
+  updateItensOnCart() {
+    let itensOnCart = 0;
+    if ({}.hasOwnProperty.call(sessionStorage, 'itensOnCart')) {
+      itensOnCart = JSON.parse(sessionStorage.getItem('itensOnCart'));
+    }
+    this.setState({ itensOnCart });
+  }
+
   render() {
     const {
       location: {
         state: { title, image, price, attributes },
       },
     } = this.props;
+    const { itensOnCart } = this.state;
     return (
       <section>
         <Header />
-        <ButtonCart />
+        <ButtonCart itensOnCart={ itensOnCart } />
         <div className="details-container">
           <img src={ image } alt="" />
           <div className="title-price">
@@ -27,6 +48,7 @@ class ProductDetails extends Component {
             title={ title }
             price={ price }
             dataTestId="product-detail-add-to-cart"
+            updateItensOnCart={ this.updateItensOnCart }
           />
           <div className="atributes">
             <h3>Especificações Técnicas</h3>
