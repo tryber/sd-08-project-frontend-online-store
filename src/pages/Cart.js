@@ -16,19 +16,19 @@ export default class Cart extends React.Component {
     await this.getProductInfo();
   }
 
-  setCart(data) {
-    const { cartList } = this.state;
-    this.setState({
-      cartList: [...cartList, data],
-    });
-  }
+  // setCart(data) {
+  //   const { cartList } = this.state;
+  //   this.setState({
+  //     cartList: [...cartList, data],
+  //   });
+  // }
 
   async getProductInfo() {
     const { idList } = this.state;
     idList.map(async (idItem) => {
       await fetch(`https://api.mercadolibre.com/items/${idItem}`)
         .then((response) => response.json())
-        .then((data) => this.setCart(data));
+        .then((data) => this.addProdutc(data));
     });
   }
 
@@ -76,7 +76,7 @@ export default class Cart extends React.Component {
   }
 
   render() {
-    const { cartList, qnt } = this.state;
+    const { cartList } = this.state;
     return (
       <div className="cart">
         {cartList.length === 0
@@ -88,8 +88,8 @@ export default class Cart extends React.Component {
               <div>
                 <div className="cel-container-row">
                   <div className="cel">Item</div>
-                  <div className="cel">Preço</div>
                   <div className="cel">Quantidade</div>
+                  <div className="cel">Preço</div>
                 </div>
                 {cartList.map((item) => (
                   <div key={ item.id } className="cel-container-row">
@@ -100,14 +100,27 @@ export default class Cart extends React.Component {
                       {item.title}
                     </div>
                     <div className="cel">
-                      <button type="button" name={ item.title }> - </button>
+                      <button
+                        type="button"
+                        name={ item.title }
+                        onClick={ () => this.removeProdutc(item) }
+                      >
+                        -
+                      </button>
                       <div
                         data-testid="shopping-cart-product-quantity"
                         className="cel"
                       >
-                        {qnt}
+                        {item.quantity}
                       </div>
-                      <button type="button" name={ item.title }> + </button>
+                      <button
+                        type="button"
+                        name={ item.title }
+                        onClick={ () => this.addProdutc(item) }
+                      >
+                        +
+
+                      </button>
                     </div>
                     <div className="cel">{parseFloat(item.price).toFixed(2)}</div>
                   </div>
