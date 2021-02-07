@@ -42,6 +42,7 @@ AddItem.defaultProps = {
   products: {},
 };
 AddItem.propTypes = {
+  updateItensOnCart: PropTypes.func.isRequired,
   dataTestId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,

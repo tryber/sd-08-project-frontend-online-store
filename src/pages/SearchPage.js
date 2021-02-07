@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import SearchBar from '../components/SearchBar';
 import * as api from '../services/api';
@@ -50,5 +51,8 @@ class SearchPage extends Component {
     );
   }
 }
+SearchPage.propTypes = {
+  updateItensOnCart: PropTypes.func.isRequired,
+};
 
 export default SearchPage;

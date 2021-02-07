@@ -53,6 +53,7 @@ class ProductCard extends Component {
 }
 
 ProductCard.propTypes = {
+  updateItensOnCart: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
