@@ -1,0 +1,11 @@
+.searchPage-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px auto;
+  width: 90%;
+}
+
+.searchPage-container p {
+  font-size: 30px;
+}

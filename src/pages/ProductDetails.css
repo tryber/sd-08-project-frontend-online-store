@@ -1,0 +1,34 @@
+.details-container {
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px auto;
+  width: 70%;
+}
+
+.details-container img {
+  height: 150px;
+}
+
+.title-price {
+  max-width: 400px;
+  text-align: center;
+}
+
+.title-price span {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.add-to-cart {
+  display: inline-block;
+  font-size: 30px;
+  text-align: center;
+}
+
+.add-to-cart:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}

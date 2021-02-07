@@ -1,0 +1,26 @@
+.searchbar-container form input {
+  border-radius: 30px;
+  font-size: 25px;
+  height: 25px;
+  margin: 10px 50px;
+  width: 90%;
+}
+
+.searchbar-container form label {
+  display: block;
+  font-size: 30px;
+  text-align: center;
+}
+
+.searchbar-container form button {
+  background-color: rgb(39, 38, 38);
+  border-radius: 25px;
+  color: white;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+.searchbar-container form button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
