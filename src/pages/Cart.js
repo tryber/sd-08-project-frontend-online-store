@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import CartItem from '../components/CartItem';
+=======
+import CartLine from '../components/CartLine';
+>>>>>>> 947fb88bf1221f219aaea9ebfb9457a215243007
 
 export default class Cart extends React.Component {
   constructor(props) {
@@ -75,6 +79,17 @@ export default class Cart extends React.Component {
     return result;
   }
 
+  callback(cartList) {
+    return cartList;
+  }
+
+  changeState() {
+    const cartList = this.callback;
+    this.setState({
+      cartList: [...cartList],
+    });
+  }
+
   render() {
     const { cartList } = this.state;
     return (
@@ -83,6 +98,7 @@ export default class Cart extends React.Component {
           ? (
             <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
           )
+<<<<<<< HEAD
           : (
             <section>
               <div>
@@ -98,6 +114,9 @@ export default class Cart extends React.Component {
                 />
               </div>
             </section>)}
+=======
+          : <CartLine cartList={ cartList } callback={ this.callback } />}
+>>>>>>> 947fb88bf1221f219aaea9ebfb9457a215243007
       </div>
     );
   }
