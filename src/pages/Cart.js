@@ -103,6 +103,7 @@ export default class Cart extends React.Component {
                       <button
                         type="button"
                         name={ item.title }
+                        data-testid="product-decrease-quantity"
                         onClick={ () => this.removeProdutc(item) }
                       >
                         -
@@ -117,6 +118,7 @@ export default class Cart extends React.Component {
                         type="button"
                         name={ item.title }
                         onClick={ () => this.addProdutc(item) }
+                        data-testid="product-increase-quantity"
                       >
                         +
 
