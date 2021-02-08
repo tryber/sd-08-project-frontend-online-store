@@ -26,18 +26,18 @@ class RateProduct extends Component {
               defaultValue={ textEmail }
             />
             <ReactStars
-              className='react-stars'
+              className="react-stars"
               count={5}
               size={ 28 }
-              color= '#ffd700'
+              color="#ffd700"
               defaultValue={ rating }
             />
           </div>
           <div>
             <textarea
-              type='text'
-              data-testid='product-detail-evaluation'
-              placeholder='Deixe sua mensagem'
+              type="text"
+              data-testid="product-detail-evaluation"
+              placeholder="Deixe sua mensagem"
               defaultValue={ textArea }
             />
             <button type="submit">Avaliar</button>
