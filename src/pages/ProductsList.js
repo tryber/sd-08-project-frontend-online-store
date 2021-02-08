@@ -9,6 +9,7 @@ class ProductsList extends Component {
   constructor() {
     super();
     this.state = {
+      categoryId: '',
       search: '',
       results: [],
       everyList: [],
@@ -16,6 +17,7 @@ class ProductsList extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.renderList = this.renderList.bind(this);
   }
@@ -30,9 +32,16 @@ class ProductsList extends Component {
     });
   }
 
+  async handleChangeCategory(event) {
+    this.setState({
+      [event.target.name]: event.target.id,
+    });
+    await this.handleClick();
+  }
+
   async handleClick() {
-    const { search } = this.state;
-    await api.getProductsFromCategoryAndQuery(search, search).then((data) => {
+    const { categoryId, search } = this.state;
+    await api.getProductsFromCategoryAndQuery(categoryId, search).then((data) => {
       this.setState({
         results: data.results,
         everyList: '',
@@ -83,6 +92,26 @@ class ProductsList extends Component {
         {results
           .map((item) => (
             <ListCard search={ search } key={ item.id } item={ item } />))}
+        </p>
+        <br />
+        <input
+          data-testid="query-input"
+          name="search"
+          onChange={ this.handleChange }
+          type="text"
+        />
+        <button
+          type="button"
+          data-testid="query-button"
+          onClick={ this.handleClick }
+        >
+          PESQUISAR
+        </button>
+        <br />
+        <CategoryList onClick={ this.handleChangeCategory } />
+        {results
+          .map((item) => (
+            <ListCard key={ item.id } item={ item } />))}
       </main>
     );
   }
