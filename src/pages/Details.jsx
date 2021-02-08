@@ -28,6 +28,7 @@ class DetailsPage extends React.Component {
 }
 
 DetailsPage.propTypes = {
+  addCart: PropTypes.func.isRequired,
   location: PropTypes.shape({
     product: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -35,7 +36,6 @@ DetailsPage.propTypes = {
       thumbnail: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
     }),
-    addCart: PropTypes.func,
   }).isRequired,
 };
 

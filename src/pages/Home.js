@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Categories from '../components/Categories';
 import SearchBar from '../components/SearchBar';
 import ProductList from '../components/ProductList';
@@ -26,5 +27,14 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  results: PropTypes.instanceOf(Array).isRequired,
+  handleClick: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  addCart: PropTypes.func.isRequired,
+  searchText: PropTypes.string.isRequired,
+  cart: PropTypes.instanceOf(Array).isRequired,
+};
 
 export default Home;
