@@ -17,8 +17,8 @@ class ProductsList extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.renderList = this.renderList.bind(this);
   }
 
@@ -38,6 +38,7 @@ class ProductsList extends Component {
     await api.getProductsFromCategoryAndQuery(search, search).then((data) => {
       this.setState({
         results: data.results,
+        everyList: '',
       });
     });
   }
@@ -57,7 +58,7 @@ class ProductsList extends Component {
   }
 
   render() {
-    const { results, everyList } = this.state;
+    const { results, search, everyList } = this.state;
     const { cart, handleAddItemToCart } = this.props;
 
     return (
@@ -97,6 +98,7 @@ class ProductsList extends Component {
           .map((item) => (
             <ProductCard
               key={ item.id }
+              search={ search }
               item={ item }
               cart={ cart }
               handleAddItemToCart={ handleAddItemToCart }
