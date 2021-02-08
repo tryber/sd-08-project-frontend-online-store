@@ -27,7 +27,7 @@ class RateProduct extends Component {
             />
             <ReactStars
               className="react-stars"
-              count={5}
+              count={ 5 }
               size={ 28 }
               color="#ffd700"
               defaultValue={ rating }
