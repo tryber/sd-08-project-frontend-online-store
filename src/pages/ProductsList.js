@@ -8,15 +8,18 @@ import * as api from '../services/api';
 class ProductsList extends Component {
   constructor() {
     super();
+
     this.state = {
       categoryId: '',
       search: '',
       results: [],
+      cart: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleAddItemToCart = this.handleAddItemToCart.bind(this);
   }
 
   handleChange(event) {
@@ -29,11 +32,13 @@ class ProductsList extends Component {
     this.setState({
       [event.target.name]: event.target.id,
     });
+
     await this.handleClick();
   }
 
   async handleClick() {
     const { categoryId, search } = this.state;
+
     await api.getProductsFromCategoryAndQuery(categoryId, search).then((data) => {
       this.setState({
         results: data.results,
@@ -41,8 +46,17 @@ class ProductsList extends Component {
     });
   }
 
+  handleAddItemToCart(item) {
+    const { cart } = this.state;
+
+    this.setState({
+      cart: [...cart, item],
+    });
+  }
+
   render() {
     const { results } = this.state;
+
     return (
       <main>
         <Link to="/shoppingcart" data-testid="shopping-cart-button">Cart</Link>
@@ -67,7 +81,12 @@ class ProductsList extends Component {
         <CategoryList onClick={ this.handleChangeCategory } />
         {results
           .map((item) => (
-            <ListCard key={ item.id } item={ item } />))}
+            <ListCard
+              key={ item.id }
+              item={ item }
+              cart={ cart }
+              handleAddItemToCart={ this.handleAddItemToCart }
+            />))}
       </main>
     );
   }
