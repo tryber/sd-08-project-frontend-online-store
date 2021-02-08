@@ -118,7 +118,7 @@ export default class Cart extends React.Component {
                     item={ item }
                     addProduct={ () => this.addProduct(item) }
                     removeProduct={ () => this.removeProduct(item) }
-                    deleteItem={ this.deleteItem }
+                    deleteItem={ () => this.deleteItem(item) }
                   />
                 ))}
               </div>
