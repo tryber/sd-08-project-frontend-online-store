@@ -25,6 +25,7 @@ class CategoriesList extends Component {
         Categorias:
         { categories.map(({ id, name }) => (
           <button
+            className="col-12 btn btn-warning"
             type="button"
             data-testid="category"
             key={ id }

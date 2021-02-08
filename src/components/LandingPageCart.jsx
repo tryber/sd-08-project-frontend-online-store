@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 class LandingPageCart extends Component {
@@ -33,20 +34,20 @@ class LandingPageCart extends Component {
     if (cartProduct.length < 1) {
       return (
         <div>
-          <p data-testid="shopping-cart-empty-message">
+          <p className="text-center" data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
           </p>
         </div>);
     }
     return (
-      <section>
+      <section className="row">
         {cartProduct.map((product) => {
           const { [product.id]: acc } = this.state;
           return (
-            <div key={ product.id }>
-              <img src={ product.thumbnail } alt={ product.title } />
-              <h3 data-testid="shopping-cart-product-name">{product.title}</h3>
-              <p data-testid="shopping-cart-product-quantity">{acc}</p>
+            <Card key={ product.id } className="rounded m-3 shadow" style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={ product.thumbnail } alt={ product.title } />
+            <Card.Body>
+              <Card.Title>{product.title}</Card.Title>
               <button
                 onClick={ () => this.increaseAcc(product) }
                 data-testid="product-increase-quantity"
@@ -62,8 +63,11 @@ class LandingPageCart extends Component {
                 -
               </button>
               <button type="button">x</button>
-            </div>);
-        })}
+            </Card.Body>
+          </Card>
+          );
+        }
+        )}
       </section>
     );
   }

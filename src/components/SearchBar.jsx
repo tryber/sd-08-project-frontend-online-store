@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Navbar } from 'react-bootstrap';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
 import Categories from './CategoriesList';
@@ -45,7 +46,7 @@ class SearchBar extends Component {
 
   renderAviso() {
     return (
-      <h3 data-testid="home-initial-message">
+      <h3 className="col-12 productPageMargin text-center" data-testid="home-initial-message">
         Digite algum termo de pesquisa ou escolha uma categoria.
       </h3>);
   }
@@ -53,35 +54,51 @@ class SearchBar extends Component {
   render() {
     const { query, product, cartProduct } = this.state;
     return (
-      <section>
-        <label htmlFor="input">
-          Search:
-          <input
-            onChange={ this.handleChange }
-            data-testid="query-input"
-            type="text"
-            name="query"
-            value={ query }
-          />
-        </label>
-        <button
-          onClick={ this.handleSearch }
-          type="button"
-          data-testid="query-button"
+      <div>
+        <Navbar
+          expand="none"
+          className="bg-warning shadow d-flex position-fixed w-100 z-index-topper"
         >
-          Button
-        </button>
-        <ShopButton cartProduct={ cartProduct } />
-        <Categories onClick={ this.handleClick } />
-        {product.length < 1
-          ? this.renderAviso()
-          : product.map((item) => (
-            <ProductCard
-              click={ this.addCart }
-              key={ item.id }
-              product={ item }
-            />))}
-      </section>
+          <div className="d-flex justify-content-start">
+            <label htmlFor="input">
+              Search:
+              <input
+                onChange={ this.handleChange }
+                data-testid="query-input"
+                type="text"
+                name="query"
+                value={ query }
+              />
+            </label>
+            <button
+              className="btn btn-light ml-3"
+              onClick={ this.handleSearch }
+              type="button"
+              data-testid="query-button"
+            >
+              Search
+            </button>
+          </div>
+          <div>
+            <ShopButton cartProduct={ cartProduct } />
+            <Navbar.Toggle aria-controls="basic-navbar-nav" className="mx-5" />
+            <Navbar.Collapse>
+              <Categories onClick={ this.handleClick } />
+            </Navbar.Collapse>
+          </div>
+        </Navbar>
+        <div className="row">
+          {product.length < 1
+            ? this.renderAviso()
+            : product.map((item) => (
+              <ProductCard
+                click={ this.addCart }
+                key={ item.id }
+                product={ item }
+              />))}
+        </div>
+
+      </div>
     );
   }
 }

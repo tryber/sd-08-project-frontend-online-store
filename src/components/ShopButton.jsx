@@ -12,6 +12,7 @@ class ShopButton extends Component {
         to={ { pathname: '/shopping-cart/', cartProduct } }
       >
         <img
+          className="img-cart-button btn btn-primary"
           src={ ShopButtonImage }
           alt="Logo"
         />
