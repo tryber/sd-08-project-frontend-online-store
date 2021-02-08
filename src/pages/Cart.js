@@ -82,23 +82,25 @@ export default class Cart extends React.Component {
     const { cartList = [] } = this.state;
     return (
       <div className="cart">
-        {/* (cartList.length === 0) ? {
-            <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
-        } : { */}
-        <div className="cel-container-row">
-          <div className="cel">Item</div>
-          <div className="cel">Quantidade</div>
-          <div className="cel">Preço</div>
-        </div>
-        {cartList.map((item) => (
-          <CartLine
-            key={ item.id }
-            item={ item }
-            addProdutc={ () => this.addProdutc(item) }
-            removeProdutc={ () => this.removeProdutc(item) }
-          />
-        ))}
-
+        { cartList.length === 0 ? (
+          <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
+        ) : null }
+        { cartList.length > 0 ? (
+          <div className="cel-container-row">
+            <div className="cel">Item</div>
+            <div className="cel">Quantidade</div>
+            <div className="cel">Preço</div>
+          </div>) : null }
+        {cartList.length > 0 ? (
+          cartList.map((item) => (
+            <CartLine
+              key={ item.id }
+              item={ item }
+              addProdutc={ () => this.addProdutc(item) }
+              removeProdutc={ () => this.removeProdutc(item) }
+            />
+          ))
+        ) : null }
       </div>
     );
   }
