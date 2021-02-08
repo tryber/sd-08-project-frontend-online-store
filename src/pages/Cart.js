@@ -10,18 +10,15 @@ export default class Cart extends React.Component {
       cartList: [],
       idList: productId,
     };
+    this.addProduct = this.addProduct.bind(this);
+    this.removeProduct = this.removeProduct.bind(this);
+    this.totalPrice = this.totalPrice.bind(this);
+    this.attState = this.attState.bind(this);
   }
 
   async componentDidMount() {
     await this.getProductInfo();
   }
-
-  // setCart(data) {
-  //   const { cartList } = this.state;
-  //   this.setState({
-  //     cartList: [...cartList, data],
-  //   });
-  // }
 
   async getProductInfo() {
     const { idList } = this.state;
@@ -32,7 +29,23 @@ export default class Cart extends React.Component {
     });
   }
 
-  addProduct(product = {}) {
+  sendState() {
+    const { attProductIdList } = this.props;
+    const { idList } = this.state;
+
+    attProductIdList(idList);
+  }
+
+  attState(cartList) {
+    const cartListAtt = cartList;
+    const idListAtt = cartList.map((item) => item.id);
+    this.setState({
+      cartList: [...cartListAtt],
+      idList: [...idListAtt],
+    }, () => this.sendState());
+  }
+
+  addProduct(product) {
     const { cartList } = this.state;
     const index = cartList.findIndex((procu) => product.id === procu.id);
     if (index >= 0) {
@@ -49,22 +62,21 @@ export default class Cart extends React.Component {
     });
   }
 
+  deleteItem(item) {
+    console.log(item);
+  }
+
   removeProduct(product = {}) {
     const { cartList } = this.state;
-    if (!product) { return console.log('Não há produto nesse pedido'); }
-    const index = cartList.findIndex((procu) => product.id === procu.id
-      || product.title === procu.title);
+
+    const index = cartList.findIndex((procu) => product.id === procu.id);
     if (index >= 0) {
       cartList[index].quantity -= 1;
       cartList[index].productPrice -= cartList[index].price;
       if (cartList[index].quantity === 0) {
         cartList.splice(index, 1);
+        this.attState(cartList);
       }
-      this.setState({
-        cartList: [...cartList],
-      });
-    } else {
-      console.log(`Produto ${product} não encontrado`);
     }
   }
 
@@ -75,29 +87,40 @@ export default class Cart extends React.Component {
     return result;
   }
 
-  callback(cartList) {
-    return cartList;
-  }
-
-  changeState() {
-    const cartList = this.callback;
-    this.setState({
-      cartList: [...cartList],
-    });
-  }
-
   render() {
-    const { cartList } = this.state;
+    const { cartList = [] } = this.state;
     return (
       <div className="cart">
-        {cartList.length === 0
-          ? (
-            <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
-          )
-          : <CartLine cartList={ cartList } callback={ this.callback } />}
+        {(cartList.length === 0)
+          ? (<h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>)
+          : (
+            <>
+              <div className="cel-container-row">
+                <div className="cel" />
+                <div className="cel">Item</div>
+                <div className="cel">Quantidade</div>
+                <div className="cel">Preço Unitário</div>
+                <div className="cel">Preço Total</div>
+              </div>
+              <div>
+                {cartList.map((item) => (
+                  <CartLine
+                    key={ item.id }
+                    item={ item }
+                    addProduct={ () => this.addProduct(item) }
+                    removeProduct={ () => this.removeProduct(item) }
+                    deleteItem={ this.deleteItem }
+                  />
+                ))}
+              </div>
+            </>
+          )}
       </div>
     );
   }
 }
 
-Cart.propTypes = { productId: PropTypes.arrayOf(PropTypes.string).isRequired };
+Cart.propTypes = {
+  productId: PropTypes.arrayOf(PropTypes.string).isRequired,
+  attProductIdList: PropTypes.func.isRequired,
+};
