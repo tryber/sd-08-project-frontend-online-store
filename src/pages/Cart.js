@@ -10,6 +10,9 @@ export default class Cart extends React.Component {
       cartList: [],
       idList: productId,
     };
+    this.addProdutc = this.addProdutc.bind(this);
+    this.removeProdutc = this.removeProdutc.bind(this);
+    this.totalPrice = this.totalPrice.bind(this);
   }
 
   async componentDidMount() {
@@ -32,7 +35,7 @@ export default class Cart extends React.Component {
     });
   }
 
-  addProdutc(product = {}) {
+  addProdutc(product) {
     const { cartList } = this.state;
     const index = cartList.findIndex((procu) => product.id === procu.id);
     if (index >= 0) {
@@ -75,29 +78,30 @@ export default class Cart extends React.Component {
     return result;
   }
 
-  callback(cartList) {
-    return cartList;
-  }
-
-  changeState() {
-    const cartList = this.callback;
-    this.setState({
-      cartList: [...cartList],
-    });
-  }
-
   render() {
-    const { cartList } = this.state;
+    const { cartList = [] } = this.state;
     return (
       <div className="cart">
-        {cartList.length === 0
-          ? (
+        {/* (cartList.length === 0) ? {
             <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
-          )
-          : <CartLine cartList={ cartList } callback={ this.callback } />}
+        } : { */}
+        <div className="cel-container-row">
+          <div className="cel">Item</div>
+          <div className="cel">Quantidade</div>
+          <div className="cel">Preço</div>
+        </div>
+        {cartList.map((item) => (
+          <CartLine
+            key={ item.id }
+            item={ item }
+            addProdutc={ () => this.addProdutc(item) }
+            removeProdutc={ () => this.removeProdutc(item) }
+          />
+        ))}
+
       </div>
     );
   }
 }
 
-Cart.propTypes = { productId: PropTypes.arrayOf(PropTypes.string).isRequired };
+Cart.propTypes = { productId: PropTypes.shape(PropTypes.string).isRequired };
