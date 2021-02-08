@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from './Loading';
 import ProductList from './ProductList';
@@ -59,6 +59,7 @@ class Categories extends React.Component {
 
   render() {
     const { categories, results } = this.state;
+    const { onAddCart } = this.props;
 
     return (
       <section className="sec-categories">
@@ -96,28 +97,15 @@ class Categories extends React.Component {
         </div>
         <div className="div-separator">
           <SearchBar className="categories-searchbar" onClick={ this.setResults } />
-          <ProductList results={ results } />
+          <ProductList results={ results } onAddCart={ onAddCart } />
         </div>
       </section>
     );
   }
 }
 
-export default Categories;
+Categories.propTypes = {
+  onAddCart: PropTypes.func.isRequired,
+};
 
-/*
-          <select value={ categoryID } onChange={ (e) => this.categorySelected(e.target.value) }>
-            <option>Selecione uma Opção</option>
-            { categories.map((cat) => {
-              const { id, name } = cat;
-              return (
-                <option
-                  value={ id }
-                  data-testid="category"
-                  key={ id }
-                >
-                  { name }
-                </option>);
-            }) }
-          </select>
-*/
+export default Categories;
