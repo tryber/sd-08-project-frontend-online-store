@@ -1,47 +1,27 @@
 import React from 'react';
-import CartButton from '../components/CartButton';
+import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
 import SearchBar from '../components/SearchBar';
-import SearchByTerms from '../components/SearchByTerms';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import ProductList from '../components/ProductList';
 
 class Home extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      searchText: '',
-      results: [],
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    /* this.handleClickCategory = this.handleClickCategory.bind(this); */
-  }
-
-  handleChange({ target: { name, value } }) {
-    this.setState({ [name]: value });
-  }
-
-  handleClick(id) {
-    const { searchText } = this.state;
-    getProductsFromCategoryAndQuery(id, searchText)
-      .then(({ results }) => this.setState({ results }));
-  }
-
-  /*   async handleClickCategory(id) {
-    const { searchCategory } = this.state;
-    await getProductsFromCategoryAndQuery(id, '')
-      .then(({ searchCategory }) => this.setState({ searchCategory }));
-  } */
-
   render() {
-    const { results } = this.state;
+    const { results, searchText, handleClick, handleChange, addCart, cart } = this.props;
     return (
       <div>
-        <CartButton />
-        <SearchBar onClick={ this.handleClick } onChange={ this.handleChange } />
-        <Categories onClick={ this.handleClick } />
-        <SearchByTerms results={ results } />
+        <Link
+          data-testid="shopping-cart-button"
+          to={ { pathname: '/Cart', state: { cart } } }
+        >
+          Carrinho
+        </Link>
+        <SearchBar
+          onClick={ handleClick }
+          onChange={ handleChange }
+          searchText={ searchText }
+        />
+        <Categories onClick={ handleClick } />
+        <ProductList results={ results } addCart={ addCart } />
       </div>
     );
   }
