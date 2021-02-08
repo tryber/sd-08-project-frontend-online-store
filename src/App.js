@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './bootstrap.min.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import LandingPageCart from './components/LandingPageCart';
 

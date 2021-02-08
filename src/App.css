@@ -30,6 +30,18 @@
   color: #61dafb;
 }
 
+.img-cart-button {
+  width: 60px;
+}
+
+.z-index-topper {
+  z-index: 5;
+}
+
+.productPageMargin {
+  margin-top: 10rem;
+}
+
 @keyframes App-logo-spin {
 
   from {
