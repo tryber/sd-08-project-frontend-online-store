@@ -1,0 +1,111 @@
+.banner {
+  align-items: center;
+  background-color: #1a3f6df1;
+  display: flex;
+  height: 6vw;
+  justify-content: center;
+  margin: 0;
+  padding: 2vh;
+  padding-bottom: 0%;
+  width: auto;
+}
+
+.banner h1 {
+  color: #ffb200;
+  font-size: calc(2.7vh + 2.7vw);
+  margin-right: 3vh;
+  padding-bottom: 1;
+  padding-top: 1vh;
+  text-align: center;
+}
+
+.banner form {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.banner input {
+  border: none;
+  border-radius: 5px;
+  color: #141d37;
+  font-size: calc(1.2vh + 1.2vw);
+  height: calc(2vh + 1vw);
+  margin-right: 2vh;
+  text-align: center;
+  width: calc(2vh + 30vw);
+
+}
+
+.banner button {
+  background-color: #ffb200;
+  border: none;
+  border-radius: 5px;
+  font-size: calc(1vh + 1.4vw);
+  height: calc(2vh + 1.6vw);
+  padding-left: 1%;
+  vertical-align: mid;
+  width: calc(4vh + 6vw);
+}
+
+.searchDescription {
+  background-color: #232f3e;
+  color: rgb(210, 239, 248);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  padding: 8px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.cartItems {
+  padding: 5px;
+}
+
+.cartItems img {
+  margin: 3px 10px;
+  width: 50px;
+}
+
+.logo {
+  width: 300px;
+}
+
+.header-content {
+  align-items: center;
+  background-color: #1a3f6d;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  width: 100%;
+}
+
+main {
+  background-color: #f0f5fb;
+}
+
+.product-img {
+  width: 100%;
+}
+
+.product-img img {
+  border-radius: 6px;
+  box-shadow: 1px 5px 10px 4px lightgray;
+  margin: 2%;
+  width: 17%;
+}
+
+.detail-name {
+  background-color: #d7dde4;
+  margin-bottom: 5px;
+  padding: 0;
+  width: 100%;
+}
+
+table {
+  border: 1px solid rgb(223, 219, 219);
+  border-radius: 5px;
+  height: 130px;
+  width: 250px;
+}
