@@ -1,5 +1,4 @@
-import { Component } from 'react';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactStars from 'react-stars';
 
 class RateProduct extends Component {
