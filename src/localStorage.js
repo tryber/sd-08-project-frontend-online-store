@@ -86,10 +86,21 @@ const lsSaveEvaluationProduct = (nameLocal, id, description) => {
   }
 };
 
+const lsSaveCheckout = (nameLocal, clientData) => {
+  if (JSON.parse(localStorage.getItem(nameLocal)) === null) {
+    localStorage.setItem(nameLocal, JSON.stringify(clientData));
+  } else {
+    let data = JSON.parse(localStorage.getItem(nameLocal));
+    data = { ...data, ...clientData };
+    localStorage.setItem(nameLocal, JSON.stringify(data));
+  }
+};
+
 export {
   localStorageLoad,
   localStorageSave,
   localStorageSaveCarItems,
   localStorageDelete,
   lsSaveEvaluationProduct,
+  lsSaveCheckout,
 };

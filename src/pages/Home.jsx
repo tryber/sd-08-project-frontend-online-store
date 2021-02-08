@@ -27,10 +27,13 @@ class Home extends React.Component {
 
   handleChangeClickBuyProduct({ target }) {
     const { listProducts } = this.state;
-    const localStorageProduct = localStorageLoad('shoppingCart');
-    console.log(localStorageProduct);
-    if (localStorageProduct.every((el) => el.id !== target.id)) {
-      const product = listProducts.find((el) => el.id === target.id);
+    let localStorageProduct = localStorageLoad('shoppingCart');
+    const product = listProducts.find((el) => el.id === target.id);
+    if (!localStorageProduct) {
+      localStorageProduct = [];
+    }
+    if (localStorageProduct.length === 0
+      || localStorageProduct.every((el) => el.id !== target.id)) {
       localStorageSave('shoppingCart', product, target.id);
     }
   }
