@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import shoppingCartIcon from '../images/shoppingCartIcon.png';
+import Rating from '../components/Rating';
+import Evaluations from '../components/Evaluations';
 
 class ProductsDetails extends React.Component {
   constructor() {
@@ -10,9 +12,30 @@ class ProductsDetails extends React.Component {
     this.state = {
       cart: [],
       amount: 1,
+      email: '',
+      rate: '',
+      comment: '',
+      evaluations: [],
     };
 
     this.addProduct = this.addProduct.bind(this);
+    this.handleRating = this.handleRating.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange({ target: { name, value } }) {
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleRating(event) {
+    event.preventDefault();
+    const { email, rate, comment, evaluations } = this.state;
+    const evaluation = { email, rate, comment };
+    this.setState({
+      evaluations: [...evaluations, evaluation],
+    });
   }
 
   addProduct(queryResult) {
@@ -23,7 +46,7 @@ class ProductsDetails extends React.Component {
   }
 
   render() {
-    const { cart, amount } = this.state;
+    const { cart, amount, email, rate, comment, evaluations } = this.state;
     const { location: { state: { product } } } = this.props;
     const { title, price, thumbnail } = product;
 
@@ -35,16 +58,27 @@ class ProductsDetails extends React.Component {
         >
           <img src={ shoppingCartIcon } alt="shopping-cart" className="shopping-cart" />
         </Link>
-        <h1 data-testid="product-detail-name">{ title }</h1>
-        <img src={ thumbnail } alt="Product Pic" />
-        <p>{ price }</p>
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          onClick={ () => this.addProduct(product) }
-        >
-          Adicionar ao carrinho
-        </button>
+        <fieldset>
+          <legend>Detalhes do produto</legend>
+          <h1 data-testid="product-detail-name">{ title }</h1>
+          <img src={ thumbnail } alt="Product Pic" />
+          <p>{ price }</p>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => this.addProduct(product) }
+          >
+            Adicionar ao carrinho
+          </button>
+        </fieldset>
+        <Rating
+          email={ email }
+          rate={ rate }
+          comment={ comment }
+          handleChange={ this.handleChange }
+          handleRating={ this.handleRating }
+        />
+        <Evaluations evaluations={ evaluations } />
       </div>
     );
   }
