@@ -7,11 +7,13 @@ import Shop from './pages/Shop';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
 import ShoppingCart from './Components/ShoppingCart';
+import RateProduct from  './Components/RateProcuct';
 
 function App() {
   return (
     <BrowserRouter>
       <div>
+      <RateProduct />
         <Link to="/shop" data-testid="shopping-cart-button">
           <ShoppingCart />
         </Link>
