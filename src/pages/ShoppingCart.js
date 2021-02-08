@@ -9,10 +9,10 @@ class ShoppingCart extends React.Component {
     if (cart.length === 0) {
       return (
         <main>
-          <section>
+          <header>
             <Link to="/">Back</Link>
             <h1>Carrinho de compras</h1>
-          </section>
+          </header>
 
           <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio.
@@ -23,25 +23,23 @@ class ShoppingCart extends React.Component {
 
     return (
       <main>
-        <section>
+        <header>
           <Link to="/">Back</Link>
 
           <h1>Carrinho de compras</h1>
-        </section>
+        </header>
 
-        <section>
-          {cart.map((item) => (
-            <section key={ item.id }>
-              <p data-testid="shopping-cart-product-name">
-                {item.title}
-              </p>
+        {cart.map((item) => (
+          <section key={ item.id }>
+            <p data-testid="shopping-cart-product-name">
+              {item.title}
+            </p>
 
-              <img src={ item.thumbnail } alt="Thumbnail" />
+            <img src={ item.thumbnail } alt="Thumbnail" />
 
-              <p data-testid="shopping-cart-product-quantity">1</p>
-            </section>
-          ))}
-        </section>
+            <p data-testid="shopping-cart-product-quantity">1</p>
+          </section>
+        ))}
       </main>
     );
   }
