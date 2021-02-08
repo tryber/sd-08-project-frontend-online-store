@@ -19,18 +19,18 @@ class RateProduct extends Component {
         <form>
           <div>
             <input
-              className='rate-email'
-              name='email'
-              type='email'
-              placeholder='Email'
-              defaultValue={textEmail}
+              className="rate-email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              defaultValue={ textEmail }
             />
             <ReactStars
               className='react-stars'
               count={5}
-              size={28}
-              color={'#ffd700'}
-              defaultValue={rating}
+              size={ 28 }
+              color= '#ffd700'
+              defaultValue={ rating }
             />
           </div>
           <div>
@@ -38,9 +38,9 @@ class RateProduct extends Component {
               type='text'
               data-testid='product-detail-evaluation'
               placeholder='Deixe sua mensagem'
-              defaultValue={textArea}
+              defaultValue={ textArea }
             />
-            <button>Avaliar</button>
+            <button type="submit">Avaliar</button>
           </div>
         </form>
       </section>
