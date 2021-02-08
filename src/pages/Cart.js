@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
-import CartItem from '../components/CartItem';
-=======
 import CartLine from '../components/CartLine';
->>>>>>> 947fb88bf1221f219aaea9ebfb9457a215243007
 
 export default class Cart extends React.Component {
   constructor(props) {
@@ -98,25 +94,7 @@ export default class Cart extends React.Component {
           ? (
             <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
           )
-<<<<<<< HEAD
-          : (
-            <section>
-              <div>
-                <div className="cel-container-row">
-                  <div className="cel">Item</div>
-                  <div className="cel">Quantidade</div>
-                  <div className="cel">Preço</div>
-                </div>
-                <CartItem
-                  cartList={ cartList }
-                  removeProduct={ this.removeProduct }
-                  addProduct={ this.addProduct }
-                />
-              </div>
-            </section>)}
-=======
           : <CartLine cartList={ cartList } callback={ this.callback } />}
->>>>>>> 947fb88bf1221f219aaea9ebfb9457a215243007
       </div>
     );
   }

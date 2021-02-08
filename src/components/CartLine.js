@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 export default class CartLine extends React.Component {
   constructor(props) {
     super(props);
+
+    const { cartList } = this.props;
     this.state = {
-      cartList: [],
+      cartList,
     };
   }
 
@@ -112,13 +114,17 @@ export default class CartLine extends React.Component {
 }
 
 CartLine.propTypes = {
-  cartList: PropTypes.arrayOf({
-    item: PropTypes.objectOf({
-      id: PropTypes.stringnumber,
-      price: PropTypes.number,
-      title: PropTypes.stringnumber,
-      quantity: PropTypes.number,
-    }),
-  }).isRequired,
-  callback: PropTypes.func.isRequired,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
+// CartLine.propTypes = {
+//   cartList: PropTypes.shape({
+//     item: PropTypes.objectOf({
+//       id: PropTypes.stringnumber,
+//       price: PropTypes.number,
+//       title: PropTypes.stringnumber,
+//       quantity: PropTypes.number,
+//     }),
+//   }).isRequired,
+// callback: PropTypes.func.isRequired,
+// };
