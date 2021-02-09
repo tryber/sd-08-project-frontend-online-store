@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaStar } from '@react-icons/all-files/fa/FaStar';
+// import { FaStar } from '@react-icons/all-files/fa/FaStar';
 
 export default class ProductEvaluation extends React.Component {
   toColor(event) {
@@ -64,11 +64,11 @@ export default class ProductEvaluation extends React.Component {
               <input type="email" maxLength="30" id="email" name="evaluationEmail" />
             </label>
             <div>
-              <FaStar className="star" id="star1" onClick={ this.toColor } />
-              <FaStar className="star" id="star2" onClick={ this.toColor } />
-              <FaStar className="star" id="star3" onClick={ this.toColor } />
-              <FaStar className="star" id="star4" onClick={ this.toColor } />
-              <FaStar className="star" id="star5" onClick={ this.toColor } />
+              <button type="button" id="star1" onClick={ this.toColor }>*</button>
+              <button type="button" id="star2" onClick={ this.toColor }>*</button>
+              <button type="button" id="star3" onClick={ this.toColor }>*</button>
+              <button type="button" id="star4" onClick={ this.toColor }>*</button>
+              <button type="button" id="star5" onClick={ this.toColor }>*</button>
               <button type="button" onClick={ this.clear }>Limpar</button>
             </div>
             <label htmlFor="evaluationTextArea" className="white-text">
