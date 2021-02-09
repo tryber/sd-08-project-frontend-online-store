@@ -196,7 +196,6 @@ body {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  height: 200px;
   justify-content: space-around;
   margin: 60px auto;
   padding: 20px;
@@ -205,4 +204,18 @@ body {
 
 .shopping-cart-empty-icon {
   font-size: 34px;
+}
+
+/*
+---PRODUCT DETAILS---
+*/
+
+.product-detail {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 80px 20px;
+  width: 80%;
 }

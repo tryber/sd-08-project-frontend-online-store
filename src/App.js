@@ -15,6 +15,30 @@ class App extends React.Component {
       cart: [],
     };
     this.onAddCart = this.onAddCart.bind(this);
+    this.handleIncrease = this.handleIncrease.bind(this);
+    this.handleDecrease = this.handleDecrease.bind(this);
+  }
+
+  handleIncrease(item) {
+    const { cart } = this.state;
+    const newCart = [...cart];
+    if (newCart[item].productQuantity <= newCart[item].availableQuantity) {
+      newCart[item].productQuantity += 1;
+      this.setState({
+        cart: newCart,
+      });
+    }
+  }
+
+  handleDecrease(item) {
+    const { cart } = this.state;
+    const newCart = [...cart];
+    if (newCart[item].productQuantity > 1) {
+      newCart[item].productQuantity -= 1;
+      this.setState({
+        cart: newCart,
+      });
+    }
   }
 
   onAddCart(item) {
@@ -37,7 +61,11 @@ class App extends React.Component {
         </div>
         <Switch>
           <Route exact path="/shop">
-            <Shop cart={ cart } />
+            <Shop
+              cart={ cart }
+              handleIncrease={ this.handleIncrease }
+              handleDecrease={ this.handleDecrease }
+            />
           </Route>
           <Route exact path="/">
             <Home cart={ cart } onAddCart={ this.onAddCart } />

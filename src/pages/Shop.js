@@ -14,18 +14,61 @@ class Shop extends React.Component {
     );
   }
 
-  renderCart() {
+  renderTotal() {
     const { cart } = this.props;
+    let totalPrice = 0;
+    totalPrice = cart.reduce((total, item) => {
+      total = item.price * item.productQuantity;
+      return total;
+    }, 0);
+    return totalPrice;
+  }
+
+  renderCart() {
+    const { cart, handleIncrease, handleDecrease } = this.props;
     return (
       <div className="shopping-cart-items">
-        {cart.map(({ title, productQuantity }, index) => (
+        {cart.map(({ productQuantity, title, price, thumbnail }, index) => (
           <div className="shopping-cart-item" key={ index }>
+            <img src={ thumbnail } alt={ title } />
             <p data-testid="shopping-cart-product-name">{title}</p>
+            <button
+              type="button"
+              data-testid="product-increase-quantity"
+              onClick={ () => handleIncrease(index) }
+              name="productQuantity"
+              id="product-quantity"
+            >
+              +
+            </button>
+            <button
+              type="button"
+              data-testid="product-decrease-quantity"
+              onClick={ () => handleDecrease(index) }
+              name="productQuantity"
+              id="product-quantity"
+            >
+              -
+            </button>
             <p data-testid="shopping-cart-product-quantity">
+              Quantidade de itens:
+              {' '}
               {productQuantity}
+            </p>
+            <p>
+              Preço Unitário:
+              {price}
+            </p>
+            <p>
+              Preço dos itens:
+              {price * productQuantity}
             </p>
           </div>
         ))}
+        <p>
+          Total:
+          {this.renderTotal()}
+        </p>
       </div>
     );
   }
@@ -42,6 +85,8 @@ class Shop extends React.Component {
 
 Shop.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleDecrease: PropTypes.func.isRequired,
+  handleIncrease: PropTypes.func.isRequired,
 };
 
 export default Shop;
