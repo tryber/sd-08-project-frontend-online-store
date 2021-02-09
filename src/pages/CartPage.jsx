@@ -17,7 +17,7 @@ class CartPage extends React.Component {
   }
 
   render() {
-    const { location: { state: { cart } } } = this.props;
+    const { cart } = this.props;
     return (
       <section>
         <Link to="/">Home</Link>
@@ -35,17 +35,13 @@ class CartPage extends React.Component {
 }
 
 CartPage.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.shape({
-      cart: PropTypes.arrayOf(PropTypes.shape(
-        {
-          id: PropTypes.string,
-          title: PropTypes.string,
-          quantity: PropTypes.number,
-        },
-      )),
-    }),
-  }).isRequired,
+  cart: PropTypes.arrayOf(PropTypes.shape(
+    {
+      id: PropTypes.string,
+      title: PropTypes.string,
+      quantity: PropTypes.number,
+    },
+  )).isRequired,
 };
 
 export default CartPage;
