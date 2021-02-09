@@ -6,13 +6,13 @@ class ShoppingCart extends React.Component {
 
   constructor() {
     super();
-
     this.state = {
       cart: [],
     };
+    this.handlePropsToState = this.handlePropsToState.bind(this);
   }
 
-  handlePropsToState = () => {
+  handlePropsToState() {
     const { cart } = this.props;
     this.setState({
       cart,
