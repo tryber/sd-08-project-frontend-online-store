@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
@@ -8,7 +7,7 @@ import ShoppingCart from './pages/ShoppingCart';
 class App extends React.Component {
   constructor() {
     super();
-    
+
     this.state = {
       cart: [],
     };
@@ -16,6 +15,7 @@ class App extends React.Component {
     this.decreaseQty = this.decreaseQty.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.addCart = this.addCart.bind(this);
+    this.totalPrice = this.totalPrice.bind(this);
   }
 
   increaseQty(event) {
@@ -30,7 +30,7 @@ class App extends React.Component {
     this.setState({
       cart,
     });
-  };
+  }
 
   decreaseQty(event) {
     const { cart } = this.state;
@@ -78,7 +78,7 @@ class App extends React.Component {
     });
   }
 
-  totalPrice = (array) => {
+  totalPrice(array) {
     const result = array.reduce((acc, cur) => acc
     + parseFloat(cur.price)
     * cur.amount, 0);
