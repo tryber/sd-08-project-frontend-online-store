@@ -8,10 +8,8 @@ class ShoppingCart extends React.Component {
     this.state = {
       cart: [],
     };
-    this.handlePropsToState = this.handlePropsToState.bind(this);
-    this.handlePropsToState = this.handleDecreaseQuantity(this);
-    this.handlePropsToState = this.handleIncreaseQuantity(this);
-    this.handlePropsToState = this.renderButtons(this);
+    this.handleDecreaseQuantity = this.handleDecreaseQuantity.bind(this);
+    this.handleIncreaseQuantity = this.handleIncreaseQuantity.bind(this);
   }
 
   componentDidMount() {
@@ -47,32 +45,8 @@ class ShoppingCart extends React.Component {
     this.setState(allState);
   }
 
-  renderButtons() {
-    return (
-      <>
-        <button
-          id={ item.id }
-          data-testid="product-decrease-quantity"
-          type="button"
-          onClick={ this.handleDecreaseQuantity }
-        >
-          -
-        </button>
-
-        <button
-          id={ item.id }
-          data-testid="product-increase-quantity"
-          type="button"
-          onClick={ this.handleIncreaseQuantity }
-        >
-          +
-        </button>
-      </>
-    );
-  }
-
-  render() {
-    const { cart } = this.props;
+  renderIf() {
+    const { cart } = this.state;
 
     if (cart.length === 0) {
       return (
@@ -88,6 +62,12 @@ class ShoppingCart extends React.Component {
         </main>
       );
     }
+  }
+
+  render() {
+    const { cart } = this.state;
+
+    {this.renderIf()}
 
     return (
       <main>
@@ -108,7 +88,23 @@ class ShoppingCart extends React.Component {
 
             <img src={ item.thumbnail } alt="Thumbnail" />
 
-            {this.renderButtons()}
+            <button
+              id={ item.id }
+              data-testid="product-decrease-quantity"
+              type="button"
+              onClick={ this.handleDecreaseQuantity }
+            >
+              -
+            </button>
+
+            <button
+              id={ item.id }
+              data-testid="product-increase-quantity"
+              type="button"
+              onClick={ this.handleIncreaseQuantity }
+            >
+              +
+            </button>
 
             <p data-testid="shopping-cart-product-quantity">{item.quantity}</p>
 
