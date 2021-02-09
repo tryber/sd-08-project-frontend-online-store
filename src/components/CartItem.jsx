@@ -8,8 +8,20 @@ export default function CartItem(props) {
       <h4>{id}</h4>
       <h4 data-testid="shopping-cart-product-name">{title}</h4>
       <h4 data-testid="shopping-cart-product-quantity">{quantity}</h4>
-      <button type="button" data-testid="product-increase-quantity" onClick={ handleAdd }>+</button>
-      <button type="button" data-testid="product-decrease-quantity" onClick={ handleRem }>-</button>
+      <button
+        type="button"
+        data-testid="product-increase-quantity"
+        onClick={ handleAdd }
+      >
+        +
+      </button>
+      <button
+        type="button"
+        data-testid="product-decrease-quantity"
+        onClick={ handleRem }
+      >
+        -
+      </button>
     </div>
   );
 }
