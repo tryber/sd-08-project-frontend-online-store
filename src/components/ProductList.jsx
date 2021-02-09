@@ -23,10 +23,12 @@ class ProductList extends React.Component {
               <button
                 type="button"
                 data-testid="product-add-to-cart"
-                onClick={ () => { addCart(id, title); } }
+                onClick={ () => { addCart(product); } }
               >
                 Adicionar ao carrinho
               </button>
+              { product.shipping.free_shipping
+                && <div data-testid="free-shipping">Frete Grátis</div> }
             </div>
           );
         }) }

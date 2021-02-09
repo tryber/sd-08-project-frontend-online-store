@@ -30,15 +30,11 @@ class App extends Component {
       .then(({ results }) => this.setState({ results }));
   }
 
-  addCart(id, title) {
+  addCart(product) {
     return this.setState(({ cart }) => ({
       cart: [
         ...cart,
-        {
-          id,
-          title,
-          quantity: 1,
-        },
+        { id: product.id, title: product.title },
       ],
     }));
   }
