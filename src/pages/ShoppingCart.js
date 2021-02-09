@@ -31,8 +31,8 @@ class ShoppingCart extends React.Component {
     const findItem = cart.map((item) => item.id).indexOf(event.target.id);
     if (allState.cart[findItem].quantity > 1) {
       allState.cart[findItem].quantity -= 1;
-      allState.cart[findItem].totalPrice = 
-      allState.cart[findItem].price * allState.cart[findItem].quantity;
+      allState.cart[findItem].totalPrice = allState.cart[findItem].price *
+      allState.cart[findItem].quantity;
       this.setState(allState);
     }
   }
@@ -42,15 +42,15 @@ class ShoppingCart extends React.Component {
     const allState = this.state;
     const findItem = cart.map((item) => item.id).indexOf(event.target.id);
     allState.cart[findItem].quantity += 1;
-    allState.cart[findItem].totalPrice = 
-    allState.cart[findItem].price * allState.cart[findItem].quantity;
+    allState.cart[findItem].totalPrice = allState.cart[findItem].price *
+    allState.cart[findItem].quantity;
     this.setState(allState);
   }
 
   renderButtons() {
     return (
       <>
-        <button 
+        <button
           id={ item.id }
           data-testid="product-decrease-quantity"
           type="button"
