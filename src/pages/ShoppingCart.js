@@ -10,6 +10,8 @@ class ShoppingCart extends React.Component {
       cart: [],
     };
     this.handlePropsToState = this.handlePropsToState.bind(this);
+    this.handlePropsToState = this.handleDecreaseQuantity(this);
+    this.handlePropsToState = this.handleIncreaseQuantity(this);
   }
 
   handlePropsToState() {
@@ -24,7 +26,7 @@ class ShoppingCart extends React.Component {
     this.handlePropsToState();
   }
 
-  handleDecreaseQuantity = (event) => {
+  handleDecreaseQuantity(event) {
     const { cart } = this.state;
     const allState = this.state;
     const findItem = cart.map(item => item.id).indexOf(event.target.id);
@@ -35,7 +37,7 @@ class ShoppingCart extends React.Component {
     }
   };
 
-  handleIncreaseQuantity = (event) => {
+  handleIncreaseQuantity(event) {
     const { cart } = this.state;
     const allState = this.state;
     const findItem = cart.map(item => item.id).indexOf(event.target.id);
