@@ -1,24 +1,109 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Home from './pages/Home';
+import CartPage from './pages/CartPage';
+import DetailsPage from './pages/Details';
+import { getProductsFromCategoryAndQuery } from './services/api';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      searchText: '',
+      results: [],
+      cart: [],
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.addCart = this.addCart.bind(this);
+  }
+
+  handleChange({ target: { name, value } }) {
+    this.setState({ [name]: value });
+  }
+
+  handleClick(id) {
+    const { searchText } = this.state;
+    getProductsFromCategoryAndQuery(id, searchText)
+      .then(({ results }) => this.setState({ results }));
+  }
+
+  addCart(product) {
+    return this.setState(({ cart }) => ({
+      cart: [
+        ...cart,
+        { id: product.id, title: product.title },
+      ],
+    }));
+  }
+
+  RenderHome() {
+    const { results, cart, searchText } = this.state;
+    return (
+      <Route
+        exact
+        path="/"
+        render={ (props) => (
+          <Home
+            { ...props }
+            addCart={ this.addCart }
+            handleClick={ this.handleClick }
+            handleChange={ this.handleChange }
+            results={ results }
+            cart={ cart }
+            searchText={ searchText }
+          />
+        ) }
+      />
+    );
+  }
+
+  RenderCartPage() {
+    const { cart } = this.state;
+    return (
+      <Route
+        path="/Cart"
+        render={ (props) => (
+          <CartPage
+            { ...props }
+            cart={ cart }
+          />
+        ) }
+      />
+    );
+  }
+
+  RenderDetailsPage() {
+    const { cart } = this.state;
+    return (
+      <Route
+        path="/details/:id"
+        render={ (props) => (
+          <DetailsPage
+            { ...props }
+            cart={ cart }
+            addCart={ this.addCart }
+          />
+        ) }
+      />
+    );
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Switch>
+            { this.RenderCartPage() }
+            { this.RenderDetailsPage() }
+            { this.RenderHome() }
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;
