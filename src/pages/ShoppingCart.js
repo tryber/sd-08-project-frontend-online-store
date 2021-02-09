@@ -73,7 +73,7 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { cart } = this.state;
-
+  
     if (cart.length === 0) {
       return (
         <main>
