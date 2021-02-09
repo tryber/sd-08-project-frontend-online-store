@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import { CategoryList, ListCard } from '../components';
+import { CategoryList, ProductCard } from '../components';
 
 import * as api from '../services/api';
 
@@ -10,22 +11,43 @@ class ProductsList extends Component {
     super();
 
     this.state = {
-      categoryId: '',
       search: '',
       results: [],
-      cart: [],
+      everyList: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleAddItemToCart = this.handleAddItemToCart.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this.renderList = this.renderList.bind(this);
+  }
+
+  componentDidMount() {
+    this.renderList();
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
+  }
+
+  async handleClick() {
+    const { search } = this.state;
+
+    await api.getProductsFromCategoryAndQuery(search, search).then((data) => {
+      this.setState({
+        results: data.results,
+        everyList: '',
+      });
+    });
+  }
+
+  handleEnter(event) {
+    if (event.key === 'Enter') {
+      this.handleClick();
+    }
   }
 
   async handleChangeCategory(event) {
@@ -36,26 +58,17 @@ class ProductsList extends Component {
     await this.handleClick();
   }
 
-  async handleClick() {
-    const { categoryId, search } = this.state;
-
-    await api.getProductsFromCategoryAndQuery(categoryId, search).then((data) => {
+  async renderList() {
+    await api.getProductsFromCategoryAndQuery().then((data) => {
       this.setState({
-        results: data.results,
+        everyList: data.results,
       });
     });
   }
 
-  handleAddItemToCart(item) {
-    const { cart } = this.state;
-
-    this.setState({
-      cart: [...cart, item],
-    });
-  }
-
   render() {
-    const { results } = this.state;
+    const { results, search, everyList } = this.state;
+    const { cart, handleAddItemToCart } = this.props;
 
     return (
       <main>
@@ -63,13 +76,14 @@ class ProductsList extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <br />
+
         <input
           data-testid="query-input"
           name="search"
           onChange={ this.handleChange }
           type="text"
         />
+
         <button
           type="button"
           data-testid="query-button"
@@ -77,19 +91,33 @@ class ProductsList extends Component {
         >
           PESQUISAR
         </button>
-        <br />
+
         <CategoryList onClick={ this.handleChangeCategory } />
-        {results
-          .map((item) => (
-            <ListCard
+
+        {everyList !== ''
+          ? everyList.map((item) => (
+            <ProductCard
               key={ item.id }
               item={ item }
               cart={ cart }
-              handleAddItemToCart={ this.handleAddItemToCart }
+              handleAddItemToCart={ handleAddItemToCart }
+            />))
+          : results.map((item) => (
+            <ProductCard
+              key={ item.id }
+              search={ search }
+              item={ item }
+              cart={ cart }
+              handleAddItemToCart={ handleAddItemToCart }
             />))}
       </main>
     );
   }
 }
+
+ProductsList.propTypes = {
+  cart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleAddItemToCart: PropTypes.func.isRequired,
+};
 
 export default ProductsList;
