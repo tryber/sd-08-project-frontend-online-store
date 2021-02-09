@@ -4,11 +4,11 @@ import { FaCartPlus } from 'react-icons/fa';
 
 class AddCart extends React.Component {
   render() {
-    const { onAddCart } = this.props;
+    const { onAddCart, dataTestId } = this.props;
     return (
       <button
         onClick={ onAddCart }
-        data-testid="product-add-to-cart"
+        data-testid={ dataTestId }
         type="button"
         className="button-add-cart"
       >

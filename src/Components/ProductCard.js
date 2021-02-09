@@ -7,20 +7,21 @@ import AddCart from './AddCart';
 class ProductCard extends React.Component {
   render() {
     const {
-      title,
-      price,
-      thumbnail,
       attributes,
       availableQuantity,
       onAddCart,
+      price,
+      thumbnail,
+      title,
     } = this.props;
     const details = {
       pathname: '/details',
       state: {
-        title,
+        attributes,
+        availableQuantity,
         price,
         thumbnail,
-        attributes,
+        title,
       },
     };
     return (
@@ -35,6 +36,7 @@ class ProductCard extends React.Component {
         </Link>
         <span className="product-card-price">{`R$: ${price}`}</span>
         <AddCart
+          dataTestId="product-add-to-cart"
           onAddCart={ () => onAddCart({
             title,
             price,

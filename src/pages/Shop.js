@@ -32,7 +32,6 @@ class Shop extends React.Component {
 
   render() {
     const { cart } = this.props;
-    console.log(cart);
     return (
       <div className="shopping-cart-frame">
         {cart[0] ? this.renderCart() : this.renderEmptyCart()}

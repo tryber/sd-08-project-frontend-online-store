@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
+import AddCart from '../Components/AddCart';
+
 class ProductDetails extends React.Component {
   renderDefaultProps() {
     const { location } = this.props;
@@ -10,11 +12,13 @@ class ProductDetails extends React.Component {
         title: 'Product',
         price: 0,
         thumbnail: 'no-image',
-        attributes: [{
-          name: 'Sem dados nome',
-          value_name: 'Você clicou em algum card?',
-          id: 'no-info',
-        }],
+        attributes: [
+          {
+            name: 'Sem dados nome',
+            value_name: 'Você clicou em algum card?',
+            id: 'no-info',
+          },
+        ],
       };
       location.state = state;
     }
@@ -24,8 +28,9 @@ class ProductDetails extends React.Component {
     this.renderDefaultProps();
     const {
       location: {
-        state: { title, price, thumbnail, attributes },
+        state: { title, price, thumbnail, attributes, availableQuantity },
       },
+      onAddCart,
     } = this.props;
     return (
       <section className="main-container product-detail">
@@ -50,6 +55,16 @@ class ProductDetails extends React.Component {
             ))}
           </ul>
         </div>
+        <AddCart
+          dataTestId="product-detail-add-to-cart"
+          onAddCart={ () => onAddCart({
+            title,
+            price,
+            thumbnail,
+            attributes,
+            availableQuantity,
+          }) }
+        />
       </section>
     );
   }
@@ -59,6 +74,7 @@ ProductDetails.propTypes = {
   location: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   ).isRequired,
+  onAddCart: PropTypes.func.isRequired,
 };
 
 export default withRouter(ProductDetails);

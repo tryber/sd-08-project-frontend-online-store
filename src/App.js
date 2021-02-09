@@ -18,7 +18,6 @@ class App extends React.Component {
   }
 
   onAddCart(item) {
-    console.log('atualizou');
     const { cart } = this.state;
     item.productQuantity = 1;
     const newCart = [...cart, item];
@@ -44,7 +43,7 @@ class App extends React.Component {
             <Home cart={ cart } onAddCart={ this.onAddCart } />
           </Route>
           <Route exact path="/details">
-            <ProductDetails />
+            <ProductDetails onAddCart={ this.onAddCart } />
           </Route>
         </Switch>
       </BrowserRouter>
