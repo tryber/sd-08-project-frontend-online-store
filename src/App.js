@@ -1,24 +1,69 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './pages/Header';
+import Cart from './pages/Cart';
+import Hero from './components/Hero';
+import Home from './pages/Home';
+import Details from './pages/Details';
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      productIdList: [],
+    };
+
+    this.getId = this.getId.bind(this);
+    this.attProductIdList = this.attProductIdList.bind(this);
+  }
+
+  getId(event) {
+    const { productIdList } = this.state;
+    this.setState({
+      productIdList: [...productIdList, event.target.id] });
+  }
+
+  attProductIdList(idList) {
+    this.setState({
+      productIdList: idList,
+    });
+  }
+
+  render() {
+    const { productIdList } = this.state;
+    return (
+      <main>
+        <BrowserRouter>
+          <Header />
+          <Hero />
+          <Switch>
+            <Route
+              exact
+              path="/cart/"
+              render={ (props) => (
+                <Cart
+                  { ...props }
+                  productId={ productIdList }
+                  attProductIdList={ this.attProductIdList }
+                />) }
+            />
+            <Route
+              exact
+              path="/"
+              render={ (props) => <Home { ...props } onClick={ this.getId } /> }
+            />
+            <Route
+              path="/details/:id"
+              render={ (props) => <Details { ...props } onClick={ this.getId } /> }
+            />
+          </Switch>
+        </BrowserRouter>
+      </main>
+    );
+  }
 }
 
 export default App;
