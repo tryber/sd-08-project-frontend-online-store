@@ -37,6 +37,7 @@ class ShoppingCart extends React.Component {
 
   handleIncreaseQuantity(event) {
     const { cart } = this.state;
+    
     const allState = this.state;
     const findItem = cart.map((item) => item.id).indexOf(event.target.id);
     allState.cart[findItem].quantity += 1;
