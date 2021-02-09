@@ -37,6 +37,8 @@ class ProductDetails extends React.Component {
 
   render() {
     const { details, general } = this.state;
+    const { handleAddItemToCart } = this.props;
+    console.log(handleAddItemToCart);
 
     return (
       <div data-testid="product-detail-name" className="atributes-container">
@@ -63,10 +65,16 @@ class ProductDetails extends React.Component {
 
           <Link to="/"><button type="button">Voltar</button></Link>
 
-          <button type="button">Adicionar ao carrinho</button>
+          <button
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => handleAddItemToCart(general) }
+            type="button"
+          >
+            Adicionar ao carrinho
+          </button>
         </div>
 
-        <Link to="/shoppingcart">Cart</Link>
+        <Link data-testid="shopping-cart-button" to="/shoppingcart">Cart</Link>
       </div>
     );
   }
@@ -78,6 +86,7 @@ ProductDetails.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  handleAddItemToCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;

@@ -43,7 +43,14 @@ class App extends React.Component {
               handleAddItemToCart={ this.handleAddItemToCart }
             />) }
           />
-          <Route path="/details/:id" component={ ProductDetails } />
+          <Route
+            path="/details/:id"
+            render={ (props) => (<ProductDetails
+              cart={ cart }
+              { ...props }
+              handleAddItemToCart={ this.handleAddItemToCart }
+            />) }
+          />
         </Switch>
       </Router>
     );
