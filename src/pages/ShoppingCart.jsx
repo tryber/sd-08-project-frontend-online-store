@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ShoppingCart extends React.Component {
-  renderButtons = (product) => {
+  renderButtons(product) {
     const { increaseQty, decreaseQty, deleteItem } = this.props;
     return (
       <div>
@@ -56,8 +56,7 @@ class ShoppingCart extends React.Component {
               </div>)
         }
         <div>{ totalPrice(cart)}</div>
-        <div>
-        </div>
+        <div />
       </div>
     );
   }

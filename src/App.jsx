@@ -8,12 +8,17 @@ import ShoppingCart from './pages/ShoppingCart';
 class App extends React.Component {
   constructor() {
     super();
+    
     this.state = {
       cart: [],
     };
+    this.increaseQty = this.increaseQty.bind(this);
+    this.decreaseQty = this.decreaseQty.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+    this.addCart = this.addCart.bind(this);
   }
 
-  increaseQty = (event) => {
+  increaseQty(event) {
     const { cart } = this.state;
     let position;
     for (let index = 0; index < cart.length; index += 1) {
@@ -27,7 +32,7 @@ class App extends React.Component {
     });
   };
 
-  decreaseQty = (event) => {
+  decreaseQty(event) {
     const { cart } = this.state;
     let position;
     for (let index = 0; index < cart.length; index += 1) {
@@ -50,7 +55,7 @@ class App extends React.Component {
     }
   }
 
-  deleteItem = (event) => {
+  deleteItem(event) {
     const { cart } = this.state;
     const productToDelete = cart.find((product) => (
       event.target.value === product.title));
@@ -60,7 +65,7 @@ class App extends React.Component {
     });
   }
 
-  addCart = (product) => {
+  addCart(product) {
     this.setState((prevState) => {
       const isReapeated = prevState.cart.find(
         (productOnCart) => productOnCart.title === product.title,
