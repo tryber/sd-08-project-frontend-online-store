@@ -20,6 +20,7 @@ class ShoppingCart extends React.Component {
 
   handlePropsToState() {
     const { cart } = this.props;
+
     this.setState({
       cart,
     });
