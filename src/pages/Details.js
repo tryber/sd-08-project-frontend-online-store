@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ProductEvaluation from '../components/ProductEvaluation';
 
 export default class Details extends React.Component {
   constructor() {
@@ -42,7 +43,7 @@ export default class Details extends React.Component {
     const { Title, Sku, Price, Thumbnail, Attributes } = this.state;
     const { onClick } = this.props;
     return (
-      <div>
+      <div className="detail-card">
         <section key={ Sku } className="product-details">
           <div className="details-cover">
             <p data-testid="product-detail-name">{Title}</p>
@@ -67,6 +68,9 @@ export default class Details extends React.Component {
               </div>)
             ))}
           </div>
+        </section>
+        <section className="product-rating">
+          <ProductEvaluation />
         </section>
       </div>
     );

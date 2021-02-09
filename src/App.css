@@ -177,13 +177,17 @@ main {
   width: 76%;
 }
 
-.rating-container {
+.product-rating {
   background-color: #303030;
   box-sizing: border-box;
   height: 200px;
   margin: 0 auto;
   padding: 20px;
   width: 80%;
+}
+
+.product-rating .white-text {
+  color: white;
 }
 
 .star {
