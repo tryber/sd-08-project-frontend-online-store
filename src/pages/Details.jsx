@@ -9,7 +9,6 @@ class DetailsPage extends React.Component {
     return (
       <div>
         <Link to="/">Home</Link>
-        <Link to="/Cart">Carrinho</Link>
         <p>{id}</p>
         <h1 data-testid="product-detail-name">{title}</h1>
         <img src={ `${thumbnail}` } alt="" />
@@ -22,6 +21,12 @@ class DetailsPage extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
+        <Link
+          data-testid="shopping-cart-button"
+          to={ { pathname: '/cart', product } }
+        >
+          Carrinho
+        </Link>
       </div>
     );
   }
