@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import RateProduct from '../Components/RateProcuct';
 
 class ProductDetails extends React.Component {
   renderDefaultProps() {
@@ -50,6 +51,7 @@ class ProductDetails extends React.Component {
             ))}
           </ul>
         </div>
+        <RateProduct />
       </section>
     );
   }
