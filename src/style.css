@@ -102,6 +102,7 @@ body {
 
 .search-bar {
   color: #344;
+  display: flex;
   outline: none;
   padding: 3px 10px;
   transition: all 0.25s ease;
@@ -183,4 +184,38 @@ body {
 .product-card h3 {
   font-family: Quicksand , sans-serif;
   font-size: 14px;
+}
+
+/*
+---SHOPPING-CART---
+*/
+
+.shopping-cart-frame {
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 60px auto;
+  padding: 20px;
+  width: 80%;
+}
+
+.shopping-cart-empty-icon {
+  font-size: 34px;
+}
+
+/*
+---PRODUCT DETAILS---
+*/
+
+.product-detail {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 80px 20px;
+  width: 80%;
 }
