@@ -57,14 +57,6 @@ class ProductsList extends Component {
 
     await this.handleClick();
   }
-    });
-  }
-
-  handleEnter(event) {
-    if (event.key === 'Enter') {
-      this.handleClick();
-    }
-  }
 
   async renderList() {
     await api.getProductsFromCategoryAndQuery().then((data) => {
