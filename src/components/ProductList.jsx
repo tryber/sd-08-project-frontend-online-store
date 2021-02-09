@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class SearchByTerms extends React.Component {
+class ProductList extends React.Component {
   render() {
-    const { results } = this.props;
+    const { results, addCart } = this.props;
     return (
       <div>
         { results.map((product) => {
           const { title, thumbnail, price, id } = product;
           return (
             <div key={ id } data-testid="product">
-              <p>{ title }</p>
+              <p data-testid="shopping-cart-product-name">{ title }</p>
               <img src={ thumbnail } alt="" />
               <p>{ price }</p>
               <Link
@@ -20,7 +20,13 @@ class SearchByTerms extends React.Component {
               >
                 Ver detalhes
               </Link>
-              <button type="button">Adicionar ao carrinho</button>
+              <button
+                type="button"
+                data-testid="product-add-to-cart"
+                onClick={ () => { addCart(id, title); } }
+              >
+                Adicionar ao carrinho
+              </button>
             </div>
           );
         }) }
@@ -29,9 +35,9 @@ class SearchByTerms extends React.Component {
   }
 }
 
-SearchByTerms.propTypes = {
+ProductList.propTypes = {
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
   map: PropTypes.arrayOf(PropTypes.object),
 }.isRequired;
 
-export default SearchByTerms;
+export default ProductList;
