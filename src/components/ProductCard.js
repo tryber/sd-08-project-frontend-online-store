@@ -13,6 +13,7 @@ class ProductCard extends React.Component {
 
         <img src={ thumbnail } alt="Thumbnail" />
 
+        { item.shipping.free_shipping && <p data-testid="free-shipping">FRETE GRÁTIS</p> }
         <p>{`R$${price}`}</p>
 
         <Link to={ `/details/${search}&${id}` } data-testid="product-detail-link">
@@ -37,6 +38,9 @@ ProductCard.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
   search: PropTypes.string.isRequired,
