@@ -20,6 +20,7 @@ class AddCart extends React.Component {
 
 AddCart.propTypes = {
   onAddCart: PropTypes.func.isRequired,
+  dataTestId: PropTypes.string.isRequired,
 };
 
 export default AddCart;
