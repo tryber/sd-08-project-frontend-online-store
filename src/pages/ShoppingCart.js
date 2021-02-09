@@ -67,7 +67,7 @@ class ShoppingCart extends React.Component {
   render() {
     const { cart } = this.state;
 
-    { this.renderIf(); }
+    this.renderIf();
 
     return (
       <main>
