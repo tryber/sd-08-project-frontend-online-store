@@ -16,6 +16,8 @@ class App extends React.Component {
 
   handleAddItemToCart(item) {
     const { cart } = this.state;
+    item.quantity = 1;
+    item.totalPrice = item.price;
 
     this.setState({
       cart: [...cart, item],
