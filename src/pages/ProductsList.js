@@ -19,6 +19,7 @@ class ProductsList extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.renderList = this.renderList.bind(this);
   }
 
@@ -49,6 +50,14 @@ class ProductsList extends Component {
     }
   }
 
+  async handleChangeCategory(event) {
+    this.setState({
+      [event.target.name]: event.target.id,
+    });
+
+    await this.handleClick();
+  }
+
   async renderList() {
     await api.getProductsFromCategoryAndQuery().then((data) => {
       this.setState({
@@ -60,7 +69,6 @@ class ProductsList extends Component {
   render() {
     const { results, search, everyList } = this.state;
     const { cart, handleAddItemToCart } = this.props;
-    console.log(handleAddItemToCart);
 
     return (
       <main>
@@ -84,7 +92,7 @@ class ProductsList extends Component {
           PESQUISAR
         </button>
 
-        <CategoryList />
+        <CategoryList onClick={ this.handleChangeCategory } />
 
         {everyList !== ''
           ? everyList.map((item) => (
@@ -93,10 +101,8 @@ class ProductsList extends Component {
               item={ item }
               cart={ cart }
               handleAddItemToCart={ handleAddItemToCart }
-            />)) : ''}
-
-        {results
-          .map((item) => (
+            />))
+          : results.map((item) => (
             <ProductCard
               key={ item.id }
               search={ search }
