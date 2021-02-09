@@ -37,7 +37,6 @@ class ShoppingCart extends React.Component {
 
   handleIncreaseQuantity(event) {
     const { cart } = this.state;
-    
     const allState = this.state;
     const findItem = cart.map((item) => item.id).indexOf(event.target.id);
     allState.cart[findItem].quantity += 1;
@@ -68,7 +67,7 @@ class ShoppingCart extends React.Component {
   render() {
     const { cart } = this.state;
 
-    {this.renderIf()}
+    { this.renderIf(); }
 
     return (
       <main>
@@ -97,7 +96,6 @@ class ShoppingCart extends React.Component {
             >
               -
             </button>
-
             <button
               id={ item.id }
               data-testid="product-increase-quantity"
@@ -106,9 +104,7 @@ class ShoppingCart extends React.Component {
             >
               +
             </button>
-
             <p data-testid="shopping-cart-product-quantity">{item.quantity}</p>
-
             <span>
               R$
               { item.totalPrice.toFixed(2) }
