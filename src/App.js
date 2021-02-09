@@ -17,12 +17,19 @@ class App extends React.Component {
     };
 
     this.getId = this.getId.bind(this);
+    this.attProductIdList = this.attProductIdList.bind(this);
   }
 
   getId(event) {
     const { productIdList } = this.state;
     this.setState({
       productIdList: [...productIdList, event.target.id] });
+  }
+
+  attProductIdList(idList) {
+    this.setState({
+      productIdList: idList,
+    });
   }
 
   render() {
@@ -36,7 +43,12 @@ class App extends React.Component {
             <Route
               exact
               path="/cart/"
-              render={ (props) => <Cart { ...props } productId={ productIdList } /> }
+              render={ (props) => (
+                <Cart
+                  { ...props }
+                  productId={ productIdList }
+                  attProductIdList={ this.attProductIdList }
+                />) }
             />
             <Route
               exact
