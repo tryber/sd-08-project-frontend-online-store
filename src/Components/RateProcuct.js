@@ -40,7 +40,7 @@ class RateProduct extends Component {
               placeholder="Deixe sua mensagem"
               defaultValue={ textArea }
             />
-            <button type="submit">Avaliar</button>
+            <button type="submit">Avalie</button>
           </div>
         </form>
       </section>
