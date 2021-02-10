@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ReviewForm from '../components/ReviewForm'
+import ReviewForm from '../components/ReviewForm';
 import Reviews from '../components/Reviews';
 
 import * as api from '../services/api';
@@ -14,8 +14,8 @@ class ProductDetails extends React.Component {
       details: [],
       general: [],
       selected: false,
-      email: "",
-      reviewText: "",
+      email: '',
+      reviewText: '',
       reviews: [],
     };
 
@@ -29,6 +29,17 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     this.getDetails();
+  }
+  
+  handleReviews() {
+    const { email, reviewText, selected } = this.state;
+    const saveNewReviewsInState = this.state;
+    const newReview = { email, reviewText, selected };
+    const loadedReviews = this.loadReviews();
+    loadedReviews.push(newReview);
+    this.saveReviews(loadedReviews);
+    saveNewReviewsInState.reviews = loadedReviews;
+    this.setState(saveNewReviewsInState);
   }
 
   async getDetails() {
@@ -53,24 +64,13 @@ class ProductDetails extends React.Component {
   loadReviews() {
     let previousReviews = localStorage.getItem('savedReviews');
     if (!previousReviews) {
-      return previousReviews = [];
+      previousReviews = [];
     }
     return JSON.parse(previousReviews);
   }
 
-  handleReviews() {
-    const { email, reviewText, selected } = this.state;
-    const saveNewReviewsInState = this.state;
-    const newReview = { email, reviewText, selected };
-    const loadedReviews = this.loadReviews();
-    loadedReviews.push(newReview);
-    this.saveReviews(loadedReviews);
-    saveNewReviewsInState.reviews = loadedReviews;
-    this.setState(saveNewReviewsInState);
-  }
-
   formHandler(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handlerSubmit(event) {
@@ -81,7 +81,7 @@ class ProductDetails extends React.Component {
       selected: imprintReview.selected,
       reviewText: imprintReview.reviewText,
     }];
-    this.handleReviews()
+    this.handleReviews();
   }
 
   render() {
@@ -91,14 +91,11 @@ class ProductDetails extends React.Component {
     return (
       <div data-testid="product-detail-name" className="atributes-container">
         <h3>{general.title}</h3>
-
         <p>
           Preço: R$
           { general.price }
         </p>
-
         <img src={ general.thumbnail } alt="product" />
-
         <div className="atributos">
           Detalhes
           {details
@@ -110,9 +107,7 @@ class ProductDetails extends React.Component {
                   {detail.value_name}
                 </p>
               </ul>))}
-
           <Link to="/"><button type="button">Voltar</button></Link>
-
           <button
             data-testid="product-detail-add-to-cart"
             onClick={ () => handleAddItemToCart(general) }
@@ -121,24 +116,20 @@ class ProductDetails extends React.Component {
             Adicionar ao carrinho
           </button>
         </div>
-
         <ReviewForm
-        formHandler={this.formHandler}
-        handlerSubmit={this.handlerSubmit}
-        email={this.state.email}
-        selected={this.state.selected}
-        reviewText={this.state.reviewText}
+          formHandler={ this.formHandler }
+          handlerSubmit={ this.handlerSubmit }
+          email={ this.state.email }
+          selected={ this.state.selected }
+          reviewText={ this.state.reviewText }
         />
-
         { reviews !== '' ? reviews.map((item, index) => (
           <Reviews
-            key={index}
-            email={item.email}
-            selected={item.selected}
-            reviewText={item.reviewText}
-          />)) : ''
-        } 
-
+            key={ index }
+            email={ item.email }
+            selected={ item.selected }
+            reviewText={ item.reviewText }
+          />)) : ''}
         <Link data-testid="shopping-cart-button" to="/shoppingcart">Cart</Link>
       </div>
     );
