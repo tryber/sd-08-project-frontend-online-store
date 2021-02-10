@@ -31,6 +31,10 @@ class ProductCard extends React.Component {
   }
 }
 
+ProductCard.defaultProps = {
+  search: '',
+};
+
 ProductCard.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string,
@@ -39,7 +43,7 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string,
   }).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
-  search: PropTypes.string.isRequired,
+  search: PropTypes.string,
 };
 
 export default ProductCard;
