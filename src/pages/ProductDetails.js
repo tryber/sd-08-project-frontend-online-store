@@ -30,7 +30,7 @@ class ProductDetails extends React.Component {
   componentDidMount() {
     this.getDetails();
   }
-  
+
   handleReviews() {
     const { email, reviewText, selected } = this.state;
     const saveNewReviewsInState = this.state;
@@ -41,7 +41,17 @@ class ProductDetails extends React.Component {
     saveNewReviewsInState.reviews = loadedReviews;
     this.setState(saveNewReviewsInState);
   }
-
+  
+  handlerSubmit(event) {
+    event.preventDefault();
+    const imprintReview = this.state;
+    imprintReview.reviews = [{
+      email: imprintReview.email,
+      selected: imprintReview.selected,
+      reviewText: imprintReview.reviewText,
+    }];
+    this.handleReviews();
+  }
   async getDetails() {
     const { match: { params: { id } } } = this.props;
 
@@ -71,17 +81,6 @@ class ProductDetails extends React.Component {
 
   formHandler(event) {
     this.setState({ [event.target.name]: event.target.value });
-  }
-
-  handlerSubmit(event) {
-    event.preventDefault();
-    const imprintReview = this.state;
-    imprintReview.reviews = [{
-      email: imprintReview.email,
-      selected: imprintReview.selected,
-      reviewText: imprintReview.reviewText,
-    }];
-    this.handleReviews();
   }
 
   render() {

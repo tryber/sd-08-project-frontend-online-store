@@ -9,20 +9,20 @@ class Reviews extends React.Component {
       <div>
         <span>{ email }</span>
         <form>
-          <input
-          readOnly type='radio' name='selected' value='1' checked={ selected === '1' }
+          <input readOnly type="radio" name="selected" value="1"
+            checked={ selected === '1' }
           />
-          <input
-          readOnly type='radio' name='selected' value='2' checked={ selected === '2' }
+          <input readOnly type="radio" name="selected" value="2"
+            checked={ selected === '2' }
           />
-          <input
-          readOnly type='radio' name='selected' value='3' checked={ selected === '3' }
+          <input readOnly type="radio" name="selected" value="3"
+            checked={ selected === '3' }
           />
-          <input
-          readOnly type='radio' name='selected' value='4' checked={ selected === '4' }
+          <input readOnly type="radio" name="selected" value="4"
+            checked={ selected === '4' }
           />
-          <input
-          readOnly type='radio' name='selected' value='5' checked={ selected === '5' }
+          <input readOnly type="radio" name="selected" value="5"
+            checked={ selected === '5' }
           />
         </form>
         <p data-testid="product-detail-evaluation">{ reviewText }</p>
@@ -33,9 +33,9 @@ class Reviews extends React.Component {
 }
 
 Reviews.propTypes = {
-  name: PropTypes.string,
-  reviewText: PropTypes.string,
-  selected: PropTypes.string,
+  email: PropTypes.string.isRequired,
+  reviewText: PropTypes.string.isRequired,
+  selected: PropTypes.string.isRequired,
 };
 
 export default Reviews;
