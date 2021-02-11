@@ -9,48 +9,48 @@ class ReviewForm extends React.Component {
   }
 
   renderRadioButtons() {
-    const { selected, formHandler } = this.props;
+    const { rating, formHandler } = this.props;
     return (
       <>
         <input
           type="radio"
-          name="selected"
-          id="selected-1"
+          name="rating"
+          id="rating-1"
           value="1"
           onChange={ formHandler }
-          checked={ selected === '1' }
+          checked={ rating === '1' }
         />
         <input
           type="radio"
-          name="selected"
-          id="selected-2"
+          name="rating"
+          id="rating-2"
           value="2"
           onChange={ formHandler }
-          checked={ selected === '2' }
+          checked={ rating === '2' }
         />
         <input
           type="radio"
-          name="selected"
-          id="selected-3"
+          name="rating"
+          id="rating-3"
           value="3"
           onChange={ formHandler }
-          checked={ selected === '3' }
+          checked={ rating === '3' }
         />
         <input
           type="radio"
-          name="selected"
-          id="selected-4"
+          name="rating"
+          id="rating-4"
           value="4"
           onChange={ formHandler }
-          checked={ selected === '4' }
+          checked={ rating === '4' }
         />
         <input
           type="radio"
-          name="selected"
-          id="selected-5"
+          name="rating"
+          id="rating-5"
           value="5"
           onChange={ formHandler }
-          checked={ selected === '5' }
+          checked={ rating === '5' }
         />
       </>
     );
@@ -93,7 +93,7 @@ class ReviewForm extends React.Component {
 ReviewForm.propTypes = {
   email: PropTypes.string.isRequired,
   reviewText: PropTypes.string.isRequired,
-  selected: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
   formHandler: PropTypes.func.isRequired,
   handlerSubmit: PropTypes.func.isRequired,
 };

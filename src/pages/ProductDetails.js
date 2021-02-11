@@ -13,7 +13,7 @@ class ProductDetails extends React.Component {
     this.state = {
       details: [],
       general: [],
-      selected: '',
+      rating: '',
       email: '',
       reviewText: '',
       reviews: [],
@@ -33,9 +33,9 @@ class ProductDetails extends React.Component {
   }
 
   handleReviews() {
-    const { email, reviewText, selected } = this.state;
+    const { email, reviewText, rating } = this.state;
     const saveNewReviewsInState = this.state;
-    const newReview = { email, reviewText, selected };
+    const newReview = { email, reviewText, rating};
     const loadedReviews = this.loadReviews();
     loadedReviews.push(newReview);
     this.saveReviews(loadedReviews);
@@ -48,7 +48,7 @@ class ProductDetails extends React.Component {
     const imprintReview = this.state;
     imprintReview.reviews = [{
       email: imprintReview.email,
-      selected: imprintReview.selected,
+      rating: imprintReview.rating,
       reviewText: imprintReview.reviewText,
     }];
     this.setState(imprintReview);
@@ -78,7 +78,7 @@ class ProductDetails extends React.Component {
   loadReviews() {
     let previousReviews = localStorage.getItem('savedReviews');
     if (previousReviews === null) {
-      previousReviews = [];
+      return previousReviews = [];
     }
     return JSON.parse(previousReviews);
   }
@@ -102,7 +102,7 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { details, general, reviews, email, reviewText, selected } = this.state;
+    const { details, general, reviews, email, reviewText, rating } = this.state;
     const { handleAddItemToCart } = this.props;
 
     return (
@@ -132,7 +132,7 @@ class ProductDetails extends React.Component {
           formHandler={ this.formHandler }
           handlerSubmit={ this.handlerSubmit }
           email={ email }
-          selected={ selected }
+          rating={ rating }
           reviewText={ reviewText }
         />
         { reviews !== ''
@@ -140,7 +140,7 @@ class ProductDetails extends React.Component {
             <Reviews
               key={ index }
               email={ item.email }
-              selected={ item.selected }
+              rating={ item.rating }
               reviewText={ item.reviewText }
             />)) : ''}
         <Link data-testid="shopping-cart-button" to="/shoppingcart">Cart</Link>
