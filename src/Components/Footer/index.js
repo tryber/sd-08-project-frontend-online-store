@@ -6,16 +6,12 @@ export default class Footer extends Component {
       <footer className="footer">
         <div>
           <p>Projeto desenvolvido no modulo de FrontEnd da Trybe!</p>
-        </div>
-        <div>
-          <img
-            src="https://lojasrede.vteximg.com.br/arquivos/selo-reclame-aqui.jpg?v=637223866534200000"
-            alt="Imagem reclame aqui"
-          />
-          <img
-            src="https://service.yourviews.com.br/Image/9c0aa0e9-37a2-4b03-93d7-41c964268161/Footer.jpg"
-            alt="selo de verificação"
-          />
+          <div className="linkedins">
+            <p><a href="https://www.linkedin.com/in/arnaelciogomespereira/" target="_blank">Arnaelcio Gomes</a></p>
+            <p><a href="https://www.linkedin.com/in/bianca-caetano-31a2921aa/" target="_blank">Bianca Caetano</a></p>
+            <p><a href="https://www.linkedin.com/" target="_blank">Lucas Rodrigues</a></p>
+            <p><a href="https://www.linkedin.com/in/marcela-souza-834696153/" target="_blank">Marcela Souza</a></p>
+          </div>
         </div>
       </footer>
     );

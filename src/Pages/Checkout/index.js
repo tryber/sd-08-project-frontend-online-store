@@ -31,6 +31,8 @@ export default class Checkout extends Component {
         placeholder="Nome Completo"
         onChange={ this.inputChange }
         data-testid="checkout-fullname"
+        className="inputCheckout"
+
       />
     );
   }
@@ -45,6 +47,7 @@ export default class Checkout extends Component {
         placeholder="Email"
         onChange={ this.inputChange }
         data-testid="checkout-email"
+        className="inputCheckout"
       />
     );
   }
@@ -59,6 +62,7 @@ export default class Checkout extends Component {
         placeholder="CEP"
         onChange={ this.inputChange }
         data-testid="checkout-cep"
+        className="inputCheckout"
       />
     );
   }
@@ -73,6 +77,7 @@ export default class Checkout extends Component {
         placeholder="Telefone"
         onChange={ this.inputChange }
         data-testid="checkout-phone"
+        className="inputCheckout"
       />
     );
   }
@@ -87,6 +92,7 @@ export default class Checkout extends Component {
         placeholder="CPF"
         onChange={ this.inputChange }
         data-testid="checkout-cpf"
+        className="inputCheckout"
       />
     );
   }
@@ -101,6 +107,7 @@ export default class Checkout extends Component {
         placeholder="Endereço"
         onChange={ this.inputChange }
         data-testid="checkout-address"
+        className="inputCheckout"
       />
     );
   }

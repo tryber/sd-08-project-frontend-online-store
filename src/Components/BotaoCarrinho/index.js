@@ -7,11 +7,12 @@ const BotaoCarrinho = (props) => {
   const { cartSize } = props;
   if (shouldRedirect) return <Redirect to="/cart" />;
   return (
-    <div>
+    <div className="carrinhoEContador">
       <button
         data-testid="shopping-cart-button"
         type="button"
         onClick={ () => setShouldRedirect(true) }
+        className="botaoCarrinho"
       >
         <img
           src="https://image.flaticon.com/icons/png/512/1374/1374128.png"

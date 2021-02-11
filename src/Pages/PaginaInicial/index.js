@@ -55,8 +55,10 @@ export default class PaginaInicial extends Component {
     } = this.props;
     return (
       <div>
-        {this.renderStatusInput()}
-        <BotaoCarrinho cartSize={ cartSize } />
+        <div className="inputECarrinho">
+          {this.renderStatusInput()}
+          <BotaoCarrinho cartSize={ cartSize } />
+        </div>
         {(queryStatus === '' && categoryId === '') && this.renderInitialMessage()}
         <ListaCategorias onChangeCategoryId={ changeCategoryId } />
         <ListaProdutos

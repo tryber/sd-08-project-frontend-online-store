@@ -24,16 +24,16 @@ export default class ProdutosCarrinho extends Component {
           const { title, thumbnail, price, quantity } = product;
 
           return (
-            <>
+            <div className="produtoCarrinho">
               <img src={ `${thumbnail}` } alt="product" />
               <p data-testid="shopping-cart-product-name">{title}</p>
-              <p>{price}</p>
-              <div data-testid="shopping-cart-product-quantity">{quantity}</div>
+              <p>R$ {price}</p>
+              <div data-testid="shopping-cart-product-quantity">Em Estoque: {quantity}</div>
 
-            </>
+            </div>
           );
         })}
-        <div>{this.getTotal()}</div>
+        <div className="valorTotal">Total: R$ {this.getTotal()}</div>
       </>
     );
   }
