@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 // import ListaCardProdutos from './ListaCardProdutos';
 
 import * as api from '../services/api';
+import './CategoriesList.css';
 
 class CategoriesList extends Component {
   constructor() {
@@ -35,7 +36,7 @@ class CategoriesList extends Component {
         id={ data.id }
         data-testid="category"
         onClick={ handleClickCategory }
-        className="categorie-button"
+        className="btn btn-default text-nowrap text-left"
       >
         { data.name }
       </button>));
@@ -45,10 +46,8 @@ class CategoriesList extends Component {
   render() {
     const { categories } = this.state;
     return (
-      <div className="left-content">
-        <div className="categories-list">
-          {categories}
-        </div>
+      <div className="categories-list">
+        {categories}
       </div>
     );
   }

@@ -1,4 +1,13 @@
+img {
+  width: 32px;
+}
+
 body {
+  background: #ededed;
+  min-width: 260px;
+}
+
+/* body {
   background: #ededed;
   margin: 0;
   min-height: 100vh;
@@ -175,4 +184,4 @@ form {
     margin: 0;
     width: 100%;
   }
-}
+} */

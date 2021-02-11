@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Listagem from '../pages/listagem';
 import Carrinho from '../pages/carrinho';
 import Produto from '../pages/Produto';
+import Checkout from '../pages/checkout';
 
 class Content extends React.Component {
   render() {
@@ -29,6 +30,7 @@ class Content extends React.Component {
           path="/produto/:id"
           render={ (routerProps) => <Produto { ...routerProps } { ...this.props } /> }
         />
+        <Route exact path="/checkout" component={ Checkout } />
       </Switch>
     );
   }
