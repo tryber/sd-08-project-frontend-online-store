@@ -48,7 +48,7 @@ export default class ListaProdutos extends Component {
     const prod = products;
 
     return (
-      <div className="listaDeProdutos">
+      <div>
         {
           this.handleOrdenation(orderFilter, prod)
             .map((product) => (

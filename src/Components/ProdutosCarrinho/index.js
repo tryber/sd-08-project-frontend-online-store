@@ -99,7 +99,7 @@ export default class ProdutosCarrinho extends Component {
             </div>
           );
         })}
-        <div className="valorTotal">Total: R$ {this.getTotal()}</div>
+        <div>{this.getTotal()}</div>
       </>
     );
   }

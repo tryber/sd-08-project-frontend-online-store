@@ -9,12 +9,7 @@ export default class FreteGratis extends Component {
 
     if (freeShipping === true) {
       return (
-        <p
-          data-testid="free-shipping"
-          className="textoFreteGratis"
-        >
-          Frete Grátis
-        </p>
+        <p data-testid="free-shipping">Frete Grátis</p>
       );
     }
     return <div />;
