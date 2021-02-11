@@ -47,7 +47,6 @@ ProductCard.propTypes = {
     }).isRequired,
   }).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
-  search: PropTypes.string,
 };
 
 export default ProductCard;
