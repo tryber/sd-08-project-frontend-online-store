@@ -25,6 +25,7 @@ class ProductDetails extends React.Component {
     this.saveReviews = this.saveReviews.bind(this);
     this.loadReviews = this.loadReviews.bind(this);
     this.handleReviews = this.handleReviews.bind(this);
+    this.renderProduct = this.renderProduct.bind(this);
   }
 
   componentDidMount() {
@@ -85,18 +86,27 @@ class ProductDetails extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  render() {
-    const { details, general, reviews } = this.state;
-    const { handleAddItemToCart } = this.props;
-
+  renderProduct() {
+    const { general } = this.state;
     return (
-      <div data-testid="product-detail-name" className="atributes-container">
+      <>
         <h3>{general.title}</h3>
         <p>
           Preço: R$
           { general.price }
         </p>
         <img src={ general.thumbnail } alt="product" />
+      </>
+    );
+  }
+
+  render() {
+    const { details, general, reviews, email, reviewText, selected } = this.state;
+    const { handleAddItemToCart } = this.props;
+
+    return (
+      <div data-testid="product-detail-name" className="atributes-container">
+        { this.renderProduct }
         <div className="atributos">
           Detalhes
           {details
@@ -120,18 +130,18 @@ class ProductDetails extends React.Component {
         <ReviewForm
           formHandler={ this.formHandler }
           handlerSubmit={ this.handlerSubmit }
-          email={ this.state.email }
-          selected={ this.state.selected }
-          reviewText={ this.state.reviewText }
+          email={ email }
+          selected={ selected }
+          reviewText={ reviewText }
         />
         { reviews !== ''
-        ? reviews.map((item, index) => (
-          <Reviews
-            key={ index }
-            email={ item.email }
-            selected={ item.selected }
-            reviewText={ item.reviewText }
-          />)) : ''}
+          ? reviews.map((item, index) => (
+            <Reviews
+              key={ index }
+              email={ item.email }
+              selected={ item.selected }
+              reviewText={ item.reviewText }
+            />)) : ''}
         <Link data-testid="shopping-cart-button" to="/shoppingcart">Cart</Link>
       </div>
     );

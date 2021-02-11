@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ReviewForm extends React.Component {
-  constructor(){
+  constructor() {
     super();
 
     this.renderRadioButtons = this.renderRadioButtons.bind(this);
   }
+
   renderRadioButtons() {
     const { selected, formHandler } = this.props;
     return (
@@ -43,7 +44,8 @@ class ReviewForm extends React.Component {
           onChange={ formHandler }
           checked={ selected === '4' }
         />
-        <input type="radio"
+        <input
+          type="radio"
           name="selected"
           id="selected-5"
           value="5"
@@ -51,8 +53,9 @@ class ReviewForm extends React.Component {
           checked={ selected === '5' }
         />
       </>
-    )
+    );
   }
+
   render() {
     const { email, reviewText, formHandler, handlerSubmit } = this.props;
 
@@ -63,7 +66,7 @@ class ReviewForm extends React.Component {
           <input
             name="email"
             type="text"
-            placeholder='Email'
+            placeholder="Email"
             value={ email }
             onChange={ formHandler }
           />
@@ -78,7 +81,8 @@ class ReviewForm extends React.Component {
           <input
             type="submit"
             name="botao-avalicao"
-            onClick={ handlerSubmit } value="Avaliar"
+            onClick={ handlerSubmit }
+            value="Avaliar"
           />
         </form>
       </div>
