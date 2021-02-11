@@ -1,0 +1,21 @@
+.color-white {
+  color: white;
+}
+
+.query-button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.navbar-toggler {
+  display: none;
+}
+
+
+@media only screen and ( max-width : 600px ) {
+
+  .navbar-toggler {
+    display: flex;
+  }
+}
