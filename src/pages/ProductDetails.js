@@ -35,7 +35,7 @@ class ProductDetails extends React.Component {
   handleReviews() {
     const { email, reviewText, rating } = this.state;
     const saveNewReviewsInState = this.state;
-    const newReview = { email, reviewText, rating};
+    const newReview = { email, reviewText, rating };
     const loadedReviews = this.loadReviews();
     loadedReviews.push(newReview);
     this.saveReviews(loadedReviews);
@@ -78,7 +78,8 @@ class ProductDetails extends React.Component {
   loadReviews() {
     let previousReviews = localStorage.getItem('savedReviews');
     if (previousReviews === null) {
-      return previousReviews = [];
+      previousReviews = [];
+      return previousReviews;
     }
     return JSON.parse(previousReviews);
   }
