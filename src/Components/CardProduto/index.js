@@ -9,10 +9,10 @@ export default class CardProduto extends Component {
     const { product, addProductToCart } = this.props;
     const { title, thumbnail, price, id } = product;
     return (
-      <div data-testid="product">
+      <div data-testid="product" className="product">
         <h4>{title}</h4>
         <FreteGratis product={ product } />
-        <img src={ thumbnail } alt="" />
+        <img src={ thumbnail } alt="Imagem do Produto" className="imgProduct" />
         <span>{`Preço: ${price}`}</span>
         <Link
           data-testid="product-detail-link"
@@ -22,6 +22,7 @@ export default class CardProduto extends Component {
               product,
             },
           } }
+          className="detalhesProduto"
         >
           VER DETALHES
         </Link>
