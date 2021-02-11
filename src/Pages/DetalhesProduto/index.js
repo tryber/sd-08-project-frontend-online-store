@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import BotaoAdiciona from '../../Components/BotaoAdiciona';
 import BotaoCarrinho from '../../Components/BotaoCarrinho';
-
 import FormularioAvaliaçao from '../../Components/FormularioAvaliaçao';
 import FreteGratis from '../../Components/FreteGratis';
 
