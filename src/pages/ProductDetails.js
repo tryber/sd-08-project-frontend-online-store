@@ -41,7 +41,7 @@ class ProductDetails extends React.Component {
     saveNewReviewsInState.reviews = loadedReviews;
     this.setState(saveNewReviewsInState);
   }
-  
+
   handlerSubmit(event) {
     event.preventDefault();
     const imprintReview = this.state;
@@ -50,8 +50,10 @@ class ProductDetails extends React.Component {
       selected: imprintReview.selected,
       reviewText: imprintReview.reviewText,
     }];
+    this.setState(imprintReview);
     this.handleReviews();
   }
+
   async getDetails() {
     const { match: { params: { id } } } = this.props;
 
@@ -122,7 +124,8 @@ class ProductDetails extends React.Component {
           selected={ this.state.selected }
           reviewText={ this.state.reviewText }
         />
-        { reviews !== '' ? reviews.map((item, index) => (
+        { reviews !== ''
+        ? reviews.map((item, index) => (
           <Reviews
             key={ index }
             email={ item.email }
