@@ -15,7 +15,7 @@ export default class ListaProdutos extends Component {
     const prod = products;
 
     return (
-      <div>
+      <div className="listaDeProdutos">
         {
           prod.map((product) => (
             <CardProduto

@@ -6,6 +6,8 @@ import Carrinho from './Pages/Carrinho';
 import Checkout from './Pages/Checkout';
 import DetalhesProduto from './Pages/DetalhesProduto';
 import PaginaInicial from './Pages/PaginaInicial';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
 
 export default class App extends Component {
   constructor() {
@@ -63,6 +65,7 @@ export default class App extends Component {
     const { products, queryStatus, categoryId, cartProducts } = this.state;
     return (
       <div className="App">
+        <Header />
         <Router>
           <Switch>
             <Route
@@ -93,6 +96,7 @@ export default class App extends Component {
             />
           </Switch>
         </Router>
+        <Footer />
       </div>
     );
   }

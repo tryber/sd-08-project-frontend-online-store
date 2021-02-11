@@ -1,13 +1,84 @@
 body {
-  margin: 0;
+  margin-top: -70px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.botaoBuscarProduto {
+  border: 0px solid;
+  border-radius: 0px 5px 5px 0px;
+  height: 51px;
+  width: 51px;
+  float: left;
+}
+
+.buscar {
+  margin-top: 50px;
+  padding:0px;
+  height: 48px;
+
+}
+
+.carrinhoCompras {
+  width: 25px;
+  height: 25px;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container-list-categories {
+  
+}
+
+.header {
+  font-size: 60px;
+  background-image: linear-gradient(to bottom, purple, white);
+}
+
+.inputBuscar {
+  padding-left: 10px;
+  border: 1px solid;
+  border-radius: 5px 0px 0px 5px; 
+  color:#C0C0C0;
+  height: 48px;
+  width: 523px;
+  float: left;
+}
+
+ .label-list-categories{
+   font-size: 20px;
+
+ }
+
+ .listaDeProdutos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+ }
+
+ .lupa {
+  height: 40px;
+ }
+
+ .mensagemInicial {
+   font-size: 20px;
+ }
+
+ .product {
+   border: 1px solid;
+   background-color: #f1e9e9;
+   margin: 5px;
+   padding: 10px;
+   width: 270px;
+   height: 250px;
+ }
+
+ .valorCarrinho {
+   font-size: 30px;
+   font-weight: 700;
+ }

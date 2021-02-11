@@ -9,7 +9,7 @@ export default class CardProduto extends Component {
     const { product, addProductToCart } = this.props;
     const { title, thumbnail, price, id } = product;
     return (
-      <div data-testid="product">
+      <div data-testid="product" className="product">
         <h4>{title}</h4>
         <FreteGratis product={ product } />
         <img src={ thumbnail } alt="" />

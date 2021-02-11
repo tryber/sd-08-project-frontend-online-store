@@ -13,10 +13,13 @@ const BotaoCarrinho = (props) => {
         type="button"
         onClick={ () => setShouldRedirect(true) }
       >
-        CARRINHO
-
+        <img
+          src="https://image.flaticon.com/icons/png/512/1374/1374128.png"
+          alt="Carrinho de Compras"
+          className="carrinhoCompras"
+        />
       </button>
-      <span data-testid="shopping-cart-size">{ cartSize.toString() }</span>
+      <span data-testid="shopping-cart-size" className="valorCarrinho">{ cartSize.toString() }</span>
     </div>
   );
 };

@@ -9,20 +9,27 @@ export default class PaginaInicial extends Component {
   renderStatusInput() {
     const { queryStatus, changeQueryStatus, fetchProducts } = this.props;
     return (
-      <div>
+      <div className="buscar">
         <input
           type="text"
           id="buscador"
           value={ queryStatus }
           onChange={ changeQueryStatus }
           data-testid="query-input"
+          placeholder="O que você está procurando?"
+          className="inputBuscar"
         />
         <button
           type="button"
           data-testid="query-button"
           onClick={ fetchProducts }
+          className="botaoBuscarProduto"
         >
-          BUSCAR
+          <img
+            src="https://image.flaticon.com/icons/png/512/16/16492.png"
+            alt="lupa buscar"
+            className="lupa"
+          />
         </button>
       </div>
     );
@@ -30,7 +37,7 @@ export default class PaginaInicial extends Component {
 
   renderInitialMessage() {
     return (
-      <div data-testid="home-initial-message">
+      <div data-testid="home-initial-message" className="mensagemInicial">
         Digite algum termo de pesquisa ou escolha uma categoria.
       </div>
     );
@@ -49,15 +56,15 @@ export default class PaginaInicial extends Component {
     return (
       <div>
         {this.renderStatusInput()}
+        <BotaoCarrinho cartSize={ cartSize } />
+        {(queryStatus === '' && categoryId === '') && this.renderInitialMessage()}
+        <ListaCategorias onChangeCategoryId={ changeCategoryId } />
         <ListaProdutos
           products={ products }
           categoryId={ categoryId }
           onFetchProducts={ fetchProducts }
           addProductToCart={ addProductToCart }
         />
-        <BotaoCarrinho cartSize={ cartSize } />
-        {(queryStatus === '' && categoryId === '') && this.renderInitialMessage()}
-        <ListaCategorias onChangeCategoryId={ changeCategoryId } />
       </div>
     );
   }
