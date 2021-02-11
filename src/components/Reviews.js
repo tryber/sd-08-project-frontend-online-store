@@ -55,7 +55,7 @@ class Reviews extends React.Component {
 Reviews.propTypes = {
   email: PropTypes.string.isRequired,
   reviewText: PropTypes.string.isRequired,
-  selected: PropTypes.string.isRequired,
+  selected: PropTypes.bool.isRequired,
 };
 
 export default Reviews;

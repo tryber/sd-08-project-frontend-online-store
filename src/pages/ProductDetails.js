@@ -13,7 +13,7 @@ class ProductDetails extends React.Component {
     this.state = {
       details: [],
       general: [],
-      selected: false,
+      selected: '',
       email: '',
       reviewText: '',
       reviews: [],
@@ -31,7 +31,23 @@ class ProductDetails extends React.Component {
   componentDidMount() {
     this.getDetails();
   }
+  
+  async getDetails() {
+    const { match: { params: { id } } } = this.props;
+    
+    // const params = id.split('&');
+    // const produto = await api
+    // .getProductsFromCategoryAndQuery(params[1], params[0]).then((data) => data.results
+    // .find((item) => item.id === params[1]));
 
+    const produto = await api.getProduct(id);
+
+    this.setState({
+      details: produto.attributes,
+      general: produto,
+    });
+  }
+  
   handleReviews() {
     const { email, reviewText, selected } = this.state;
     const saveNewReviewsInState = this.state;
@@ -55,28 +71,13 @@ class ProductDetails extends React.Component {
     this.handleReviews();
   }
 
-  async getDetails() {
-    const { match: { params: { id } } } = this.props;
-
-    const params = id.split('&');
-
-    const produto = await api
-      .getProductsFromCategoryAndQuery(params[1], params[0]).then((data) => data.results
-        .find((item) => item.id === params[1]));
-
-    this.setState({
-      details: produto.attributes,
-      general: produto,
-    });
-  }
-
   saveReviews(newReview) {
     localStorage.setItem('savedReviews', JSON.stringify(newReview));
   }
 
   loadReviews() {
     let previousReviews = localStorage.getItem('savedReviews');
-    if (!previousReviews) {
+    if (previousReviews === null) {
       previousReviews = [];
     }
     return JSON.parse(previousReviews);
@@ -106,7 +107,7 @@ class ProductDetails extends React.Component {
 
     return (
       <div data-testid="product-detail-name" className="atributes-container">
-        { this.renderProduct }
+        { this.renderProduct() }
         <div className="atributos">
           Detalhes
           {details

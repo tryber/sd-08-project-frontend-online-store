@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
   render() {
-    const { item, handleAddItemToCart, search } = this.props;
+    const { item, handleAddItemToCart } = this.props;
     const { id, title, price, thumbnail } = item;
 
     return (
@@ -16,7 +16,7 @@ class ProductCard extends React.Component {
         { item.shipping.free_shipping && <p data-testid="free-shipping">FRETE GRÁTIS</p> }
         <p>{`R$${price}`}</p>
 
-        <Link to={ `/details/${search}&${id}` } data-testid="product-detail-link">
+        <Link to={ `/details/${id}` } data-testid="product-detail-link">
           Ver mais detalhes
         </Link>
 

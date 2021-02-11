@@ -70,7 +70,7 @@ class ReviewForm extends React.Component {
             value={ email }
             onChange={ formHandler }
           />
-          { this.renderRadioButtons }
+          { this.renderRadioButtons() }
           <textarea
             data-testid="product-detail-evaluation"
             name="reviewText"
@@ -93,7 +93,7 @@ class ReviewForm extends React.Component {
 ReviewForm.propTypes = {
   email: PropTypes.string.isRequired,
   reviewText: PropTypes.string.isRequired,
-  selected: PropTypes.bool.isRequired,
+  selected: PropTypes.string.isRequired,
   formHandler: PropTypes.func.isRequired,
   handlerSubmit: PropTypes.func.isRequired,
 };
