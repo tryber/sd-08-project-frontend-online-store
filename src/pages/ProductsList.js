@@ -99,7 +99,7 @@ class ProductsList extends Component {
             <ProductCard
               key={ item.id }
               item={ item }
-              list={everyList}
+              list={ everyList }
               search={ search }
               cart={ cart }
               handleAddItemToCart={ handleAddItemToCart }
@@ -109,7 +109,7 @@ class ProductsList extends Component {
               key={ item.id }
               search={ search }
               item={ item }
-              list={results}
+              list={ results }
               cart={ cart }
               handleAddItemToCart={ handleAddItemToCart }
             />))}

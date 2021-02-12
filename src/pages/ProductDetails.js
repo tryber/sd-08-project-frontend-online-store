@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import ReviewForm from '../components/ReviewForm';
 import Reviews from '../components/Reviews';
 
-import * as api from '../services/api';
-
 class ProductDetails extends React.Component {
   constructor() {
     super();
@@ -19,7 +17,7 @@ class ProductDetails extends React.Component {
       reviews: [],
     };
 
-    //this.getDetails = this.getDetails.bind(this);
+    this.getDetails = this.getDetails.bind(this);
     this.formHandler = this.formHandler.bind(this);
     this.handlerSubmit = this.handlerSubmit.bind(this);
     this.saveReviews = this.saveReviews.bind(this);
@@ -151,6 +149,11 @@ ProductDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
+    }),
+  }).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      list: PropTypes.array,
     }),
   }).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
