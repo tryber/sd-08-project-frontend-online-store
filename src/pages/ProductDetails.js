@@ -19,7 +19,7 @@ class ProductDetails extends React.Component {
       reviews: [],
     };
 
-    this.getDetails = this.getDetails.bind(this);
+    //this.getDetails = this.getDetails.bind(this);
     this.formHandler = this.formHandler.bind(this);
     this.handlerSubmit = this.handlerSubmit.bind(this);
     this.saveReviews = this.saveReviews.bind(this);
@@ -57,13 +57,10 @@ class ProductDetails extends React.Component {
 
   async getDetails() {
     const { match: { params: { id } } } = this.props;
+    const { location: { state: { list } } } = this.props;
 
-    // const params = id.split('&');
-    // const produto = await api
-    // .getProductsFromCategoryAndQuery(params[1], params[0]).then((data) => data.results
-    // .find((item) => item.id === params[1]));
-
-    const produto = await api.getProduct(id);
+    const params = id.split('&');
+    const produto = list.find((item) => item.id === params[0]);
 
     this.setState({
       details: produto.attributes,

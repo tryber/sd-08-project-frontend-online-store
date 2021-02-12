@@ -23,9 +23,9 @@ class ProductsList extends Component {
     this.renderList = this.renderList.bind(this);
   }
 
-  componentDidMount() {
-    this.renderList();
-  }
+  // componentDidMount() {
+  //   this.renderList();
+  // }
 
   handleChange(event) {
     this.setState({
@@ -99,6 +99,8 @@ class ProductsList extends Component {
             <ProductCard
               key={ item.id }
               item={ item }
+              list={everyList}
+              search={ search }
               cart={ cart }
               handleAddItemToCart={ handleAddItemToCart }
             />))
@@ -107,6 +109,7 @@ class ProductsList extends Component {
               key={ item.id }
               search={ search }
               item={ item }
+              list={results}
               cart={ cart }
               handleAddItemToCart={ handleAddItemToCart }
             />))}
