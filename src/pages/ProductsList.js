@@ -81,7 +81,6 @@ class ProductsList extends Component {
   render() {
     const { results, search, everyList } = this.state;
     const { cart, handleAddItemToCart } = this.props;
-    console.log(cart.length);
     return (
       <main>
         <Link to="/shoppingcart" data-testid="shopping-cart-button">
