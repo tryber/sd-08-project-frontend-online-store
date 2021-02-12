@@ -47,7 +47,7 @@ ProductCard.propTypes = {
       free_shipping: PropTypes.bool.isRequired,
     }).isRequired,
   }).isRequired,
-  list: PropTypes.shape(PropTypes.object()).isRequired,
+  list: PropTypes.array.isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
 };
 

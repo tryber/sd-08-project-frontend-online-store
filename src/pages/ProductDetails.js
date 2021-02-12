@@ -153,7 +153,12 @@ ProductDetails.propTypes = {
   }).isRequired,
   location: PropTypes.shape({
     state: PropTypes.shape({
-      list: PropTypes.shape(PropTypes.object()),
+      list: PropTypes.shape({
+        attributes: PropTypes.arrayOf(PropTypes.any),
+        title: PropTypes.string,
+        price: PropTypes.number,
+        thumbnail: PropTypes.string,
+      }),
     }),
   }).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
