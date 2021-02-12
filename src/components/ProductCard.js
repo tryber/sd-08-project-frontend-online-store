@@ -16,7 +16,11 @@ class ProductCard extends React.Component {
         { item.shipping.free_shipping && <p data-testid="free-shipping">FRETE GRÁTIS</p> }
         <p>{`R$${price}`}</p>
 
-        <Link to={ { pathname: `/details/${id}`, state: { list } } } data-testid="product-detail-link">
+        <Link
+          to={ { 
+          pathname: `/details/${id}`, 
+          state: { list } } } 
+          data-testid="product-detail-link">
           Ver mais detalhes
         </Link>
 
@@ -42,7 +46,7 @@ ProductCard.propTypes = {
       free_shipping: PropTypes.bool.isRequired,
     }).isRequired,
   }).isRequired,
-  list: PropTypes.array.isRequired,
+  list: PropTypes.shape(PropTypes.object()).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
 };
 
