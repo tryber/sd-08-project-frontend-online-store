@@ -155,7 +155,9 @@ ProductDetails.propTypes = {
     state: PropTypes.shape({
       list: PropTypes.shape({
         attributes: PropTypes.arrayOf(PropTypes.any),
-        id: PropTypes.string,
+        item: PropTypes.shape({
+          id: PropTypes.string,
+        }),
         title: PropTypes.string,
         price: PropTypes.number,
         thumbnail: PropTypes.string,
