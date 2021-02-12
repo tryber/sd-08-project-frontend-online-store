@@ -23,10 +23,6 @@ class ProductsList extends Component {
     this.renderList = this.renderList.bind(this);
   }
 
-  componentDidMount() {
-    this.renderList();
-  }
-
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -67,7 +63,7 @@ class ProductsList extends Component {
   }
 
   render() {
-    const { results, search, everyList } = this.state;
+    const { results, everyList } = this.state;
     const { cart, handleAddItemToCart } = this.props;
 
     return (
@@ -99,14 +95,15 @@ class ProductsList extends Component {
             <ProductCard
               key={ item.id }
               item={ item }
+              list={ everyList }
               cart={ cart }
               handleAddItemToCart={ handleAddItemToCart }
             />))
           : results.map((item) => (
             <ProductCard
               key={ item.id }
-              search={ search }
               item={ item }
+              list={ results }
               cart={ cart }
               handleAddItemToCart={ handleAddItemToCart }
             />))}
