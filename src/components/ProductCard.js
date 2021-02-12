@@ -47,13 +47,13 @@ ProductCard.propTypes = {
       free_shipping: PropTypes.bool.isRequired,
     }).isRequired,
   }).isRequired,
-  list: PropTypes.shape({
+  list: PropTypes.arrayOf(PropTypes.shape({
     attributes: PropTypes.arrayOf(PropTypes.any),
     id: PropTypes.string,
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
-  }).isRequired,
+  })).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
 };
 

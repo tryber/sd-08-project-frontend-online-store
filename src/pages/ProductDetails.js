@@ -53,12 +53,11 @@ class ProductDetails extends React.Component {
     this.handleReviews();
   }
 
-  async getDetails() {
+  getDetails() {
     const { match: { params: { id } } } = this.props;
     const { location: { state: { list } } } = this.props;
 
-    const params = id.split('&');
-    const produto = list.find((item) => item.id === params[0]);
+    const produto = list.find((item) => item.id === id);
 
     this.setState({
       details: produto.attributes,
