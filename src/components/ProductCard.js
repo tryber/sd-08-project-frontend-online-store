@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
   render() {
-    const { item, handleAddItemToCart, search } = this.props;
+    const { item, handleAddItemToCart, list } = this.props;
     const { id, title, price, thumbnail } = item;
 
     return (
@@ -13,9 +13,15 @@ class ProductCard extends React.Component {
 
         <img src={ thumbnail } alt="Thumbnail" />
 
+        { item.shipping.free_shipping && <p data-testid="free-shipping">FRETE GRÁTIS</p> }
         <p>{`R$${price}`}</p>
 
-        <Link to={ `/details/${search}&${id}` } data-testid="product-detail-link">
+        <Link
+          to={ {
+            pathname: `/details/${id}`,
+            state: { list } } }
+          data-testid="product-detail-link"
+        >
           Ver mais detalhes
         </Link>
 
@@ -37,9 +43,18 @@ ProductCard.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
+  list: PropTypes.arrayOf(PropTypes.shape({
+    attributes: PropTypes.arrayOf(PropTypes.any),
+    id: PropTypes.string,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    thumbnail: PropTypes.string,
+  })).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
-  search: PropTypes.string.isRequired,
 };
 
 export default ProductCard;
