@@ -153,7 +153,7 @@ ProductDetails.propTypes = {
   }).isRequired,
   location: PropTypes.shape({
     state: PropTypes.shape({
-      list: PropTypes.shape({
+      list: PropTypes.arrayOf(PropTypes.shape({
         attributes: PropTypes.arrayOf(PropTypes.any),
         item: PropTypes.shape({
           id: PropTypes.string,
@@ -161,7 +161,8 @@ ProductDetails.propTypes = {
         title: PropTypes.string,
         price: PropTypes.number,
         thumbnail: PropTypes.string,
-      }),
+        find: PropTypes.func,
+      })),
     }),
   }).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,

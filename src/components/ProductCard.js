@@ -47,7 +47,7 @@ ProductCard.propTypes = {
       free_shipping: PropTypes.bool.isRequired,
     }).isRequired,
   }).isRequired,
-  list: PropTypes.PropTypes.shape({
+  list: PropTypes.shape({
     attributes: PropTypes.arrayOf(PropTypes.any),
     id: PropTypes.string,
     title: PropTypes.string,
