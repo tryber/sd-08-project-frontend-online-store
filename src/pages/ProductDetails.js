@@ -24,6 +24,7 @@ class ProductDetails extends React.Component {
     this.loadReviews = this.loadReviews.bind(this);
     this.handleReviews = this.handleReviews.bind(this);
     this.renderProduct = this.renderProduct.bind(this);
+    this.renderLength = this.renderLength.bind(this);
   }
 
   componentDidMount() {
@@ -96,6 +97,15 @@ class ProductDetails extends React.Component {
     );
   }
 
+  renderLength() {
+    const { cart } = this.props;
+    return (
+      <span data-testid="shopping-cart-size">
+        {cart.length * 2 }
+      </span>
+    );
+  }
+
   render() {
     const { details, general, reviews, email, reviewText, rating } = this.state;
     const { handleAddItemToCart } = this.props;
@@ -138,7 +148,10 @@ class ProductDetails extends React.Component {
               rating={ item.rating }
               reviewText={ item.reviewText }
             />)) : ''}
-        <Link data-testid="shopping-cart-button" to="/shoppingcart">Cart</Link>
+        <Link data-testid="shopping-cart-button" to="/shoppingcart">
+          Cart
+          { this.renderLength() }
+        </Link>
       </div>
     );
   }
@@ -165,6 +178,7 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   handleAddItemToCart: PropTypes.func.isRequired,
+  cart: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductDetails;

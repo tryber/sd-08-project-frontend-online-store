@@ -21,6 +21,7 @@ class ProductsList extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.renderList = this.renderList.bind(this);
+    this.renderLength = this.renderLength.bind(this);
   }
 
   handleChange(event) {
@@ -54,6 +55,17 @@ class ProductsList extends Component {
     await this.handleClick();
   }
 
+  renderLength() {
+    const { cart } = this.props;
+    return (
+      <span data-testid="shopping-cart-size">
+        (
+        { cart.length }
+        )
+      </span>
+    );
+  }
+
   async renderList() {
     await api.getProductsFromCategoryAndQuery().then((data) => {
       this.setState({
@@ -65,10 +77,12 @@ class ProductsList extends Component {
   render() {
     const { results, everyList } = this.state;
     const { cart, handleAddItemToCart } = this.props;
-
     return (
       <main>
-        <Link to="/shoppingcart" data-testid="shopping-cart-button">Cart</Link>
+        <Link to="/shoppingcart" data-testid="shopping-cart-button">
+          Cart
+          {this.renderLength()}
+        </Link>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
