@@ -1,24 +1,62 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { ProductsList, ShoppingCart, ProductDetails } from './pages';
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      cart: [],
+    };
+
+    this.handleAddItemToCart = this.handleAddItemToCart.bind(this);
+  }
+
+  handleAddItemToCart(item) {
+    const { cart } = this.state;
+    item.quantity = 1;
+    item.totalPrice = item.price;
+
+    this.setState({
+      cart: [...cart, item],
+    });
+  }
+
+  render() {
+    const { cart } = this.state;
+
+    return (
+      <Router>
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={ () => (<ProductsList
+              handleAddItemToCart={ this.handleAddItemToCart }
+              cart={ cart }
+            />) }
+          />
+          <Route
+            path="/shoppingcart"
+            render={ () => (<ShoppingCart
+              cart={ cart }
+              handleAddItemToCart={ this.handleAddItemToCart }
+            />) }
+          />
+          <Route
+            path="/details/:id"
+            render={ (props) => (<ProductDetails
+              cart={ cart }
+              { ...props }
+              handleAddItemToCart={ this.handleAddItemToCart }
+            />) }
+          />
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;
