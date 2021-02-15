@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import ListAllCategories from './ListAllCategories';
@@ -67,6 +68,7 @@ class Home extends React.Component {
   }
 
   render() {
+    const { addAoCarrinho } = this.props;
     const { categories, busca, resultadoCategoria } = this.state;
     return (
       <form>
@@ -77,10 +79,17 @@ class Home extends React.Component {
           pesquisarCategoria={ this.pesquisarCategoria }
           categories={ categories }
         />
-        <SearchByCategory produtos={ resultadoCategoria } />
+        <SearchByCategory
+          addAoCarrinho={ addAoCarrinho }
+          produtos={ resultadoCategoria }
+        />
       </form>
     );
   }
 }
+
+Home.propTypes = {
+  addAoCarrinho: PropTypes.func.isRequired,
+};
 
 export default Home;

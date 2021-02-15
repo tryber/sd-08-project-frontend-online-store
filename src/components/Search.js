@@ -34,6 +34,11 @@ class Search extends Component {
               <p>{ card.title }</p>
               <span>{ card.price }</span>
               <img src={ card.thumbnail } alt="imagem eletrônico" />
+              <button
+                type="button"
+              >
+                Adicionar ao Carrinho
+              </button>
             </li>
           ))
         }
