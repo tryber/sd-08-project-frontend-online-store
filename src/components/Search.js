@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Search extends Component {
@@ -12,7 +14,8 @@ class Search extends Component {
   }
 
   async searchCategories(valor) {
-    const results = await getProductsFromCategoryAndQuery('', valor);
+    const query = await getProductsFromCategoryAndQuery('', valor);
+    const { results } = query;
     this.setState({ results });
   }
 
@@ -21,17 +24,20 @@ class Search extends Component {
     this.searchCategories(valor);
   }
 
-  corpoDeTudo(results) {
+  corpoDeTudo(result) {
+    const results = Array.from(result);
     return (
-      <div data-testid="product">
-        { results.map((card) => (
-          <section key={ card.id }>
-            <p>{ card.title }</p>
-            <span>{ card.price }</span>
-            <img src={ card.thumbnail } alt="imagem eletrônico" />
-          </section>
-        )) }
-      </div>
+      <ul>
+        {
+          results.map((card) => (
+            <li key={ card.id } data-testid="product">
+              <p>{ card.title }</p>
+              <span>{ card.price }</span>
+              <img src={ card.thumbnail } alt="imagem eletrônico" />
+            </li>
+          ))
+        }
+      </ul>
     );
   }
 
@@ -47,10 +53,14 @@ class Search extends Component {
           Busca
         </button>
         { results ? this.corpoDeTudo(results)
-          : <p>Nenhum produto encontrado</p> }
+          : <p>Nenhum produto foi encontrado</p> }
       </div>
     );
   }
 }
+
+Search.propTypes = {
+  valor: PropTypes.string.isRequired,
+};
 
 export default Search;
