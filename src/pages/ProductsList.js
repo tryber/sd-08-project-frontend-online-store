@@ -11,6 +11,7 @@ class ProductsList extends Component {
     super();
 
     this.state = {
+      categoryId: '',
       search: '',
       results: [],
       everyList: [],
@@ -20,7 +21,6 @@ class ProductsList extends Component {
     this.handleEnter = this.handleEnter.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
-    this.renderList = this.renderList.bind(this);
     this.renderLength = this.renderLength.bind(this);
   }
 
@@ -30,11 +30,13 @@ class ProductsList extends Component {
     });
   }
 
-  async handleClick() {
-    const { search } = this.state;
+  async handleClick(id) {
+    const { categoryId, search } = this.state;
+    const category = typeof id === 'string' ? id : categoryId;
 
-    await api.getProductsFromCategoryAndQuery(search, search).then((data) => {
+    await api.getProductsFromCategoryAndQuery(category, search).then((data) => {
       this.setState({
+        categoryId: category,
         results: data.results,
         everyList: '',
       });
@@ -47,12 +49,8 @@ class ProductsList extends Component {
     }
   }
 
-  async handleChangeCategory(event) {
-    this.setState({
-      [event.target.name]: event.target.id,
-    });
-
-    await this.handleClick();
+  handleChangeCategory(event) {
+    this.handleClick(event.target.id);
   }
 
   renderLength() {
@@ -64,14 +62,6 @@ class ProductsList extends Component {
         )
       </span>
     );
-  }
-
-  async renderList() {
-    await api.getProductsFromCategoryAndQuery().then((data) => {
-      this.setState({
-        everyList: data.results,
-      });
-    });
   }
 
   render() {
