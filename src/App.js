@@ -9,24 +9,32 @@ class App extends React.Component {
     super();
     this.state = {
       carrinho: [],
+      contador: [],
     };
 
     this.addAoCarrinho = this.addAoCarrinho.bind(this);
   }
 
   addAoCarrinho(item) {
-    const { carrinho } = this.state;
+    const { carrinho, contador } = this.state;
     const novoValor = [...carrinho, item];
-    this.setState({ carrinho: novoValor });
+    this.setState({
+      carrinho: novoValor,
+      contador: [...contador, 1],
+    });
+    // console.log(contador);
   }
 
   render() {
-    const { carrinho } = this.state;
+    const { carrinho, contador } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
           <Switch>
-            <Route path="/shoplist" render={ () => <Shoplist carrinho={ carrinho } /> } />
+            <Route
+              path="/shoplist"
+              render={ () => <Shoplist carrinho={ carrinho } contador={ contador } /> }
+            />
             <Route
               exact
               path="/"
