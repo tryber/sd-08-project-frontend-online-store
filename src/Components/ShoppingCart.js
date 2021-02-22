@@ -5,13 +5,11 @@ import { Link } from 'react-router-dom';
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
-    const allProducts = JSON.parse(localStorage.getItem('products'));
-    const allQuantity = JSON.parse(localStorage.getItem('quantity'));
+    const allProducts = JSON.parse(localStorage.getItem('allProducts'));
     const emptyCartAnswer = localStorage.getItem('emptyCart');
     this.state = {
       products: allProducts || [],
       emptyCart: emptyCartAnswer || false,
-      quantity: allQuantity || 1,
     };
     this.renderCart = this.renderCart.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -19,61 +17,63 @@ class ShoppingCart extends React.Component {
     this.increaseProduct = this.increaseProduct.bind(this);
     this.decreaseProduct = this.decreaseProduct.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.updateQuantity = this.updateQuantity.bind(this);
   }
 
   componentDidMount() {
     try {
       this.updateProduct();
-      this.updateQuantity();
     } catch (e) {
       this.updateState();
     }
   }
 
   handleSubmit() {
-    const { products, quantity, emptyCart } = this.state;
-    localStorage.setItem('products', JSON.stringify(products));
-    localStorage.setItem('quantity', JSON.stringify(quantity));
+    const { emptyCart } = this.state;
+    // localStorage.setItem('products', JSON.stringify(products));
     localStorage.setItem('emptyCart', emptyCart);
   }
 
-  updateQuantity() {
-    // let { quantity } = this.state;
-    // quantity.push([1]);
-    // console.log(quantity);
-    // this.setState({ quantity: quantity });
-  }
-
   updateProduct() {
-    const { location: { state: { product } } } = this.props;
     const { products } = this.state;
-    this.setState({
-      products: [...products, product],
-      emptyCart: true,
-    });
+    this.state({ emptyCart: true });
+    console.log(products);
   }
 
   updateState() {
-    this.setState({ emptyCart: false });
-  }
-
-  increaseProduct() {
-    const { quantity } = this.state;
-    this.setState({ quantity: quantity + 1 });
-  }
-
-  decreaseProduct() {
-    const { quantity } = this.state;
-    if (quantity > 1) {
-      this.setState({ quantity: quantity - 1 });
+    const { products } = this.state;
+    if (products.length > 0) {
+      this.setState({ emptyCart: true });
     }
+    // this.setState({ emptyCart: false });
+  }
+
+  increaseProduct(item) {
+    const { products } = this.state;
+    products.forEach((product) => {
+      if (product.id === item.id) {
+        product.quantity += 1;
+        this.setState((prevQuantity) => ({
+          [product.id]: prevQuantity[product.quantity],
+        }));
+      }
+    });
+  }
+
+  decreaseProduct(item) {
+    const { products } = this.state;
+    products.forEach((product) => {
+      if (product.id === item.id && product.quantity > 0) {
+        product.quantity -= 1;
+        this.setState((prevQuantity) => ({
+          [product.id]: prevQuantity[product.quantity],
+        }));
+      }
+    });
   }
 
   renderCart() {
-    const { products, quantity } = this.state;
+    const { products } = this.state;
     this.handleSubmit();
-    console.log(products);
     return (
       products.map((product) => (
         <div key={ product.id } data-testid="product">
@@ -86,21 +86,22 @@ class ShoppingCart extends React.Component {
           <button
             type="button"
             data-testid="product-decrease-quantity"
-            onClick={ this.decreaseProduct }
+            onClick={ () => this.decreaseProduct(product) }
           >
             -
           </button>
-          <p data-testid="shopping-cart-product-quantity">{ quantity }</p>
+          <p data-testid="shopping-cart-product-quantity">{ product.quantity }</p>
           <button
             type="button"
             data-testid="product-decrease-quantity"
-            onClick={ this.increaseProduct }
+            onClick={ () => this.increaseProduct(product) }
           >
             +
           </button>
           <p>
-            Total R$
-            { product.price * quantity }
+            Total R$:
+            {' '}
+            { product.price * product.quantity }
           </p>
         </div>
       ))

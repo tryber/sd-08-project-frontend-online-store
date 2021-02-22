@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -31,15 +31,11 @@ class ProductDetails extends React.Component {
           R$:
           { product.price }
         </p>
-        <Link
-          to={ {
-            pathname: '/shoppingcart',
-            state: { product },
-          } }
-          data-testid="product-detail-add-to-cart"
+        <button
+          type="button"
         >
-          Adcionar ao carrinho
-        </Link>
+          Adicionar ao Carrinho
+        </button>
         <forms onSubmit={ this.handleSubmit }>
           <br />
           <label htmlFor="product-detail-evaluation">
