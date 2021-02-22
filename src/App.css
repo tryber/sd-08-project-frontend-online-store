@@ -1,42 +1,32 @@
-.App {
-  text-align: center;
+.CartLink {
+  display: flex;
+  width: 40px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.CartLogo {
+  width: 100%;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
+.CategoryButton {
+  border-style: inset;
+  display: inline-flex;
+  height: 30px;
+  justify-content: center;
+  margin: 3px;
+  padding: 3px;
+  width: 180px;
 }
 
-.App-header {
+.ItemCard {
   align-items: center;
-  background-color: #282c34;
-  color: white;
+  border-style: groove;
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  justify-content: center;
-  min-height: 100vh;
+  height: 300px;
+  margin: 5px;
+  width: 250px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.ItemCard img {
+  width: 55%;
 }
