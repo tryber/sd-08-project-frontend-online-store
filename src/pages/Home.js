@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-import CartQuantifier from '../components/CartQuantifier';
 import FilterCategories from '../components/FilterCategories';
 import ProductList from '../components/ProductList';
-import QueryInput from '../components/QueryInput';
 import { getProductsFromCategoryAndQuery as getProduct } from '../services/api';
+import Header from '../components/Header';
 
 class Home extends Component {
   constructor(props) {
@@ -50,31 +47,14 @@ class Home extends Component {
 
   render() {
     const { items } = this.state;
-    const { cartSize } = this.props;
-
     return (
-      <>
-        <header>
-          <Link to="/pages/shoppingcart" data-testid="shopping-cart-button">
-            Carrinho
-            <CartQuantifier size={ cartSize } />
-          </Link>
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          <QueryInput handleClick={ this.updateQuery } />
-        </header>
-        <section>
-          <FilterCategories handleClick={ this.updateCategory } />
-          <ProductList items={ items } />
-        </section>
-      </>
+      <section>
+        <Header handleClick={ this.updateQuery } />
+        <FilterCategories handleClick={ this.updateCategory } />
+        <ProductList items={ items } />
+      </section>
     );
   }
 }
-
-Home.propTypes = {
-  cartSize: PropTypes.number.isRequired,
-};
 
 export default Home;

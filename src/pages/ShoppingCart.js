@@ -1,5 +1,8 @@
 import React from 'react';
+
 import CartItems from '../components/CartItems';
+import '../components/Header.css';
+import logo from '../logo.png';
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -24,16 +27,28 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { items } = this.state;
-
-    return items.length > 0 ? (
-      <CartItems
-        items={ items }
-        handleChange={ this.updateState }
-      />
-    ) : (
-      <div>
-        <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-      </div>
+    if (items.length > 0) {
+      return (
+        <>
+          <header className="header-body">
+            <img src={ logo } alt="logo" />
+          </header>
+          <CartItems
+            items={ items }
+            handleChange={ this.updateState }
+          />
+        </>
+      );
+    }
+    return (
+      <>
+        <header className="header-body">
+          <img src={ logo } alt="logo" />
+        </header>
+        <div>
+          <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+        </div>
+      </>
     );
   }
 }
