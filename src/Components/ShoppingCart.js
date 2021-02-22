@@ -44,7 +44,6 @@ class ShoppingCart extends React.Component {
     if (products.length > 0) {
       this.setState({ emptyCart: true });
     }
-    // this.setState({ emptyCart: false });
   }
 
   increaseProduct(item) {
