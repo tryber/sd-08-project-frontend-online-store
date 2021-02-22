@@ -1,28 +1,28 @@
 .header-body {
-    background-color: rgb(247, 127, 0);
-    color: rgb(241, 241, 252);
-    display: flex;
+  background-color: rgb(247, 127, 0);
+  color: rgb(241, 241, 252);
+  display: flex;
 }
 
 .header-body img {
-    display: flex;  
-    padding: 15px;
-    width: 5%;
+  display: flex;  
+  padding: 15px;
+  width: 5%;
 }
 
 .header-link {
-    display: flex;
-    margin-top: 30px;    
+  display: flex;
+  margin-top: 30px;    
 }
 
 .header-p {
-    display: flex;      
-    padding: 15px;
+  display: flex;      
+  padding: 15px;
 }
 
 .header-input {
-    display: flex;    
-    padding: 15px;
+  display: flex;    
+  padding: 15px;
 }
 
 .query-input-wrapper { 
