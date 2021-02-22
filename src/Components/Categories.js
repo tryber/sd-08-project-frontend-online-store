@@ -13,6 +13,8 @@ class Categories extends React.Component {
       categoryId: '',
       products: undefined,
       details: false,
+      allProducts: [],
+      emptyCart: false,
     };
 
     this.showCategories = this.showCategories.bind(this);
@@ -20,10 +22,30 @@ class Categories extends React.Component {
     this.fetchSearchApi = this.fetchSearchApi.bind(this);
     this.renderSearchResults = this.renderSearchResults.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.addProduct = this.addProduct.bind(this);
+    this.saveLocation = this.saveLocation.bind(this);
   }
 
   handleChange() {
     this.setState({ details: true });
+  }
+
+  addProduct(product) {
+    const newObj = { ...product, quantity: 1 };
+    const { allProducts } = this.state;
+    this.setState({
+      allProducts: [...allProducts, newObj],
+      emptyCart: true,
+    });
+  }
+
+  saveLocation() {
+    const { allProducts, emptyCart } = this.state;
+    console.log(allProducts);
+    const productSaved = JSON.parse(localStorage.getItem('allProducts'));
+    console.log(productSaved);
+    localStorage.setItem('allProducts', JSON.stringify(allProducts));
+    localStorage.setItem('emptyCart', emptyCart);
   }
 
   async fetchSearchApi() {
@@ -63,6 +85,7 @@ class Categories extends React.Component {
             R$:
             { product.price }
           </p>
+          <p>{ product.shipping.free_shipping ? <p>frete gratis</p> : <div /> }</p>
           <Link
             to={ {
               pathname: `/${product.id}/detalhes`,
@@ -73,16 +96,12 @@ class Categories extends React.Component {
           >
             Ver Detalhes
           </Link>
-          <Link
-            to={ {
-              pathname: '/shoppingcart',
-              state: { product },
-            } }
-            onClick={ this.handleChange }
-            data-testid="product-add-to-cart"
+          <button
+            type="button"
+            onClick={ () => this.addProduct(product) }
           >
-            Adcionar ao carrinho
-          </Link>
+            Adicionar ao Carrinho
+          </button>
         </div>
       ))
     );
@@ -91,6 +110,7 @@ class Categories extends React.Component {
   render() {
     const { details } = this.state;
     const emptyDiv = <div />;
+    this.saveLocation();
 
     return (
       <div>
