@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { totalValue } from '../services/storageFuncs';
+import '../components/Header.css';
+import logo from '../logo.png';
 
 class Checkout extends React.Component {
   constructor(props) {
@@ -176,25 +178,30 @@ class Checkout extends React.Component {
   render() {
     const { errorMessage } = this.state;
     return (
-      <div>
-        Preencha seus dados
-        <form action="">
-          { this.productsInfo() }
-          { this.fullName() }
-          { this.cpf() }
-          { this.email() }
-          { this.phoneNumber() }
-          { this.cep() }
-          { this.address() }
-          { this.payMethod() }
-        </form>
-        <span>{ errorMessage }</span>
-        <Link to="/">
-          <button type="button" onClick={ (event) => this.handleClick(event) }>
-            COMPRAR
-          </button>
-        </Link>
-      </div>
+      <>
+        <header className="header-body">
+          <img src={ logo } alt="logo" />
+        </header>
+        <div>
+          Preencha seus dados
+          <form action="">
+            { this.productsInfo() }
+            { this.fullName() }
+            { this.cpf() }
+            { this.email() }
+            { this.phoneNumber() }
+            { this.cep() }
+            { this.address() }
+            { this.payMethod() }
+          </form>
+          <span>{ errorMessage }</span>
+          <Link to="/">
+            <button type="button" onClick={ (event) => this.handleClick(event) }>
+              COMPRAR
+            </button>
+          </Link>
+        </div>
+      </>
     );
   }
 }
