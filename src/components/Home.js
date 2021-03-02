@@ -40,7 +40,6 @@ class Home extends React.Component {
   }
 
   busca(busca) {
-    const { addAoCarrinho } = this.props;
     return (
       <div>
         <label htmlFor="busca" data-testid="home-initial-message">
@@ -53,7 +52,7 @@ class Home extends React.Component {
             onChange={ this.handleChange }
           />
         </label>
-        <Search addAoCarrinho={ addAoCarrinho } valor={ busca } />
+        <Search valor={ busca } />
       </div>
     );
   }

@@ -18,7 +18,7 @@ class Shoplist extends React.Component {
     this.setState({
       contador,
     });
-    // console.log(contador);
+    console.log(contador);
     // console.log(target);
     // console.log(carrinho);
   }
@@ -37,7 +37,7 @@ class Shoplist extends React.Component {
         </span>
         <ul>
           {carrinho.map((item, i) => (
-            <section key={ item.id }>
+            <>
               <button
                 data-testid="product-decrease-quantity"
                 type="button"
@@ -60,7 +60,7 @@ class Shoplist extends React.Component {
               <span data-testid="shopping-cart-product-quantity">
                 {contador[i]}
               </span>
-            </section>
+            </>
           ))}
         </ul>
 

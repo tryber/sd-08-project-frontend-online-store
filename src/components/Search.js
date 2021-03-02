@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import ProductCard from './ProductCard';
 
 class Search extends Component {
   constructor() {
@@ -27,9 +26,23 @@ class Search extends Component {
 
   corpoDeTudo(result) {
     const results = Array.from(result);
-    const { addAoCarrinho } = this.props;
     return (
-      <ProductCard addAoCarrinho={ addAoCarrinho } produtos={ results } />
+      <ul>
+        {
+          results.map((card) => (
+            <li key={ card.id } data-testid="product">
+              <p>{ card.title }</p>
+              <span>{ card.price }</span>
+              <img src={ card.thumbnail } alt="imagem eletrônico" />
+              <button
+                type="button"
+              >
+                Adicionar ao Carrinho
+              </button>
+            </li>
+          ))
+        }
+      </ul>
     );
   }
 
@@ -53,7 +66,6 @@ class Search extends Component {
 
 Search.propTypes = {
   valor: PropTypes.string.isRequired,
-  addAoCarrinho: PropTypes.func.isRequired,
 };
 
 export default Search;
