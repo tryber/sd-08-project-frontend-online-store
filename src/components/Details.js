@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import FormDetails from './FormDetails';
 
 export default class Details extends Component {
   constructor() {
     super();
-    this.state = { produto: {} };
+    this.state = { produto: {}, id: '' };
 
     this.buscaProduto = this.buscaProduto.bind(this);
   }
@@ -20,38 +21,44 @@ export default class Details extends Component {
     const { match: { params: { categoryId, id } } } = this.props;
     const request = await getProductsFromCategoryAndQuery(categoryId, '');
     const produto = request.results.find((item) => (item.id === id));
-    this.setState({ produto });
+    this.setState({ produto, id: produto.id });
   }
 
   render() {
-    const { produto } = this.state;
+    const { produto, id } = this.state;
     const { addAoCarrinho } = this.props;
     return (
-      <div>
-        <button
-          type="button"
-        >
-          <Link data-testid="shopping-cart-button" to="/shoplist">Carrinho</Link>
-        </button>
-        <h4 data-testid="product-detail-name">
-          Produto:
-          {produto.title}
-        </h4>
-        <img alt="imagem do produto" src={ produto.thumbnail } />
-        <h5>
-          Preço: R$
-          {produto.price}
-        </h5>
-        <button
-          type="button"
-          onClick={ () => {
-            addAoCarrinho(produto);
-          } }
-        >
-          Adicionar ao carrinho
-        </button>
+      <>
+        <div>
+          <button
+            type="button"
+          >
+            <Link data-testid="shopping-cart-button" to="/shoplist">Carrinho</Link>
+          </button>
+          <h4 data-testid="product-detail-name">
+            Produto:
+            {produto.title}
+          </h4>
+          <img alt="imagem do produto" src={ produto.thumbnail } />
+          <h5>
+            Preço: R$
+            {produto.price}
+          </h5>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => {
+              addAoCarrinho(produto);
+            } }
+          >
+            Adicionar ao carrinho
+          </button>
 
-      </div>
+        </div>
+        <div>
+          <FormDetails id={ id } />
+        </div>
+      </>
     );
   }
 }

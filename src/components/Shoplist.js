@@ -6,15 +6,17 @@ class Shoplist extends React.Component {
     super(props);
     const { carrinho, contador } = props;
     this.state = { carrinho, contador };
-    console.log(this.state);
     this.mudaQuantia = this.mudaQuantia.bind(this);
   }
 
   mudaQuantia(item, { target }) {
     const { contador, carrinho } = this.state;
     const index = carrinho.findIndex((x) => x.id === item);
-    const a = target.name === '-' ? contador[index] -= 1 : contador[index] += 1;
-    console.log(a);
+    if (target.name === '-') {
+      contador[index] -= 1;
+    } else {
+      contador[index] += 1;
+    }
     this.setState({
       contador,
     });
