@@ -3,6 +3,8 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Shoplist from './components/Shoplist';
+import './style/productCard.css';
+import Details from './components/Details';
 
 class App extends React.Component {
   constructor() {
@@ -41,6 +43,13 @@ class App extends React.Component {
               render={ () => <Home addAoCarrinho={ this.addAoCarrinho } /> }
             />
           </Switch>
+          <Route
+            path="/details/:categoryId/:id"
+            render={ (props) => (<Details
+              addAoCarrinho={ this.addAoCarrinho }
+              { ...props }
+            />) }
+          />
         </BrowserRouter>
       </div>
     );
