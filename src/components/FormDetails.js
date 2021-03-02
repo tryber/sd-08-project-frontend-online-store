@@ -43,7 +43,7 @@ export default class FormDetails extends Component {
     return (rating.values.length > 0 && rating.values.map((item, index) => (
       <section key={ index }>
         <li>
-          Nota:
+          Nota
           <span>{item}</span>
         </li>
         <p>{rating.comment[index]}</p>
