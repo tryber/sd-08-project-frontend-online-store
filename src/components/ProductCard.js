@@ -14,6 +14,10 @@ export default class ProductCard extends Component {
               R$
               { produto.price }
             </span>
+            {produto.shipping.free_shipping && (
+              <span data-testid="free-shipping">
+                Frete Gratis
+              </span>)}
             <img src={ produto.thumbnail } alt="Imagem do produto" />
             <button
               type="button"
