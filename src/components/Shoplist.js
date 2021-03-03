@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Shoplist extends React.Component {
   constructor(props) {
@@ -25,9 +26,43 @@ class Shoplist extends React.Component {
     // console.log(carrinho);
   }
 
+  renderCarrinho(carrinho, contador) {
+    return (
+      <ul>
+        {carrinho.map((item, i) => (
+          <section key={ i }>
+            <button
+              data-testid="product-decrease-quantity"
+              type="button"
+              name="-"
+              onClick={ (event) => this.mudaQuantia(item.id, event) }
+            >
+              -
+            </button>
+            <button
+              data-testid="product-increase-quantity"
+              type="button"
+              name="+"
+              onClick={ (event) => this.mudaQuantia(item.id, event) }
+            >
+              +
+            </button>
+            <li key={ item.id } data-testid="shopping-cart-product-name">
+              {item.title}
+            </li>
+            <span data-testid="shopping-cart-product-quantity">
+              {contador[i]}
+            </span>
+          </section>
+        ))}
+      </ul>);
+  }
+
   render() {
     const { carrinho } = this.state;
     const { contador } = this.state;
+    const carrinhoFinal = { carrinho, contador };
+    const { getCartItems } = this.props;
     if (carrinho.length === 0) {
       return <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     }
@@ -37,34 +72,14 @@ class Shoplist extends React.Component {
           Items no Carrinho:
           {carrinho.length}
         </span>
-        <ul>
-          {carrinho.map((item, i) => (
-            <section key={ item.id }>
-              <button
-                data-testid="product-decrease-quantity"
-                type="button"
-                name="-"
-                onClick={ (event) => this.mudaQuantia(item.id, event) }
-              >
-                -
-              </button>
-              <button
-                data-testid="product-increase-quantity"
-                type="button"
-                name="+"
-                onClick={ (event) => this.mudaQuantia(item.id, event) }
-              >
-                +
-              </button>
-              <li key={ item.id } data-testid="shopping-cart-product-name">
-                {item.title}
-              </li>
-              <span data-testid="shopping-cart-product-quantity">
-                {contador[i]}
-              </span>
-            </section>
-          ))}
-        </ul>
+        {this.renderCarrinho(carrinho, contador)}
+        <Link
+          data-testid="checkout-products"
+          to="/finalizarCompra"
+          onClick={ () => getCartItems(carrinhoFinal) }
+        >
+          Finalizar compra
+        </Link>
 
       </div>
     );
@@ -73,7 +88,8 @@ class Shoplist extends React.Component {
 
 Shoplist.propTypes = {
   carrinho: PropTypes.arrayOf(PropTypes.object).isRequired,
-  contador: PropTypes.arrayOf(PropTypes.object).isRequired,
+  contador: PropTypes.arrayOf(PropTypes.number).isRequired,
+  getCartItems: PropTypes.func.isRequired,
 };
 
 export default Shoplist;

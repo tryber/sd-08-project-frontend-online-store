@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Shoplist from './components/Shoplist';
 import './style/productCard.css';
 import Details from './components/Details';
+import FinalizarCompra from './components/FinalizarCompra';
 
 class App extends React.Component {
   constructor() {
@@ -12,9 +13,15 @@ class App extends React.Component {
     this.state = {
       carrinho: [],
       contador: [],
+      finalizarCompra: [],
     };
 
     this.addAoCarrinho = this.addAoCarrinho.bind(this);
+    this.getCartItems = this.getCartItems.bind(this);
+  }
+
+  getCartItems(obj) {
+    this.setState({ finalizarCompra: obj });
   }
 
   addAoCarrinho(item) {
@@ -28,14 +35,18 @@ class App extends React.Component {
   }
 
   render() {
-    const { carrinho, contador } = this.state;
+    const { carrinho, contador, finalizarCompra } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
           <Switch>
             <Route
               path="/shoplist"
-              render={ () => <Shoplist carrinho={ carrinho } contador={ contador } /> }
+              render={ () => (<Shoplist
+                getCartItems={ this.getCartItems }
+                carrinho={ carrinho }
+                contador={ contador }
+              />) }
             />
             <Route
               exact
@@ -47,6 +58,13 @@ class App extends React.Component {
             path="/details/:categoryId/:id"
             render={ (props) => (<Details
               addAoCarrinho={ this.addAoCarrinho }
+              { ...props }
+            />) }
+          />
+          <Route
+            path="/finalizarCompra"
+            render={ (props) => (<FinalizarCompra
+              carrinho={ finalizarCompra }
               { ...props }
             />) }
           />
