@@ -5,28 +5,35 @@ import { Link } from 'react-router-dom';
 class Shoplist extends React.Component {
   constructor(props) {
     super(props);
-    const { carrinho, contador } = props;
-    this.state = { carrinho, contador };
+    const { carrinho } = props;
+    this.state = { carrinho };
     this.mudaQuantia = this.mudaQuantia.bind(this);
   }
 
   mudaQuantia(item, { target }) {
-    const { contador, carrinho } = this.state;
-    const index = carrinho.findIndex((x) => x.id === item);
+    const { carrinho } = this.state;
+    // const index = carrinho.findIndex((x) => x.id === item);
+    const checkCart = carrinho.find((cart) => cart.id === item);
     if (target.name === '-') {
-      contador[index] -= 1;
-    } else {
-      contador[index] += 1;
+      // contador[index] -= 1;
+      checkCart.contador -= 1;
+      return this.setState({ carrinho: [...carrinho] });
     }
-    this.setState({
-      contador,
-    });
+    if (checkCart.contador < checkCart.available_quantity) {
+      checkCart.contador += 1;
+      this.setState({ carrinho: [...carrinho] });
+    }
+    // contador[index] += 1;
+
+    // this.setState({
+    //   contador,
+    // });
     // console.log(contador);
     // console.log(target);
     // console.log(carrinho);
   }
 
-  renderCarrinho(carrinho, contador) {
+  renderCarrinho(carrinho) {
     return (
       <ul>
         {carrinho.map((item, i) => (
@@ -51,7 +58,7 @@ class Shoplist extends React.Component {
               {item.title}
             </li>
             <span data-testid="shopping-cart-product-quantity">
-              {contador[i]}
+              {item.contador}
             </span>
           </section>
         ))}
@@ -60,8 +67,7 @@ class Shoplist extends React.Component {
 
   render() {
     const { carrinho } = this.state;
-    const { contador } = this.state;
-    const carrinhoFinal = { carrinho, contador };
+    const carrinhoFinal = { carrinho };
     const { getCartItems } = this.props;
     if (carrinho.length === 0) {
       return <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
@@ -72,7 +78,7 @@ class Shoplist extends React.Component {
           Items no Carrinho:
           {carrinho.length}
         </span>
-        {this.renderCarrinho(carrinho, contador)}
+        {this.renderCarrinho(carrinho)}
         <Link
           data-testid="checkout-products"
           to="/finalizarCompra"
@@ -88,7 +94,6 @@ class Shoplist extends React.Component {
 
 Shoplist.propTypes = {
   carrinho: PropTypes.arrayOf(PropTypes.object).isRequired,
-  contador: PropTypes.arrayOf(PropTypes.number).isRequired,
   getCartItems: PropTypes.func.isRequired,
 };
 

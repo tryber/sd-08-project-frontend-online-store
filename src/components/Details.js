@@ -21,19 +21,27 @@ export default class Details extends Component {
     const { match: { params: { categoryId, id } } } = this.props;
     const request = await getProductsFromCategoryAndQuery(categoryId, '');
     const produto = request.results.find((item) => (item.id === id));
-    this.setState({ produto, id: produto.id });
+    this.setState({ produto });
   }
 
   render() {
     const { produto, id } = this.state;
-    const { addAoCarrinho } = this.props;
+    const { addAoCarrinho, totalLength } = this.props;
+    // const total = contador.length > 0 ? contador.reduce((acc, curr) => acc + curr, 0) : 0;
+
     return (
       <>
         <div>
           <button
             type="button"
           >
-            <Link data-testid="shopping-cart-button" to="/shoplist">Carrinho</Link>
+            <Link
+              data-testid="shopping-cart-button"
+              to="/shoplist"
+            >
+              Carrinho
+              <span data-testid="shopping-cart-size">{totalLength}</span>
+            </Link>
           </button>
           <h4 data-testid="product-detail-name">
             Produto:
@@ -71,4 +79,5 @@ Details.propTypes = {
     }).isRequired,
   }).isRequired,
   addAoCarrinho: PropTypes.func.isRequired,
+  totalLength: PropTypes.number.isRequired,
 };

@@ -183,9 +183,9 @@ export default class FinalizarCompra extends Component {
     );
   }
 
-  renderTotalCarrinho({ carrinho, contador }) {
-    const total = carrinho.reduce((acc, curr, index) => {
-      const value = curr.price * contador[index];
+  renderTotalCarrinho({ carrinho }) {
+    const total = carrinho.reduce((acc, curr) => {
+      const value = curr.price * curr.contador;
       return acc + value;
     }, 0);
 

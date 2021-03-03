@@ -12,7 +12,6 @@ class App extends React.Component {
     super();
     this.state = {
       carrinho: [],
-      contador: [],
       finalizarCompra: [],
     };
 
@@ -25,17 +24,30 @@ class App extends React.Component {
   }
 
   addAoCarrinho(item) {
-    const { carrinho, contador } = this.state;
-    const novoValor = [...carrinho, item];
-    this.setState({
-      carrinho: novoValor,
-      contador: [...contador, 1],
-    });
+    const { carrinho } = this.state;
+    const checkItem = carrinho.find((cart) => cart.id === item.id);
+    if (!item.contador) item.contador = 1;
+    if (!checkItem) {
+      return this.setState({ carrinho: [...carrinho, item] });
+    }
+    if (checkItem.contador < checkItem.available_quantity) {
+      checkItem.contador += 1;
+      console.log(checkItem.available_quantity);
+      this.setState({ carrinho: [...carrinho] });
+    }
+
+    // const novoValor = [...carrinho, item];
+    // this.setState({
+    //   carrinho: novoValor,
+    //   contador: [...contador, 1],
+    // });
     // console.log(contador);
   }
 
   render() {
-    const { carrinho, contador, finalizarCompra } = this.state;
+    const { carrinho, finalizarCompra } = this.state;
+    const totalLength = carrinho.length > 0 ? carrinho
+      .reduce((acc, curr) => acc + curr.contador, 0) : 0;
     return (
       <div className="App">
         <BrowserRouter>
@@ -45,18 +57,21 @@ class App extends React.Component {
               render={ () => (<Shoplist
                 getCartItems={ this.getCartItems }
                 carrinho={ carrinho }
-                contador={ contador }
               />) }
             />
             <Route
               exact
               path="/"
-              render={ () => <Home addAoCarrinho={ this.addAoCarrinho } /> }
+              render={ () => (<Home
+                totalLength={ totalLength }
+                addAoCarrinho={ this.addAoCarrinho }
+              />) }
             />
           </Switch>
           <Route
             path="/details/:categoryId/:id"
             render={ (props) => (<Details
+              totalLength={ totalLength }
               addAoCarrinho={ this.addAoCarrinho }
               { ...props }
             />) }

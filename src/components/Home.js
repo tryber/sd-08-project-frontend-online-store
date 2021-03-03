@@ -59,11 +59,20 @@ class Home extends React.Component {
   }
 
   botao() {
+    const { totalLength } = this.props;
+    // const total = contador.length > 0 ? contador.reduce((acc, curr) => acc + curr, 0) : 0;
     return (
       <button
         type="button"
       >
-        <Link data-testid="shopping-cart-button" to="/shoplist">Carrinho</Link>
+        <Link
+          data-testid="shopping-cart-button"
+          to="/shoplist"
+        >
+          Carrinho
+          {' '}
+          <span data-testid="shopping-cart-size">{totalLength}</span>
+        </Link>
       </button>
     );
   }
@@ -91,6 +100,11 @@ class Home extends React.Component {
 
 Home.propTypes = {
   addAoCarrinho: PropTypes.func.isRequired,
+  totalLength: PropTypes.number,
+};
+
+Home.defaultProps = {
+  totalLength: 0,
 };
 
 export default Home;
