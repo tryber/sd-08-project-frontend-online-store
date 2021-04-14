@@ -680,7 +680,7 @@ O que será verificado:
 
 - [Tela - Detalhamento do produto com quantidade.png](https://github.com/tryber/sd-08-project-frontend-online-store/tree/master/wireframes/card_09.png)
 
----
+----
 
 # Avisos finais
 
