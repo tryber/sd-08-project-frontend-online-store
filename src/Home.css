@@ -1,0 +1,12 @@
+.cartIcon {
+  height: 50px;
+  width: 50px;
+}
+
+.homepage {
+  display: flex;
+}
+
+li {
+  list-style: none;
+}
